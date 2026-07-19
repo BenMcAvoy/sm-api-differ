@@ -22,9 +22,21 @@ export default {
         const targetPath = url.pathname.replace(/^\/counter/, "");
         const targetUrl = GOATCOUNTER_HOST + targetPath + url.search;
 
+        // The visitor's real IP arrives on this request as CF-Connecting-IP
+        // (Cloudflare fronts this domain). This fetch() call re-enters
+        // Cloudflare's edge a second time on its way to GoatCounter (also
+        // Cloudflare-fronted), and that header isn't guaranteed to survive a
+        // second hop unmodified -- so set it explicitly as X-Forwarded-For,
+        // which GoatCounter's real-IP detection also checks, to make sure
+        // country/geo stats and unique-visit dedup see the real visitor
+        // instead of this Worker's own egress IP.
+        const headers = new Headers(request.headers);
+        const realIp = request.headers.get("CF-Connecting-IP");
+        if (realIp) headers.set("X-Forwarded-For", realIp);
+
         const upstream = await fetch(targetUrl, {
             method: request.method,
-            headers: request.headers,
+            headers,
             body: ["GET", "HEAD"].includes(request.method) ? undefined : request.body,
         });
 
