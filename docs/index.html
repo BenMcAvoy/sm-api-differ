@@ -154,17 +154,61 @@
         flex-shrink: 0;
     }
 
+    .match-hint {
+        font-size: 0.72rem;
+        color: var(--sl-color-neutral-500);
+        flex-shrink: 0;
+        margin-left: auto;
+        padding-left: 0.4rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 40%;
+    }
+
+    .loading-state, .error-state {
+        padding: 1rem 0.5rem;
+        color: var(--sl-color-neutral-500);
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .error-state {
+        color: var(--sl-color-danger-600);
+    }
+
+    .error-state .permalink-btn {
+        margin: 0.6rem auto 0 auto;
+        display: block;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border: 2px solid var(--sl-color-neutral-300);
+        border-top-color: var(--sl-color-primary-600);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .overview-intro {
+        color: var(--sl-color-neutral-700);
+        line-height: 1.6;
+        margin: 0 0 1rem 0;
+    }
+
     .status-added .status-dot { background: var(--sl-color-success-600); }
     .status-removed .status-dot { background: var(--sl-color-danger-600); }
     .status-modified .status-dot { background: var(--sl-color-warning-600); }
     .status-unchanged .status-dot { background: var(--sl-color-neutral-300); }
     .status-unchanged .name { color: var(--sl-color-neutral-600); }
-
-    #empty-state {
-        color: var(--sl-color-neutral-500);
-        text-align: center;
-        margin-top: 4rem;
-    }
 
     .detail-header {
         display: flex;
@@ -605,7 +649,7 @@
 <div id="app">
     <div id="sidebar">
         <div class="filter-row">
-            <sl-input id="search" placeholder="Filter…" clearable size="small" style="flex: 1 1 auto;"></sl-input>
+            <sl-input id="search" placeholder="Filter names or members…" clearable size="small" style="flex: 1 1 auto;"></sl-input>
         </div>
         <div class="filter-row">
             <sl-checkbox id="filter-added" checked size="small">Added</sl-checkbox>
@@ -628,9 +672,7 @@
                 </sl-button-group>
             </div>
         </div>
-        <div id="main">
-            <div id="empty-state">Select an item on the left to view its diff.</div>
-        </div>
+        <div id="main"></div>
     </div>
 </div>
 
@@ -820,33 +862,70 @@ let visibleItemsList = [];
 
 async function load() {
     applyStateFromUrl();
-    const res = await fetch("./diff.json");
-    diffData = await res.json();
+    document.getElementById("tree").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data…</div>`;
+    document.getElementById("main").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data…</div>`;
+
+    try {
+        const res = await fetch("./diff.json");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        diffData = await res.json();
+    } catch (err) {
+        const message = `<div class="error-state">Failed to load diff.json: ${escapeHtml(err.message)}<br><button class="permalink-btn" type="button" id="retry-load">Retry</button></div>`;
+        document.getElementById("tree").innerHTML = message;
+        document.getElementById("main").innerHTML = "";
+        document.getElementById("retry-load").addEventListener("click", load);
+        return;
+    }
+
     buildReferenceIndex();
     render();
-    showSelectedFromKey();
+    if (selectedKey) showSelectedFromKey();
+    else renderOverview();
 }
 
 window.addEventListener("popstate", () => {
     applyStateFromUrl();
     render();
-    if (selectedKey) {
-        showSelectedFromKey();
-    } else {
-        document.getElementById("main").innerHTML = `<div id="empty-state">Select an item on the left to view its diff.</div>`;
-    }
+    if (selectedKey) showSelectedFromKey();
+    else renderOverview();
 });
 
-function matchesFilters(status, query, name) {
-    if (status === "unchanged" ? !filterState.showUnchanged : !filterState[status]) return false;
-    if (query && !name.toLowerCase().includes(query.toLowerCase())) return false;
-    return true;
+// Search reaches into an entry's nested named lists (constants, functions,
+// callbacks, members, metamethods — whatever CATEGORY_SCHEMAS declares for
+// this category) so "find where X changed" works for members, not just
+// top-level class/userdata/namespace names. Returns the first matching
+// nested name, so the row can show *why* it matched.
+function findNestedMatch(cat, entry, query) {
+    const schema = CATEGORY_SCHEMAS[cat];
+    if (!schema.lists) return null;
+    const before = entry.before || {};
+    const after = entry.after || {};
+    for (const { path } of schema.lists) {
+        for (const list of [get(before, path), get(after, path)]) {
+            if (!list) continue;
+            for (const item of list) {
+                if (item.name && item.name.toLowerCase().includes(query)) return item.name;
+            }
+        }
+    }
+    return null;
+}
+
+function matchesFilters(cat, name, entry, query) {
+    const status = entry.status;
+    if (status === "unchanged" ? !filterState.showUnchanged : !filterState[status]) {
+        return { match: false, nestedMatch: null };
+    }
+    if (!query) return { match: true, nestedMatch: null };
+    if (name.toLowerCase().includes(query)) return { match: true, nestedMatch: null };
+    const nestedMatch = findNestedMatch(cat, entry, query);
+    return { match: !!nestedMatch, nestedMatch };
 }
 
 function render() {
     const tree = document.getElementById("tree");
     tree.innerHTML = "";
-    const query = filterState.query;
+    const query = filterState.query.trim().toLowerCase();
     visibleItemsList = [];
 
     let totalAdded = 0, totalRemoved = 0, totalModified = 0;
@@ -859,7 +938,11 @@ function render() {
 
         for (const cat of ["classes", "userdatas", "namespaces"]) {
             const items = Object.entries(envEntries[cat]).sort((a, b) => a[0].localeCompare(b[0]));
-            const visibleItems = items.filter(([name, entry]) => matchesFilters(entry.status, query, name));
+            const visibleItems = [];
+            for (const [name, entry] of items) {
+                const { match, nestedMatch } = matchesFilters(cat, name, entry, query);
+                if (match) visibleItems.push({ name, entry, nestedMatch });
+            }
             if (visibleItems.length === 0) continue;
             envHasVisible = true;
 
@@ -868,7 +951,7 @@ function render() {
             header.textContent = `${env === "game" ? "Game" : "Terrain"} / ${CATEGORY_LABELS[cat]} (${visibleItems.length})`;
             envSection.appendChild(header);
 
-            for (const [name, entry] of visibleItems) {
+            for (const { name, entry, nestedMatch } of visibleItems) {
                 if (entry.status === "added") totalAdded++;
                 else if (entry.status === "removed") totalRemoved++;
                 else if (entry.status === "modified") totalModified++;
@@ -877,7 +960,8 @@ function render() {
                 visibleItemsList.push({ key, env, cat, name, entry });
                 const row = document.createElement("div");
                 row.className = `item-row status-${entry.status}` + (key === selectedKey ? " selected" : "");
-                row.innerHTML = `<span class="status-dot"></span><span class="name">${escapeHtml(name)}</span>`;
+                row.innerHTML = `<span class="status-dot"></span><span class="name">${escapeHtml(name)}</span>` +
+                    (nestedMatch ? `<span class="match-hint" title="Matched member: ${escapeHtml(nestedMatch)}">${escapeHtml(nestedMatch)}</span>` : "");
                 row.addEventListener("click", () => selectItem(env, cat, name, entry));
                 envSection.appendChild(row);
             }
@@ -1160,6 +1244,67 @@ function appendSection(main, title, contentEl) {
     section.appendChild(heading);
     section.appendChild(contentEl);
     main.appendChild(section);
+}
+
+function computeStats() {
+    const stats = {};
+    for (const env of ["game", "terrain"]) {
+        stats[env] = {};
+        for (const cat of ["classes", "userdatas", "namespaces"]) {
+            const counts = { added: 0, removed: 0, modified: 0, unchanged: 0 };
+            for (const entry of Object.values(diffData[env][cat])) counts[entry.status]++;
+            stats[env][cat] = counts;
+        }
+    }
+    return stats;
+}
+
+function renderStatsTable(envStats) {
+    const table = document.createElement("div");
+    table.className = "row-table";
+    for (const cat of ["classes", "userdatas", "namespaces"]) {
+        const c = envStats[cat];
+        const row = document.createElement("div");
+        row.className = "row-item";
+        row.innerHTML = `<span class="row-code" style="min-width: 7rem;">${escapeHtml(CATEGORY_LABELS[cat])}</span>` +
+            `<span class="row-desc"><span class="status-tag added">+${c.added}</span> ` +
+            `<span class="status-tag removed">-${c.removed}</span> ` +
+            `<span class="status-tag modified">~${c.modified}</span> ` +
+            `<span class="status-tag unchanged">${STATUS_SYMBOLS.unchanged}${c.unchanged}</span></span>`;
+        table.appendChild(row);
+    }
+    return table;
+}
+
+// Landing page shown when nothing is selected (initial load, deselect, or
+// navigating back past the first selection) — gives an at-a-glance summary
+// instead of a bare "select something" prompt.
+function renderOverview() {
+    const main = document.getElementById("main");
+    main.innerHTML = "";
+
+    const header = document.createElement("div");
+    header.className = "detail-header";
+    header.innerHTML = `<h2>Overview</h2>`;
+    main.appendChild(header);
+
+    const intro = document.createElement("p");
+    intro.className = "overview-intro";
+    intro.textContent = "Comparing the Scrap Mechanic Lua API across two data dumps (json_ch1 → json_ch2). Pick an item from the sidebar to see its diff.";
+    main.appendChild(intro);
+
+    const stats = computeStats();
+    appendSection(main, "Game", renderStatsTable(stats.game));
+    appendSection(main, "Terrain", renderStatsTable(stats.terrain));
+
+    const tips = document.createElement("div");
+    tips.className = "callout note";
+    tips.innerHTML = `<div class="prose-line"><div><strong>Tips</strong></div>` +
+        `<div>Press <code>/</code> to jump to the filter box, ↑/↓ to move through the list. ` +
+        `The filter box also matches member/function names inside an entry, not just its own name. ` +
+        `On mobile, swipe from the left edge to open the sidebar. ` +
+        `Use "Copy link" on any item's detail page to share a direct link to it.</div></div>`;
+    main.appendChild(tips);
 }
 
 // Renders a diffed named list (constants, functions, callbacks, members, metamethods)
