@@ -88,6 +88,15 @@
         color: var(--sl-color-neutral-500);
     }
 
+    .version-label {
+        font-size: 0.8rem;
+        color: var(--sl-color-neutral-500);
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-sm);
+        padding: 0.1rem 0.5rem;
+        white-space: nowrap;
+    }
+
     .top-bar-actions {
         display: flex;
         align-items: center;
@@ -662,6 +671,7 @@
         <div class="top-bar">
             <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle menu">☰</button>
             <h1>SM API Differ</h1>
+            <span id="version-label" class="version-label"></span>
             <span id="summary-badge" class="summary-counter"></span>
             <div class="top-bar-actions">
                 <sl-checkbox id="show-unchanged" checked size="small">Show unchanged</sl-checkbox>
@@ -875,6 +885,10 @@ async function load() {
         document.getElementById("main").innerHTML = "";
         document.getElementById("retry-load").addEventListener("click", load);
         return;
+    }
+
+    if (diffData.meta) {
+        document.getElementById("version-label").textContent = `${diffData.meta.before} → ${diffData.meta.after}`;
     }
 
     buildReferenceIndex();
@@ -1288,9 +1302,10 @@ function renderOverview() {
     header.innerHTML = `<h2>Overview</h2>`;
     main.appendChild(header);
 
+    const versionText = diffData.meta ? `${diffData.meta.before} → ${diffData.meta.after}` : "two data dumps";
     const intro = document.createElement("p");
     intro.className = "overview-intro";
-    intro.textContent = "Comparing the Scrap Mechanic Lua API across two data dumps (json_ch1 → json_ch2). Pick an item from the sidebar to see its diff.";
+    intro.textContent = `Comparing the Scrap Mechanic Lua API between ${versionText}. Pick an item from the sidebar to see its diff.`;
     main.appendChild(intro);
 
     const stats = computeStats();
@@ -1512,6 +1527,15 @@ document.getElementById("search").addEventListener("sl-input", (e) => {
     filterState.query = e.target.value;
     updateUrl(false);
     render();
+});
+// Enter jumps straight to the first (currently visible, post-filter) result —
+// otherwise a search has no way to actually land on an item without switching
+// to mouse/arrow-key navigation.
+document.getElementById("search").addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" || visibleItemsList.length === 0) return;
+    e.preventDefault();
+    const it = visibleItemsList[0];
+    selectItem(it.env, it.cat, it.name, it.entry);
 });
 document.getElementById("filter-added").addEventListener("sl-change", (e) => {
     filterState.added = e.target.checked;

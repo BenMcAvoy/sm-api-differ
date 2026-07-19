@@ -545,9 +545,10 @@ nlohmann::json diff_environment(const docs::index::environment &a, const docs::i
     };
 }
 
-nlohmann::json diff_index(const docs::index &a, const docs::index &b)
+nlohmann::json diff_index(const docs::index &a, const docs::index &b, const std::string &before_label, const std::string &after_label)
 {
     return {
+        {"meta", {{"before", before_label}, {"after", after_label}}},
         {"game", diff_environment(a.game, b.game)},
         {"terrain", diff_environment(a.terrain, b.terrain)},
     };
@@ -561,13 +562,13 @@ int main(int argc, char **argv)
     auto ch1_index = load_index(ch1_path);
     auto ch2_index = load_index(ch2_path);
 
-    auto diff = diff_index(ch1_index, ch2_index);
+    auto diff = diff_index(ch1_index, ch2_index, "Chapter 1", "Chapter 2");
 
-    std::filesystem::create_directories("web");
-    std::ofstream out("web/diff.json");
+    std::filesystem::create_directories("docs");
+    std::ofstream out("docs/diff.json");
     out << diff.dump(2);
 
-    std::println("Wrote web/diff.json");
+    std::println("Wrote docs/diff.json");
 
     return 0;
 }
