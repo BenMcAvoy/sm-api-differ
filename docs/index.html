@@ -94,12 +94,12 @@
 
     .summary-counter {
         font-size: 0.85rem;
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
     }
 
     .version-label {
         font-size: 0.8rem;
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
         border: 1px solid var(--sl-color-neutral-200);
         border-radius: var(--radius-sm);
         padding: 0.1rem 0.5rem;
@@ -174,7 +174,7 @@
 
     .match-hint {
         font-size: 0.72rem;
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
         flex-shrink: 0;
         margin-left: auto;
         padding-left: 0.4rem;
@@ -186,7 +186,7 @@
 
     .loading-state, .error-state {
         padding: 1rem 0.5rem;
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
         font-size: 0.85rem;
         text-align: center;
     }
@@ -319,6 +319,15 @@
     .ref-code {
         font-family: var(--font-mono);
         color: var(--sl-color-neutral-700);
+    }
+
+    .inline-code {
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+        background: var(--sl-color-neutral-100);
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-sm);
+        padding: 0.05rem 0.35rem;
     }
 
     .callout {
@@ -505,7 +514,7 @@
     .status-tag.added { color: var(--sl-color-success-700); }
     .status-tag.removed { color: var(--sl-color-danger-700); }
     .status-tag.modified { color: var(--sl-color-warning-700); }
-    .status-tag.unchanged { color: var(--sl-color-neutral-500); }
+    .status-tag.unchanged { color: var(--sl-color-neutral-600); }
 
     .scalar-diff {
         font-size: 0.85rem;
@@ -526,12 +535,12 @@
         font-size: 0.72rem;
         text-transform: uppercase;
         letter-spacing: 0.04em;
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
         margin: 0.6rem 0 0.3rem 0;
     }
 
     .empty-note {
-        color: var(--sl-color-neutral-500);
+        color: var(--sl-color-neutral-600);
         font-size: 0.85rem;
         font-style: italic;
     }
@@ -1030,6 +1039,12 @@ function renderMarkup(raw) {
     });
     s = s.replace(/&lt;\/a&gt;/g, "</a>");
     s = s.replace(/&amp;ndash;/g, "&ndash;");
+
+    // Doc convention: `code` (backtick-delimited) marks an inline literal —
+    // a value, path, expression, or field name — as opposed to a [Ref] to
+    // another entity. Handled before the [Ref] pass below so any future
+    // overlap (brackets inside a code span) stays literal instead of linking.
+    s = s.replace(/`([^`]+)`/g, (_, code) => `<code class="inline-code">${code}</code>`);
 
     // Doc convention: "[Character]" or "[Body, bodies]" (target, display-text)
     // cross-references a class/userdata/namespace, sometimes a member of one
