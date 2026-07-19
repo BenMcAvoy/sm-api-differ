@@ -566,6 +566,17 @@
         background: var(--sl-color-neutral-100);
     }
 
+    /* Drawn with box-shadow instead of a Unicode glyph: the element itself is
+       the middle bar, box-shadow adds one above and one below. */
+    .icon-btn.hamburger::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: currentColor;
+        box-shadow: 0 5px 0 currentColor, 0 -5px 0 currentColor;
+    }
+
     .permalink-btn {
         margin-left: auto;
         flex-shrink: 0;
@@ -676,7 +687,7 @@
 <div id="app">
     <div id="sidebar">
         <div class="filter-row">
-            <sl-input id="search" placeholder="Filter names or members…" clearable size="small" style="flex: 1 1 auto;"></sl-input>
+            <sl-input id="search" placeholder="Filter names or members..." clearable size="small" style="flex: 1 1 auto;"></sl-input>
         </div>
         <div class="filter-row">
             <sl-checkbox id="filter-added" checked size="small">Added</sl-checkbox>
@@ -687,7 +698,7 @@
     </div>
     <div id="content">
         <div class="top-bar">
-            <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle menu">☰</button>
+            <button id="sidebar-toggle" class="icon-btn hamburger" aria-label="Toggle menu"></button>
             <h1>SM API Differ</h1>
             <span id="version-label" class="version-label"></span>
             <span id="summary-badge" class="summary-counter"></span>
@@ -707,7 +718,7 @@
 <script type="module">
 const CATEGORY_LABELS = { classes: "Classes", userdatas: "Userdata", namespaces: "Namespaces" };
 const STATUS_LABELS = { added: "Added", removed: "Removed", modified: "Modified", unchanged: "Unchanged" };
-const STATUS_SYMBOLS = { added: "+", removed: "-", modified: "~", unchanged: "·" };
+const STATUS_SYMBOLS = { added: "+", removed: "-", modified: "~", unchanged: "o" };
 
 function statusTag(status, label) {
     return `<span class="status-tag ${status}">${STATUS_SYMBOLS[status]} ${escapeHtml(label)}</span>`;
@@ -719,7 +730,7 @@ let currentEnv = null; // env of the entry currently shown in #main, used to dis
 
 // Maps an entity name (class/userdata/namespace) to every {env,cat,name} it
 // appears as, built from the diff data itself. Only entities that are part of
-// the diff (added/removed/modified) can be linked to — an unchanged type that
+// the diff (added/removed/modified) can be linked to -- an unchanged type that
 // a doc string references simply isn't loaded, so it renders as inert code.
 let referenceIndex = new Map();
 
@@ -736,7 +747,7 @@ function buildReferenceIndex() {
 }
 
 // A doc reference like "[CharacterClass.server_onFixedUpdate, ...]" or
-// "[sm.event.sendToGame]" points at a member, not the entity itself — resolve
+// "[sm.event.sendToGame]" points at a member, not the entity itself -- resolve
 // by trying the full dotted path, then progressively dropping trailing
 // segments until a known entity name matches.
 function resolveReference(target) {
@@ -877,7 +888,7 @@ function showSelectedFromKey() {
     if (entry) showDetail(env, cat, name, entry);
 }
 
-// Single path for "user picked an item" — row clicks, ref-links, and arrow-key
+// Single path for "user picked an item" -- row clicks, ref-links, and arrow-key
 // navigation all funnel through here so they stay in sync (URL, render, detail
 // pane, mobile drawer close).
 function selectItem(env, cat, name, entry) {
@@ -887,7 +898,7 @@ function selectItem(env, cat, name, entry) {
     showDetail(env, cat, name, entry);
     setSidebarOpen(false);
     // Move focus to the content pane so arrow keys / Space / PageDown scroll
-    // it immediately — otherwise focus is stuck wherever the selection came
+    // it immediately -- otherwise focus is stuck wherever the selection came
     // from (e.g. the search box) and keyboard scrolling does nothing.
     document.getElementById("main").focus({ preventScroll: true });
 }
@@ -898,8 +909,8 @@ let visibleItemsList = [];
 
 async function load() {
     applyStateFromUrl();
-    document.getElementById("tree").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data…</div>`;
-    document.getElementById("main").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data…</div>`;
+    document.getElementById("tree").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data...</div>`;
+    document.getElementById("main").innerHTML = `<div class="loading-state"><span class="spinner"></span>Loading diff data...</div>`;
 
     try {
         const res = await fetch("./diff.json");
@@ -914,7 +925,7 @@ async function load() {
     }
 
     if (diffData.meta) {
-        document.getElementById("version-label").textContent = `${diffData.meta.before} → ${diffData.meta.after}`;
+        document.getElementById("version-label").textContent = `${diffData.meta.before} -> ${diffData.meta.after}`;
     }
 
     buildReferenceIndex();
@@ -931,7 +942,7 @@ window.addEventListener("popstate", () => {
 });
 
 // Search reaches into an entry's nested named lists (constants, functions,
-// callbacks, members, metamethods — whatever CATEGORY_SCHEMAS declares for
+// callbacks, members, metamethods -- whatever CATEGORY_SCHEMAS declares for
 // this category) so "find where X changed" works for members, not just
 // top-level class/userdata/namespace names. Returns the first matching
 // nested name, so the row can show *why* it matched.
@@ -1023,7 +1034,7 @@ function escapeHtml(s) {
 
 // The source docs embed a small, known set of inline HTML tags (<strong>, <em>,
 // <br>, <h3>, <a href="...">). Everything is escaped first, then only those exact
-// escaped patterns are turned back into real tags — anything else (e.g. a stray
+// escaped patterns are turned back into real tags -- anything else (e.g. a stray
 // "<Vec3>" in example code text, which is NOT markup) stays literal, escaped text.
 function renderMarkup(raw) {
     let s = escapeHtml(raw);
@@ -1040,8 +1051,8 @@ function renderMarkup(raw) {
     s = s.replace(/&lt;\/a&gt;/g, "</a>");
     s = s.replace(/&amp;ndash;/g, "&ndash;");
 
-    // Doc convention: `code` (backtick-delimited) marks an inline literal —
-    // a value, path, expression, or field name — as opposed to a [Ref] to
+    // Doc convention: `code` (backtick-delimited) marks an inline literal --
+    // a value, path, expression, or field name -- as opposed to a [Ref] to
     // another entity. Handled before the [Ref] pass below so any future
     // overlap (brackets inside a code span) stays literal instead of linking.
     s = s.replace(/`([^`]+)`/g, (_, code) => `<code class="inline-code">${code}</code>`);
@@ -1100,7 +1111,7 @@ function lcsDiff(a, b, keyFn) {
 }
 
 // Diffs a "named list" (array of objects with .name), keyed by name, producing
-// added/removed/modified/unchanged entries — all of them, so the detail view
+// added/removed/modified/unchanged entries -- all of them, so the detail view
 // shows the full picture (e.g. all constants), not just what changed.
 function diffNamedList(before, after) {
     before = before || [];
@@ -1203,7 +1214,7 @@ function renderTextDiff(beforeLines, afterLines) {
     const container = document.createElement("div");
 
     let i = 0;
-    let pending = null; // { type, items: [] } — a run of same-status plain lines awaiting flush
+    let pending = null; // { type, items: [] } -- a run of same-status plain lines awaiting flush
 
     function flushPending() {
         if (pending) container.appendChild(renderLineGroup(pending.type, pending.items));
@@ -1323,7 +1334,7 @@ function renderStatsTable(envStats) {
 }
 
 // Landing page shown when nothing is selected (initial load, deselect, or
-// navigating back past the first selection) — gives an at-a-glance summary
+// navigating back past the first selection) -- gives an at-a-glance summary
 // instead of a bare "select something" prompt.
 function renderOverview() {
     const main = document.getElementById("main");
@@ -1334,7 +1345,7 @@ function renderOverview() {
     header.innerHTML = `<h2>Overview</h2>`;
     main.appendChild(header);
 
-    const versionText = diffData.meta ? `${diffData.meta.before} → ${diffData.meta.after}` : "two data dumps";
+    const versionText = diffData.meta ? `${diffData.meta.before} -> ${diffData.meta.after}` : "two data dumps";
     const intro = document.createElement("p");
     intro.className = "overview-intro";
     intro.textContent = `Comparing the Scrap Mechanic Lua API between ${versionText}. Pick an item from the sidebar to see its diff.`;
@@ -1347,7 +1358,7 @@ function renderOverview() {
     const tips = document.createElement("div");
     tips.className = "callout note";
     tips.innerHTML = `<div class="prose-line"><div><strong>Tips</strong></div>` +
-        `<div>Press <code>/</code> to jump to the filter box, ↑/↓ to move through the list. ` +
+        `<div>Press <code>/</code> to jump to the filter box, Up/Down arrows to move through the list. ` +
         `The filter box also matches member/function names inside an entry, not just its own name. ` +
         `On mobile, swipe from the left edge to open the sidebar. ` +
         `Use "Copy link" on any item's detail page to share a direct link to it.</div></div>`;
@@ -1560,7 +1571,7 @@ document.getElementById("search").addEventListener("sl-input", (e) => {
     updateUrl(false);
     render();
 });
-// Enter jumps straight to the first (currently visible, post-filter) result —
+// Enter jumps straight to the first (currently visible, post-filter) result --
 // otherwise a search has no way to actually land on an item without switching
 // to mouse/arrow-key navigation.
 document.getElementById("search").addEventListener("keydown", (e) => {

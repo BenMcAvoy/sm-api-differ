@@ -487,7 +487,7 @@ docs::index load_index(const std::filesystem::path &path)
 }
 
 // Diffs two name-keyed lists of the same type, producing an object keyed by
-// name with a "status" of added/removed/modified/unchanged — every entry from
+// name with a "status" of added/removed/modified/unchanged -- every entry from
 // both sides is included so the web UI can list (and optionally hide) the
 // unchanged ones too, not just what differs. Both "before" and "after" are
 // always included (null on the missing side) so the web UI can render a
