@@ -495,6 +495,24 @@
         background: var(--sl-color-neutral-100);
     }
 
+    .permalink-btn {
+        margin-left: auto;
+        flex-shrink: 0;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: var(--sl-color-neutral-700);
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .permalink-btn:hover {
+        background: var(--sl-color-neutral-100);
+    }
+
     #sidebar-backdrop {
         display: none;
         position: fixed;
@@ -727,12 +745,78 @@ document.getElementById("sidebar-toggle").addEventListener("click", () => {
 });
 document.getElementById("sidebar-backdrop").addEventListener("click", () => setSidebarOpen(false));
 
+// Keyboard nav: "/" focuses the filter box, arrow keys walk the currently
+// visible sidebar list (post-filter order, tracked in visibleItemsList).
+// Suppressed while focus is in a text field so normal typing still works.
+document.addEventListener("keydown", (e) => {
+    const active = document.activeElement;
+    const inTextField = active && (active.tagName === "SL-INPUT" || active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable);
+
+    if (e.key === "/" && !inTextField) {
+        e.preventDefault();
+        document.getElementById("search").focus();
+        return;
+    }
+    if (inTextField) return;
+
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        if (visibleItemsList.length === 0) return;
+        e.preventDefault();
+        let idx = visibleItemsList.findIndex((it) => it.key === selectedKey);
+        if (e.key === "ArrowDown") idx = idx < 0 ? 0 : Math.min(idx + 1, visibleItemsList.length - 1);
+        else idx = idx < 0 ? visibleItemsList.length - 1 : Math.max(idx - 1, 0);
+        const it = visibleItemsList[idx];
+        selectItem(it.env, it.cat, it.name, it.entry);
+    }
+});
+
+// Swipe gesture for the mobile drawer: edge-swipe right from the left 24px
+// opens it, swiping left while it's open closes it. Gated on a mostly-horizontal
+// swipe of 60px+ so vertical scrolling never gets misread as a swipe.
+let touchStartX = null;
+let touchStartY = null;
+document.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+    if (touchStartX === null || window.innerWidth > 768) { touchStartX = null; return; }
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+    const startX = touchStartX;
+    touchStartX = touchStartY = null;
+
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx)) return;
+
+    const isOpen = document.getElementById("sidebar").classList.contains("open");
+    if (!isOpen && startX <= 24 && dx > 0) setSidebarOpen(true);
+    else if (isOpen && dx < 0) setSidebarOpen(false);
+}, { passive: true });
+
 function showSelectedFromKey() {
     if (!selectedKey) return;
     const [env, cat, name] = selectedKey.split(":");
     const entry = diffData?.[env]?.[cat]?.[name];
     if (entry) showDetail(env, cat, name, entry);
 }
+
+// Single path for "user picked an item" — row clicks, ref-links, and arrow-key
+// navigation all funnel through here so they stay in sync (URL, render, detail
+// pane, mobile drawer close).
+function selectItem(env, cat, name, entry) {
+    selectedKey = `${env}:${cat}:${name}`;
+    updateUrl(true);
+    render();
+    showDetail(env, cat, name, entry);
+    setSidebarOpen(false);
+}
+
+// Rebuilt on every render() in on-screen order, so ArrowUp/ArrowDown can walk
+// exactly what's currently visible in the sidebar (post-filter).
+let visibleItemsList = [];
 
 async function load() {
     applyStateFromUrl();
@@ -763,6 +847,7 @@ function render() {
     const tree = document.getElementById("tree");
     tree.innerHTML = "";
     const query = filterState.query;
+    visibleItemsList = [];
 
     let totalAdded = 0, totalRemoved = 0, totalModified = 0;
 
@@ -789,22 +874,20 @@ function render() {
                 else if (entry.status === "modified") totalModified++;
 
                 const key = `${env}:${cat}:${name}`;
+                visibleItemsList.push({ key, env, cat, name, entry });
                 const row = document.createElement("div");
                 row.className = `item-row status-${entry.status}` + (key === selectedKey ? " selected" : "");
                 row.innerHTML = `<span class="status-dot"></span><span class="name">${escapeHtml(name)}</span>`;
-                row.addEventListener("click", () => {
-                    selectedKey = key;
-                    updateUrl(true);
-                    render();
-                    showDetail(env, cat, name, entry);
-                    setSidebarOpen(false);
-                });
+                row.addEventListener("click", () => selectItem(env, cat, name, entry));
                 envSection.appendChild(row);
             }
         }
 
         if (envHasVisible) tree.appendChild(envSection);
     }
+
+    const selectedRow = tree.querySelector(".item-row.selected");
+    if (selectedRow) selectedRow.scrollIntoView({ block: "nearest" });
 
     const badge = document.getElementById("summary-badge");
     badge.innerHTML = `<span class="status-tag added">+${totalAdded}</span> <span class="status-tag removed">-${totalRemoved}</span> <span class="status-tag modified">~${totalModified}</span>`;
@@ -1221,8 +1304,18 @@ function showDetail(env, cat, name, entry) {
     header.innerHTML = `
         ${statusTag(entry.status, STATUS_LABELS[entry.status])}
         <h2>${escapeHtml(env)} / ${escapeHtml(CATEGORY_LABELS[cat])} / ${escapeHtml(name)}</h2>
+        <button class="permalink-btn" type="button" title="Copy link to this item">Copy link</button>
     `;
     main.appendChild(header);
+
+    const permalinkBtn = header.querySelector(".permalink-btn");
+    permalinkBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(location.href).then(() => {
+            const original = permalinkBtn.textContent;
+            permalinkBtn.textContent = "Copied!";
+            setTimeout(() => { permalinkBtn.textContent = original; }, 1500);
+        });
+    });
 
     // Treat "added"/"removed" as a full diff against an empty object, so the
     // same rendering path highlights every field as wholly added/removed.
@@ -1266,10 +1359,8 @@ document.getElementById("main").addEventListener("click", (e) => {
     if (!link) return;
     e.preventDefault();
     const { env, cat, name } = link.dataset;
-    selectedKey = `${env}:${cat}:${name}`;
-    updateUrl(true);
-    render();
-    showSelectedFromKey();
+    const entry = diffData?.[env]?.[cat]?.[name];
+    if (entry) selectItem(env, cat, name, entry);
 });
 
 document.getElementById("search").addEventListener("sl-input", (e) => {
