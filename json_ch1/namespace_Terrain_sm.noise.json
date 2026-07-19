@@ -1,0 +1,268 @@
+{
+	"namespace": "sm.noise",
+	"doc": {
+		"text": [
+			"Contains methods related to random number and noise generation.",
+			"Most noise related functions are used for terrain generation."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "floatNoise2d",
+			"doc": {
+				"text": [
+					"A number noise 2d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"integer",
+						"seed",
+						"The seed."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise value."
+					]
+				]
+			}
+		},
+		{
+			"name": "gunSpread",
+			"doc": {
+				"text": [
+					"Returns a directional vector with a random spread given by a [sm.noise.randomNormalDistribution, normal distribution]."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"direction",
+						"The direction."
+					],
+					[
+						"number",
+						"spreadAngle",
+						"The spread angle in degrees."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The spread direction."
+					]
+				]
+			}
+		},
+		{
+			"name": "intNoise2d",
+			"doc": {
+				"text": [
+					"An integer noise 2d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"integer",
+						"seed",
+						"The seed."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The noise value."
+					]
+				]
+			}
+		},
+		{
+			"name": "octaveNoise2d",
+			"doc": {
+				"text": [
+					"An octave noise 2d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"integer",
+						"octaves",
+						"The octaves."
+					],
+					[
+						"integer",
+						"seed",
+						"The seed."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise value."
+					]
+				]
+			}
+		},
+		{
+			"name": "perlinNoise2d",
+			"doc": {
+				"text": [
+					"A perlin noise 2d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"integer",
+						"seed",
+						"The seed."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise value."
+					]
+				]
+			}
+		},
+		{
+			"name": "randomNormalDistribution",
+			"doc": {
+				"text": [
+					"Returns a random number according to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Normal_distribution\">normal random number distribution</a>.",
+					"Values near the <strong>mean</strong> are the most likely.",
+					"Standard <strong>deviation</strong> affects the dispersion of generated values from the mean."
+				],
+				"params": [
+					[
+						"number",
+						"mean",
+						"The mean."
+					],
+					[
+						"number",
+						"deviation",
+						"The deviation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The random number."
+					]
+				]
+			}
+		},
+		{
+			"name": "randomRange",
+			"doc": {
+				"text": [
+					"Returns a random number N such that `a <= N <= b`."
+				],
+				"params": [
+					[
+						"number",
+						"a",
+						"The lower bound."
+					],
+					[
+						"number",
+						"b",
+						"The upper bound."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The random value."
+					]
+				]
+			}
+		},
+		{
+			"name": "simplexNoise1d",
+			"doc": {
+				"text": [
+					"A simplex noise 1d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise value."
+					]
+				]
+			}
+		},
+		{
+			"name": "simplexNoise2d",
+			"doc": {
+				"text": [
+					"A simplex noise 2d function."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise value."
+					]
+				]
+			}
+		}
+	]
+}

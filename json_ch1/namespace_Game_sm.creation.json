@@ -1,0 +1,175 @@
+{
+	"namespace": "sm.creation",
+	"doc": {
+		"text": [
+			"A <strong>Creation</strong> represent a collection of [sm.body, bodies] linked together by [sm.joint, joints]."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "exportToString",
+			"doc": {
+				"text": [
+					"Exports creation to blueprint formatted json string."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"Any body in the creation."
+					],
+					[
+						"boolean",
+						"exportTransforms=nil",
+						"Export the current world transform of bodies. Defaults to false."
+					],
+					[
+						"boolean",
+						"forceDynamic=nil",
+						"Force export to dynamic bodies. Defaults to false."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The blueprint json string."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "exportToTable",
+			"doc": {
+				"text": [
+					"Exports creation to blueprint lua table."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"Any body in the creation."
+					],
+					[
+						"boolean",
+						"exportTransforms=nil",
+						"Export the current world transform of bodies. Defaults to false."
+					],
+					[
+						"boolean",
+						"forceDynamic=nil",
+						"Force export to dynamic bodies. Defaults to false."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The blueprint lua table."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "importFromFile",
+			"doc": {
+				"text": [
+					"Imports blueprint json file to world.",
+					"@warning",
+					"If the blueprint was not exported with transforms the importer will treat it as if importTransforms was disabled.",
+					"@warning"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to import to."
+					],
+					[
+						"string",
+						"pathString",
+						"The blueprint path."
+					],
+					[
+						"[Vec3]",
+						"worldPosition=nil",
+						"World position of import. If importTransforms is enabled position is applied to the imported transform. (Defaults to vec3.zero().)"
+					],
+					[
+						"[Quat]",
+						"worldRotation=nil",
+						"World rotation of import. If importTransforms is enabled rotation is applied to the imported transform. (Defaults to quat.identity().)"
+					],
+					[
+						"boolean",
+						"importTransforms=nil",
+						"Import world transforms from bodies. (Defaults to false.)"
+					],
+					[
+						"boolean",
+						"indestructible=false",
+						"(DEPRECATED) Ignored, use setDestructable(false) on each body in creation."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table {[Body], ...} of bodies created from the blueprint."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "importFromString",
+			"doc": {
+				"text": [
+					"Imports blueprint json string to world.",
+					"@warning",
+					"If the blueprint was not exported with transforms the importer will treat it as if importTransforms was disabled.",
+					"@warning"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to import to."
+					],
+					[
+						"string",
+						"jsonString",
+						"The blueprint json string."
+					],
+					[
+						"[Vec3]",
+						"worldPosition=nil",
+						"World position of import. If importTransforms is enabled position is applied to the imported transform. (Defaults to vec3.zero().)"
+					],
+					[
+						"[Quat]",
+						"worldRotation=nil",
+						"World rotation of import. If importTransforms is enabled rotation is applied to the imported transform. (Defaults to quat.identity().)"
+					],
+					[
+						"boolean",
+						"importTransforms=nil",
+						"Import world transforms from bodies. (Defaults to false.)"
+					],
+					[
+						"boolean",
+						"forceInactive=nil",
+						"Import interactables in an inactive state. (Defaults to false.)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table {[Body], ...} of bodies created from the blueprint."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

@@ -1,0 +1,591 @@
+{
+	"namespace": "sm.effect",
+	"userdata_association": "Effect",
+	"doc": {
+		"text": [
+			"The <strong>effect</strong> api handles the creation and playing of audio and visual effects.",
+			"Effects can consist of multiple components each being of separate types and with unique offsets, rotations and delays.",
+			"For more information on how to setup effects please take a look in the Effects/Database/EffectSets folder in the game data."
+		]
+	},
+	"constants": [
+		{
+			"name": "axis",
+			"doc": {
+				"text": [
+					"Rotation axis removal types for hosted effects. Not combinable",
+					"@table",
+					"xaxis",
+					"yaxis",
+					"zaxis",
+					"all",
+					"none",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The rotation axis removal list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host interactable to the effect then it will fetch position, velocity and orientation data from the interactable instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"Bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host shape to the effect then it will fetch position, velocity and orientation data from the shape instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"Bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host harvestable to the effect then it will fetch position, velocity and orientation data from the harvestable instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable the effect is attached to."
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host character to the effect then it will fetch position, velocity and orientation data from the character instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"Bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect2D",
+			"doc": {
+				"text": [
+					"Creates an 2d effect."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffectFirstPerson",
+			"doc": {
+				"text": [
+					"Creates an effect that is only visible in the first person scene."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffectSky",
+			"doc": {
+				"text": [
+					"Creates an Sky effect."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "estimateSize",
+			"doc": {
+				"text": [
+					"Estimates the radius of influence for an effect and instance parameters"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					],
+					[
+						"table",
+						"parameters",
+						"Table of params"
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The Range"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. If this function is called on the server it will play the effect on all clients.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects.",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Vec3]",
+						"position?",
+						"The position. (Defaults to [0,0,0])"
+					],
+					[
+						"[Vec3]",
+						"velocity?",
+						"The velocity. (Defaults to no velocity)"
+					],
+					[
+						"[Quat]",
+						"rotation?",
+						"The rotation. (Defaults to no rotation)"
+					],
+					[
+						"[Vec3]",
+						"scale?",
+						"The scale. (Defaults to no scale, only applied to renderables)"
+					],
+					[
+						"table",
+						"parameters?",
+						"The table containing the parameters for the effect. (Defaults to no parameters)"
+					],
+					[
+						"number",
+						"startTime?",
+						"The initial time progression of the effect. Can be used to fast forward some effect parts. Can be used to delay effect part activation if negative."
+					],
+					[
+						"[World]",
+						"world?",
+						"The world to play the effect in. (Defaults to [World] from script context)"
+					]
+				]
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host interactable.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters?",
+						"The table containing the parameters for the effect. (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					],
+					[
+						"number",
+						"startTime?",
+						"The initial time progression of the effect. Can be used to fast forward some effect parts. Can be used to delay effect part activation if negative."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition?",
+						"The host object relative offset position. (Defaults to sm.vec3.zero())"
+					],
+					[
+						"[Quat]",
+						"offsetRotation?",
+						"The host object relative offset rotation. (Defaults to sm.quat.identity())"
+					],
+					[
+						"[Vec3]",
+						"scale?",
+						"The scale, only applied to renderables. (Defaults to sm.vec3.one())"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host shape.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters?",
+						"The table containing the parameters for the effect. (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					],
+					[
+						"number",
+						"startTime?",
+						"The initial time progression of the effect. Can be used to fast forward some effect parts. Can be used to delay effect part activation if negative."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition?",
+						"The host object relative offset position. (Defaults to sm.vec3.zero())"
+					],
+					[
+						"[Quat]",
+						"offsetRotation?",
+						"The host object relative offset rotation. (Defaults to sm.quat.identity())"
+					],
+					[
+						"[Vec3]",
+						"scale?",
+						"The scale, only applied to renderables. (Defaults to sm.vec3.one())"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host harvestable.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters?",
+						"The table containing the parameters for the effect. (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					],
+					[
+						"number",
+						"startTime?",
+						"The initial time progression of the effect. Can be used to fast forward some effect parts. Can be used to delay effect part activation if negative."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition?",
+						"The host object relative offset position. (Defaults to sm.vec3.zero())"
+					],
+					[
+						"[Quat]",
+						"offsetRotation?",
+						"The host object relative offset rotation. (Defaults to sm.quat.identity())"
+					],
+					[
+						"[Vec3]",
+						"scale?",
+						"The scale, only applied to renderables. (Defaults to sm.vec3.one())"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host character.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters?",
+						"The table containing the parameters for the effect. (Optional)"
+					],
+					[
+						"integer",
+						"axis?",
+						"The axis of which the effect will ignore the hosts rotation around. (Defaults to [sm.effect.axis, sm.effect.axis.none]) (Optional)"
+					],
+					[
+						"number",
+						"startTime?",
+						"The initial time progression of the effect. Can be used to fast forward some effect parts. Can be used to delay effect part activation if negative."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition?",
+						"The host object relative offset position. (Defaults to sm.vec3.zero())"
+					],
+					[
+						"[Quat]",
+						"offsetRotation?",
+						"The host object relative offset rotation. (Defaults to sm.quat.identity())"
+					],
+					[
+						"[Vec3]",
+						"scale?",
+						"The scale, only applied to renderables. (Defaults to sm.vec3.one())"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

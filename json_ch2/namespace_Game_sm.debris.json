@@ -1,0 +1,133 @@
+{
+	"namespace": "sm.debris",
+	"doc": {
+		"text": [
+			"<strong>Debris</strong> are visual objects that have no impact on any other object."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createBlackHole",
+			"doc": {
+				"text": [
+					"Add a black hole that attracts nearby debris towards its position."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The position of the black hole."
+					],
+					[
+						"number",
+						"radius?",
+						"The radius of effect. (Defaults to 10)"
+					],
+					[
+						"number",
+						"force?",
+						"The attraction force. (Defaults to 100)"
+					],
+					[
+						"[Vec3]",
+						"position2?",
+						"An optional secondary position, making the black hole a capsule shape instead of a sphere."
+					],
+					[
+						"number",
+						"wanderForce?",
+						"A force applied along direction from position to position2. (Defaults to 0)"
+					],
+					[
+						"number",
+						"dissolveRadius?",
+						"The radius within which debris will start to dissolve. (Defaults to 0)"
+					],
+					[
+						"number",
+						"timeToLive?",
+						"The time the black hole will be simulated before disappearing. (Defaults to one tick)"
+					],
+					[
+						"number",
+						"channel?",
+						"The channel this black hole affects. Debris only reacts to black holes matching its channel. 0 means no debris is affected. (Defaults to 1)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createDebris",
+			"doc": {
+				"text": [
+					"Create visual debris of a [Shape, shape] from its [Uuid, uuid], that collides with world objects but does not have an impact on them."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation."
+					],
+					[
+						"[Vec3]",
+						"velocity?",
+						"The linear velocity. (Defaults to zero)"
+					],
+					[
+						"[Vec3]",
+						"angularVelocity?",
+						"The angular velocity in radians per second around the axes (x,y,z). (Defaults to zero)"
+					],
+					[
+						"[Color]",
+						"color?",
+						"The color. (Defaults to the shape's default color)"
+					],
+					[
+						"number",
+						"timeToLive?",
+						"Time to live. (Defaults to 10)"
+					],
+					[
+						"number",
+						"gravity?",
+						"Gravity vector. (Defaults to { 0,0,-10 })"
+					],
+					[
+						"number",
+						"friction?",
+						"Amount of friction. (Defaults to 1)"
+					],
+					[
+						"number",
+						"linearDamping?",
+						"Amount of linear damping. (Defaults to 0.3)"
+					],
+					[
+						"number",
+						"angularDamping?",
+						"Amount of angular damping. (Defaults to 0.3)"
+					],
+					[
+						"number",
+						"time?",
+						"The time the debris will be simulated before disappearing. (Defaults to 10 seconds)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

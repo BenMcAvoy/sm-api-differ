@@ -1,0 +1,629 @@
+{
+	"namespace": "sm.render",
+	"doc": {
+		"text": [
+			"Render settings"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getDefaultCameraLight",
+			"doc": {
+				"text": [
+					"Gets a table of the default camera light render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default camera light render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultFog",
+			"doc": {
+				"text": [
+					"Gets a table of the default fog render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default fog render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultGI",
+			"doc": {
+				"text": [
+					"Gets a table of the default GI render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default GI render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultHorizonLight",
+			"doc": {
+				"text": [
+					"Gets a table of the default horizon light render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default horizon light render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultReflectionColor",
+			"doc": {
+				"text": [
+					"Gets a table of the default reflection color render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default reflection color render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultVolumetricFog",
+			"doc": {
+				"text": [
+					"Gets a table of the default Volumetric fog render settings."
+				],
+				"return": [
+					[
+						"table",
+						"The default Volumetric fog render settings."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDefaultVoxelLODBoost",
+			"doc": {
+				"text": [
+					"Gets the default voxel LOD boost render setting."
+				],
+				"return": [
+					[
+						"number",
+						"The default voxel LOD boost render setting."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDrawDistance",
+			"doc": {
+				"text": [
+					"Gets the draw distance."
+				],
+				"return": [
+					[
+						"number",
+						"The draw distance."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getOutdoorLighting",
+			"doc": {
+				"text": [
+					"Gets the lighting cycle fraction."
+				],
+				"return": [
+					[
+						"number",
+						"The fraction of the day cycle lighting."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getScreenCoordinatesFromWorldPosition",
+			"doc": {
+				"text": [
+					"Return the screen coordinates that align with the given world position."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"pos",
+						"World position to align"
+					],
+					[
+						"integer",
+						"width",
+						"Screen width"
+					],
+					[
+						"integer",
+						"height",
+						"Screen height"
+					]
+				],
+				"return": [
+					[
+						"number, number",
+						"The x and y screen coordinates."
+					]
+				]
+			}
+		},
+		{
+			"name": "isOutdoor",
+			"doc": {
+				"text": [
+					"Checks if client is outdoor"
+				],
+				"return": [
+					[
+						"boolean",
+						"True if local client is outdoor."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetAllReflectionColor",
+			"doc": {
+				"text": [
+					"Resets all the reflection color settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetCameraLight",
+			"doc": {
+				"text": [
+					"Resets the camera light override settings."
+				]
+			}
+		},
+		{
+			"name": "resetFog",
+			"doc": {
+				"text": [
+					"Resets the fog override settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetGI",
+			"doc": {
+				"text": [
+					"Resets the global illumination override settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetHorizonLight",
+			"doc": {
+				"text": [
+					"Resets the Horizon light settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetLUT",
+			"doc": {
+				"text": [
+					"Resets the LUT override settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetVolumetricFog",
+			"doc": {
+				"text": [
+					"Resets the Volumetric fog override settings."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "resetVoxelLODBoost",
+			"doc": {
+				"text": [
+					"Resets the voxel terrain LOD boost override setting."
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCameraLight",
+			"doc": {
+				"text": [
+					"Sets the camera light override settings.",
+					"Optionally sets far camera light settings (used for camera pullback lerp)."
+				],
+				"params": [
+					[
+						"number",
+						"intensity",
+						"The light intensity."
+					],
+					[
+						"number",
+						"range",
+						"Light range."
+					],
+					[
+						"[Color]",
+						"color",
+						"Light color."
+					],
+					[
+						"number",
+						"farIntensity?",
+						"Far light intensity. (Optional)"
+					],
+					[
+						"number",
+						"farRange?",
+						"Far light range. (Optional)"
+					],
+					[
+						"[Color]",
+						"farColor?",
+						"Far light color. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCinematic",
+			"doc": {
+				"text": [
+					"Sets if a cinematic is playing"
+				],
+				"params": [
+					[
+						"boolean",
+						"cinematic",
+						"If true, sets to cinematic"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCloudSettings",
+			"doc": {
+				"text": [
+					"Sets the cloud settings."
+				],
+				"params": [
+					[
+						"number",
+						"coverage",
+						"The fraction of the cloud coverage."
+					],
+					[
+						"number",
+						"height",
+						"The cloud height."
+					],
+					[
+						"number",
+						"radius",
+						"The atmosphere radius."
+					],
+					[
+						"number",
+						"tallnessScale",
+						"The tallness scale(0.1 - 4.0)."
+					],
+					[
+						"number",
+						"directionalLightMod",
+						"Directional light mod (0.0 - 1.0)."
+					],
+					[
+						"[Vec3]",
+						"scroll",
+						"Cloud scroll."
+					],
+					[
+						"[Vec3]",
+						"scrollRotation",
+						"Cloud scroll rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFog",
+			"doc": {
+				"text": [
+					"Sets the fog override settings."
+				],
+				"params": [
+					[
+						"number",
+						"startDistance",
+						"Fog start distance."
+					],
+					[
+						"number",
+						"endDistance",
+						"Fog end distance."
+					],
+					[
+						"number",
+						"falloffFactor",
+						"Fog falloff."
+					],
+					[
+						"[Color]",
+						"startColor",
+						"Fog start color."
+					],
+					[
+						"[Color]",
+						"endColor",
+						"Fog end color."
+					],
+					[
+						"number",
+						"verticalOpacity",
+						"Vertical fog opacity. (Optional)"
+					],
+					[
+						"number",
+						"verticalFadeDistance",
+						"Vertical fog fade distance.  (Optional)"
+					],
+					[
+						"number",
+						"verticalFalloff",
+						"Vertical fog falloff.  (Optional)"
+					],
+					[
+						"number",
+						"verticalStart",
+						"Vertical fog start distance.  (Optional)"
+					],
+					[
+						"number",
+						"verticalEnd",
+						"Vertical fog end distance.  (Optional)"
+					],
+					[
+						"[Color]",
+						"verticalStartColor",
+						"Vertical fog start color.  (Optional)"
+					],
+					[
+						"[Color]",
+						"verticalEndColor",
+						"Vertical fog end color.  (Optional)"
+					],
+					[
+						"number",
+						"fadeDistance",
+						"Fog fade distance. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGI",
+			"doc": {
+				"text": [
+					"Sets the global illumination override settings."
+				],
+				"params": [
+					[
+						"number",
+						"weight",
+						"GI weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHorizonLight",
+			"doc": {
+				"text": [
+					"Sets the Horizon light settings."
+				],
+				"params": [
+					[
+						"[Color]",
+						"topColor",
+						"Color of the top of the horizon light."
+					],
+					[
+						"[Color]",
+						"horizonColor",
+						"Color of the horizon of the horizon light."
+					],
+					[
+						"[Color]",
+						"bottomColor",
+						"Color of the bottom of the horizon light."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"Direction of the horizon light."
+					],
+					[
+						"number",
+						"start",
+						"Start distance for the horizon light. (Optional)"
+					],
+					[
+						"number",
+						"end",
+						"End distance for the horizon light. (Optional)"
+					],
+					[
+						"number",
+						"falloff",
+						"Falloff factor for the horizon light. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setLUT",
+			"doc": {
+				"text": [
+					"Sets the LUT override settings."
+				],
+				"params": [
+					[
+						"string",
+						"LUT-A",
+						"Name of LUT A."
+					],
+					[
+						"string",
+						"LUT-B?",
+						"Name of LUT B."
+					],
+					[
+						"number",
+						"blend?",
+						"blend between 0.0 and 1.0 for LUT A and B. (Defaults to 0.0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOutdoorLighting",
+			"doc": {
+				"text": [
+					"Sets the lighting cycle fraction."
+				],
+				"params": [
+					[
+						"number",
+						"value",
+						"The fraction of the day cycle lighting."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setReflectionLevelColor",
+			"doc": {
+				"text": [
+					"Sets the reflection color correction settings for one reflection level."
+				],
+				"params": [
+					[
+						"string",
+						"settingsLevel",
+						"Off/Low/Medium/High."
+					],
+					[
+						"number",
+						"min",
+						"Color min."
+					],
+					[
+						"number",
+						"max",
+						"Color max."
+					],
+					[
+						"number",
+						"mul",
+						"Color mul."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVolumetricFog",
+			"doc": {
+				"text": [
+					"Sets the Volumetric fog override settings."
+				],
+				"params": [
+					[
+						"number",
+						"min",
+						"Fog min."
+					],
+					[
+						"number",
+						"max",
+						"Fog max."
+					],
+					[
+						"number",
+						"loopSpeed",
+						"Fog loop speed."
+					],
+					[
+						"[Vec3]",
+						"scrollSpeed",
+						"Fog scroll speed."
+					],
+					[
+						"[Vec3]",
+						"scale",
+						"Fog scale."
+					],
+					[
+						"number",
+						"intensity",
+						"Fog intensity."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVoxelLODBoost",
+			"doc": {
+				"text": [
+					"Sets the voxel terrain LOD boost override setting.",
+					"The value is capped by the current draw distance quality."
+				],
+				"params": [
+					[
+						"number",
+						"boost",
+						"Voxel terrain LOD boost."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

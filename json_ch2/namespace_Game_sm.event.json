@@ -1,0 +1,395 @@
+{
+	"namespace": "sm.event",
+	"doc": {
+		"text": [
+			"Events for communicating between scripts by running callbacks."
+		]
+	},
+	"constants": [
+		{
+			"name": "types",
+			"doc": {
+				"text": [
+					"Event types",
+					"@table",
+					"validate; Will make sure script instance exists, and that the callback is declared on the receiving end, before queuing the event. This is the default type.",
+					"blind; Will blindly queue the event without making any validation checks. Can be useful for sending events to script we know will come alive the next tick.",
+					"instant; Same as blind event, but sent immediately.",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The event types list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "sendToCharacter",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Character]."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a character script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToGame",
+			"doc": {
+				"text": [
+					"Sends an event to the game script."
+				],
+				"params": [
+					[
+						"string",
+						"callback",
+						"The function name in the game script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToHarvestable",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Harvestable]."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a harvestable script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToInteractable",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in an interactable script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToPlayer",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Player]."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a player script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToScriptableObject",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [ScriptableObject]."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a scriptableObject script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToTool",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Tool]."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a tool script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the event was successfully queued."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToUnit",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Unit]."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a unit script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToWorld",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [World]."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a world script."
+					],
+					[
+						"any",
+						"args?",
+						"Optional arguments to be sent to the callback."
+					],
+					[
+						"integer",
+						"eventType?",
+						"The type of event. Defaults to [sm.event.types, sm.event.types.validate]."
+					],
+					[
+						"boolean",
+						"pauseSave?",
+						"Optional, defaults to true. If true, pauses saving for 1 tick for delayed event types (server only)."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the event was successfully processed."
+					]
+				]
+			}
+		}
+	]
+}

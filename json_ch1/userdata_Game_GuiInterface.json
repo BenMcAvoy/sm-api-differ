@@ -1,0 +1,1475 @@
+{
+	"userdata": "GuiInterface",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>GUI interface</strong>.",
+			"A <strong>gui interface</strong> is an adapter between a script and a GUI.",
+			"Can only be used on the <a href=\"index.html#client\">client</a>."
+		]
+	},
+	"usage": "client only",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "addGridItem",
+			"doc": {
+				"text": [
+					"Adds an item to a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"table",
+						"item",
+						"The item"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "addGridItemsFromFile",
+			"doc": {
+				"text": [
+					"Adds items to a grid from json"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"string",
+						"jsonPath",
+						"Json file path"
+					],
+					[
+						"table",
+						"additionalData",
+						"Additional data to the json (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "addListItem",
+			"doc": {
+				"text": [
+					"Appends an item to a list"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"listName",
+						"The name of the list"
+					],
+					[
+						"string",
+						"itemName",
+						"The name of the item"
+					],
+					[
+						"table",
+						"data",
+						"Table of data to store"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "addToPickupDisplay",
+			"doc": {
+				"text": [
+					"Adds an item to the item pickup display"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The players survival hud interface"
+					],
+					[
+						"[uuid]",
+						"uuid",
+						"The item uuid"
+					],
+					[
+						"number",
+						"amount",
+						"Quantity of items picked up"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearGrid",
+			"doc": {
+				"text": [
+					"Clears a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid to clear"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearList",
+			"doc": {
+				"text": [
+					"Clears a list"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"listName",
+						"The name of the list"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "close",
+			"doc": {
+				"text": [
+					"Close a gui interface"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface to close"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createDropDown",
+			"doc": {
+				"text": [
+					"Creates a dropdown at the specified widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"string",
+						"functionName",
+						"The name of the function"
+					],
+					[
+						"table",
+						"options",
+						"The options in the dropdown menu"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createGridFromJson",
+			"doc": {
+				"text": [
+					"Creats a grid from a table/json"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"table",
+						"index",
+						"Grid data table { type=string, layout=string, itemWidth=integer, itemHeight=integer, itemCount=integer }"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createHorizontalSlider",
+			"doc": {
+				"text": [
+					"Creates a slider at the specified widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"number",
+						"range",
+						"The range of the slider"
+					],
+					[
+						"number",
+						"value",
+						"The start value on the slider"
+					],
+					[
+						"string",
+						"functionName",
+						"Slider change callback function name"
+					],
+					[
+						"boolean",
+						"numbered=false",
+						"Enable numbered steps (Defaults to false)"
+					],
+					[
+						"boolean",
+						"inverted=false",
+						"Invert slider direction"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createVerticalSlider",
+			"doc": {
+				"text": [
+					"Creates a slider at the specified widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"number",
+						"range",
+						"The range of the slider"
+					],
+					[
+						"number",
+						"value",
+						"The start value on the slider"
+					],
+					[
+						"string",
+						"functionName",
+						"Slider change callback function name"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroy a gui interface"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The interface to destroy"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isActive",
+			"doc": {
+				"text": [
+					"Checks if a gui interface is active"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if gui is active"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "open",
+			"doc": {
+				"text": [
+					"Open a gui interface"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface to open"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playEffect",
+			"doc": {
+				"text": [
+					"Plays an effect at a widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"string",
+						"effectName",
+						"The name of the effect"
+					],
+					[
+						"boolean",
+						"restart=true",
+						"If the effect should restart if its already playing"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playGridEffect",
+			"doc": {
+				"text": [
+					"Plays an effect at widget inside a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"integer",
+						"index",
+						"The index in the grid"
+					],
+					[
+						"string",
+						"effectName",
+						"The name of the effect"
+					],
+					[
+						"boolean",
+						"restart=true",
+						"If the effect should restart if its already palying"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setButtonCallback",
+			"doc": {
+				"text": [
+					"Sets a button callback to be called when the button is pressed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"buttonName",
+						"The button name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when button is pressed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setButtonState",
+			"doc": {
+				"text": [
+					"Sets the button state"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"buttonName",
+						"The name of the button"
+					],
+					[
+						"boolean",
+						"state",
+						"The state of the button"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setColor",
+			"doc": {
+				"text": [
+					"Sets the color of a widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"[Color]",
+						"Color",
+						"The color"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setContainer",
+			"doc": {
+				"text": [
+					"Sets a container to a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"[Container]",
+						"container",
+						"The container"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setContainers",
+			"doc": {
+				"text": [
+					"Sets multiple containers to a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"table",
+						"containers",
+						"Table of containers. {[Container], ..}"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setData",
+			"doc": {
+				"text": [
+					"Sets data to a widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"table",
+						"data",
+						"The data"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFadeRange",
+			"doc": {
+				"text": [
+					"Sets the fade range for a world gui"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"number",
+						"range",
+						"The fade range"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFocus",
+			"doc": {
+				"text": [
+					"Sets a widget to recieve key focus"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget that needs focus"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGridButtonCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when a button inside a grid is pressed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"buttonName",
+						"The button name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when button is pressed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGridItem",
+			"doc": {
+				"text": [
+					"Sets an item in a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"integer",
+						"index",
+						"The item index"
+					],
+					[
+						"table",
+						"item",
+						"The item"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGridItemChangedCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when a grid item is changed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The grid name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when button is pressed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGridMouseFocusCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when a grid widget gets mouse focus"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"buttonName",
+						"The button name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when button is pressed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGridSize",
+			"doc": {
+				"text": [
+					"Sets the size of a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"integer",
+						"index",
+						"The size"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Character] as host for a world gui"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"[Character]",
+						"character",
+						"The character to host the gui"
+					],
+					[
+						"string",
+						"joint=nil",
+						"The joint (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Shape] as host for a world gui"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape to host the gui"
+					],
+					[
+						"string",
+						"joint=nil",
+						"The joint (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setIconImage",
+			"doc": {
+				"text": [
+					"Sets the icon image to a shape from an uuid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"itembox",
+						"The name of the itembox"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setImage",
+			"doc": {
+				"text": [
+					"Sets the image of an imagebox"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"imagebox",
+						"The name of the imagebox widget"
+					],
+					[
+						"string",
+						"image",
+						"The name or path of the image"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setItemIcon",
+			"doc": {
+				"text": [
+					"Sets the resource, group and item name on an imagebox widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"imagebox",
+						"The name of the imagebox"
+					],
+					[
+						"string",
+						"itemResource",
+						"The item resource "
+					],
+					[
+						"string",
+						"itemGroup",
+						"The item group"
+					],
+					[
+						"string",
+						"itemName",
+						"The item name"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setListSelectionCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when a list selection is changed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"listName",
+						"The list name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when list is selected"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setMaxRenderDistance",
+			"doc": {
+				"text": [
+					"Sets the maximum render distance for a world gui"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"number",
+						"distance",
+						"The max render distance"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setMeshPreview",
+			"doc": {
+				"text": [
+					"Sets a mesh preview to display an item from uuid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid to display"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOnCloseCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when the gui is closed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when gui is closed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRequireLineOfSight",
+			"doc": {
+				"text": [
+					"Sets if a world gui requires line of sight to be shown"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"boolean",
+						"required",
+						"True if gui requires line of sight to render"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSelectedDropDownItem",
+			"doc": {
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSelectedListItem",
+			"doc": {
+				"text": [
+					"Selects an item in a list"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"listName",
+						"The name of the list"
+					],
+					[
+						"string",
+						"itemName",
+						"The name of the item"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSliderCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when the slider is moved"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"sliderName",
+						"The button name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when slider is moved"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSliderData",
+			"doc": {
+				"text": [
+					"Sets the position and range of a slider"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"sliderName",
+						"The name of the slider"
+					],
+					[
+						"unsigned",
+						"range",
+						"The slider range"
+					],
+					[
+						"unsigned",
+						"position",
+						"The slider position"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSliderPosition",
+			"doc": {
+				"text": [
+					"Sets the position of a slider"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"sliderName",
+						"The name of the slider"
+					],
+					[
+						"integer",
+						"position",
+						"The slider position"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSliderRange",
+			"doc": {
+				"text": [
+					"Sets the slider range of a slider."
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"sliderName",
+						"The name of the slider"
+					],
+					[
+						"integer",
+						"range",
+						"The slider range"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSliderRangeLimit",
+			"doc": {
+				"text": [
+					"Sets the range limit of a slider"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"sliderName",
+						"The name of the slider"
+					],
+					[
+						"integer",
+						"limit",
+						"The slider range limit"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setText",
+			"doc": {
+				"text": [
+					"Sets the text caption of a textbox widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"textbox",
+						"The name of the textbox widget"
+					],
+					[
+						"string",
+						"text",
+						"The text"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTextAcceptedCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when the text change is accepted"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"editBoxName",
+						"The edit box name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when text is committed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTextChangedCallback",
+			"doc": {
+				"text": [
+					"Sets a callback to be called when the text is changed"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"editBoxName",
+						"The edit box name"
+					],
+					[
+						"string",
+						"callback",
+						"Function to be called when text is edited"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVisible",
+			"doc": {
+				"text": [
+					"Sets a widget to be visible or not"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"boolean",
+						"visible",
+						"True if visible"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setWorldPosition",
+			"doc": {
+				"text": [
+					"Sets the world position for a world gui"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"[World]",
+						"world=nil",
+						"The world, defaults to same as the script"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopEffect",
+			"doc": {
+				"text": [
+					"Stops an effect playing at a widget"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget"
+					],
+					[
+						"string",
+						"effectName",
+						"The name of the effect"
+					],
+					[
+						"boolean",
+						"immediate=nil",
+						"When true, the effect stops immediately (Defaults to false)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopGridEffect",
+			"doc": {
+				"text": [
+					"Stopts an effect playing inside a grid"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The Gui interface"
+					],
+					[
+						"string",
+						"gridName",
+						"The name of the grid"
+					],
+					[
+						"integer",
+						"index",
+						"The index in the grid"
+					],
+					[
+						"string",
+						"effectName",
+						"The name of the effect"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "trackQuest",
+			"doc": {
+				"text": [
+					"Adds a quest to the quest tracker"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The QuestGui interface"
+					],
+					[
+						"string",
+						"name",
+						"The name of quest"
+					],
+					[
+						"string",
+						"title",
+						"The quest title to be displayed in the tracker"
+					],
+					[
+						"boolean",
+						"mainQuest",
+						"If the quest is a main quest (Displayed on top in the tracker)"
+					],
+					[
+						"table",
+						"questTasks",
+						"The table of quest tasks to display in the log Task{ name = string, text = string, count = number, target = number, complete = boolean }"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "untrackQuest",
+			"doc": {
+				"text": [
+					"Removes a quest from the quest tracker",
+					"/"
+				],
+				"params": [
+					[
+						"[GuiInterface]",
+						"gui",
+						"The QuestGui interface"
+					],
+					[
+						"string",
+						"questName",
+						"The name of quest"
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[GuiInterface],[GuiInterface]",
+						"Checks if two instances of [GuiInterface] refer to the same GuiInterface."
+					]
+				]
+			}
+		}
+	]
+}

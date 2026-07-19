@@ -1,0 +1,115 @@
+{
+	"namespace": "sm.json",
+	"doc": {
+		"text": [
+			"Parses and writes json files from and to lua values."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "fileExists",
+			"doc": {
+				"text": [
+					"Checks if a json file exists at the input path"
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The json file path."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the file exists."
+					]
+				]
+			}
+		},
+		{
+			"name": "open",
+			"doc": {
+				"text": [
+					"Opens a json file and parses to Lua table."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The json file path."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table."
+					]
+				]
+			}
+		},
+		{
+			"name": "parseJsonString",
+			"doc": {
+				"text": [
+					"Parses a json string to lua table."
+				],
+				"params": [
+					[
+						"string",
+						"json",
+						"The json string."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table."
+					]
+				]
+			}
+		},
+		{
+			"name": "save",
+			"doc": {
+				"text": [
+					"Write a lua table to json."
+				],
+				"params": [
+					[
+						"table",
+						"root",
+						"The lua table."
+					],
+					[
+						"string",
+						"path",
+						"The json file path."
+					]
+				]
+			}
+		},
+		{
+			"name": "writeJsonString",
+			"doc": {
+				"text": [
+					"Writes a json string from a lua table."
+				],
+				"params": [
+					[
+						"string",
+						"root",
+						"The lua table."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The json string."
+					]
+				]
+			}
+		}
+	]
+}

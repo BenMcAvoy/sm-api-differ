@@ -1,0 +1,192 @@
+{
+	"userdata": "Garage",
+	"namespace_association": "sm.garage",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>Garage</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"returns the id of the garage"
+					],
+					"return": [
+						[
+							"int",
+							"id\t\t\tThe garage id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "creationFits",
+			"doc": {
+				"text": [
+					"Checks if the tracked creation fits into the garage returns nil if no creation is tracked."
+				],
+				"return": [
+					[
+						"bool\t\t\t\ttrue if the creation fits otherwise false.",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "getBlueprintBounds",
+			"doc": {
+				"text": [
+					"Returns the bounds of the body of the actively tracked blueprint in the garage. Returns nil if there is no actively tracked blueprint."
+				],
+				"return": [
+					[
+						"table",
+						"The table of { min, max }"
+					]
+				]
+			}
+		},
+		{
+			"name": "getGarageBounds",
+			"doc": {
+				"text": [
+					"Returns the bounds of the garage staging area."
+				],
+				"return": [
+					[
+						"table",
+						"The table of { min, max }"
+					]
+				]
+			}
+		},
+		{
+			"name": "getPlacement",
+			"doc": {
+				"text": [
+					"Imports a actively tracked blueprint using the garage returns nil if the blueprint is not initialized yet."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"position\tThe world position of the tracked blueprint."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the position of the garage."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"position"
+					]
+				]
+			}
+		},
+		{
+			"name": "getTrackedBlueprint",
+			"doc": {
+				"text": [
+					"Gets the tracked creation Name and JsonTable from the garage."
+				],
+				"return": [
+					[
+						"string\t\t\t\t\tName",
+						""
+					],
+					[
+						"table\t\t\t\t\tjsonData",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "getTrackingRevision",
+			"doc": {
+				"text": [
+					"Returns the tracking revision counter, incremented each time the tracked blueprint changes."
+				],
+				"return": [
+					[
+						"int",
+						"revision"
+					]
+				]
+			}
+		},
+		{
+			"name": "hasActiveTracking",
+			"doc": {
+				"text": [
+					"Checks if the garage has an actively tracked blueprint."
+				],
+				"return": [
+					[
+						"bool\t\t\t\ttrue if there is an actively tracked blueprint, false otherwise.",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "importBlueprint",
+			"doc": {
+				"text": [
+					"Imports a actively tracked blueprint using the garage"
+				]
+			}
+		},
+		{
+			"name": "trackBlueprint",
+			"doc": {
+				"text": [
+					"Tracks a blueprint from a garage and synchronizes it to all other clients."
+				],
+				"params": [
+					[
+						"string",
+						"blueprint",
+						"path\t\t\tThe path of the blueprint"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "untrackBlueprint",
+			"doc": {
+				"text": [
+					"Untrack a blueprint from a garage and synchronizes it to all other clients."
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Garage],[Garage],boolean",
+						"Checks if two instances of [Garage] refer to the same Garage."
+					]
+				]
+			}
+		}
+	]
+}

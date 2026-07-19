@@ -1,0 +1,285 @@
+{
+	"namespace": "sm.event",
+	"doc": {
+		"text": [
+			"Events for communicating between scripts by running callbacks."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "sendToCharacter",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Character]."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a character script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToGame",
+			"doc": {
+				"text": [
+					"Sends an event to the game script."
+				],
+				"params": [
+					[
+						"string",
+						"callback",
+						"The function name in the game script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToHarvestable",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Harvestable]."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a harvestable script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToInteractable",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a interactable script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToPlayer",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Player]."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a player script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToScriptableObject",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [ScriptableObject]."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a scriptableObject script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToTool",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Tool]."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a tool script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToUnit",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [Unit]."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a unit script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		},
+		{
+			"name": "sendToWorld",
+			"doc": {
+				"text": [
+					"Sends an event to a specified [World]."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"string",
+						"callback",
+						"The function name in a world script."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the callback."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"result\t\t\tReturns true if the callback was found."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,1090 @@
+{
+	"userdata": "Tool",
+	"namespace_association": "sm.tool",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>tool</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a tool."
+					],
+					"params": [
+						[
+							"[Tool]",
+							"tool",
+							"The tool."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The tool's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "uuid",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the tool type uuid."
+					],
+					"params": [
+						[
+							"[Tool]",
+							"tool",
+							"The tool."
+						]
+					],
+					"return": [
+						[
+							"[Uuid]",
+							"The tool's uuid."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getAnimationInfo",
+			"doc": {
+				"text": [
+					"Returns general information for a third person view animation."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table containing \"name\", \"duration\" and \"looping\"."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraWeights",
+			"doc": {
+				"text": [
+					"Get the current weights for the tool's local camera settings."
+				],
+				"return": [
+					[
+						"{number, number}",
+						"The third-person weight and the first-person weight"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDirection",
+			"doc": {
+				"text": [
+					"Returns the direction of where the player is viewing or aiming."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's view direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpAnimationInfo",
+			"doc": {
+				"text": [
+					"Returns general information for a first person view animation."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table containing \"name\", \"duration\" and \"looping\"."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpBoneDir",
+			"doc": {
+				"text": [
+					"Returns the local or world direction for a bone in the first person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					],
+					[
+						"boolean",
+						"convertToWorldSpace?",
+						"Whether to convert the position to world space. (Defaults to true)"
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpBonePos",
+			"doc": {
+				"text": [
+					"Returns the local or world position for a bone in the first person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					],
+					[
+						"boolean",
+						"convertToWorldSpace?",
+						"Whether to convert the position to world space. (Defaults to true)"
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpBoneRot",
+			"doc": {
+				"text": [
+					"Returns the local or world rotation for a bone in the first person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					],
+					[
+						"boolean",
+						"convertToWorldSpace?",
+						"Whether to convert the position to world space. (Defaults to true)"
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The joint rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The tool's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMovementSpeedFraction",
+			"doc": {
+				"text": [
+					"Returns the fraction of the player's movement speed in proportion to its maximum. This is affected by sprinting, crouching, blocking, aiming, etc.",
+					"@table",
+					"sprinting;\t1.0",
+					"walking;\t\t0.5",
+					"crouching;\t0.375",
+					"aiming;\t\t0.3125",
+					"@table"
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The player's movement speed fraction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getMovementVelocity",
+			"doc": {
+				"text": [
+					"Returns the movement velocity of the player."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's velocity."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getOwner",
+			"doc": {
+				"text": [
+					"Returns the player that owns the tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Player]",
+						"The tool's owner."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of the player."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRelativeMoveDirection",
+			"doc": {
+				"text": [
+					"Returns the relative movement direction of the player. This is the direction the player wants to move based on movement input."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's relative movement direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getSmoothDirection",
+			"doc": {
+				"text": [
+					"Returns the smooth direction of where the player is viewing or aiming."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's smooth view direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getTpBoneDir",
+			"doc": {
+				"text": [
+					"Returns the world direction for a bone in the third person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getTpBonePos",
+			"doc": {
+				"text": [
+					"Returns the world position for a bone in the third person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getTpBoneRot",
+			"doc": {
+				"text": [
+					"Returns the world rotations for a bone in the third person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The joint rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getUuid",
+			"doc": {
+				"text": [
+					"Returns the tool type uuid."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The tool's uuid."
+					]
+				]
+			}
+		},
+		{
+			"name": "isCrouching",
+			"doc": {
+				"text": [
+					"Returns whether the player is currently crouching."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is crouching."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isEquipped",
+			"doc": {
+				"text": [
+					"Returns whether the tool is equipped or not."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"whether the tool is equipped or not."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isInFirstPersonView",
+			"doc": {
+				"text": [
+					"Returns whether the player is in first person view where the viewpoint is rendered from the player's perspective. Otherwise, the player is in third person view where the camera is behind the player."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is in first person view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isLocal",
+			"doc": {
+				"text": [
+					"Returns whether the player holding the tool is the as [sm.localPlayer]."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is the local player."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isOnGround",
+			"doc": {
+				"text": [
+					"Returns whether the player is currently standing on the ground."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is on the ground."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isSprinting",
+			"doc": {
+				"text": [
+					"Returns whether the player is currently sprinting."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is sprinting."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setBlockSprint",
+			"doc": {
+				"text": [
+					"Sets whether the player is unable to sprint. Sprinting is normally blocked when the player is attacking, blocking, aiming, etc."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"boolean",
+						"block",
+						"Whether the player's sprinting is blocked."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCrossHairAlpha",
+			"doc": {
+				"text": [
+					"Sets the opacity of the crosshair. An alpha value of 0 makes the crosshair transparent."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"alpha",
+						"The alpha value for the crosshair."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCrossHairColor",
+			"doc": {
+				"text": [
+					"Sets the color of the crosshair. "
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCrossHairType",
+			"doc": {
+				"text": [
+					"Sets the type of the crosshair. "
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"type",
+						"The type value for the crosshair."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setDispersionFraction",
+			"doc": {
+				"text": [
+					"Sets the tool's dispersion fraction. This represents the accuracy of the tool, and affects the size of the player's crosshair.",
+					"A dispersion value of 0 is perfect accuracy, whereas 1 is the worst."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"dispersion",
+						"The dispersion fraction."
+					],
+					[
+						"number",
+						"dispersionSecondary?",
+						"The secondary dispersion fraction for circles. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFpColor",
+			"doc": {
+				"text": [
+					"Sets the color to be used for the tool in first person view."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFpRenderables",
+			"doc": {
+				"text": [
+					"Sets the renderables (files containing model data) to be used for the character in first person view."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"table",
+						"renderables",
+						"The table of renderables names {string, ..}"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setInteractionTextSuppressed",
+			"doc": {
+				"text": [
+					"Does nothing."
+				],
+				"deprecated": [
+					"Deprecated function. Kept for compability with old scripts."
+				]
+			}
+		},
+		{
+			"name": "setMovementAnimation",
+			"doc": {
+				"text": [
+					"Sets the current third person view movement animation to be used by the tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"string",
+						"animation",
+						"The animation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setMovementSlowDown",
+			"doc": {
+				"text": [
+					"Sets whether the player is slowed down. This is similar to crouching and normally occurs when the player is aiming."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"boolean",
+						"slowDown",
+						"Whether the player movement is slowed down."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTpColor",
+			"doc": {
+				"text": [
+					"Sets the color to be used for the tool in third person view."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTpRenderables",
+			"doc": {
+				"text": [
+					"Sets the renderables (files containing model data) to be used for the character in third person view."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"table",
+						"renderables",
+						"The table of renderables names. {string, ..}"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateAnimation",
+			"doc": {
+				"text": [
+					"Updates a third person view animation."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The animation name."
+					],
+					[
+						"number",
+						"time",
+						"The time."
+					],
+					[
+						"number",
+						"weight?",
+						"The weight. (Defaults to -1.0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateCamera",
+			"doc": {
+				"text": [
+					"Updates the third person view camera for the tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"distance",
+						"The distance."
+					],
+					[
+						"number",
+						"fov",
+						"The fov."
+					],
+					[
+						"[Vec3]",
+						"offset",
+						"The offset."
+					],
+					[
+						"number",
+						"weight",
+						"The weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateFpAnimation",
+			"doc": {
+				"text": [
+					"Updates a first person view animation."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"number",
+						"time",
+						"The time."
+					],
+					[
+						"number",
+						"weight?",
+						"The weight. (Defaults to -1.0)"
+					],
+					[
+						"boolean",
+						"looping?",
+						"The looping. (Defaults to false)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateFpCamera",
+			"doc": {
+				"text": [
+					"Updates the first person view camera for the tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"fov",
+						"The fov."
+					],
+					[
+						"[Vec3]",
+						"offset",
+						"The offset."
+					],
+					[
+						"number",
+						"weight",
+						"The weight."
+					],
+					[
+						"number",
+						"bobbing",
+						"The bobbing."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateJoint",
+			"doc": {
+				"text": [
+					"Sets the rotation and weight for a bone in the animation skeleton."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Vec3]",
+						"rotation",
+						"The rotation."
+					],
+					[
+						"number",
+						"weight?",
+						"The weight. (Defaults to -1.0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateMovementAnimation",
+			"doc": {
+				"text": [
+					"Updates the currently set third person view movement animation for the tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					],
+					[
+						"number",
+						"time",
+						"The time."
+					],
+					[
+						"number",
+						"weight?",
+						"The weight. (Defaults to -1.0)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": []
+}

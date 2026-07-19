@@ -1,0 +1,571 @@
+{
+	"namespace": "sm.terrainTile",
+	"doc": {
+		"text": [
+			"Reads .tile file data"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getAssetsForCell",
+			"doc": {
+				"text": [
+					"Returns a table of all assets in a terrain cell."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"sizeLevel",
+						"The size level of asset."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { uuid = [Uuid], pos = [Vec3], rot = [Quat], colors = { string = [Color], ...}, tags = { string, ... } }, ... } of assets in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClutterIdxAt",
+			"doc": {
+				"text": [
+					"Returns the clutter index at position (X,Y) in a tile."
+				],
+				"params": [
+					[
+						"integer",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"x",
+						"The X."
+					],
+					[
+						"integer",
+						"y",
+						"The Y."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The clutter index."
+					]
+				]
+			}
+		},
+		{
+			"name": "getColorAt",
+			"doc": {
+				"text": [
+					"Returns the terrain color at position (X,Y) in a tile."
+				],
+				"params": [
+					[
+						"integer",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"lod",
+						"The level of detail."
+					],
+					[
+						"integer",
+						"x",
+						"The X."
+					],
+					[
+						"integer",
+						"y",
+						"The Y."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The color R value."
+					],
+					[
+						"number",
+						"The color G value."
+					],
+					[
+						"number",
+						"The color B value."
+					]
+				]
+			}
+		},
+		{
+			"name": "getContentFromPrefab",
+			"doc": {
+				"text": [
+					"Returns the content of prefab."
+				],
+				"params": [
+					[
+						"string",
+						"prefabPath",
+						"The path to the prefab file."
+					],
+					[
+						"integer",
+						"loadFlags",
+						"A mask of content to load"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { name = string, pos = [Vec3], rot = [Quat], sortingIndex = integer, tags = { string, ... } }, ... } of creations in the prefab."
+					],
+					[
+						"table",
+						"A table { { name = string, pos = [Vec3], rot = [Vec3], scale = [Vec3], tags = { string, ... }, flags = integer }, ... } of prefabs in the prefab."
+					],
+					[
+						"table",
+						"A table { { pos = [Vec3], rot = [Quat], scale = [Vec3], tags = { string, ... }, params = table } } of nodes in the prefab."
+					],
+					[
+						"table",
+						"A table { { uuid = [Uuid], pos = [Vec3], rot = [Quat], slopeNormal = [Vec3], colors = { string = [Color], ...}, tags = { string, ... } }, ... } of assets in the prefab."
+					],
+					[
+						"table",
+						"A table { { pos = [Vec3], rot = [Vec3], scale = [Vec3], decalId = integer, color = [Color], layer = integer,  tags = { string, ... } }, ... } of decals in the prefab."
+					],
+					[
+						"table",
+						"A table { {uuid = [Uuid], pos = [Vec3], rot = [Quat], color = [Color], params = table, tags = { string, ... } }, ... } of harvestables in the prefab."
+					],
+					[
+						"table",
+						"A table { {uuid = [Uuid], pos = [Vec3], rot = [Quat], scale = [Vec3], color = [Color], params = table, tags = { string, ... } }, .. } of kinematics in the prefab."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreationsForCell",
+			"doc": {
+				"text": [
+					"Returns a table of all creations in a terrain cell."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { pathOrJson = string, pos = [Vec3], rot = [Quat] }, ... } of creations in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreatorId",
+			"doc": {
+				"text": [
+					"Returns the id of the tiles creator."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The tile's path."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The creator's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDecalsForCell",
+			"doc": {
+				"text": [
+					"Returns all decals for a cell in a tile."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"id",
+						"The tile id"
+					],
+					[
+						"integer",
+						"X-offset",
+						"The offset along the X axis"
+					],
+					[
+						"integer",
+						"Y-offset",
+						"The offset along the Y axis"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { pos = [Vec3], rot = [Vec3], scale = [Vec3], decalId = integer, color = [Color], layer = integer,  tags = { string, ... } }, ... } of decals in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getHarvestablesForCell",
+			"doc": {
+				"text": [
+					"Returns a table of all harvestables in a terrain cell."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"sizeLevel",
+						"The size level of harvestables."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { {uuid = [Uuid], pos = [Vec3], rot = [Quat], color = [Color], params = table, tags = { string, ... } }, ... } of harvestables in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getHeightAt",
+			"doc": {
+				"text": [
+					"Returns the terrain height at position (X,Y) in a tile."
+				],
+				"params": [
+					[
+						"integer",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"lod",
+						"The level of detail."
+					],
+					[
+						"integer",
+						"x",
+						"The X."
+					],
+					[
+						"integer",
+						"y",
+						"The Y."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The height."
+					]
+				]
+			}
+		},
+		{
+			"name": "getKinematicsForCell",
+			"doc": {
+				"text": [
+					"Returns a table of all kinematics in a terrain cell."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"sizeLevel",
+						"The size level of kinematics."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { {uuid = [Uuid], pos = [Vec3], rot = [Quat], scale = [Vec3], color = [Color], params = table, tags = { string, ... } }, .. } of kinematics in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaterialAt",
+			"doc": {
+				"text": [
+					"Returns the terrain material at position (X,Y) in a tile."
+				],
+				"params": [
+					[
+						"integer",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"tileOffsetX",
+						"The tile offset X."
+					],
+					[
+						"integer",
+						"tileOffsetY",
+						"The tile offset Y."
+					],
+					[
+						"integer",
+						"lod",
+						"The level of detail."
+					],
+					[
+						"integer",
+						"x",
+						"The X."
+					],
+					[
+						"integer",
+						"y",
+						"The Y."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The first R value."
+					],
+					[
+						"number",
+						"The first G value."
+					],
+					[
+						"number",
+						"The first B value."
+					],
+					[
+						"number",
+						"The first A value."
+					],
+					[
+						"number",
+						"The second R value."
+					],
+					[
+						"number",
+						"The second G value."
+					],
+					[
+						"number",
+						"The second B value."
+					],
+					[
+						"number",
+						"The second A value."
+					]
+				]
+			}
+		},
+		{
+			"name": "getNodesForCell",
+			"doc": {
+				"text": [
+					"Returns all nodes for a cell in a tile."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"id",
+						"The tile id"
+					],
+					[
+						"integer",
+						"X-offset",
+						"The offset along the X axis"
+					],
+					[
+						"integer",
+						"Y-offset",
+						"The offset along the Y axis"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { pos = [Vec3], rot = [Quat], scale = [Vec3], tags = { string, ... }, params = table } } of nodes in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPrefabsForCell",
+			"doc": {
+				"text": [
+					"Returns all prefabs in a cell."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileId",
+						"The tile id."
+					],
+					[
+						"integer",
+						"X-offset",
+						"The offset along the X axis."
+					],
+					[
+						"integer",
+						"Y-offset",
+						"The offset along the Y axis."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table { { name = string, pos = [Vec3], rot = [Vec3], scale = [Vec3], tags = { string, ... }, flags = integer }, ... } of prefabs in the cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSize",
+			"doc": {
+				"text": [
+					"Returns the size of a tile as the number of cells along one of the axises."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The tile's path."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The size."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTileUuid",
+			"doc": {
+				"text": [
+					"Returns the uuid for a tile file."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The tile's path."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The tile's uuid."
+					]
+				]
+			}
+		}
+	]
+}

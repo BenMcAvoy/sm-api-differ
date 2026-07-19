@@ -1,0 +1,26 @@
+{
+	"namespace": "sm.player",
+	"userdata_association": "Player",
+	"doc": {
+		"text": [
+			"A <strong>player</strong> is a user playing the game. Every player controls a [Character] in the world."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getAllPlayers",
+			"doc": {
+				"text": [
+					"Returns a table of all [Player, players] that are currently in the game."
+				],
+				"return": [
+					[
+						"table",
+						"Table of all players in the game. {[Player], ..}"
+					]
+				]
+			}
+		}
+	]
+}

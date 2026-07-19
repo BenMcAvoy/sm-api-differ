@@ -1,0 +1,14 @@
+{
+	"userdata": "Interactable",
+	"namespace_association": "sm.interactable",
+	"doc": {
+		"text": [
+			"Represents an interactable object in the game"
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [],
+	"functions": [],
+	"metamethods": []
+}

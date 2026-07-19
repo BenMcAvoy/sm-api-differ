@@ -1,0 +1,275 @@
+{
+	"namespace": "sm.quat",
+	"userdata_association": "Quat",
+	"doc": {
+		"text": [
+			"A <strong>quaternion</strong> is used to represent rotation as a <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Quaternion\">generalization of complex numbers</a>.",
+			"To create one, use [sm.quat.new].",
+			"@warning",
+			"It is uncommon to modify individual X, Y, Z, W components directly. To create a new quaternion, consider using [sm.vec3.getRotation].",
+			"@warning"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "angleAxis",
+			"doc": {
+				"text": [
+					"Creates a new quaternion from angle and axis."
+				],
+				"params": [
+					[
+						"number",
+						"angle",
+						"The rotation angle in radians."
+					],
+					[
+						"[Vec3]",
+						"axis",
+						"The axis vector to rotate around."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The quaternion for rotating angle radians around axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "fromEuler",
+			"doc": {
+				"text": [
+					"Create a new quaternion from an euler angle vector."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"euler",
+						"The euler angle vector."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAt",
+			"doc": {
+				"text": [
+					"Returns the quaternions at vector."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion",
+						"The quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The at vector.\t"
+					]
+				]
+			}
+		},
+		{
+			"name": "getRight",
+			"doc": {
+				"text": [
+					"Returns the quaternions right vector."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion",
+						"The quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The right vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUp",
+			"doc": {
+				"text": [
+					"Returns the quaternions up vector."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion",
+						"The quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The up vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "identity",
+			"doc": {
+				"text": [
+					"Creates a new identity quaternion."
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The created quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "inverse",
+			"doc": {
+				"text": [
+					"Inverts the quaternion."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion",
+						"The quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The inverted quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "lookRotation",
+			"doc": {
+				"text": [
+					"Create a new quaternion from direction vectors. DEPRECATED"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"at",
+						"The forward vector."
+					],
+					[
+						"[Vec3]",
+						"up",
+						"The up vector."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new quaternion."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"number",
+						"z",
+						"The Z value."
+					],
+					[
+						"number",
+						"w",
+						"The W value."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The created quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "round90",
+			"doc": {
+				"text": [
+					"Rounds the quaternion rotation into 90 degree steps"
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion",
+						"The quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The rounded quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "slerp",
+			"doc": {
+				"text": [
+					"Performs a spherical linear interpolation between two quaternion."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"quaternion1",
+						"The first quaternion."
+					],
+					[
+						"[Quat]",
+						"quaternion2",
+						"The second quaternion."
+					],
+					[
+						"number",
+						"t",
+						"Interpolation amount between the two inputs."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The interpolated quaternion."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,280 @@
+{
+	"userdata": "Color",
+	"namespace_association": "sm.color",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>color</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "a",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the alpha value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The alpha value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the alpha value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						],
+						[
+							"number",
+							"a",
+							"The alpha value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "b",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the blue value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The blue value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the blue value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						],
+						[
+							"number",
+							"b",
+							"The blue value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "g",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the green value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The green value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the green value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						],
+						[
+							"number",
+							"g",
+							"The green value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "r",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the red value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The red value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the red value of a color."
+					],
+					"params": [
+						[
+							"[Color]",
+							"color",
+							"The color object."
+						],
+						[
+							"number",
+							"r",
+							"The red value."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getHexStr",
+			"doc": {
+				"text": [
+					"Get the hex representation of the color."
+				],
+				"params": [
+					[
+						"[Color]",
+						"color",
+						"The color object."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"Hex string."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__add",
+			"doc": {
+				"meta": [
+					[
+						"[Color],[Color]",
+						"Returns the sum of two colors, adding each component."
+					]
+				]
+			}
+		},
+		{
+			"name": "__div",
+			"doc": {
+				"meta": [
+					[
+						"[Color],[Color]",
+						"Returns the quotient of two colors, dividing each component."
+					],
+					[
+						"[Color],number",
+						"Returns the quotient of a color and a scalar."
+					]
+				]
+			}
+		},
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Color], [Color]",
+						"Checks if two colors are equal."
+					]
+				]
+			}
+		},
+		{
+			"name": "__mul",
+			"doc": {
+				"meta": [
+					[
+						"[Color],[Color]",
+						"Returns the product of two colors, multiplying each component."
+					],
+					[
+						"[Color],number",
+						"Returns the product of a color and a scalar."
+					]
+				]
+			}
+		},
+		{
+			"name": "__sub",
+			"doc": {
+				"meta": [
+					[
+						"[Color],[Color]",
+						"Returns the difference of two colors, subtracting each component."
+					]
+				]
+			}
+		},
+		{
+			"name": "__tostring",
+			"doc": {
+				"meta": [
+					[
+						"[Color]",
+						"Returns the color as a string."
+					]
+				]
+			}
+		}
+	]
+}

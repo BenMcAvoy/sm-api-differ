@@ -1,0 +1,44 @@
+{
+	"namespace": "sm.jsonGui",
+	"userdata_association": "JsonGui",
+	"doc": {},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createGui",
+			"doc": {
+				"text": [
+					"Creates a new gui."
+				],
+				"params": [
+					[
+						"table",
+						"settings?",
+						"Table with bool settings for: isHud, isInteractive, needsCursor, hidesHotbar, isOverlapped, backgroundAlpha, handleKeySetup, name, layer"
+					]
+				],
+				"return": [
+					[
+						"[JsonGui]",
+						"gui\t\tThe gui"
+					]
+				]
+			}
+		},
+		{
+			"name": "getViewSize",
+			"doc": {
+				"text": [
+					"Returns the size of the window in 720 coords."
+				],
+				"return": [
+					[
+						"integer,integer",
+						"The view size as width and height."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

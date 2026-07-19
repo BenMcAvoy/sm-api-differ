@@ -1,0 +1,33 @@
+{
+	"namespace": "sm.joint",
+	"userdata_association": "Joint",
+	"doc": {
+		"text": [
+			"A <strong>joint</strong> is a part that can be built by a player that is used to connect [Body, bodies]. There are multiple scriptable joint types:",
+			"@list",
+			"The <strong>bearing</strong> allows two bodies to revolve freely around each other. (See [Interactable.getBearings])",
+			"The <strong>piston</strong> extends and contracts to change the distance between two bodies. (See [Interactable.getPistons])",
+			"@list"
+		]
+	},
+	"constants": [
+		{
+			"name": "types",
+			"doc": {
+				"text": [
+					"@table",
+					"\"bearing\";\tA bearing part.",
+					"\"piston\";\t\tA piston part.",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": []
+}

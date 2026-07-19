@@ -1,0 +1,542 @@
+{
+	"userdata": "Vec3",
+	"namespace_association": "sm.vec3",
+	"doc": {
+		"text": [
+			"A userdata object representing a 3D <strong>vector</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "x",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the X value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The X value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the X value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						],
+						[
+							"number",
+							"x",
+							"The X value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "y",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the Y value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The Y value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the Y value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						],
+						[
+							"number",
+							"y",
+							"The Y value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "z",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the Z value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The Z value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the Z value of a vector."
+					],
+					"params": [
+						[
+							"[Vec3]",
+							"vector",
+							"The vector."
+						],
+						[
+							"number",
+							"z",
+							"The Z value."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "cross",
+			"doc": {
+				"text": [
+					"Returns the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Cross_product\">cross product</a> of two vectors."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The cross product."
+					]
+				]
+			}
+		},
+		{
+			"name": "dot",
+			"doc": {
+				"text": [
+					"Returns the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Dot_product\">dot product</a> of a vector."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The dot product."
+					]
+				]
+			}
+		},
+		{
+			"name": "length",
+			"doc": {
+				"text": [
+					"Returns the length of the vector.",
+					"If you want the squared length, using [Vec3.length2, length2] is faster than squaring the result of this function."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The length of the vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "length2",
+			"doc": {
+				"text": [
+					"Returns the squared length of the vector."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The squared length of the vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "max",
+			"doc": {
+				"text": [
+					"Returns the maximum value between two vectors components."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"Component wise maximum value vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "min",
+			"doc": {
+				"text": [
+					"Returns the minimum value between two vectors components."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"Component wise minimum value vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "normalize",
+			"doc": {
+				"text": [
+					"Normalizes a vector, ie. converts to a unit vector of length 1."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The normalized vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "rotate",
+			"doc": {
+				"text": [
+					"Rotate a vector around an axis."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					],
+					[
+						"number",
+						"angle",
+						"The angle."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The axis to be rotated around."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The rotated vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "rotateX",
+			"doc": {
+				"text": [
+					"Rotate a vector around the X axis."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					],
+					[
+						"number",
+						"angle",
+						"The angle."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The rotated vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "rotateY",
+			"doc": {
+				"text": [
+					"Rotate a vector around the Y axis."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					],
+					[
+						"number",
+						"angle",
+						"The angle."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The rotated vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "rotateZ",
+			"doc": {
+				"text": [
+					"Rotate a vector around the Z axis."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					],
+					[
+						"number",
+						"angle",
+						"The angle."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The rotated vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "safeNormalize",
+			"doc": {
+				"text": [
+					"Normalizes a vector with safety, ie. converts to a unit vector of length 1."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					],
+					[
+						"[Vec3]",
+						"fallback",
+						"The fallback vector"
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The normalized vector."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__add",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns the sum of two vectors."
+					]
+				]
+			}
+		},
+		{
+			"name": "__div",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns the quotient of two vectors, dividing element by element."
+					],
+					[
+						"[Vec3],number",
+						"Returns the quotient of a vector and a scalar."
+					]
+				]
+			}
+		},
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3], [Vec3]",
+						"Checks if two vectors are equal."
+					]
+				]
+			}
+		},
+		{
+			"name": "__lt",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns whether the first vector is \"less than\" the second."
+					]
+				]
+			}
+		},
+		{
+			"name": "__mul",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns the product of two vectors, multiplying element by element."
+					],
+					[
+						"[Vec3],number",
+						"Returns the product of a vector and a scalar."
+					]
+				]
+			}
+		},
+		{
+			"name": "__sub",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3], [Vec3]",
+						"Returns the difference of two vectors."
+					]
+				]
+			}
+		},
+		{
+			"name": "__tostring",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3]",
+						"String representation of vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "__unm",
+			"doc": {
+				"meta": [
+					[
+						"[Vec3]",
+						"Returns the negated vector."
+					]
+				]
+			}
+		}
+	]
+}

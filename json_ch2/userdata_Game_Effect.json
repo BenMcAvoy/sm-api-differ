@@ -1,0 +1,910 @@
+{
+	"userdata": "Effect",
+	"namespace_association": "sm.effect",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>effect</strong>."
+		]
+	},
+	"usage": "client only",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of an effect."
+					],
+					"params": [
+						[
+							"[Effect]",
+							"effect",
+							"The effect."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The effect's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "bindEventCallback",
+			"doc": {
+				"text": [
+					"Bind a lua callback to be triggered by the effect."
+				],
+				"deprecated": [
+					"use [Effect.bindEventClientCallback] instead."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"string",
+						"methodName",
+						"The name of the callback method being bound. Example: MyClass.methodName( self, event, params )"
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback. (Optional)"
+					],
+					[
+						"table",
+						"reference?",
+						"Table to receive the callback. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "bindEventClientCallback",
+			"doc": {
+				"text": [
+					"Bind a lua client callback script reference to be used by the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback. (Optional)"
+					],
+					[
+						"table",
+						"reference?",
+						"Table to receive the callback. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "bindEventServerCallback",
+			"doc": {
+				"text": [
+					"Bind a lua server callback script reference to be used by the effect. Host only."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback. (Optional)"
+					],
+					[
+						"table",
+						"reference?",
+						"Table to receive the callback. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearClientEventCallback",
+			"doc": {
+				"text": [
+					"Clear the effect lua client callback script reference."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearEventCallbacks",
+			"doc": {
+				"text": [
+					"Clear all lua effect callbacks."
+				],
+				"deprecated": [
+					"use [Effect.clearClientEventCallback] together with [Effect.bindEventClientCallback] instead."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearServerEventCallback",
+			"doc": {
+				"text": [
+					"Clear the effect lua server callback script reference."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Stops and destroys the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				]
+			}
+		},
+		{
+			"name": "detach",
+			"doc": {
+				"text": [
+					"Detaches the effect from its host object."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraData",
+			"doc": {
+				"text": [
+					"Get a table of camera effect data.",
+					"Returns nil if the effect is not a camera effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The settings. { hasBlendIn = boolean, hasBlendOut = boolean, active = boolean, cameraPosition = [Vec3], cameraRotation = [Quat], cameraFov = number }"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The effect's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Gets the current world position"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]\t\t\t\t\t\t\t\tThe world position.",
+						""
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "hasActiveCamera",
+			"doc": {
+				"text": [
+					"Check if the effect has an active camera effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Is active."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "hasHost",
+			"doc": {
+				"text": [
+					"Returns whether the effect has a host."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the effect is hosted."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isBreakSustaining",
+			"doc": {
+				"text": [
+					"Returns whether the effect is break sustained."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether effect is break sustained."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isDone",
+			"doc": {
+				"text": [
+					"Returns whether the effect is done, meaning that all effect instances have finished."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether effect is done."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isPlaying",
+			"doc": {
+				"text": [
+					"Returns whether the effect is currently playing."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether effect is playing."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setAutoPlay",
+			"doc": {
+				"text": [
+					"Sets an effect to start playing and repeating automatically."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"boolean",
+						"autoplay",
+						"Autoplay enabled."
+					],
+					[
+						"boolean",
+						"autoPlayOnce?",
+						"If set the effect will not loop when autoplaying. (Defaults to false) (Optional)"
+					],
+					[
+						"boolean",
+						"resetPlayOnce?",
+						"Will reset the autoPlayOnce condition, allowing the effect to play again if it already has since earlier. (Defaults to false) (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setDetachOnHostDestroy",
+			"doc": {
+				"text": [
+					"Detaches the effect from its host object when the host disappears."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"boolean",
+						"detach",
+						"If the effect should automatically detach from the host or not."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Interactable] as host for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Interactable]",
+						"Interactable",
+						"The Interactable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Shape] as host for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Character] as host for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Character]",
+						"Character",
+						"The Character the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHost",
+			"doc": {
+				"text": [
+					"Sets a [Harvestable] as host for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Harvestable]",
+						"pHarvestable",
+						"The pHarvestable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName?",
+						"The bone name to attach effect to. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setHostAxisIgnore",
+			"doc": {
+				"text": [
+					"Sets a rotation axis which hosted effects will ignore."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"integer",
+						"axis",
+						"The rotation axis."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOffsetPosition",
+			"doc": {
+				"text": [
+					"Offsets the position of the effect relatively to the host.",
+					"@note",
+					"Does not work if the effect was created without a host.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition",
+						"The relative offset position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOffsetRotation",
+			"doc": {
+				"text": [
+					"Offsets the orientation of the effect relatively to the host.",
+					"@note",
+					"Does not work if the effect was created without a host.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Quat]",
+						"offsetRotation",
+						"The relative offset rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setParameter",
+			"doc": {
+				"text": [
+					"Sets a named parameter value on the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"any",
+						"value",
+						"The effect parameter value."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Sets the position of an effect.",
+					"@note",
+					"Does not work if the effect has a host.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Sets the orientation of an effect using a quaternion.",
+					"@note",
+					"Does not work if the effect has a host.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setScale",
+			"doc": {
+				"text": [
+					"Sets the scale of an effect.",
+					"@note",
+					"Only applies to effect renderables.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"scale",
+						"The scale."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setStartStopDistance",
+			"doc": {
+				"text": [
+					"Sets an effect to stop and restart depending on distance to the player."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"number",
+						"startDistance",
+						"The distance when effect will start"
+					],
+					[
+						"number",
+						"stopDistance",
+						"The distance when effect will stop"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTimeOfDay",
+			"doc": {
+				"text": [
+					"Sets an effect to be active during specific period of the day / night cycle."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"boolean",
+						"enabled",
+						"Time of day enabled."
+					],
+					[
+						"number",
+						"start",
+						"Start normalized time of day."
+					],
+					[
+						"number",
+						"end",
+						"End normalized time of day."
+					],
+					[
+						"boolean",
+						"inversed",
+						"If true, period between start-end becomes inactive time."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVelocity",
+			"doc": {
+				"text": [
+					"Sets the velocity of an effect. The effect will move along at the set velocity until it receives a new position.",
+					"@note",
+					"Does not work if the effect has a host.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setWorld",
+			"doc": {
+				"text": [
+					"Sets the world for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[World]",
+						"world",
+						"The world. Defaults to world from script context. (optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setWorldAny",
+			"doc": {
+				"text": [
+					"Sets the effect's world to UWorldId_Any, used to play global sounds through the dialog manager."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "start",
+			"doc": {
+				"text": [
+					"Starts playing an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"number",
+						"startTime?",
+						"The start time of the effect. Only applies to audio and cinematic effects. (Defaults to 0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stop",
+			"doc": {
+				"text": [
+					"Stops playing an effect"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopBreakSustain",
+			"doc": {
+				"text": [
+					"Stops playing an effect, letting sound finish before destroying the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopImmediate",
+			"doc": {
+				"text": [
+					"Immediately stop playing an effect, sound effects ended immediately."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Effect],[Effect],boolean",
+						"Checks if two instances of [Effect] refer to the same Effect."
+					]
+				]
+			}
+		}
+	]
+}

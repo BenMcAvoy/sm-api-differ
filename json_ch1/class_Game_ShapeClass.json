@@ -1,0 +1,1107 @@
+{
+	"class": "ShapeClass",
+	"doc": {
+		"text": [
+			"A script class that is instanced for every \"scripted\" [Interactable] [Shape] in the game.",
+			"An interactable part is a [Shape] that is usually built by the player and can be interacted with. For instance a button or an engine.",
+			"Can receive events sent with [sm.event.sendToInteractable]."
+		],
+		"fields": [
+			[
+				"[Interactable]",
+				"interactable",
+				"The [Interactable] game object belonging to this class instance. (The same as shape.interactable)"
+			],
+			[
+				"[Shape]",
+				"shape",
+				"The [Shape] game object that the [Interactable] is attached to. (The same as interactable.shape)"
+			],
+			[
+				"[Network]",
+				"network",
+				"A [Network] object that can be used to send messages between client and server."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"(Server side only.) A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			],
+			[
+				"any",
+				"data",
+				"Data from the \"data\" json element."
+			],
+			[
+				"any",
+				"params",
+				"Parameter set with [Interactable.setParams] when created from a script."
+			]
+		]
+	},
+	"constants": [
+		{
+			"name": "colorHighlight",
+			"doc": {
+				"text": [
+					"Sets the connection-point highlight color. The connection-point is shown when using the <em>Connect Tool</em> and selecting the interactable. (Defaults to white)"
+				],
+				"return": [
+					[
+						"[Color]",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "colorNormal",
+			"doc": {
+				"text": [
+					"Sets the connection-point normal color. The connection-point is shown when using the <em>Connect Tool</em>. (Defaults to gray)"
+				],
+				"return": [
+					[
+						"[Color]",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "connectionInput",
+			"doc": {
+				"text": [
+					"Sets the connection input type flags. (See [sm.interactable.connectionType]) (Defaults to 0, no input)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "connectionOutput",
+			"doc": {
+				"text": [
+					"Sets the connection output type flags. (See [sm.interactable.connectionType]) (Defaults to 0, no output)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "maxChildCount",
+			"doc": {
+				"text": [
+					"Sets the maximum number of allowed child connections &ndash; the number of output connections. (Defaults to 0, no allowed child connections)",
+					"@note",
+					"Implement [ShapeClass.client_getAvailableChildConnectionCount, client_getAvailableChildConnectionCount] to control specific types.",
+					"@note"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "maxParentCount",
+			"doc": {
+				"text": [
+					"Sets the maximum number of allowed parent connections &ndash; the number of input connections. (Defaults to 0, no allowed parent connections)",
+					"@note",
+					"Implement [ShapeClass.client_getAvailableParentConnectionCount, client_getAvailableParentConnectionCount] to control specific types.",
+					"@note"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "poseWeightCount",
+			"doc": {
+				"text": [
+					"Sets the number of animation poses the shape's model is able to use.",
+					"Value can be are integers 0-3. (Defaults to 0, no poses)",
+					"A value greater that 0 indicates that the renderable's \"mesh\" is set up blend into \"pose0\", \"pose1\", \"pose2\".",
+					"This is, for instance, used to move the lever on the engine."
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		}
+	],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [ShapeClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [ShapeClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "server_onUnload",
+			"doc": {
+				"text": [
+					"Called when the [Interactable] is unloaded from the game because no [Player]'s [Character] is close enough to it. Also called when exiting the game.",
+					"@note",
+					"The creation, consisting of one or more [Body, bodies], consisting of one or more [Shape, shapes] joined together with [Joint, joints] are always unloaded at the same time.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onInteract",
+			"doc": {
+				"text": [
+					"Called when a [Player] is interacting with the [Interactable] by pressing the 'Use' key (default 'E') or pressing '0&ndash;9' if the [Interactable] is connected to a seat. (See: [Interactable.pressSeatInteractable])",
+					"@note",
+					"If this method is defined, the player will see the interaction text \"E Use\" when looking at the [Shape].",
+					"@note",
+					"@code",
+					"-- Example of interaction",
+					"function MySwitch.client_onInteract( self, _, state ) ",
+					"\tif state == true then",
+					"\t\tself.network:sendToServer( 'sv_n_toggle' )",
+					"\tend",
+					"end",
+					"",
+					"function MySwitch.sv_n_toggle( self ) ",
+					"\t-- Toggle on and off",
+					"\tself.interactable.active = not self.interactable.active",
+					"end",
+					"@code"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is interacting with the [Interactable]."
+					],
+					[
+						"boolean",
+						"state",
+						"The interaction state. (true if pressed, false if released)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onTinker",
+			"doc": {
+				"text": [
+					"Called when a [Player] is tinkering with the [Interactable] by pressing the 'Tinker' key (default 'U').",
+					"@note",
+					"Tinkering usually means opening the upgrade menu for seats.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is tinkering with the [Interactable]."
+					],
+					[
+						"boolean",
+						"state",
+						"The interaction state. (true if pressed, false if released)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onInteractThroughJoint",
+			"doc": {
+				"text": [
+					"Called when a [Player] is interacting with the [Interactable] through a connected [Joint]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is interacting with the [Interactable]."
+					],
+					[
+						"boolean",
+						"state",
+						"The interaction state. Always true. [ShapeClass.client_onInteractThroughJoint, client_onInteractThroughJoint] only receives the key down event."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The [Joint] that the [Player] interacted through."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onAction",
+			"doc": {
+				"text": [
+					"Called when the interactable receives input from a [Player] with the [Character] locked to the [Interactable].",
+					"When a [Character] is seated in an [Interactable] [Shape] with a \"seat\" component, the [Character] is also considered locked to the [Interactable]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"action",
+						"The action as an integer value. More details in [sm.interactable.actions]."
+					],
+					[
+						"boolean",
+						"state",
+						"True on begin action, false on end action."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onProjectile",
+			"doc": {
+				"text": [
+					"Called when the [Shape] is hit by a projectile.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit the [Shape]."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter, can be a [Player], [Shape], [Harvestable] or nil if unknown. Projectiles shot by a [Unit] will be nil on the client."
+					],
+					[
+						"number",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onProjectile",
+			"doc": {
+				"text": [
+					"Called when the [Shape] is hit by a projectile.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit the [Shape]."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Unit]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter. Can be a [Player], [Unit], [Shape], [Harvestable] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onSledgehammer",
+			"doc": {
+				"deprecated": [
+					"Use [ShapeClass.server_onMelee, server_onMelee] instead."
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onMelee",
+			"doc": {
+				"text": [
+					"Called when the [Shape] is hit by a melee attack.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the [Shape] was hit."
+					],
+					[
+						"[Player]/nil",
+						"attacker",
+						"The attacker. Can be a [Player] or nil if unknown. Attacks made by a [Unit] will be nil on the client."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onMelee",
+			"doc": {
+				"text": [
+					"Called when the [Shape] is hit by a melee attack.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the [Shape] was hit."
+					],
+					[
+						"[Player]/[Unit]/nil",
+						"attacker",
+						"The attacker. Can be a [Player], [Unit] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onExplosion",
+			"doc": {
+				"text": [
+					"Called when the [Shape] is hit by an explosion.",
+					"For more information about explosions, see [sm.physics.explode]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"center",
+						"The center of the explosion."
+					],
+					[
+						"integer",
+						"destructionLevel",
+						"The level of destruction done by this explosion. Corresponds to the 'durability' rating of a [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCollision",
+			"doc": {
+				"text": [
+					"Called when the [Shape] collides with another object."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"other",
+						"The other object. Nil if terrain."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"selfPointVelocity",
+						"The velocity that that the [Shape] had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"otherPointVelocity",
+						"The velocity that that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal between the [Shape] and the other other object."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onCollision",
+			"doc": {
+				"text": [
+					"Called when the [Shape] collides with another object."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"other",
+						"The other object. Nil if terrain."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"selfPointVelocity",
+						"The velocity that that the [Shape] had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"otherPointVelocity",
+						"The velocity that that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal between the [Shape] and the other other object."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_canErase",
+			"doc": {
+				"text": [
+					"Called to check whether the [Shape] can be erased at this moment.",
+					"@note",
+					"Can be used to override restrictions. (See [Shape.erasable])",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the [Shape] can be erased or not. (Defaults to true)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_canErase",
+			"doc": {
+				"text": [
+					"Called to check whether the [Shape] can be erased at this moment.",
+					"@note",
+					"Can be used to override restrictions. (See [Shape.erasable])",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the [Shape] can be erased or not. (Defaults to true)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_canInteract",
+			"doc": {
+				"text": [
+					"Called to check whether the [Interactable] can be interacted with at this moment.",
+					"@note",
+					"This callback can also be used to change the interaction text shown to the player using [sm.gui.setInteractionText]. (Defaults to \"E Use\")",
+					"@note",
+					"@note",
+					"Can be used to override restrictions. (See [Shape.usable])",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is looking at the [Shape]."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the interactable can be interacted with or not. (Defaults to true if [ShapeClass.client_onInteract, client_onInteract] is implemented, otherwise false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_canInteractThroughJoint",
+			"doc": {
+				"text": [
+					"Called to check whether the [Interactable] can be interacted with through a child [Joint] at this moment.",
+					"@note",
+					"This callback can also be used to change the interaction text shown to the player using [sm.gui.setInteractionText]. (Defaults to \"E Use\")",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is looking at the [Joint]."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the interactable can be interacted with or not. (Defaults to true if [ShapeClass.client_onInteractThroughJoint, client_onInteractThroughJoint] is implemented, otherwise false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_canTinker",
+			"doc": {
+				"text": [
+					"Called to check whether the [Interactable] can be tinkered with at this moment.",
+					"@note",
+					"Tinkering usually means opening the upgrade menu for seats.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is looking at the [Shape]."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the interactable can be tinkered with or not. (Defaults to true if [ShapeClass.client_onTinker, client_onTinker] is implemented, otherwise false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_getAvailableParentConnectionCount",
+			"doc": {
+				"text": [
+					"Called to check how many more parent (input) connections with the given type [sm.interactable.connectionType, flag] the [Interactable] will accept. Return 1 or more to allow a connection of this type.",
+					"@code",
+					"-- Example of implementation where logic and power shares the same slot but electricity counts as separate",
+					"MyIteractable.maxParentCount = 2",
+					"MyIteractable.connectionInput = sm.interactable.connectionType.logic + sm.interactable.connectionType.power + sm.interactable.connectionType.electricity",
+					"",
+					"function MyIteractable.client_getAvailableParentConnectionCount( self, flags )",
+					"\tif bit.band( flags, bit.bor( sm.interactable.connectionType.logic, sm.interactable.connectionType.power ) ) ~= 0 then",
+					"\t\treturn 1 - self:getParents( bit.bor( sm.interactable.connectionType.logic, sm.interactable.connectionType.power ) )",
+					"\tend",
+					"\tif bit.band( flags, sm.interactable.connectionType.electricity ) ~= 0 then",
+					"\t\treturn 1 - self:getParents( sm.interactable.connectionType.electricity )",
+					"\tend",
+					"\treturn 0",
+					"end",
+					"@code",
+					"@note",
+					"[ShapeClass.maxParentCount, maxParentCount] must be 1 or more for this callback to be called.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"flags",
+						"Connection type flags."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of available connections."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_getAvailableChildConnectionCount",
+			"doc": {
+				"text": [
+					"Called to check how many more child (output) connections with the given type [sm.interactable.connectionType, flag] the [Interactable] will accept. Return 1 or more to allow a connection of this type.",
+					"@code",
+					"-- Example of implementation that accepts 10 logic connections and 1 power connection",
+					"MyInteractable.maxChildCount = 11",
+					"MyInteractable.connectionOutput = sm.interactable.connectionType.logic + sm.interactable.connectionType.power",
+					"",
+					"function MyIteractable.client_getAvailableChildConnectionCount( self, flags )",
+					"\tif bit.band( flags, sm.interactable.connectionType.logic ) ~= 0 then",
+					"\t\treturn 10 - self:getParents( sm.interactable.connectionType.logic )",
+					"\tend",
+					"\tif bit.band( flags, sm.interactable.connectionType.power ) ~= 0 then",
+					"\t\treturn 1 - self:getParents( sm.interactable.connectionType.power )",
+					"\tend",
+					"\treturn 0",
+					"end",
+					"@code",
+					"@note",
+					"[ShapeClass.maxChildCount, maxChildCount] must be 1 or more for this callback to be called.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"flags",
+						"Connection type flags."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of available connections."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_canCarry",
+			"doc": {
+				"text": [
+					"Called to check if the shape must be carried instead of put in the inventory.",
+					"@note",
+					"Shapes with the \"carryItem\" attribute are always carried.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the interacable must be carried or not. (Defaults to false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	]
+}

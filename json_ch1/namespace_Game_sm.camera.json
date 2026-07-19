@@ -1,0 +1,357 @@
+{
+	"namespace": "sm.camera",
+	"doc": {
+		"text": [
+			"The <strong>camera</strong> library contains methods related to the [sm.localPlayer, localPlayer]'s camera view.",
+			"In first-person view the camera is located inside the player's head, whereas in third-person view it floats behind them.",
+			"This library can only be used on the <a href=\"index.html#client\">client</a>."
+		]
+	},
+	"constants": [
+		{
+			"name": "state",
+			"doc": {
+				"text": [
+					"Camera states are used to specify how the camera will view the world. The default state is meant for normal gameplay and the first-person and third-person states are meant to be used in cutcenes.",
+					"The states are:",
+					"@list",
+					"<strong>default</strong> &ndash; The camera is controlled by the player.",
+					"<strong>cutsceneFP</strong> &ndash; The camera views the world in a first-person perspective.",
+					"<strong>cutsceneTP</strong> &ndash; The camera views the world in a third-person perspective.",
+					"@list",
+					"@table",
+					"default;\t\t1",
+					"cutsceneFP;\t2",
+					"cutsceneTP;\t3",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						""
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "cameraSphereCast",
+			"doc": {
+				"text": [
+					"Performs a distance convex sweep with the shape of a sphere, from a position with a given direction."
+				],
+				"params": [
+					[
+						"number",
+						"radius",
+						"The radius of the cast sphere"
+					],
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The cast direction and range."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The fraction of the distance reached until collision."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraPullback",
+			"doc": {
+				"text": [
+					"Returns the camera's zoom step."
+				],
+				"return": [
+					[
+						"number",
+						"step\tHow far away the camera is from the player while standing"
+					],
+					[
+						"number",
+						"step\tHow far away the camera is from the player while seated"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraState",
+			"doc": {
+				"text": [
+					"Gets the camera's control state."
+				],
+				"return": [
+					[
+						"integer",
+						"state\tHow the camera is moved. (See [sm.camera.state])"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultFov",
+			"doc": {
+				"text": [
+					"Returns the camera's default field of view angle."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultPosition",
+			"doc": {
+				"text": [
+					"Returns the world postition where the camera should be by default."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation where the camera should be by default."
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The camera's default world rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDirection",
+			"doc": {
+				"text": [
+					"Returns the direction the camera is aiming."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The direction of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFov",
+			"doc": {
+				"text": [
+					"Returns the camera's field of view angle."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the world postition of the camera."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRight",
+			"doc": {
+				"text": [
+					"Returns the right-vector perpendicular to the camera's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The right-vector of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of the camera."
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The camera's world rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getUp",
+			"doc": {
+				"text": [
+					"Returns the up-vector perpendicular to the camera's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The up-vector of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCameraPullback",
+			"doc": {
+				"text": [
+					"Sets the camera's zoom step."
+				],
+				"params": [
+					[
+						"integer",
+						"step",
+						"How far away the camera is from the player while standing"
+					],
+					[
+						"integer",
+						"step",
+						"How far away the camera is from the player while seated"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCameraState",
+			"doc": {
+				"text": [
+					"Sets the camera's control state."
+				],
+				"params": [
+					[
+						"integer",
+						"state",
+						"How the camera is moved. (See [sm.camera.state])"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setDirection",
+			"doc": {
+				"text": [
+					"Sets the direction the camera is aiming."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"direction",
+						"The direction of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFov",
+			"doc": {
+				"text": [
+					"Sets the camera's field of view angle."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"FOV",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Sets the world postition of the camera."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Sets the rotation of the camera."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation of the camera."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setShake",
+			"doc": {
+				"text": [
+					"Sets the camera's level of camera shake."
+				],
+				"params": [
+					[
+						"number",
+						"strength",
+						"The camera shake strength."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

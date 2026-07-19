@@ -1,0 +1,322 @@
+{
+	"namespace": "sm.effect",
+	"userdata_association": "Effect",
+	"doc": {
+		"text": [
+			"The <strong>effect</strong> api handles the creation and playing of audio and visual effects.",
+			"Effects can consist of multiple components each being of separate types and with unique offsets, rotations and delays.",
+			"For more information on how to setup effects please take a look in the Effects/Database/EffectSets folder in the game data."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host interactable to the effect then it will fetch position, velocity and orientation data from the interactable instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable the effect is attached to."
+					],
+					[
+						"string",
+						"name=nil",
+						"The bone name. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host harvestable to the effect then it will fetch position, velocity and orientation data from the harvestable instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable the effect is attached to."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect",
+			"doc": {
+				"text": [
+					"Creates an effect.",
+					"If you provide a host character to the effect then it will fetch position, velocity and orientation data from the character instead of relying on this information being fed to it.",
+					"This results in far more accurate positioning of effects that are supposed to stay attached to an object."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character the effect is attached to."
+					],
+					[
+						"string",
+						"name=nil",
+						"The bone name. (Defaults to not attached to a bone) (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEffect2D",
+			"doc": {
+				"text": [
+					"Creates an 2d effect."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The created effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "estimateSize",
+			"doc": {
+				"text": [
+					"Estimates the radius of influence for an effect and instance parameters"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					],
+					[
+						"table",
+						"parameters",
+						"Table of params"
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The Range"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. If this function is called on the server it will play the effect on all clients.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects.",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					],
+					[
+						"[Vec3]",
+						"velocity=nil",
+						"The velocity. (Defaults to no velocity)"
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The rotation. (Defaults to no rotation)"
+					],
+					[
+						"[Vec3]",
+						"scale=nil",
+						"The scale. (Defaults to no scale, only applied to renderables)"
+					],
+					[
+						"table",
+						"parameters=nil",
+						"The table containing the parameters for the effect."
+					]
+				]
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host interactable.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable the effect is attached to."
+					],
+					[
+						"string",
+						"boneName=nil",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters=nil",
+						"The table containing the parameters for the effect. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host harvestable.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable the effect is attached to."
+					],
+					[
+						"table",
+						"parameters=nil",
+						"The table containing the parameters for the effect. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playHostedEffect",
+			"doc": {
+				"text": [
+					"Plays an effect. It will fetch position, velocity and orientation data from the host character.",
+					"@note",
+					"If you start a looping effect using this function you will not be able to stop it.<br>Please use [sm.effect.createEffect, createEffect] for looping effects",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The effect name."
+					],
+					[
+						"[Character]",
+						"character",
+						"The charcater the effect is attached to."
+					],
+					[
+						"string",
+						"boneName=nil",
+						"The bone name. (Optional)"
+					],
+					[
+						"table",
+						"parameters=nil",
+						"The table containing the parameters for the effect. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

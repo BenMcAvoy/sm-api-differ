@@ -1,0 +1,56 @@
+{
+	"namespace": "sm.log",
+	"doc": {
+		"text": [
+			"Used for logging information from scripts to the game log."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "error",
+			"doc": {
+				"text": [
+					"Logs an error message"
+				],
+				"params": [
+					[
+						"any",
+						"...",
+						"The arguments to be displayed as an error message."
+					]
+				]
+			}
+		},
+		{
+			"name": "info",
+			"doc": {
+				"text": [
+					"Logs an information message"
+				],
+				"params": [
+					[
+						"any",
+						"...",
+						"The arguments to be displayed as a log message."
+					]
+				]
+			}
+		},
+		{
+			"name": "warning",
+			"doc": {
+				"text": [
+					"Logs a warning message"
+				],
+				"params": [
+					[
+						"any",
+						"...",
+						"The arguments to be displayed as a warning message."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,167 @@
+{
+	"userdata": "Network",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>network</strong> object.",
+			"<strong>Network</strong> is used for sending data between scripts running on <a href=\"index.html#server\">server</a> and <a href=\"index.html#client\">client</a>. This allows the server to call a function on the client with optional arguments, and vice versa.",
+			"@note",
+			"A network object is accessable via `self.network` in scripted shapes (see [ShapeClass]).",
+			"@note",
+			"@warning",
+			"Network allows any Lua data to be sent between the host and other players in real-time. This may result in <strong>high latency</strong> and lag in multiplayer.",
+			"To avoid lag and minimize bandwidth usage, consider only sending data when necessary, when data has changed, and attempt to send as little amount of data as possible.",
+			"@warning"
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "sendToClient",
+			"doc": {
+				"text": [
+					"Sends a network event from the server to a client. This will run the callback method on the client with optional arguments."
+				],
+				"params": [
+					[
+						"[Network]",
+						"network",
+						"The network."
+					],
+					[
+						"[Player]",
+						"player",
+						"The client player (or the host)."
+					],
+					[
+						"string",
+						"callbackMethod",
+						"The client function name."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the client."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sendToClients",
+			"doc": {
+				"text": [
+					"Sends a network event from the server to all clients. This will run the callback method on every client with optional arguments.",
+					"@code",
+					"-- Example of calling client function over network",
+					"function MyHorn.server_onSledgehammer( self, position, player ) ",
+					"\tself.network:sendToClients( 'client_hit', position )",
+					"end",
+					" ",
+					"function MyHorn.client_hit( self, position ) ",
+					"\t-- Play sound",
+					"\tsm.audio.play( 'Horn', position )",
+					"end",
+					"@code"
+				],
+				"params": [
+					[
+						"[Network]",
+						"network",
+						"The network."
+					],
+					[
+						"string",
+						"callbackMethod",
+						"The client function name."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the client."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sendToServer",
+			"doc": {
+				"text": [
+					"Sends a network event from the client to the server. This will run the callback method on the server with optional arguments.",
+					"@code",
+					"-- Example of calling server function over network",
+					"function MySwitch.client_onInteract( self ) ",
+					"\tself.network:sendToServer( 'server_toggle' )",
+					"end",
+					"",
+					"function MySwitch.server_toggle( self ) ",
+					"\t-- Toggle on and off",
+					"\tself.interactable.active = not self.interactable.active",
+					"end",
+					"@code"
+				],
+				"params": [
+					[
+						"[Network]",
+						"network",
+						"The network."
+					],
+					[
+						"string",
+						"callbackMethod",
+						"The server function name."
+					],
+					[
+						"any",
+						"args=nil",
+						"Optional arguments to be sent to the server."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setClientData",
+			"doc": {
+				"text": [
+					"Sets a lua object that will automatically be synchronized to clients.",
+					"Scripts which use this feature needs to implement 'client_onClientDataUpdate'.",
+					"'client_onClientDataUpdate' will be called on the client whenever the data has changed,",
+					"including setting the data for the first time.",
+					"Channel 1 will be received before channel 2 if both are updated.",
+					"@code",
+					"-- Example:",
+					"function MyEngine.server_onCreate( self )",
+					"\tself.network:setClientData( { \"gear\" = 1 } )",
+					"end",
+					" ",
+					"function MyEngine.client_onClientDataUpdate( self, data )",
+					"\tself.interactable:setPoseWeight( 0, data.gear / self.maxGears )",
+					"end",
+					"@code"
+				],
+				"params": [
+					[
+						"[Network]",
+						"network",
+						"The network."
+					],
+					[
+						"any",
+						"data",
+						"Persistent data to be synchronized with existing and new clients."
+					],
+					[
+						"integer",
+						"channel=1",
+						"Client data channel, 1 or 2 (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": []
+}

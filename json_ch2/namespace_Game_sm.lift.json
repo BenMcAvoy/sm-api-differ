@@ -1,0 +1,67 @@
+{
+	"namespace": "sm.lift",
+	"userdata_association": "Lift",
+	"doc": {},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createNonPlayerLift",
+			"doc": {
+				"text": [
+					"Creates a non-player lift. A non-player lift is a lift that doesn't belong to any player. ",
+					"return\t[Lift]:\t\t\t\t\t\tThe created lift."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"World to place the lift in."
+					],
+					[
+						"[Vec3]",
+						"pos",
+						"Position to place the lift at."
+					],
+					[
+						"[Body]",
+						"body?",
+						"Body to place on the lift (optional)."
+					],
+					[
+						"integer",
+						"level?",
+						"Level to place the lift at. (Defaults to 0.)"
+					],
+					[
+						"integer",
+						"rotation?",
+						"Rotation index to place the lift at. (Defaults to 0.)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createVirtualLift",
+			"doc": {
+				"text": [
+					"Creates a virtual lift. A virtual lift is a lift that doesn't exist in the game world. But allows for a static body to be placed on it.",
+					"return\t[Lift]:\t\t\t\t\tThe created lift."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"World to place the lift in."
+					],
+					[
+						"[Body]",
+						"body",
+						"Body to place on the lift."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

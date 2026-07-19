@@ -1,0 +1,510 @@
+{
+	"userdata": "Unit",
+	"namespace_association": "sm.unit",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>unit</strong> in the game."
+		]
+	},
+	"usage": "server only",
+	"serializable": true,
+	"members": [
+		{
+			"name": "character",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the character associated with a unit."
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						]
+					],
+					"return": [
+						[
+							"[Character]",
+							"The associated character."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "eyeHeight",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the eye height for a unit"
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						],
+						[
+							"number",
+							"eyeHeight",
+							"The new eye height."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a unit."
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The unit's id."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a unit."
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a unit."
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "visionFrustum",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the vision frustum for a unit",
+						"@code",
+						"* self.unit.visionFrustum = {",
+						"*\t { 3.0, math.rad( 80.0 ),  math.rad( 80.0 ) },",
+						"*\t { 20.0, math.rad( 40.0 ), math.rad( 35.0 ) },",
+						"*\t { 40.0, math.rad( 20.0 ), math.rad( 20.0 ) }",
+						"* }",
+						"@code"
+					],
+					"params": [
+						[
+							"[Unit]",
+							"unit",
+							"The unit."
+						],
+						[
+							"table",
+							"frustumData",
+							"Table of tables of 3 numbers, detectionRange, hFov and vFov"
+						]
+					],
+					"server_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createState",
+			"doc": {
+				"text": [
+					"Creates a Ai State from a name (See [AiState])"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"string",
+						"stateName",
+						"Name of predefined ai state."
+					]
+				],
+				"return": [
+					[
+						"[AiState]\t\t\t\t\tThe ai state.",
+						""
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroy a unit"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCharacter",
+			"doc": {
+				"text": [
+					"Returns the character associated with a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The associated character."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCurrentFacingDirection",
+			"doc": {
+				"text": [
+					"Gets the current facing direction of a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The units facing direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCurrentMovementDirection",
+			"doc": {
+				"text": [
+					"Gets the current movement direction of a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The units movement direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The unit's id."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sendCharacterEvent",
+			"doc": {
+				"text": [
+					"Sends a event to the associated character of the unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"string",
+						"event",
+						"The event name."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setFacingDirection",
+			"doc": {
+				"text": [
+					"Sets the facing direction for a unit"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The desired facing direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setHearingData",
+			"doc": {
+				"text": [
+					"Notifies a unit that it heard a sound"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"number",
+						"noiseScale",
+						"The noise amount."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setMovementDirection",
+			"doc": {
+				"text": [
+					"Sets the movement direction for a unit"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The desired movement direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setMovementType",
+			"doc": {
+				"text": [
+					"Sets the movment type for a unit",
+					"moveType can be \"stand\", \"walk\", \"sprint\" or \"crouch\""
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"string",
+						"moveTypeName",
+						"The movement type to set"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setWantsJump",
+			"doc": {
+				"text": [
+					"Set a unit to jump"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"boolean",
+						"wantJump",
+						"True if the unit should jump"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setWhiskerData",
+			"doc": {
+				"text": [
+					"Sets the whisker data for obstacle avoidance"
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"integer",
+						"whiskerCount",
+						"The whiskerCount."
+					],
+					[
+						"number",
+						"maxAngle",
+						"The maxAngle."
+					],
+					[
+						"number",
+						"startLength",
+						"The startLength."
+					],
+					[
+						"number",
+						"endLength",
+						"The endLength."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Unit],[Unit]",
+						"Checks if two instances of [Unit] refer to the same Unit."
+					]
+				]
+			}
+		}
+	]
+}

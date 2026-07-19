@@ -1,0 +1,73 @@
+{
+	"namespace": "sm.harvestable",
+	"userdata_association": "Harvestable",
+	"doc": {},
+	"constants": [],
+	"functions": [
+		{
+			"name": "create",
+			"doc": {
+				"text": [
+					"Create a new harvestable"
+				],
+				"hidden": [
+					[]
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the harvestable."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The harvestable's world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The harvestable's world rotation, optional uses identity rotation if nil."
+					],
+					[
+						"[Vec3]",
+						"slopeNormal=nil",
+						"The harvestable's slope normal. For \"skew\" and \"rotate\" slope settings, optional uses z axis if nil."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createHarvestable",
+			"doc": {
+				"text": [
+					"Create a new harvestable"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the harvestable."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The harvestable's world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The harvestable's world rotation, optional uses identity rotation if nil."
+					],
+					[
+						"[Vec3]",
+						"slopeNormal=nil",
+						"The harvestable's slope normal. For \"skew\" and \"rotate\" slope settings, optional uses z axis if nil."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

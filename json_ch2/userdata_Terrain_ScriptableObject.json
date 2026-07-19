@@ -1,0 +1,14 @@
+{
+	"userdata": "ScriptableObject",
+	"namespace_association": "sm.scriptableObject",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>scriptable object</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [],
+	"functions": [],
+	"metamethods": []
+}

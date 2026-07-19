@@ -1,0 +1,43 @@
+{
+	"namespace": "sm.builderGuide",
+	"userdata_association": "BuilderGuide",
+	"doc": {
+		"text": [
+			"Builder Guide"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createBuilderGuide",
+			"doc": {
+				"text": [
+					"Create a [BuilderGuide], comparing the creation from the root [Shape] to the blueprint given by the path."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"A file path to the builder guide blueprint."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"Root [Shape] for comparing the creation from."
+					],
+					[
+						"boolean",
+						"ignoreBlockUuid=nil",
+						"Should block uuid be ignored for stage completion. (Defaults to false)"
+					]
+				],
+				"return": [
+					[
+						"[BuilderGuide]",
+						"The created guide."
+					]
+				]
+			}
+		}
+	]
+}

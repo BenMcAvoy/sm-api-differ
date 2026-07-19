@@ -1,0 +1,491 @@
+{
+	"userdata": "AreaTrigger",
+	"namespace_association": "sm.areaTrigger",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>area trigger</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of an area trigger."
+					],
+					"params": [
+						[
+							"[AreaTrigger]",
+							"areaTrigger",
+							"The area trigger instance."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The area trigger's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "bindOnEnter",
+			"doc": {
+				"text": [
+					"Binds an area trigger's onEnter event to a custom callback. The onEnter event is triggered when an object enters the trigger area.",
+					"The callback receives:",
+					"@list",
+					"<strong>self</strong> (<em>table</em>) &ndash; The class instance.",
+					"<strong>trigger</strong> (<em>[AreaTrigger]</em>) &ndash; The area trigger instance.",
+					"<strong>results</strong> (<em>table</em>) &ndash; A table of [Character, characters] and/or [Body, bodies] and/or [Harvestable, harvestables] and/or [Lift, lifts] and/or [AreaTrigger, areaTriggers].",
+					"@list",
+					"@code",
+					"function MyClass.onEnter( self, trigger, results ) ...",
+					"@code"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					],
+					[
+						"table",
+						"object=nil",
+						"The object that will receive the callback. (optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "bindOnExit",
+			"doc": {
+				"text": [
+					"Binds an area trigger's onExit event to a custom callback. The onExit event is triggered when an object leaves the trigger area.",
+					"The callback receives:",
+					"@list",
+					"<strong>self</strong> (<em>table</em>) &ndash; The class instance.",
+					"<strong>trigger</strong> (<em>[AreaTrigger]</em>) &ndash; The area trigger instance.",
+					"<strong>results</strong> (<em>table</em>) &ndash; A table of [Character, characters] and/or [Body, bodies] and/or [Harvestable, harvestables] and/or [Lift, lifts] and/or [AreaTrigger, areaTriggers].",
+					"@list",
+					"@code",
+					"function MyClass.onExit( self, trigger, results ) ...",
+					"@code"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					],
+					[
+						"table",
+						"object=nil",
+						"The object that will receive the callback. (optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "bindOnProjectile",
+			"doc": {
+				"text": [
+					"Binds an area trigger's onProjectile event to a custom callback. The onProjectile event is triggered if a projectile collides with the trigger area"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					],
+					[
+						"table",
+						"object=nil",
+						"The object that will receive the callback. (optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "bindOnStay",
+			"doc": {
+				"text": [
+					"Binds an area trigger's onStay event to a custom callback. The onStay event is triggered every tick as long as an object is staying inside of the trigger area.",
+					"The callback receives:",
+					"@list",
+					"<strong>self</strong> (<em>table</em>) &ndash; The class instance.",
+					"<strong>trigger</strong> (<em>[AreaTrigger]</em>) &ndash; The area trigger instance.",
+					"<strong>results</strong> (<em>table</em>) &ndash; A table of [Character, characters] and/or [Body, bodies] and/or [Harvestable, harvestables] and/or [Lift, lifts] and/or [AreaTrigger, areaTriggers].",
+					"@list",
+					"@code",
+					"function MyClass.onStay( self, trigger, results ) ...",
+					"@code"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					],
+					[
+						"table",
+						"object=nil",
+						"The object that will receive the callback. (optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "getContents",
+			"doc": {
+				"text": [
+					"Gets the contents of the area trigger.",
+					"Returns a table of [Character, characters] and/or [Body, bodies] and/or [Harvestable, harvestables] and/or [Lift, lifts] and/or [AreaTrigger, areaTriggers]."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table with the content."
+					]
+				]
+			}
+		},
+		{
+			"name": "getHostInteractable",
+			"doc": {
+				"text": [
+					"Returns the attached host [sm.interactable, interactable]."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Interactable]",
+						"The area trigger's host interactable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The area trigger's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapes",
+			"doc": {
+				"text": [
+					"Gets the shapes inside the area trigger"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of shapes. {[Shape], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getSize",
+			"doc": {
+				"text": [
+					"Returns the size of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The area trigger's size."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUserData",
+			"doc": {
+				"text": [
+					"Returns the user data set on the area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The user data set on this trigger"
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldMax",
+			"doc": {
+				"text": [
+					"Returns the world max corner position of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The area trigger's max corner position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldMin",
+			"doc": {
+				"text": [
+					"Returns the world min corner position of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The area trigger's min corner position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The area trigger's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The area trigger's world rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasVoxelTerrainContact",
+			"doc": {
+				"text": [
+					"Returns true if the [AreaTrigger] is in contact with destructable terrain."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Destructable terrain contact."
+					]
+				]
+			}
+		},
+		{
+			"name": "setShapeDetection",
+			"doc": {
+				"text": [
+					"Shape detection is off by default. When set to true the area trigger can calculate which shapes are inside of the trigger",
+					"with a call to [AreaTrigger]: getShapes"
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"boolean",
+						"detectShapes",
+						"Shape detection on or off."
+					]
+				]
+			}
+		},
+		{
+			"name": "setSize",
+			"doc": {
+				"text": [
+					"Sets the new size of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The area trigger's new size."
+					]
+				]
+			}
+		},
+		{
+			"name": "setWorldPosition",
+			"doc": {
+				"text": [
+					"Sets the new world position of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The area trigger's new world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "setWorldRotation",
+			"doc": {
+				"text": [
+					"Sets the new world rotation of an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger instance."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The area trigger's new world rotation."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[AreaTrigger],[AreaTrigger]",
+						"Checks if two instances of [AreaTrigger] refer to the same AreaTrigger."
+					]
+				]
+			}
+		}
+	]
+}

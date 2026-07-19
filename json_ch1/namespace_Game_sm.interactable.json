@@ -1,0 +1,108 @@
+{
+	"namespace": "sm.interactable",
+	"userdata_association": "Interactable",
+	"doc": {
+		"text": [
+			"An <strong>interactable shape</strong> is any part that has additional functionality or abilities. The player can interact with an interactable shape by pressing `E` on it, or connect it to other interactables with the <em>Connect Tool</em>."
+		]
+	},
+	"constants": [
+		{
+			"name": "actions",
+			"doc": {
+				"text": [
+					"Actions are used to specify what inputs types an [Interactable] is able to detect."
+				],
+				"return": [
+					[
+						"table",
+						"The filter type list."
+					]
+				]
+			}
+		},
+		{
+			"name": "connectionType",
+			"doc": {
+				"text": [
+					"<h3>Logic</h3>",
+					"The interactable sends or reads a boolean signal to signal it's current state. ([Interactable.isActive, isActive]) to signal its output.",
+					"In: The interactable reads a boolean ([Interactable.isActive, isActive]) from its parent as input.",
+					"<h3>Power</h3>",
+					"Out: The controller uses a float ([Interactable.getPower, getPower]) to signal strength output (steering only).",
+					"In: The controller reads a float ([Interactable.getPower, getPower]) from its parent as input for strength.",
+					"@table",
+					"none;\t\t\t\t0",
+					"logic;\t\t\t1",
+					"power;\t\t\t2",
+					"bearing;\t\t\t4",
+					"seated;\t\t\t8",
+					"piston;\t\t\t16",
+					"gasoline;\t\t\t256",
+					"electricity;\t\t512",
+					"water;\t\t\t1024",
+					"ammo;\t\t\t\t2048",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The connection type list."
+					]
+				]
+			}
+		},
+		{
+			"name": "steering",
+			"doc": {
+				"text": [
+					"Flags to be used with the steering component."
+				],
+				"return": [
+					[
+						"table",
+						"The flag list."
+					]
+				]
+			}
+		},
+		{
+			"name": "types",
+			"doc": {
+				"text": [
+					"@table",
+					"\"electricEngine\"",
+					"\"gasEngine\"",
+					"\"steering\"",
+					"\"seat\"",
+					"\"controller\"",
+					"\"button\"",
+					"\"lever\"",
+					"\"sensor\"",
+					"\"thruster\"",
+					"\"radio\"",
+					"\"horn\"",
+					"\"tone\"",
+					"\"logic\"",
+					"\"timer\"",
+					"\"particlePreview\"",
+					"\"spring\"",
+					"\"pointLight\"",
+					"\"spotLight\"",
+					"\"chest\"",
+					"\"scripted\"",
+					"\"piston\"",
+					"\"simpleInteractive\"",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": []
+}

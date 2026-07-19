@@ -1,0 +1,307 @@
+{
+	"namespace": "sm.game",
+	"doc": {
+		"text": [
+			"Used to check the state of the game."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "bindChatCommand",
+			"doc": {
+				"text": [
+					"Binds a chat command to a callback function. The callback function receives an array of parameters. The first parameter is the command itself.",
+					"Example:",
+					"@code",
+					"sm.game.bindChatCommand( \"/enable_client_toilet\",",
+					"\t\t\t\t\t\t { { \"bool\", \"enabled\", false } },",
+					"\t\t\t\t\t\t \"onChatCommand\",",
+					"\t\t\t\t\t\t \"Enables or disables client toilet.\" )",
+					"@code",
+					"@code",
+					"function MyGameScript.onChatCommand( self, params )",
+					"\tif params[1] == \"/enable_client_toilet\" then",
+					"\t\tself.settings.enable_client_toilet = params[2]",
+					"\tend",
+					"end",
+					"@code"
+				],
+				"params": [
+					[
+						"string",
+						"command",
+						"The command."
+					],
+					[
+						"table",
+						"params",
+						"An array of parameters the callback function expects in the form of { { type, name, optional }, ... }. The first is the <strong>type</strong> name of the parameter as a string. Valid types are \"bool\", \"int\", \"number\" and \"string\". The second is the <strong>name</strong> in the help text. Defaults to automatic naming (\"p1\", \"p2\", \"p3\", ...). The third is a bool value where true means that this parameter is <strong>optional</strong>. Defaults to false."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					],
+					[
+						"string",
+						"help",
+						"Help text."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCurrentTick",
+			"doc": {
+				"text": [
+					"Return the current game tick."
+				],
+				"return": [
+					[
+						"integer",
+						"The tick."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDifficulty",
+			"doc": {
+				"text": [
+					"Return the index of the current difficulty setting."
+				],
+				"return": [
+					[
+						"integer",
+						"index\tThe difficulty index."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEnableAggro",
+			"doc": {
+				"text": [
+					"Returns true if aggro is enabled and false if aggro is disabled."
+				],
+				"return": [
+					[
+						"boolean",
+						"The enable state."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEnableAmmoConsumption",
+			"doc": {
+				"text": [
+					"Returns true if ammo consumption is enabled and false if ammo consumption is disabled."
+				],
+				"return": [
+					[
+						"boolean",
+						"The enable state."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEnableFuelConsumption",
+			"doc": {
+				"text": [
+					"Returns true if fuel consumption is enabled and false if fuel consumption is disabled."
+				],
+				"return": [
+					[
+						"boolean",
+						"The enable state."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEnableRestrictions",
+			"doc": {
+				"text": [
+					"Returns true if restrictions are enabled and false if restrictions are disabled."
+				],
+				"return": [
+					[
+						"boolean",
+						"The enable state."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEnableUpgrade",
+			"doc": {
+				"text": [
+					"Returns true if upgrading is enabled and false if upgrading is disabled."
+				],
+				"return": [
+					[
+						"boolean",
+						"The enable state."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLimitedInventory",
+			"doc": {
+				"text": [
+					"Return limited inventory state. If true the items are limited, if false the items are unlimited."
+				],
+				"return": [
+					[
+						"boolean",
+						"Is limited."
+					]
+				]
+			}
+		},
+		{
+			"name": "getServerTick",
+			"doc": {
+				"text": [
+					"Return estimated game tick on the server."
+				],
+				"return": [
+					[
+						"integer",
+						"The tick."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTimeOfDay",
+			"doc": {
+				"text": [
+					"Return the fraction value of how far the current day has progressed."
+				],
+				"return": [
+					[
+						"number",
+						"The fraction of the day cycle."
+					]
+				]
+			}
+		},
+		{
+			"name": "setEnableAggro",
+			"doc": {
+				"text": [
+					"Enables and disables aggro. If true, player's will be detected as targets."
+				],
+				"params": [
+					[
+						"boolean",
+						"enableAggro",
+						"The enable state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setEnableAmmoConsumption",
+			"doc": {
+				"text": [
+					"Enables and disables ammo consumption. If true, ammo will be required to shoot spudguns."
+				],
+				"params": [
+					[
+						"boolean",
+						"enableAmmoConsumption",
+						"The enable state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setEnableFuelConsumption",
+			"doc": {
+				"text": [
+					"Enables and disables fuel consumption. If true, fuel will be consumed from engines."
+				],
+				"params": [
+					[
+						"boolean",
+						"enableFuelConsumption",
+						"The enable state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setEnableRestrictions",
+			"doc": {
+				"text": [
+					"Enables and disables the use of restrictions. If true restrictions will be applied, if false the restrictions will default to unrestricted."
+				],
+				"params": [
+					[
+						"boolean",
+						"enableRestrictions",
+						"Restrictions enable state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setEnableUpgrade",
+			"doc": {
+				"text": [
+					"Enables and disables upgrade. If true, the [Interactable] can be upgraded with component kits."
+				],
+				"params": [
+					[
+						"boolean",
+						"enableUpgrade",
+						"The enable state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setLimitedInventory",
+			"doc": {
+				"text": [
+					"Sets limited inventory. If true the items are limited, if false the items are unlimited."
+				],
+				"params": [
+					[
+						"boolean",
+						"isLimited",
+						"Is limited."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setTimeOfDay",
+			"doc": {
+				"text": [
+					"Sets the fraction value of how far the current day has progressed."
+				],
+				"params": [
+					[
+						"number",
+						"time",
+						"The fraction of the day cycle."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

@@ -1,0 +1,479 @@
+{
+	"namespace": "sm.localPlayer",
+	"doc": {
+		"text": [
+			"<strong>Local player</strong> represents the current character being controlled on the client's computer. This library can only be used on the <a href=\"index.html#client\">client</a>.",
+			"For more information about other players in the world, see [sm.player]."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "addRenderable",
+			"doc": {
+				"text": [
+					"Adds a renderable (file containing model data) to be used for the local player in first person view."
+				],
+				"params": [
+					[
+						"string",
+						"renderable",
+						"The renderable path."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getActiveItem",
+			"doc": {
+				"text": [
+					"Returns the item currently held by the local player."
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The player's held item uuid."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getAimSensitivity",
+			"doc": {
+				"text": [
+					"Return the player aim sensitivity"
+				],
+				"return": [
+					[
+						"number",
+						"The aim sensitivity"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCarry",
+			"doc": {
+				"text": [
+					"Returns the carrying container of the local player."
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's carry."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCarryColor",
+			"doc": {
+				"text": [
+					"Returns the color of the shape the local player is carrying."
+				],
+				"return": [
+					[
+						"[Color]",
+						"The color of the shape the local player is carrying."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDirection",
+			"doc": {
+				"text": [
+					"Returns the direction the local player is aiming."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The direction of the player's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpAnimationInfo",
+			"doc": {
+				"text": [
+					"Returns general information for a first person view animation."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table containing name, duration and looping."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFpBonePos",
+			"doc": {
+				"text": [
+					"Returns the world position for a bone in the first person view animation skeleton."
+				],
+				"params": [
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getHotbar",
+			"doc": {
+				"text": [
+					"Returns the hotbar container of the player."
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's hotbar."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the unique player id of the local player."
+				],
+				"return": [
+					[
+						"integer",
+						"The player's id."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getInventory",
+			"doc": {
+				"text": [
+					"Returns the inventory container of the local player."
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's inventory."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getMouseDelta",
+			"doc": {
+				"text": [
+					"Returns delta positions of mouse"
+				],
+				"return": [
+					[
+						"number,number",
+						"Delta X; Delta Y"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getOwnedLift",
+			"doc": {
+				"text": [
+					"Returns the [Lift] of the local player."
+				],
+				"return": [
+					[
+						"[Lift]",
+						"The player's lift."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPlayer",
+			"doc": {
+				"text": [
+					"Returns the player object of the local player."
+				],
+				"return": [
+					[
+						"[Player]",
+						"The player object."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of the local player."
+				],
+				"deprecated": [
+					"Use [Character.worldPosition] or [Character.getWorldPosition]"
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The player's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRaycast",
+			"doc": {
+				"text": [
+					"Performs a <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ray_casting\">raycast</a> relative to the local player's perspective."
+				],
+				"params": [
+					[
+						"number",
+						"range",
+						"The maximum range."
+					],
+					[
+						"[Vec3]",
+						"origin=nil",
+						"The start position. (Defaults to [sm.localPlayer.getRaycastStart])"
+					],
+					[
+						"[Vec3]",
+						"direction=nil",
+						"The direction. (Defaults to [sm.localPlayer.getDirection])"
+					]
+				],
+				"return": [
+					[
+						"bool, [RaycastResult]",
+						"True if raycast was successful; Raycast result data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRaycastStart",
+			"doc": {
+				"text": [
+					"Returns the start position of the local player's raycast. The position depends on the [sm.camera, camera]'s position, and whether it's in first- of third-person."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The start position of the raycast."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRight",
+			"doc": {
+				"text": [
+					"Returns the right-vector perpendicular to the local player's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The right-vector of the player's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getSelectedHotbarSlot",
+			"doc": {
+				"text": [
+					"Returns the local player's selected slot."
+				],
+				"return": [
+					[
+						"integer",
+						"The player's selected slot."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getUp",
+			"doc": {
+				"text": [
+					"Returns the up-vector perpendicular to the local player's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The up-vector of the player's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isGarmentUnlocked",
+			"doc": {
+				"text": [
+					"Check if the garment has been granted to the local player."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The garment."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the garment is unlocked."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isInFirstPersonView",
+			"doc": {
+				"text": [
+					"Returns whether the player is in first person view where the viewpoint is rendered from the player's perspective. Otherwise, the player is in third person view where the camera is behind the player."
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the player is in first person view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "removeRenderable",
+			"doc": {
+				"text": [
+					"Removes a renderable (file containing model data) that was used for the local player in first person view."
+				],
+				"params": [
+					[
+						"string",
+						"renderable",
+						"The renderable path."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setBlockSprinting",
+			"doc": {
+				"text": [
+					"Stops the local player from sprinting."
+				],
+				"params": [
+					[
+						"boolean",
+						"blockSprinting",
+						"Sets whether sprinting is blocked."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setDirection",
+			"doc": {
+				"text": [
+					"Sets the direction of where the player is viewing or aiming. Intended to be used when the controls have been locked. (See [sm.localPlayer.setLockedControls])"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"direction",
+						"The world direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setLockedControls",
+			"doc": {
+				"text": [
+					"Sets whether the player's in-game controls are locked."
+				],
+				"params": [
+					[
+						"boolean",
+						"locked",
+						"The lock state."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateFpAnimation",
+			"doc": {
+				"text": [
+					"Updates a first person view animation."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"number",
+						"time",
+						"The time."
+					],
+					[
+						"number",
+						"weight=-1.0",
+						"The weight."
+					],
+					[
+						"boolean",
+						"looping=false",
+						"The looping."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

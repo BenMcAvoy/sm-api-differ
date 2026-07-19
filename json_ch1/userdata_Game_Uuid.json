@@ -1,0 +1,52 @@
+{
+	"userdata": "Uuid",
+	"namespace_association": "sm.uuid",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>uuid</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [],
+	"functions": [
+		{
+			"name": "isNil",
+			"doc": {
+				"text": [
+					"Checks if the uuid is nil {00000000-0000-0000-0000-000000000000}"
+				],
+				"return": [
+					[
+						"bool",
+						"True if the uuid is nil."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Uuid], [Uuid]",
+						"Checks if two uuids are equal."
+					]
+				]
+			}
+		},
+		{
+			"name": "__tostring",
+			"doc": {
+				"meta": [
+					[
+						"[Uuid]",
+						"Returns the uuid as a string."
+					]
+				]
+			}
+		}
+	]
+}

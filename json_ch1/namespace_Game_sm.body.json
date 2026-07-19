@@ -1,0 +1,75 @@
+{
+	"namespace": "sm.body",
+	"userdata_association": "Body",
+	"doc": {
+		"text": [
+			"A <strong>body</strong> is a collection of [Shape, shapes] that are built together. Bodies can be connected to other bodies using [Joint, joints] such as the bearing."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createBody",
+			"doc": {
+				"text": [
+					"Create a new body"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The body's world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The body's world rotation. (Defaults to [sm.quat.identity])"
+					],
+					[
+						"boolean",
+						"isDynamic=nil",
+						"Set true if the body is dynamic or false if the body is static. (Defaults to true)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllBodies",
+			"doc": {
+				"text": [
+					"Returns a table with all the bodies in the world."
+				],
+				"return": [
+					[
+						"table",
+						"The table of all bodies. {[Body], ...}"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCreationsFromBodies",
+			"doc": {
+				"text": [
+					"Returns a table of tables, which is an array of tables containing bodies grouped by creation.",
+					"A creation includes all bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"table",
+						"bodies",
+						"The bodies to find all creation bodies from. {[Body], ...}"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table array containing tables of all the bodies, grouped by creation. { {[Body], ...}, ... }"
+					]
+				]
+			}
+		}
+	]
+}

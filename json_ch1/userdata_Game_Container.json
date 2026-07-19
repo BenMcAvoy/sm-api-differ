@@ -1,0 +1,489 @@
+{
+	"userdata": "Container",
+	"namespace_association": "sm.container",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>container</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "allowCollect",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets whether the container can collect items."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						],
+						[
+							"boolean",
+							"allow",
+							"True if the container can collect."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Returns whether the container can collect items."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Returns true if the container can collect."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "allowSpend",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets whether the container can spend items."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						],
+						[
+							"boolean",
+							"allow",
+							"True if the container can spend."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Returns whether the container can spend items."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Returns true if the container can spend."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a container."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The container id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "size",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the number of slots in a container."
+					],
+					"params": [
+						[
+							"[Container]",
+							"container",
+							"The container."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The size."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "canCollect",
+			"doc": {
+				"text": [
+					"Checks if [sm.container.collect] is allowed using the same parameters."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Indicates if the action is possible."
+					]
+				]
+			}
+		},
+		{
+			"name": "canSpend",
+			"doc": {
+				"text": [
+					"Checks if [sm.container.spend] is allowed."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Indicates if the action is possible."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAllowCollect",
+			"doc": {
+				"text": [
+					"Returns whether the container can collect items."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the container can collect."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllowSpend",
+			"doc": {
+				"text": [
+					"Returns whether the container can spend items."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the container can spend."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getItem",
+			"doc": {
+				"text": [
+					"Returns a table containing item uuid, quantity (and instance id for tools) at given slot."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"integer",
+						"slot",
+						"The slot."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table containg item {uuid = [Uuid], instance = integer, quantity = integer}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaxStackSize",
+			"doc": {
+				"text": [
+					"Returns the max stack size in the container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The max stack size."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSize",
+			"doc": {
+				"text": [
+					"Returns the number of slots in a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The size."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasChanged",
+			"doc": {
+				"text": [
+					"Returns true if the given tick is lower than the tick the container was last changed."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"integer",
+						"tick",
+						"The tick."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the container has been changed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "isEmpty",
+			"doc": {
+				"text": [
+					"Returns true if the container is empty."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the container is empty."
+					]
+				]
+			}
+		},
+		{
+			"name": "setAllowCollect",
+			"doc": {
+				"text": [
+					"Sets whether the container can collect items."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"boolean",
+						"allow",
+						"True if the container can collect."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setAllowSpend",
+			"doc": {
+				"text": [
+					"Sets whether the container can spend items."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"boolean",
+						"allow",
+						"True if the container can spend."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setFilters",
+			"doc": {
+				"text": [
+					"Set item filter."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"table",
+						"filter",
+						"A table of the item uuid's {[Uuid], ...} allowed to be stored in the container."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setItem",
+			"doc": {
+				"text": [
+					"Sets the number of items stacked in a given container slot."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"integer",
+						"slot",
+						"The slot."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items."
+					],
+					[
+						"integer=nil",
+						"instance",
+						"The instance id, if the item is a tool. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Indicates if the action is possible."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Container],[Container]",
+						"Checks if two instances of [Container] refer to the same Container."
+					]
+				]
+			}
+		}
+	]
+}

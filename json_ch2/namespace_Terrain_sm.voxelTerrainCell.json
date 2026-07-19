@@ -1,0 +1,423 @@
+{
+	"namespace": "sm.voxelTerrainCell",
+	"doc": {
+		"text": [
+			"Voxel grid"
+		]
+	},
+	"constants": [
+		{
+			"name": "voxelFilter",
+			"doc": {
+				"text": [
+					"Filters are used to specify what materials an action should modify.",
+					"@table",
+					"none; 0",
+					"material0; 1",
+					"material1; 2",
+					"material2; 4",
+					"material3; 8",
+					"material4; 16",
+					"material5; 32",
+					"material6; 64",
+					"material7; 128",
+					"all; 255",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The filter type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "copyTileCellVoxels",
+			"doc": {
+				"text": [
+					"Copies a custom amount of voxel data from a tile to the voxel grid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileUid",
+						"The tile uuid."
+					],
+					[
+						"integer",
+						"cellOffsetX",
+						"The tile cell X offset."
+					],
+					[
+						"integer",
+						"cellOffsetY",
+						"The tile cell Y offset."
+					],
+					[
+						"integer",
+						"rotationStep",
+						"The tile rotation (0-3)."
+					],
+					[
+						"[Vec3]",
+						"srcPos?",
+						"The source chunk coord in the tile cell to copy."
+					],
+					[
+						"[Vec3]",
+						"dstPos?",
+						"The destination coord in the cell voxel grid."
+					],
+					[
+						"[Vec3]",
+						"srcSize?",
+						"The source size in chunks to copy."
+					]
+				]
+			}
+		},
+		{
+			"name": "copyTileCellVoxelsOnlyAir",
+			"doc": {
+				"text": [
+					"Copies a custom amount of voxel data from a tile to the voxel grid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileUid",
+						"The tile uuid."
+					],
+					[
+						"integer",
+						"cellOffsetX",
+						"The tile cell X offset."
+					],
+					[
+						"integer",
+						"cellOffsetY",
+						"The tile cell Y offset."
+					],
+					[
+						"integer",
+						"rotationStep",
+						"The tile rotation (0-3)."
+					],
+					[
+						"[Vec3]",
+						"srcPos",
+						"The source chunk coord in the tile to copy."
+					],
+					[
+						"[Vec3]",
+						"dstPos",
+						"The destination coord in the cell voxel grid."
+					],
+					[
+						"[Vec3]",
+						"srcSize",
+						"The source size in chunks to copy."
+					]
+				]
+			}
+		},
+		{
+			"name": "copyTileCellVoxelsOnlyAirAndMasked",
+			"doc": {
+				"text": [
+					"Copies a custom amount of voxel data from a tile to the voxel grid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileUid",
+						"The tile uuid."
+					],
+					[
+						"integer",
+						"cellOffsetX",
+						"The tile cell X offset."
+					],
+					[
+						"integer",
+						"cellOffsetY",
+						"The tile cell Y offset."
+					],
+					[
+						"integer",
+						"rotationStep",
+						"The tile rotation (0-3)."
+					],
+					[
+						"[Vec3]",
+						"srcPos",
+						"The source chunk coord in the tile to copy."
+					],
+					[
+						"[Vec3]",
+						"dstPos",
+						"The destination coord in the cell voxel grid."
+					],
+					[
+						"[Vec3]",
+						"srcSize",
+						"The source size in chunks to copy."
+					],
+					[
+						"integer",
+						"voxelFilter",
+						"The voxel material filter to be copied. (See [sm.voxelTerrainCell.voxelFilter])"
+					]
+				]
+			}
+		},
+		{
+			"name": "copyTileCellVoxelsOnlyFilled",
+			"doc": {
+				"text": [
+					"Copies a custom amount of voxel data from a tile to the voxel grid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileUid",
+						"The tile uuid."
+					],
+					[
+						"integer",
+						"cellOffsetX",
+						"The tile cell X offset."
+					],
+					[
+						"integer",
+						"cellOffsetY",
+						"The tile cell Y offset."
+					],
+					[
+						"integer",
+						"rotationStep",
+						"The tile rotation (0-3)."
+					],
+					[
+						"[Vec3]",
+						"srcPos",
+						"The source chunk coord in the tile to copy."
+					],
+					[
+						"[Vec3]",
+						"dstPos",
+						"The destination coord in the cell voxel grid."
+					],
+					[
+						"[Vec3]",
+						"srcSize",
+						"The source size in chunks to copy."
+					]
+				]
+			}
+		},
+		{
+			"name": "fillEmptyConvexHull",
+			"doc": {
+				"text": [
+					"Sets empty voxel (below threshold) material and density in convex hull shape in the cell's voxel grid."
+				],
+				"params": [
+					[
+						"table",
+						"vertices",
+						"Table of vertices {[Vec3], ...} that make up the convex hull."
+					],
+					[
+						"number",
+						"margin",
+						"Hull margin added outside the hull."
+					],
+					[
+						"number",
+						"densityThreshold",
+						"Existing normalized density must be below threshold for fill to happen."
+					],
+					[
+						"integer",
+						"material",
+						"New material to set in convex hull."
+					],
+					[
+						"number",
+						"density",
+						"New normalized density to set in convex hull."
+					],
+					[
+						"number",
+						"noiseFrequency?",
+						"Noise frequency of applied simplex noise. (Defaults to 1)"
+					],
+					[
+						"number",
+						"noiseIntensity?",
+						"Noise intensity of applied simplex noise. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setDensityConvexHull",
+			"doc": {
+				"text": [
+					"Sets density in convex hull shape to the cell's voxel grid."
+				],
+				"params": [
+					[
+						"table",
+						"vertices",
+						"Table of vertices {[Vec3], ...} that make up the convex hull."
+					],
+					[
+						"number",
+						"margin",
+						"Hull margin added outside the hull."
+					],
+					[
+						"number",
+						"density",
+						"New normalized density."
+					],
+					[
+						"integer",
+						"voxelFilter?",
+						"The voxel material filter to overwrite. (Defaults to [sm.voxelTerrainCell.voxelFilter, sm.voxelTerrainCell.voxelFilter.all])"
+					],
+					[
+						"number",
+						"noiseFrequency?",
+						"Noise frequency of applied simplex noise. (Defaults to 1)"
+					],
+					[
+						"number",
+						"noiseIntensity?",
+						"Noise intensity of applied simplex noise. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setMaterialAndDensityConvexHull",
+			"doc": {
+				"text": [
+					"Sets material in convex hull shape in the cell's voxel grid."
+				],
+				"params": [
+					[
+						"table",
+						"vertices",
+						"Table of vertices {[Vec3], ...} that make up the convex hull."
+					],
+					[
+						"number",
+						"margin",
+						"Hull margin added outside the hull."
+					],
+					[
+						"integer",
+						"material",
+						"New material in convex hull."
+					],
+					[
+						"number",
+						"density",
+						"New normalized density."
+					],
+					[
+						"integer",
+						"voxelFilter?",
+						"The voxel material filter to overwrite. (Defaults to [sm.voxelTerrainCell.voxelFilter, sm.voxelTerrainCell.voxelFilter.all])"
+					],
+					[
+						"number",
+						"noiseFrequency?",
+						"Noise frequency of applied simplex noise. (Defaults to 1)"
+					],
+					[
+						"number",
+						"noiseIntensity?",
+						"Noise intensity of applied simplex noise. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setMaterialConvexHull",
+			"doc": {
+				"text": [
+					"Sets material in convex hull shape in the cell's voxel grid."
+				],
+				"params": [
+					[
+						"table",
+						"vertices",
+						"Table of vertices {[Vec3], ...} that make up the convex hull."
+					],
+					[
+						"number",
+						"margin",
+						"Hull margin added outside the hull."
+					],
+					[
+						"integer",
+						"material",
+						"New material in convex hull."
+					],
+					[
+						"integer",
+						"voxelFilter?",
+						"The voxel material filter to overwrite. (Defaults to [sm.voxelTerrainCell.voxelFilter, sm.voxelTerrainCell.voxelFilter.all])"
+					],
+					[
+						"number",
+						"noiseFrequency?",
+						"Noise frequency of applied simplex noise. (Defaults to 1)"
+					],
+					[
+						"number",
+						"noiseIntensity?",
+						"Noise intensity of applied simplex noise. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "writeTileCellVoxels",
+			"doc": {
+				"text": [
+					"Writes the voxel data from a tile to the cell's voxel grid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"tileUid",
+						"The tile uuid."
+					],
+					[
+						"integer",
+						"cellOffsetX",
+						"The tile cell X offset."
+					],
+					[
+						"integer",
+						"cellOffsetY",
+						"The tile cell Y offset."
+					],
+					[
+						"integer",
+						"rotationStep",
+						"The tile rotation (0-3)."
+					]
+				]
+			}
+		}
+	]
+}

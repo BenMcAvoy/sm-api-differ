@@ -1,0 +1,215 @@
+{
+	"userdata": "AiState",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>AI state</strong> belonging to a [Unit]."
+		]
+	},
+	"usage": "server only",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "getFacingDirection",
+			"doc": {
+				"text": [
+					"Returns the state's facing direction."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getMovementDirection",
+			"doc": {
+				"text": [
+					"Returns the state's movement direction."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The direction."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getMovementType",
+			"doc": {
+				"text": [
+					"Returns a string describing the state's movement type.",
+					"Movement type can be \"stand\", \"walk\", \"sprint\" or \"crouch\"."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The movement type."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getWantsJump",
+			"doc": {
+				"text": [
+					"Check if the state wants to jump."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true when the state wants to jump."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "isDone",
+			"doc": {
+				"text": [
+					"Checks if the AI state is done.",
+					"Returns true when the state is done, and a string describing the state's current situation.",
+					"Can be used to determine if another state is allowed to be started."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"return": [
+					[
+						"boolean, string",
+						"Returns true when done, and a string description."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "onFixedUpdate",
+			"doc": {
+				"text": [
+					"Updates the state by adding delta time progression.",
+					"Should be called once every game tick while the state is active."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					],
+					[
+						"number",
+						"deltaTime",
+						"The delta time."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "onUnitUpdate",
+			"doc": {
+				"text": [
+					"Updates the state by adding delta time progression.",
+					"Should be called once every unit update, by the unit that owns the state, while the state is active."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The AI state."
+					],
+					[
+						"number",
+						"deltaTime",
+						"The delta time."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "start",
+			"doc": {
+				"text": [
+					"Starts the state."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "stop",
+			"doc": {
+				"text": [
+					"Stops the state."
+				],
+				"params": [
+					[
+						"[AiState]",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[AiState],[AiState]",
+						"Checks if two instances of [AiState] are refer to the same AiState."
+					]
+				]
+			}
+		}
+	]
+}

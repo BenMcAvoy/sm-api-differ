@@ -1,0 +1,781 @@
+{
+	"class": "HarvestableClass",
+	"doc": {
+		"text": [
+			"A script class that is instanced for every [Harvestable] in the game.",
+			"A tree or a plant that can be harvested is a typical case of a harvestable.",
+			"Can receive events sent with [sm.event.sendToHarvestable]."
+		],
+		"fields": [
+			[
+				"[Harvestable]",
+				"harvestable",
+				"The [Harvestable] game object belonging to this class instance."
+			],
+			[
+				"[Network]",
+				"network",
+				"A [Network] object that can be used to send messages between client and server."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"(Server side only.) A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			],
+			[
+				"any",
+				"data",
+				"Data from the \"data\" json element."
+			],
+			[
+				"any",
+				"params",
+				"Parameter sent to [sm.harvestable.create] or set in the terrain generation script."
+			]
+		]
+	},
+	"constants": [
+		{
+			"name": "poseWeightCount",
+			"doc": {
+				"text": [
+					"Sets the number of animation poses the harvestable's model is able to use.",
+					"Value can be are integers 0-3. (Defaults to 0, no poses)",
+					"A value greater that 0 indicates that the renderable's \"mesh\" is set up blend into \"pose0\", \"pose1\", \"pose2\".",
+					"This is, for instance, used for growing plants."
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		}
+	],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [HarvestableClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [HarvestableClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "server_onUnload",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is unloaded from the game because no [Player]'s [Character] is close enough to it. Also called when exiting the game."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onReceiveUpdate",
+			"doc": {
+				"text": [
+					"Called occasionally on the [HarvestableClass] to indicate that some time has passed.",
+					"For performance reasons; it recommended to use this instead of [HarvestableClass.server_onFixedUpdate] for updates that do not need to happen frequently.",
+					"Use [sm.game.getCurrentTick] to calculate the time."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCollision",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] collides with another object."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]",
+						"other",
+						"The other object."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"selfPointVelocity",
+						"The velocity that the [Harvestable] had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"otherPointVelocity",
+						"The velocity that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal between the [Harvestable] and the other other object."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onCollision",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] collides with another object."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]",
+						"other",
+						"The other object."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"selfPointVelocity",
+						"The velocity that the [Harvestable] had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"otherPointVelocity",
+						"The velocity that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal between the [Harvestable] and the other other object."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onProjectile",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is hit by a projectile.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit the [Harvestable]."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter, can be a [Player], [Shape], [Harvestable] or nil if unknown. Projectiles shot by a [Unit] will be nil on the client."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onProjectile",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is hit by a projectile.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit the [Harvestable]."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Unit]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter. Can be a [Player], [Unit], [Shape], [Harvestable] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onExplosion",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is hit by an explosion."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"center",
+						"The center of the explosion."
+					],
+					[
+						"integer",
+						"destructionLevel",
+						"The level of destruction done by this explosion. Corresponds to the \"durability\" rating of a [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onMelee",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is hit by a melee attack.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the [Harvestable] was hit."
+					],
+					[
+						"[Player]/nil",
+						"attacker",
+						"The attacker. Can be a [Player] or nil if unknown. Attacks made by a [Unit] will be nil on the client."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onMelee",
+			"doc": {
+				"text": [
+					"Called when the [Harvestable] is hit by a melee attack.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the [Harvestable] was hit."
+					],
+					[
+						"[Player]/[Unit]/nil",
+						"attacker",
+						"The attacker. Can be a [Player], [Unit] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onRemoved",
+			"doc": {
+				"text": [
+					"Called when a [Player] wants to remove the [Harvestable].",
+					"@note",
+					"The [HarvestableClass] is responsible for doing the remove using [Harvestable.destroy].",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Player]",
+						"player",
+						"The [Player] that wants to remove the [Harvestable]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_canErase",
+			"doc": {
+				"text": [
+					"Called to check whether the [Harvestable] can be erased at this moment."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the [Harvestable] can be removed or not. (Defaults to \"removable\" json value which defaults to false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_canErase",
+			"doc": {
+				"text": [
+					"Called to check whether the [Harvestable] can be erased at this moment."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the [Harvestable] can be removed or not. (Defaults to \"removable\" json value which defaults to false)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onInteract",
+			"doc": {
+				"text": [
+					"Called when a [Player] is interacting with the [Harvestable] by pressing the 'Use' key (default 'E')."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is interacting with the [Harvestable]."
+					],
+					[
+						"boolean",
+						"state",
+						"The interaction state. Always true. The [HarvestableClass] only receives the key down event."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_canInteract",
+			"doc": {
+				"text": [
+					"Called to check whether the [Harvestable] can be interacted with at this moment.",
+					"@note",
+					"This callback is also responsible for updating interaction text shown to the player using [sm.gui.setInteractionText].",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Character]",
+						"character",
+						"The [Character] of the [Player] that is looking at the [Harvestable]."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean indicating whether the harvestable can be interacted with or not. (Defaults to true if [HarvestableClass.client_onInteract, client_onInteract] is implemented, otherwise false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onAction",
+			"doc": {
+				"text": [
+					"Called when the harvestable receives input from a player with the [Character] locked to the [Harvestable].",
+					"When a [Character] is seated in a [Harvestable] with a \"seat\" component, the [Character] is also considered locked to the [Harvestable]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"action",
+						"The action as an integer value. More details in [sm.interactable.actions]."
+					],
+					[
+						"boolean",
+						"state",
+						"True on begin action, false on end action."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	]
+}

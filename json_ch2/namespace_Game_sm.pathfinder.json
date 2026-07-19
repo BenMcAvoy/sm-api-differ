@@ -1,0 +1,248 @@
+{
+	"namespace": "sm.pathfinder",
+	"doc": {
+		"text": [
+			"Pathfinder"
+		]
+	},
+	"constants": [
+		{
+			"name": "conditionProperty",
+			"doc": {
+				"text": [
+					"Condition link types",
+					"@table",
+					"height",
+					"target",
+					"none",
+					"@table"
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "constrainPointToNavMesh",
+			"doc": {
+				"text": [
+					"Constrain a point to nav mesh. Returns original point if no nav mesh is found."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The point."
+					],
+					[
+						"table",
+						"abilities?",
+						"Table of actor abilities { canWalk=boolean, canSwim=boolean }. Defaults to all abilities."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The modified point."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPath",
+			"doc": {
+				"text": [
+					"Find a path"
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character to find path for"
+					],
+					[
+						"[Vec3]",
+						"destination",
+						"The path destination"
+					],
+					[
+						"boolean",
+						"groundPos?",
+						"If the destination is ground level (ignored if nav mesh is used) (Defaults to true)"
+					],
+					[
+						"table",
+						"abilities?",
+						"Table of actor abilities { canWalk=boolean, canSwim=boolean }. Defaults to character abilities."
+					],
+					[
+						"table",
+						"costs?",
+						"Table of traverse area costs [1-10] { ground=number, water=number, chemicals=number, oil=number, lava=number }. Defaults to default costs."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The path as table of PathNodes"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRandomPoint",
+			"doc": {
+				"text": [
+					"Fetches a random point from the navmesh polys in a set radius. The point can be outside the radius but no polys outside the radius will be selected."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The point."
+					],
+					[
+						"number",
+						"radius",
+						"The radius to search in."
+					],
+					[
+						"table",
+						"abilities?",
+						"Table of actor abilities { canWalk=boolean, canSwim=boolean }. Defaults to all abilities."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The new random point. (returns original point in case of failure)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getSortedNodes",
+			"doc": {
+				"text": [
+					"Find all nearby path nodes"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The position to look in"
+					],
+					[
+						"number",
+						"minDist",
+						"Minimum distance around pos"
+					],
+					[
+						"number",
+						"maxDist",
+						"Maximum distance around pos"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table of PathNodes sorted closest to farthest"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getWorldPath",
+			"doc": {
+				"text": [
+					"Find a path"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in"
+					],
+					[
+						"[Vec3]",
+						"start",
+						"The path start"
+					],
+					[
+						"[Vec3]",
+						"destination",
+						"The path destination"
+					],
+					[
+						"table",
+						"abilities?",
+						"Table of actor abilities { canWalk=boolean, canSwim=boolean }. Defaults to all abilities."
+					],
+					[
+						"table",
+						"costs?",
+						"Table of traverse area costs [1-10] { ground=number, water=number, chemicals=number, oil=number, lava=number }. Defaults to default costs."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The path as table of PathNodes"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "traversableRaycast",
+			"doc": {
+				"text": [
+					"Looks at the surface of the navmesh from the start position toward the destination position to see if it is traversable.",
+					"If the distance isn't fully traversable, the out_fDistance is the traversable distance."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"start",
+						"The path start"
+					],
+					[
+						"[Vec3]",
+						"destination",
+						"The path destination"
+					],
+					[
+						"table",
+						"abilities?",
+						"Table of actor abilities { canWalk=boolean, canSwim=boolean }. Defaults to all abilities."
+					]
+				],
+				"return": [
+					[
+						"boolean,number",
+						"True if fully traversable, and a traversable distance when not fully traversable. (distance becomes FLT_MAX when fully traversable)"
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

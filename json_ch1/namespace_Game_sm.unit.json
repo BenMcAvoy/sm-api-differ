@@ -1,0 +1,69 @@
+{
+	"namespace": "sm.unit",
+	"userdata_association": "Unit",
+	"doc": {
+		"text": [
+			"Unit creation and management"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createUnit",
+			"doc": {
+				"text": [
+					"Creates a new unit of type from an [Uuid]"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The character type uuid."
+					],
+					[
+						"[Vec3]",
+						"feetPos",
+						"The feet position in world where unit should spawn."
+					],
+					[
+						"number",
+						"yaw=nil",
+						"The initial yaw. Defaults to 0 (Optional)"
+					],
+					[
+						"any",
+						"data=nil",
+						"The param data. (Optional)"
+					],
+					[
+						"number",
+						"pitch=nil",
+						"The initial pitch. Defaults to 0 (Optional)\t"
+					]
+				],
+				"return": [
+					[
+						"[Unit]",
+						"The created unit."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllUnits",
+			"doc": {
+				"text": [
+					"Returns a table with all the units in the world."
+				],
+				"return": [
+					[
+						"table",
+						"The table of all units. {[Unit], ..}"
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

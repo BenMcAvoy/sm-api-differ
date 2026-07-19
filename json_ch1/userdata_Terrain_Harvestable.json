@@ -1,0 +1,14 @@
+{
+	"userdata": "Harvestable",
+	"namespace_association": "sm.harvestable",
+	"doc": {
+		"text": [
+			"Represents a harvestable object in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [],
+	"functions": [],
+	"metamethods": []
+}

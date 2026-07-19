@@ -1,0 +1,1054 @@
+{
+	"userdata": "Joint",
+	"namespace_association": "sm.joint",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>joint</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "angle",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the angle of a bearing."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"bearing",
+							"The bearing."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The bearing's angle. The angle ranges between `-math.pi` and `+math.pi`."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "angularVelocity",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the angular velocity of a bearing.",
+						"The angular velocity can be set using [Joint.setMotorVelocity, setMotorVelocity] or [Joint.setTargetAngle, setTargetAngle]."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"bearing",
+							"The bearing."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The bearing's angular velocity."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "appliedImpulse",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the applied impulse of a bearing.",
+						"The applied impulse can be set using [Joint.setMotorVelocity, setMotorVelocity] or [Joint.setTargetAngle, setTargetAngle]."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"bearing",
+							"The bearing."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The bearing's applied impulse."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "color",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the color of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Color]",
+							"The joint's color."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the color of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						],
+						[
+							"[Color]",
+							"color",
+							"The new color."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The joint's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "length",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the current length of a piston. The length is measured in blocks."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"piston",
+							"The piston."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The piston's current length in blocks."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "localPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local position of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The joint's local position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "localRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local rotation of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The joint's local rotation."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "reversed",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns whether a bearing has been reversed using the <em>Connect Tool</em>. A reversed bearing rotates counterclockwise."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"bearing",
+							"The bearing."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Whether the bearing is reversed (rotating counterclockwise)."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "shapeA",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Shape] a joint is attached to. This shape does always exist."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Shape]",
+							"The joint's first shape."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "shapeB",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Shape] that is attached to a joint on another [Body]. This method returns nil if there is no shape attached to the joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Shape]",
+							"The joint's second shape."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "type",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the joint type of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"One of the joint's type found in (sm.joint.types)."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "uuid",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the uuid string unique to a joint type."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Uuid]",
+							"The joint's uuid."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The joint's world position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "xAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local x-axis vector of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The joint's x-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "yAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local y-axis vector of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The joint's y-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "zAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local z-axis vector of a joint."
+					],
+					"params": [
+						[
+							"[Joint]",
+							"joint",
+							"The joint."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The joint's z-axis."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createBlock",
+			"doc": {
+				"text": [
+					"Create a block on joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The parent joint."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The shape's size."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's local position."
+					],
+					[
+						"boolean",
+						"forceCreate=true",
+						"Set true to force create the shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createPart",
+			"doc": {
+				"text": [
+					"Create a part on joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The parent joint."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's local position."
+					],
+					[
+						"[Vec3]",
+						"zAxis",
+						"The shape's local z direction."
+					],
+					[
+						"[Vec3]",
+						"xAxis",
+						"The shape's local x direction."
+					],
+					[
+						"boolean",
+						"forceCreate=true",
+						"Set true to force create the shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAngle",
+			"doc": {
+				"text": [
+					"Returns the angle of a bearing."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The bearing's angle. The angle ranges between `-math.pi` and `+math.pi`."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAngularVelocity",
+			"doc": {
+				"text": [
+					"Returns the angular velocity of a bearing.",
+					"The angular velocity can be set using [Joint.setMotorVelocity, setMotorVelocity] or [Joint.setTargetAngle, setTargetAngle]."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The bearing's angular velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAppliedImpulse",
+			"doc": {
+				"text": [
+					"Returns the applied impulse of a bearing.",
+					"The applied impulse can be set using [Joint.setMotorVelocity, setMotorVelocity] or [Joint.setTargetAngle, setTargetAngle]."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The bearing's applied impulse."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBoundingBox",
+			"doc": {
+				"text": [
+					"Returns the bounding box of a joint &ndash; the dimensions that a joint occupies when building."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The size of the joint's bounding box."
+					]
+				]
+			}
+		},
+		{
+			"name": "getColor",
+			"doc": {
+				"text": [
+					"Returns the color of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The joint's color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The joint's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLength",
+			"doc": {
+				"text": [
+					"Returns the current length of a piston. The length is measured in blocks."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"piston",
+						"The piston."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The piston's current length in blocks."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalPosition",
+			"doc": {
+				"text": [
+					"Returns the local position of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint's local position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalRotation",
+			"doc": {
+				"text": [
+					"Returns the local rotation of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The joint's local rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeA",
+			"doc": {
+				"text": [
+					"Returns the [Shape] a joint is attached to. This shape does always exist."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The joint's first shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeB",
+			"doc": {
+				"text": [
+					"Returns the [Shape] that is attached to a joint on another [Body]. This method returns nil if there is no shape attached to the joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The joint's second shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeUuid",
+			"doc": {
+				"text": [
+					"Returns the uuid string unique to a joint type."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The joint's uuid."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSticky",
+			"doc": {
+				"text": [
+					"Returns the sticky directions of the joint for positive xyz and negative xyz.",
+					"A value of 1 means that the direction is sticky and a value of 0 means that the direction is not sticky."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3],[Vec3]",
+						"The negative xyz sticky and the positive xyz sticky."
+					]
+				]
+			}
+		},
+		{
+			"name": "getType",
+			"doc": {
+				"text": [
+					"Returns the joint type of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"One of the joint's type found in (sm.joint.types)."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The joint's world rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getXAxis",
+			"doc": {
+				"text": [
+					"Returns the local x-axis vector of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint's x-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getYAxis",
+			"doc": {
+				"text": [
+					"Returns the local y-axis vector of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint's y-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getZAxis",
+			"doc": {
+				"text": [
+					"Returns the local z-axis vector of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint's z-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "isReversed",
+			"doc": {
+				"text": [
+					"Returns whether a bearing has been reversed using the <em>Connect Tool</em>. A reversed bearing rotates counterclockwise."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the bearing is reversed (rotating counterclockwise)."
+					]
+				]
+			}
+		},
+		{
+			"name": "setColor",
+			"doc": {
+				"text": [
+					"Sets the color of a joint."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"[Color]",
+						"color",
+						"The new color."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setMotorVelocity",
+			"doc": {
+				"text": [
+					"Sets the motor velocity for a bearing. The bearing will try to maintain the target velocity with the given amount of impulse/strength.",
+					"In Scrap Mechanic, the Gas Engine increases both velocity and impulse with every gear. The Electric Engine increases velocity, but maintains the same impulse for every gear, making it sturdier.",
+					"This method cancels the effects of [Joint.setTargetAngle, setTargetAngle]."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					],
+					[
+						"number",
+						"targetVelocity",
+						"The target velocity."
+					],
+					[
+						"number",
+						"maxImpulse",
+						"The max impulse."
+					]
+				]
+			}
+		},
+		{
+			"name": "setTargetAngle",
+			"doc": {
+				"text": [
+					"Sets the target angle for a bearing. The bearing will try to reach the target angle with the target velocity and the given amount of impulse/strength.",
+					"The target angle is set to range between `-math.pi` and `+math.pi`. The bearing will always try to rotate in the direction closest to the target angle.",
+					"This method cancels the effects of [Joint.setMotorVelocity, setMotorVelocity]."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					],
+					[
+						"number",
+						"targetAngle",
+						"The target angle."
+					],
+					[
+						"number",
+						"targetVelocity",
+						"The target velocity."
+					],
+					[
+						"number",
+						"maxImpulse",
+						"The max impulse."
+					]
+				]
+			}
+		},
+		{
+			"name": "setTargetLength",
+			"doc": {
+				"text": [
+					"Sets the target length for a piston. The piston will try to reach the target length with the target velocity and the given amount of impulse/strength.",
+					"The target length is measured in blocks.",
+					"This method cancels the effects of [Joint.setMotorVelocity, setMotorVelocity]."
+				],
+				"params": [
+					[
+						"[Joint]",
+						"bearing",
+						"The bearing."
+					],
+					[
+						"number",
+						"targetLength",
+						"The target length."
+					],
+					[
+						"number",
+						"targetVelocity",
+						"The target velocity."
+					],
+					[
+						"number",
+						"maxImpulse=100000",
+						"The max impulse. (Defaults to impulse used in game)"
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Joint],[Joint]",
+						"Checks if two instances of [Joint] refer to the same Joint."
+					]
+				]
+			}
+		}
+	]
+}

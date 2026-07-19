@@ -1,0 +1,141 @@
+{
+	"namespace": "sm.world",
+	"userdata_association": "World",
+	"doc": {
+		"text": [
+			"The <strong>world</strong> api handles the creation and destruction of worlds.",
+			"A world contains the terrain and simulates the physics environment in which other game objects can exist."
+		]
+	},
+	"constants": [
+		{
+			"name": "ids",
+			"doc": {
+				"text": [
+					"Predefined special world ids",
+					"@table",
+					"anyWorld",
+					"noWorld",
+					"@table"
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createWorld",
+			"doc": {
+				"text": [
+					"Creates a new world object. Can only be called from inside the Game script environment."
+				],
+				"params": [
+					[
+						"string",
+						"filename",
+						"The world script filename."
+					],
+					[
+						"string",
+						"classname",
+						"The world script class name."
+					],
+					[
+						"any",
+						"terrainParams=nil",
+						"The world's terrain parameters. (Optional)"
+					],
+					[
+						"integer",
+						"seed=0",
+						"The world's seed. Defaults to 0 (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The created world object."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCurrentWorld",
+			"doc": {
+				"text": [
+					"Get the world that the scripted object is in."
+				],
+				"return": [
+					[
+						"[World]",
+						"The world"
+					]
+				]
+			}
+		},
+		{
+			"name": "getDirtySpheres",
+			"doc": {
+				"text": [
+					"Returns an array of tables representing spheres where something has changed in the world.",
+					"The optional position and radius parameters will construct a sphere, and use it as a filter to only show results that intersect that sphere."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position=nil",
+						"The world position of the sphere. (Optional)"
+					],
+					[
+						"number",
+						"radius=nil",
+						"The radius of the sphere. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of tables. { {center=[Vec3], radius=number}, ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getLegacyCreativeWorld",
+			"doc": {
+				"text": [
+					"Gets a previously saved creative world"
+				],
+				"return": [
+					[
+						"[World]",
+						"The world (id 0) if it exists in the database or nil"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "loadWorld",
+			"doc": {
+				"text": [
+					"Loads a previously created world. Can only be called from inside the Game script environment."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world that should be loaded."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the world was loaded."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

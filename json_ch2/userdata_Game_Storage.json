@@ -1,0 +1,64 @@
+{
+	"userdata": "Storage",
+	"namespace_association": "sm.storage",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>storage</strong> object.",
+			"@note",
+			"A storage object is accessable via `self.storage` in scripted shapes (see [ShapeClass]).",
+			"The storage object also allows for data to be saved in creations saved on the Lift.",
+			"@note"
+		]
+	},
+	"usage": "server only",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "load",
+			"doc": {
+				"text": [
+					"Loads Lua data stored in the storage object.",
+					"If no data is stored in the object, this returns nil."
+				],
+				"params": [
+					[
+						"[Storage]",
+						"storage",
+						"The storage."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The data stored."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "save",
+			"doc": {
+				"text": [
+					"Saves any Lua data into the storage object.",
+					"The data will remain stored after closing the world, and is retrieved using [Storage.load, load]."
+				],
+				"params": [
+					[
+						"[Storage]",
+						"storage",
+						"The storage."
+					],
+					[
+						"any",
+						"data",
+						"The data to be stored."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": []
+}

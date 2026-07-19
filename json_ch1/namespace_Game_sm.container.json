@@ -1,0 +1,388 @@
+{
+	"namespace": "sm.container",
+	"userdata_association": "Container",
+	"doc": {
+		"text": [
+			"A <strong>container</strong> keeps track of items and stores them in slots. Each slot holds one item type and a quantity, if the item is stackable."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "abortTransaction",
+			"doc": {
+				"text": [
+					"Aborts a transaction."
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "beginTransaction",
+			"doc": {
+				"text": [
+					"Starts a new <em>transaction</em> shared across all containers. A transaction is a collection of all changes of container items will be collected and processed",
+					"A transaction must be ended with [sm.container.endTransaction]."
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether starting a transaction was successful."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "collect",
+			"doc": {
+				"text": [
+					"Adds a quantity of a given item to a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items."
+					],
+					[
+						"boolean",
+						"mustCollectAll=nil",
+						"Must collect all items for the transaction to be valid. Defaults to true. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of items successfully added."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "collectToSlot",
+			"doc": {
+				"text": [
+					"Performs a [sm.container.collect] operation to a specific slot."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"integer",
+						"slot",
+						"The container slot."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item to be added."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items to be added."
+					],
+					[
+						"boolean",
+						"mustCollectAll",
+						"If true, only add items if there is enough room. If false, add as many items as possible. Defaults to true. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of items successfully added."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "endTransaction",
+			"doc": {
+				"text": [
+					"Ends a transaction."
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether ending a transaction was successful."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getFirstItem",
+			"doc": {
+				"text": [
+					"Returns a table containing item uuid, quantity (and instance id for tools) at first available slot"
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table containg item {uuid  = [Uuid], instance = integer, quantity = integer}."
+					]
+				]
+			}
+		},
+		{
+			"name": "itemUuid",
+			"doc": {
+				"text": [
+					"Returns a table containing all item uuids in a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of item uuids {[Uuid], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "moveAll",
+			"doc": {
+				"text": [
+					"Moves the content from one container to another."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The source container."
+					],
+					[
+						"[Container]",
+						"container",
+						"The destination container."
+					],
+					[
+						"boolean",
+						"moveAll=nil",
+						"If true, requires that all items can be moved. "
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "moveAllToCarryContainer",
+			"doc": {
+				"text": [
+					"Moves the content of input container to the player carry container and assigns the carry color."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container to assign."
+					],
+					[
+						"[Player]",
+						"player",
+						"The player to receive the carry content and color."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color to assign."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "quantity",
+			"doc": {
+				"text": [
+					"Returns a table containing all item quantities in a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of item quantities {integer, ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "spend",
+			"doc": {
+				"text": [
+					"Removes a quantity of a given item from a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items."
+					],
+					[
+						"boolean",
+						"mustSpendAll=nil",
+						"If true, only remove items if there are enough. If false, remove as many items as possible. Defaults to true. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of items successfully removed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "spendFromSlot",
+			"doc": {
+				"text": [
+					"Performs a [sm.container.spend] operation from a specific slot. "
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"integer",
+						"slot",
+						"The container slot."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item to be removed."
+					],
+					[
+						"integer",
+						"quantity",
+						"The number of items to be removed."
+					],
+					[
+						"boolean",
+						"mustSpendAll=nil",
+						"If true, only remove items if there are enough. If false, remove as many items as possible. Defaults to true. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of items successfully removed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "swap",
+			"doc": {
+				"text": [
+					"Swaps two item slots."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The first container."
+					],
+					[
+						"[Container]",
+						"container",
+						"The second container."
+					],
+					[
+						"integer",
+						"slotFrom",
+						"The first slot"
+					],
+					[
+						"integer",
+						"slotTo",
+						"The second slot"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Indicates if the action is possible."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "totalQuantity",
+			"doc": {
+				"text": [
+					"Returns the total number of a given item uuid in a container."
+				],
+				"params": [
+					[
+						"[Container]",
+						"container",
+						"The container."
+					],
+					[
+						"[Uuid]",
+						"itemUuid",
+						"The uuid of the item."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The quantity of the given item uuid."
+					]
+				]
+			}
+		}
+	]
+}

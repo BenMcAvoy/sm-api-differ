@@ -1,0 +1,197 @@
+{
+	"namespace": "sm.melee",
+	"doc": {
+		"text": [
+			"Information about melee attacks are located in `/Data/Melee/attacks.json`."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "meleeAttack",
+			"doc": {
+				"text": [
+					"Perform a melee attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the melee attack."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the attack will inflict."
+					],
+					[
+						"[Vec3]",
+						"origin",
+						"The source position of the attack."
+					],
+					[
+						"[Vec3]",
+						"directionRange",
+						"The direction and reach of the attack."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the attack."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before performing the attack. (Defaults to 0)"
+					],
+					[
+						"number",
+						"power=5000",
+						"The strength of the knockback power."
+					]
+				]
+			}
+		},
+		{
+			"name": "meleeAttack",
+			"doc": {
+				"text": [
+					"Perform a melee attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The name of the melee attack."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the attack will inflict."
+					],
+					[
+						"[Vec3]",
+						"origin",
+						"The source position of the attack."
+					],
+					[
+						"[Vec3]",
+						"directionRange",
+						"The direction and reach of the attack."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The unit that is the source of the attack."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before performing the attack. (Defaults to 0)"
+					],
+					[
+						"number",
+						"power=5000",
+						"The strength of the knockback power."
+					]
+				]
+			}
+		},
+		{
+			"name": "meleeAttack",
+			"doc": {
+				"text": [
+					"Perform a melee attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the melee attack."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the attack will inflict."
+					],
+					[
+						"[Vec3]",
+						"origin",
+						"The source position of the attack."
+					],
+					[
+						"[Vec3]",
+						"directionRange",
+						"The direction and reach of the attack."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the attack."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before performing the attack. (Defaults to 0)"
+					],
+					[
+						"number",
+						"power=5000",
+						"The strength of the knockback power."
+					]
+				]
+			}
+		},
+		{
+			"name": "meleeAttack",
+			"doc": {
+				"text": [
+					"Perform a melee attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the melee attack."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the attack will inflict."
+					],
+					[
+						"[Vec3]",
+						"origin",
+						"The source position of the attack."
+					],
+					[
+						"[Vec3]",
+						"directionRange",
+						"The direction and reach of the attack."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The unit that is the source of the attack."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before performing the attack. (Defaults to 0)"
+					],
+					[
+						"number",
+						"power=5000",
+						"The strength of the knockback power."
+					]
+				]
+			}
+		}
+	]
+}

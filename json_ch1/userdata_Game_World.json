@@ -1,0 +1,247 @@
+{
+	"userdata": "World",
+	"namespace_association": "sm.world",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>world</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The world's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys the given world. Can only be called from inside the Game script environment."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world that should be removed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The world's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "isIndoor",
+			"doc": {
+				"text": [
+					"Returns true if the world is an indoor world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if indoor."
+					]
+				]
+			}
+		},
+		{
+			"name": "loadCell",
+			"doc": {
+				"text": [
+					"Load a cell for player. The cell will stay loaded until the player steps into the cell, or the cell is released with releaseCell (and no player is close enough to load the cell)."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"[Player]",
+						"player",
+						"A player to load for, can be nil."
+					],
+					[
+						"string",
+						"callback=nil",
+						"Lua function to call when cell is loaded. Callback parameters are ( world, x, y, player, params, handle )"
+					],
+					[
+						"any",
+						"params=nil",
+						"Parameter object passed to the callback."
+					],
+					[
+						"ref",
+						"ref=nil",
+						"Script ref to callback object."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"Handle to use when explicitly releasing cell."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "reloadCell",
+			"doc": {
+				"text": [
+					"Reload a cell. Callback result values, 0 means cell isnt active and wont be reloaded. 1 means success"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"string",
+						"callback=nil",
+						"Lua function to call when cell is reloaded. Callback parameters are ( world, x, y, result ) (Optional)"
+					],
+					[
+						"ref",
+						"ref=nil",
+						"Script ref to callback object. (Optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setTerrainScriptData",
+			"doc": {
+				"text": [
+					"Set data to pass on to the terrain generation script. If no data is set the terrain generation script receives the same data as the world script."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"any",
+						"data",
+						"Any data, available to the terrain generation script as parameter 6 in the create callback."
+					]
+				]
+			}
+		},
+		{
+			"name": "terrainSphereModification",
+			"doc": {
+				"text": [
+					"Modify destructable terrain with a sphere shape"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"number",
+						"strength=1.0",
+						"The strength of the modification. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[World],[World]",
+						"Checks if two instances of [World] refer to the same World."
+					]
+				]
+			}
+		}
+	]
+}

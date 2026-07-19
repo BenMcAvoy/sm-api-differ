@@ -1,0 +1,86 @@
+{
+	"userdata": "PathNode",
+	"namespace_association": "sm.pathNode",
+	"doc": {
+		"text": [
+			"A userdata object representing a PathNode in the game."
+		]
+	},
+	"usage": "server only",
+	"serializable": true,
+	"members": [],
+	"functions": [
+		{
+			"name": "connect",
+			"doc": {
+				"text": [
+					"Create a PathNode connection"
+				],
+				"params": [
+					[
+						"[PathNode]",
+						"from",
+						"PathNode to create connection from"
+					],
+					[
+						"[PathNode]",
+						"to",
+						"PathNode to create connection to"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a path node."
+				],
+				"params": [
+					[
+						"[PathNode]",
+						"node",
+						"The path node to be destroyed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Get the world position of a path node"
+				],
+				"params": [
+					[
+						"[PathNode]",
+						"node",
+						"The path node"
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"World position"
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[PathNode],[PathNode]",
+						"Checks if two instances of [PathNode] refer to the same PathNode."
+					]
+				]
+			}
+		}
+	]
+}

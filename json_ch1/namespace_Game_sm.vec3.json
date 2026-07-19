@@ -1,0 +1,238 @@
+{
+	"namespace": "sm.vec3",
+	"userdata_association": "Vec3",
+	"doc": {
+		"text": [
+			"A <strong>vector</strong> is used to represent position and direction in 3D space, using X, Y and Z coordinates.",
+			"To create one, use [sm.vec3.new]."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "bezier2",
+			"doc": {
+				"text": [
+					"Quadratic Bezier interpolation. Three dimensional bezier curve."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"c0",
+						"The start point."
+					],
+					[
+						"[Vec3]",
+						"c1",
+						"The control point."
+					],
+					[
+						"[Vec3]",
+						"c2",
+						"The end point."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "bezier3",
+			"doc": {
+				"text": [
+					"Cubic Bezier interpolation. Three dimensional bezier curve."
+				],
+				"params": [
+					[
+						"number",
+						"c0",
+						"The start point."
+					],
+					[
+						"number",
+						"c1",
+						"The first control point."
+					],
+					[
+						"number",
+						"c2",
+						"The second control point."
+					],
+					[
+						"number",
+						"c3",
+						"The end point."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "closestAxis",
+			"doc": {
+				"text": [
+					"Finds the closest axis-aligned vector from the given vector"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"vector",
+						"The vector."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The axis-aligned vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "getRotation",
+			"doc": {
+				"text": [
+					"Returns a [Quat, quaternion] representing the rotation from one vector to another.",
+					"The quaternion can then be multiplied with any vector to rotate it in the same fashion.",
+					"@code",
+					"v1 = sm.vec3.new(1,0,0)",
+					"v2 = sm.vec3.new(0,1,0)",
+					"",
+					"trans = sm.vec3.getRotation(v1, v2)",
+					"-- `trans` now rotates a vector 90 degrees",
+					"",
+					"print(trans * v2)",
+					"-- {<Vec3>, x = -1, y = 0, z = 0}",
+					"@code"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The transformation."
+					]
+				]
+			}
+		},
+		{
+			"name": "lerp",
+			"doc": {
+				"text": [
+					"Performs a <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Linear_interpolation\">linear interpolation</a> between two vectors."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"v1",
+						"The first vector."
+					],
+					[
+						"[Vec3]",
+						"v2",
+						"The second vector."
+					],
+					[
+						"number",
+						"t",
+						"Interpolation amount between the two inputs."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"Interpolated vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new vector."
+				],
+				"params": [
+					[
+						"number",
+						"x",
+						"The X value."
+					],
+					[
+						"number",
+						"y",
+						"The Y value."
+					],
+					[
+						"number",
+						"z",
+						"The Z value."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The created vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "one",
+			"doc": {
+				"text": [
+					"Creates a new vector with 1 in x, y, x."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The one vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "zero",
+			"doc": {
+				"text": [
+					"Creates a new vector with 0 in x, y, x."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The zero vector."
+					]
+				]
+			}
+		}
+	]
+}

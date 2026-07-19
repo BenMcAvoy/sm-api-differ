@@ -1,0 +1,98 @@
+{
+	"namespace": "sm.portal",
+	"userdata_association": "Portal",
+	"doc": {
+		"text": [
+			"A <strong>portal</strong> moves objects inside a box to another box in another place."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "addWorldPortalHook",
+			"doc": {
+				"text": [
+					"Adds a hook that a new world can find to hook up the other side of a portal."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The target world."
+					],
+					[
+						"string",
+						"name",
+						"The portal name."
+					],
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createPortal",
+			"doc": {
+				"text": [
+					"Creates a new portal."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"dimensions",
+						"The dimensions of the portal box."
+					]
+				],
+				"return": [
+					[
+						"[Portal]",
+						"The created portal."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a portal."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal to be destroyed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "popWorldPortalHook",
+			"doc": {
+				"text": [
+					"Finds and pops world hook for this world if present."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The portal name."
+					]
+				],
+				"return": [
+					[
+						"[Portal]",
+						"The portal. Nil if nothing was found."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

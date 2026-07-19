@@ -1,0 +1,162 @@
+{
+	"namespace": "sm.debugDraw",
+	"doc": {
+		"text": [
+			"The <strong>Debug Draw</strong> api can be used for drawing geometric primitives for debug purposes."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "addArrow",
+			"doc": {
+				"text": [
+					"Adds a named arrow debug draw."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug arrow name."
+					],
+					[
+						"[Vec3]",
+						"from",
+						"The from position."
+					],
+					[
+						"[Vec3]",
+						"to=nil",
+						"The to position. Defaults to the from position plus one along the z axis. (World up vector)"
+					],
+					[
+						"[Color]",
+						"color=nil",
+						"The color. Defaults to white."
+					]
+				]
+			}
+		},
+		{
+			"name": "addSphere",
+			"doc": {
+				"text": [
+					"Adds a named sphere debug draw."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug sphere name."
+					],
+					[
+						"[Vec3]",
+						"center",
+						"The sphere center."
+					],
+					[
+						"[Vec3]",
+						"radius=nil",
+						"The sphere radius. Defaults to 0.125."
+					],
+					[
+						"[Color]",
+						"color=nil",
+						"The color. Defaults to white."
+					]
+				]
+			}
+		},
+		{
+			"name": "addTransform",
+			"doc": {
+				"text": [
+					"Adds a named transform debug draw."
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug transform name."
+					],
+					[
+						"[Vec3]",
+						"origin",
+						"The transform origin."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The transform rotation."
+					],
+					[
+						"number",
+						"scale=nil",
+						"The transform scale. Defaults to 1.0."
+					]
+				]
+			}
+		},
+		{
+			"name": "clear",
+			"doc": {
+				"text": [
+					"Removes all debug draws beginning with a given name. ",
+					" "
+				],
+				"params": [
+					[
+						"string",
+						"name=\"\"",
+						"The name to match (Defaults to \"\", matching all debug draws)."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeArrow",
+			"doc": {
+				"text": [
+					"Removes a named arrow debug draw. "
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug arrow name."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeSphere",
+			"doc": {
+				"text": [
+					"Removes a named sphere debug draw. "
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug sphere name."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeTransform",
+			"doc": {
+				"text": [
+					"Removes a named transform debug draw. "
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The debug transform name."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,87 @@
+{
+	"namespace": "sm.storage",
+	"userdata_association": "Storage",
+	"doc": {
+		"text": [
+			"<strong>Storage</strong> is used for saving and loading any Lua data into the world's database. This allows for data to be retrieved after closing and reloading the world.",
+			"Storage can only be used on the <a href=\"index.html#server\">server</a>.",
+			"@warning",
+			"Storage allows for data to be saved immediately into the world's database. This is a <strong>very slow</strong> process and should be done as sparsely as possible.",
+			"If you have data that is shared globally and updated often, consider using global variables instead. Ideally, storage should only be used to save data upon closing the world, or when saving a creation on the Lift.",
+			"@warning"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "load",
+			"doc": {
+				"text": [
+					"Loads Lua data stored with a given key. The <em>key</em> can be any lua object.",
+					"If no data is stored with the given key, this returns nil."
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"The key."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The data stored."
+					]
+				]
+			}
+		},
+		{
+			"name": "save",
+			"doc": {
+				"text": [
+					"Saves any Lua object with a given key. The <em>key</em> can be any lua object.",
+					"The data will remain stored after closing the world, and is retrieved using [sm.storage.load, load], provided the same key.",
+					"@note",
+					"The data is stored globally <strong>within the current mod</strong>. As of such, keys will not collide with external mods and scripts.",
+					"@note"
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"The key that will be used to get the data."
+					],
+					[
+						"any",
+						"data",
+						"The data to be stored."
+					]
+				]
+			}
+		},
+		{
+			"name": "saveAndSync",
+			"doc": {
+				"text": [
+					"Saves any Lua object with a given key. The <em>key</em> can be any lua object.",
+					"The data will remain stored after closing the world and synchronized to other clients, and is retrieved using [sm.storage.load, load], provided the same key.",
+					"@note",
+					"The data is stored globally <strong>within the current mod</strong>. As of such, keys will not collide with external mods and scripts.",
+					"@note"
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"The key that will be used to get the data."
+					],
+					[
+						"any",
+						"data",
+						"The data to be stored."
+					]
+				]
+			}
+		}
+	]
+}

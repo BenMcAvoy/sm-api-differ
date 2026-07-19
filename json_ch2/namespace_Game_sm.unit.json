@@ -1,0 +1,129 @@
+{
+	"namespace": "sm.unit",
+	"userdata_association": "Unit",
+	"doc": {
+		"text": [
+			"Unit creation and management"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createUnit",
+			"doc": {
+				"text": [
+					"Creates a new unit of type from an [Uuid]"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The character type uuid."
+					],
+					[
+						"[Vec3]",
+						"feetPos",
+						"The feet position in world where unit should spawn."
+					],
+					[
+						"number",
+						"yaw?",
+						"The initial yaw. Defaults to 0 (Optional)"
+					],
+					[
+						"any",
+						"data?",
+						"The param data. (Optional)"
+					],
+					[
+						"number",
+						"pitch?",
+						"The initial pitch. Defaults to 0 (Optional)"
+					],
+					[
+						"boolean",
+						"visible?",
+						"Whether the unit is visible on spawn. Defaults to true. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Unit]",
+						"The created unit."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "forceDestroy",
+			"doc": {
+				"text": [
+					"Destroys a unit.",
+					"If the unit does not exist at the moment, it is removed from the save file. This will stop it from loading back into the game."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllUnits",
+			"doc": {
+				"text": [
+					"Returns a table with all the units in the world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world?",
+						"The world to get units from. Defaults to the world of the script (Optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of all units. {[Unit], ..}"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getUnitsInRange",
+			"doc": {
+				"text": [
+					"Returns a table with units within a given range."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to check in."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position to check from."
+					],
+					[
+						"number",
+						"range",
+						"The range to check."
+					],
+					[
+						"number",
+						"heightModifier?",
+						"A value to modify the height of the range check. Defaults to 1. Higher values makes enemy elevation difference deemed as greater distance."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

@@ -1,0 +1,49 @@
+{
+	"namespace": "sm.message",
+	"doc": {},
+	"constants": [],
+	"functions": [
+		{
+			"name": "send",
+			"doc": {
+				"text": [
+					"Sends a message to all script instances registered for the given key. Can only be called from server!"
+				],
+				"params": [
+					[
+						"string",
+						"messageKey",
+						"The message key."
+					],
+					[
+						"any",
+						"data?",
+						"Optional data to send with the message."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "subscribe",
+			"doc": {
+				"text": [
+					"Subscribes the calling script instance to receive messages for a given key. Can only be called from server!"
+				],
+				"params": [
+					[
+						"string",
+						"messageKey",
+						"The message key to subscribe to."
+					],
+					[
+						"string",
+						"callbackName",
+						"The name of the callback function to invoke."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

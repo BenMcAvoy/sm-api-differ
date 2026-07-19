@@ -1,0 +1,57 @@
+{
+	"namespace": "sm.debris",
+	"doc": {
+		"text": [
+			"<strong>Debris</strong> are visual objects that have no impact on any other object."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createDebris",
+			"doc": {
+				"text": [
+					"Create visual debris of a [Shape, shape] from its [Uuid, uuid], that collides with world objects but does not have an impact on them."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation."
+					],
+					[
+						"[Vec3]",
+						"velocity=nil",
+						"The linear velocity. (Defaults to zero)"
+					],
+					[
+						"[Vec3]",
+						"angularVelocity=nil",
+						"The angular velocity in radians per second around the axes (x,y,z). (Defaults to zero)"
+					],
+					[
+						"[Color]",
+						"color=nil",
+						"The color. (Defaults to the shape's default color)"
+					],
+					[
+						"number",
+						"time=nil",
+						"The time the debris will be simulated before disappearing. (Defaults to 10 seconds)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

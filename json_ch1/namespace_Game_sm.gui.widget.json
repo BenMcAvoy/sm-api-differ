@@ -1,0 +1,23 @@
+{
+	"namespace": "sm.gui.widget",
+	"userdata_association": "Widget",
+	"doc": {
+		"text": [
+			"Removed! Don't use."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SM API Differ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+<script>
+    // dark.css only applies its variables to .sl-theme-dark (not :root), so the
+    // class has to be toggled by hand based on the user's color-scheme preference.
+    const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    function syncTheme(e) {
+        document.documentElement.classList.toggle("sl-theme-dark", e.matches);
+    }
+    syncTheme(darkMediaQuery);
+    darkMediaQuery.addEventListener("change", syncTheme);
+</script>
+<style>
+    :root {
+        color-scheme: light dark;
+        --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+    }
+
+    html, body {
+        margin: 0;
+        height: 100%;
+        font-family: var(--font-mono);
+        background: var(--sl-color-neutral-50);
+        color: var(--sl-color-neutral-900);
+    }
+
+    sl-input, sl-checkbox, sl-badge {
+        font-family: var(--font-mono);
+    }
+
+    #app {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        height: 100vh;
+    }
+
+    #sidebar {
+        border-right: 1px solid var(--sl-color-neutral-200);
+        overflow-y: auto;
+        padding: 0.75rem;
+        box-sizing: border-box;
+        height: 100vh;
+    }
+
+    #content {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        min-width: 0;
+    }
+
+    #main {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 1.25rem 1.75rem;
+        box-sizing: border-box;
+    }
+
+    .top-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid var(--sl-color-neutral-200);
+    }
+
+    .top-bar h1 {
+        font-size: 1rem;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .summary-counter {
+        font-size: 0.85rem;
+        color: var(--sl-color-neutral-500);
+    }
+
+    .top-bar-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-left: auto;
+    }
+
+    .top-bar-actions sl-checkbox {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.85rem;
+    }
+
+    .action-divider {
+        width: 1px;
+        height: 1.2rem;
+        background: var(--sl-color-neutral-200);
+    }
+
+    .env-section {
+        margin-bottom: 0.5rem;
+    }
+
+    .cat-header {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.5rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--sl-color-neutral-600);
+    }
+
+    .item-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.3rem 0.5rem 0.3rem 1.25rem;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-family: var(--font-mono);
+    }
+
+    .item-row:hover {
+        background: var(--sl-color-neutral-100);
+    }
+
+    .item-row.selected {
+        background: var(--sl-color-primary-100);
+    }
+
+    .item-row .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .status-added .status-dot { background: var(--sl-color-success-600); }
+    .status-removed .status-dot { background: var(--sl-color-danger-600); }
+    .status-modified .status-dot { background: var(--sl-color-warning-600); }
+    .status-unchanged .status-dot { background: var(--sl-color-neutral-300); }
+    .status-unchanged .name { color: var(--sl-color-neutral-600); }
+
+    #empty-state {
+        color: var(--sl-color-neutral-500);
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .detail-header {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .detail-header h2 {
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    .filter-row {
+        display: flex;
+        gap: 0.35rem;
+        padding: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* --- structured diff rendering --- */
+
+    .section {
+        margin-bottom: 1.5rem;
+    }
+
+    .section > .section-title {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--sl-color-neutral-600);
+        margin: 0 0 0.5rem 0;
+        font-weight: 600;
+    }
+
+    .prose-line {
+        padding: 0.15rem 0.5rem;
+        border-radius: var(--radius-sm);
+        line-height: 1.5;
+    }
+
+    .prose-line.add {
+        background: var(--sl-color-success-100);
+        color: var(--sl-color-success-900);
+    }
+
+    .prose-line.remove {
+        background: var(--sl-color-danger-100);
+        color: var(--sl-color-danger-900);
+        text-decoration: line-through;
+        text-decoration-color: var(--sl-color-danger-600);
+    }
+
+    .prose-line.context {
+        color: var(--sl-color-neutral-800);
+    }
+
+    .prose-line a {
+        color: var(--sl-color-primary-600);
+    }
+
+    .prose-line a.doc-link-inert {
+        color: inherit;
+        text-decoration: none;
+        cursor: default;
+    }
+
+    .prose-line h3 {
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .prose-line > div + div {
+        margin-top: 0.5rem;
+    }
+
+    .ref-link {
+        font-family: var(--font-mono);
+        color: var(--sl-color-primary-700);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--sl-color-primary-400);
+    }
+
+    .ref-link:hover {
+        color: var(--sl-color-primary-900);
+        border-bottom-style: solid;
+    }
+
+    .ref-code {
+        font-family: var(--font-mono);
+        color: var(--sl-color-neutral-700);
+    }
+
+    .callout {
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-md);
+        padding: 0.5rem 0.75rem;
+        margin: 0.4rem 0;
+    }
+
+    .callout::before {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    .callout.note {
+        border-color: var(--sl-color-primary-200);
+        background: var(--sl-color-primary-50);
+    }
+
+    .callout.note::before {
+        content: "Note";
+        color: var(--sl-color-primary-700);
+    }
+
+    .callout.warning {
+        border-color: var(--sl-color-warning-300);
+        background: var(--sl-color-warning-50);
+    }
+
+    .callout.warning::before {
+        content: "Warning";
+        color: var(--sl-color-warning-700);
+    }
+
+    .callout .prose-line {
+        padding: 0.05rem 0;
+    }
+
+    .doc-list {
+        margin: 0.4rem 0;
+        padding-left: 1.2rem;
+    }
+
+    .doc-list li {
+        margin: 0.15rem 0;
+        line-height: 1.5;
+    }
+
+    .doc-list li.add {
+        background: var(--sl-color-success-100);
+        color: var(--sl-color-success-900);
+        list-style-position: inside;
+        margin-left: -1.2rem;
+        padding-left: 1.2rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .doc-list li.remove {
+        background: var(--sl-color-danger-100);
+        color: var(--sl-color-danger-900);
+        text-decoration: line-through;
+        list-style-position: inside;
+        margin-left: -1.2rem;
+        padding-left: 1.2rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .doc-code {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        background: var(--sl-color-neutral-100);
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-md);
+        padding: 0.6rem 0.75rem;
+        margin: 0.4rem 0;
+        overflow-x: auto;
+        white-space: pre;
+    }
+
+    .code-line.add {
+        background: var(--sl-color-success-100);
+        color: var(--sl-color-success-900);
+    }
+
+    .code-line.remove {
+        background: var(--sl-color-danger-100);
+        color: var(--sl-color-danger-900);
+    }
+
+    .row-table {
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    .row-item {
+        display: flex;
+        gap: 0.6rem;
+        padding: 0.4rem 0.6rem;
+        align-items: baseline;
+        border-bottom: 1px solid var(--sl-color-neutral-100);
+        font-size: 0.85rem;
+    }
+
+    .row-item:last-child {
+        border-bottom: none;
+    }
+
+    .row-item.add { background: var(--sl-color-success-100); }
+    .row-item.remove { background: var(--sl-color-danger-100); text-decoration: line-through; text-decoration-color: var(--sl-color-danger-600); }
+
+    .row-badge {
+        flex-shrink: 0;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        padding: 0.05rem 0.4rem;
+        border-radius: var(--radius-sm);
+        background: var(--sl-color-neutral-100);
+        color: var(--sl-color-neutral-700);
+        white-space: nowrap;
+    }
+
+    .row-code {
+        flex-shrink: 0;
+        font-family: var(--font-mono);
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .row-desc {
+        color: var(--sl-color-neutral-700);
+    }
+
+    .named-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .named-item {
+        border: 1px solid var(--sl-color-neutral-200);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+
+    .named-item summary {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+        list-style: none;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        border-bottom: 1px solid transparent;
+    }
+
+    .named-item[open] summary {
+        border-bottom-color: var(--sl-color-neutral-200);
+    }
+
+    .named-item.status-unchanged summary {
+        color: var(--sl-color-neutral-600);
+    }
+
+    .named-item summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .named-item .item-body {
+        padding: 0.25rem 0.9rem 0.85rem 0.9rem;
+    }
+
+    /* Git-style status indicator: colored +/-/~ glyph, no pill/badge chrome. */
+    .status-tag {
+        font-weight: 700;
+        font-family: var(--font-mono);
+    }
+
+    .status-tag.added { color: var(--sl-color-success-700); }
+    .status-tag.removed { color: var(--sl-color-danger-700); }
+    .status-tag.modified { color: var(--sl-color-warning-700); }
+    .status-tag.unchanged { color: var(--sl-color-neutral-500); }
+
+    .scalar-diff {
+        font-size: 0.85rem;
+        padding: 0.2rem 0;
+    }
+
+    .scalar-old {
+        color: var(--sl-color-danger-700);
+        text-decoration: line-through;
+    }
+
+    .scalar-new {
+        color: var(--sl-color-success-700);
+        font-weight: 600;
+    }
+
+    .sub-heading {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--sl-color-neutral-500);
+        margin: 0.6rem 0 0.3rem 0;
+    }
+
+    .empty-note {
+        color: var(--sl-color-neutral-500);
+        font-size: 0.85rem;
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+<div id="app">
+    <div id="sidebar">
+        <div class="filter-row">
+            <sl-input id="search" placeholder="Filter…" clearable size="small" style="flex: 1 1 auto;"></sl-input>
+        </div>
+        <div class="filter-row">
+            <sl-checkbox id="filter-added" checked size="small">Added</sl-checkbox>
+            <sl-checkbox id="filter-removed" checked size="small">Removed</sl-checkbox>
+            <sl-checkbox id="filter-modified" checked size="small">Modified</sl-checkbox>
+        </div>
+        <div id="tree"></div>
+    </div>
+    <div id="content">
+        <div class="top-bar">
+            <h1>SM API Differ</h1>
+            <span id="summary-badge" class="summary-counter"></span>
+            <div class="top-bar-actions">
+                <sl-checkbox id="show-unchanged" checked size="small">Show unchanged</sl-checkbox>
+                <span class="action-divider"></span>
+                <sl-button-group>
+                    <sl-button id="expand-all" size="small">Expand all</sl-button>
+                    <sl-button id="collapse-all" size="small">Collapse all</sl-button>
+                </sl-button-group>
+            </div>
+        </div>
+        <div id="main">
+            <div id="empty-state">Select an item on the left to view its diff.</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+const CATEGORY_LABELS = { classes: "Classes", userdatas: "Userdata", namespaces: "Namespaces" };
+const STATUS_LABELS = { added: "Added", removed: "Removed", modified: "Modified", unchanged: "Unchanged" };
+const STATUS_SYMBOLS = { added: "+", removed: "-", modified: "~", unchanged: "·" };
+
+function statusTag(status, label) {
+    return `<span class="status-tag ${status}">${STATUS_SYMBOLS[status]} ${escapeHtml(label)}</span>`;
+}
+
+let diffData = null;
+let selectedKey = null;
+let currentEnv = null; // env of the entry currently shown in #main, used to disambiguate cross-references
+
+// Maps an entity name (class/userdata/namespace) to every {env,cat,name} it
+// appears as, built from the diff data itself. Only entities that are part of
+// the diff (added/removed/modified) can be linked to — an unchanged type that
+// a doc string references simply isn't loaded, so it renders as inert code.
+let referenceIndex = new Map();
+
+function buildReferenceIndex() {
+    referenceIndex = new Map();
+    for (const env of ["game", "terrain"]) {
+        for (const cat of ["classes", "userdatas", "namespaces"]) {
+            for (const name of Object.keys(diffData[env][cat])) {
+                if (!referenceIndex.has(name)) referenceIndex.set(name, []);
+                referenceIndex.get(name).push({ env, cat, name });
+            }
+        }
+    }
+}
+
+// A doc reference like "[CharacterClass.server_onFixedUpdate, ...]" or
+// "[sm.event.sendToGame]" points at a member, not the entity itself — resolve
+// by trying the full dotted path, then progressively dropping trailing
+// segments until a known entity name matches.
+function resolveReference(target) {
+    let candidate = target;
+    while (candidate) {
+        const matches = referenceIndex.get(candidate);
+        if (matches && matches.length) {
+            return matches.find((m) => m.env === currentEnv) || matches[0];
+        }
+        const dot = candidate.lastIndexOf(".");
+        if (dot === -1) break;
+        candidate = candidate.slice(0, dot);
+    }
+    return null;
+}
+
+// Source of truth for filter state. Custom elements (sl-checkbox, sl-input) upgrade
+// asynchronously and may still be plain, un-upgraded elements (`.checked`/`.value`
+// undefined) at the moment data finishes loading, so state lives here instead of
+// being read back from the DOM on every render.
+const filterState = { added: true, removed: true, modified: true, query: "", showUnchanged: true };
+
+// Keeps the current view (filters, search, selected item) encoded in the URL
+// hash so the page is bookmarkable/shareable and survives a refresh. Uses the
+// hash (not query string) so it works over file:// too, with no server needed.
+function updateUrl(push) {
+    const params = new URLSearchParams();
+    if (!filterState.added) params.set("added", "0");
+    if (!filterState.removed) params.set("removed", "0");
+    if (!filterState.modified) params.set("modified", "0");
+    if (!filterState.showUnchanged) params.set("unchanged", "0");
+    if (filterState.query) params.set("q", filterState.query);
+    if (selectedKey) params.set("sel", selectedKey);
+
+    const hash = params.toString();
+    const url = hash ? `#${hash}` : location.pathname + location.search;
+    if (push) {
+        history.pushState(null, "", url);
+    } else {
+        history.replaceState(null, "", url);
+    }
+}
+
+function applyStateFromUrl() {
+    const params = new URLSearchParams(location.hash.slice(1));
+    filterState.added = params.get("added") !== "0";
+    filterState.removed = params.get("removed") !== "0";
+    filterState.modified = params.get("modified") !== "0";
+    filterState.showUnchanged = params.get("unchanged") !== "0";
+    filterState.query = params.get("q") || "";
+    selectedKey = params.get("sel") || null;
+
+    // Reflect restored state onto the controls via attributes (not properties),
+    // since Shoelace's custom elements may not have upgraded yet and only read
+    // attributes when they do.
+    const searchEl = document.getElementById("search");
+    if (filterState.query) searchEl.setAttribute("value", filterState.query);
+    else searchEl.removeAttribute("value");
+    document.getElementById("filter-added").toggleAttribute("checked", filterState.added);
+    document.getElementById("filter-removed").toggleAttribute("checked", filterState.removed);
+    document.getElementById("filter-modified").toggleAttribute("checked", filterState.modified);
+    document.getElementById("show-unchanged").toggleAttribute("checked", filterState.showUnchanged);
+}
+
+function showSelectedFromKey() {
+    if (!selectedKey) return;
+    const [env, cat, name] = selectedKey.split(":");
+    const entry = diffData?.[env]?.[cat]?.[name];
+    if (entry) showDetail(env, cat, name, entry);
+}
+
+async function load() {
+    applyStateFromUrl();
+    const res = await fetch("./diff.json");
+    diffData = await res.json();
+    buildReferenceIndex();
+    render();
+    showSelectedFromKey();
+}
+
+window.addEventListener("popstate", () => {
+    applyStateFromUrl();
+    render();
+    if (selectedKey) {
+        showSelectedFromKey();
+    } else {
+        document.getElementById("main").innerHTML = `<div id="empty-state">Select an item on the left to view its diff.</div>`;
+    }
+});
+
+function matchesFilters(status, query, name) {
+    if (status === "unchanged" ? !filterState.showUnchanged : !filterState[status]) return false;
+    if (query && !name.toLowerCase().includes(query.toLowerCase())) return false;
+    return true;
+}
+
+function render() {
+    const tree = document.getElementById("tree");
+    tree.innerHTML = "";
+    const query = filterState.query;
+
+    let totalAdded = 0, totalRemoved = 0, totalModified = 0;
+
+    for (const env of ["game", "terrain"]) {
+        const envEntries = diffData[env];
+        let envHasVisible = false;
+        const envSection = document.createElement("div");
+        envSection.className = "env-section";
+
+        for (const cat of ["classes", "userdatas", "namespaces"]) {
+            const items = Object.entries(envEntries[cat]).sort((a, b) => a[0].localeCompare(b[0]));
+            const visibleItems = items.filter(([name, entry]) => matchesFilters(entry.status, query, name));
+            if (visibleItems.length === 0) continue;
+            envHasVisible = true;
+
+            const header = document.createElement("div");
+            header.className = "cat-header";
+            header.textContent = `${env === "game" ? "Game" : "Terrain"} / ${CATEGORY_LABELS[cat]} (${visibleItems.length})`;
+            envSection.appendChild(header);
+
+            for (const [name, entry] of visibleItems) {
+                if (entry.status === "added") totalAdded++;
+                else if (entry.status === "removed") totalRemoved++;
+                else if (entry.status === "modified") totalModified++;
+
+                const key = `${env}:${cat}:${name}`;
+                const row = document.createElement("div");
+                row.className = `item-row status-${entry.status}` + (key === selectedKey ? " selected" : "");
+                row.innerHTML = `<span class="status-dot"></span><span class="name">${escapeHtml(name)}</span>`;
+                row.addEventListener("click", () => {
+                    selectedKey = key;
+                    updateUrl(true);
+                    render();
+                    showDetail(env, cat, name, entry);
+                });
+                envSection.appendChild(row);
+            }
+        }
+
+        if (envHasVisible) tree.appendChild(envSection);
+    }
+
+    const badge = document.getElementById("summary-badge");
+    badge.innerHTML = `<span class="status-tag added">+${totalAdded}</span> <span class="status-tag removed">-${totalRemoved}</span> <span class="status-tag modified">~${totalModified}</span>`;
+}
+
+function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// The source docs embed a small, known set of inline HTML tags (<strong>, <em>,
+// <br>, <h3>, <a href="...">). Everything is escaped first, then only those exact
+// escaped patterns are turned back into real tags — anything else (e.g. a stray
+// "<Vec3>" in example code text, which is NOT markup) stays literal, escaped text.
+function renderMarkup(raw) {
+    let s = escapeHtml(raw);
+    s = s.replace(/&lt;(\/?)(strong|em|h3)&gt;/g, "<$1$2>");
+    s = s.replace(/&lt;br\s*\/?&gt;/g, "<br>");
+    s = s.replace(/&lt;a\s+(.*?)&gt;/g, (_, attrs) => {
+        const hrefMatch = attrs.match(/href=&quot;(.*?)&quot;/);
+        const href = hrefMatch ? hrefMatch[1] : "";
+        if (/^https?:\/\//.test(href)) {
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer">`;
+        }
+        return `<a class="doc-link-inert">`;
+    });
+    s = s.replace(/&lt;\/a&gt;/g, "</a>");
+    s = s.replace(/&amp;ndash;/g, "&ndash;");
+
+    // Doc convention: "[Character]" or "[Body, bodies]" (target, display-text)
+    // cross-references a class/userdata/namespace, sometimes a member of one
+    // ("[CharacterClass.server_onFixedUpdate, server_onFixedUpdate]"). Link it
+    // when the target resolves to something actually loaded in this diff;
+    // otherwise render it as inert code so it still reads as a reference.
+    s = s.replace(/\[([A-Za-z_][\w.]*)(?:,\s*([^\]]+))?\]/g, (_, target, display) => {
+        const label = (display || target).trim();
+        const resolved = resolveReference(target);
+        if (resolved) {
+            return `<a href="#" class="ref-link" data-env="${resolved.env}" data-cat="${resolved.cat}" data-name="${escapeHtml(resolved.name)}">${label}</a>`;
+        }
+        return `<code class="ref-code">${label}</code>`;
+    });
+
+    return s;
+}
+
+function get(obj, path) {
+    return path.reduce((o, k) => (o && o[k] !== undefined ? o[k] : undefined), obj);
+}
+
+// Generic LCS-based diff over an array, comparing elements with keyFn(item) for equality.
+function lcsDiff(a, b, keyFn) {
+    a = a || [];
+    b = b || [];
+    const ka = a.map(keyFn);
+    const kb = b.map(keyFn);
+    const n = a.length, m = b.length;
+    const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) {
+        for (let j = m - 1; j >= 0; j--) {
+            dp[i][j] = ka[i] === kb[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+        }
+    }
+    const result = [];
+    let i = 0, j = 0;
+    while (i < n && j < m) {
+        if (ka[i] === kb[j]) {
+            result.push({ type: "context", item: a[i] });
+            i++; j++;
+        } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+            result.push({ type: "remove", item: a[i] });
+            i++;
+        } else {
+            result.push({ type: "add", item: b[j] });
+            j++;
+        }
+    }
+    while (i < n) { result.push({ type: "remove", item: a[i] }); i++; }
+    while (j < m) { result.push({ type: "add", item: b[j] }); j++; }
+    return result;
+}
+
+// Diffs a "named list" (array of objects with .name), keyed by name, producing
+// added/removed/modified/unchanged entries — all of them, so the detail view
+// shows the full picture (e.g. all constants), not just what changed.
+function diffNamedList(before, after) {
+    before = before || [];
+    after = after || [];
+    const mapBefore = new Map(before.map((it) => [it.name, it]));
+    const mapAfter = new Map(after.map((it) => [it.name, it]));
+    const names = new Set([...mapBefore.keys(), ...mapAfter.keys()]);
+    const result = [];
+    for (const name of names) {
+        const b = mapBefore.get(name);
+        const a = mapAfter.get(name);
+        if (b && !a) result.push({ name, status: "removed", before: b, after: null });
+        else if (!b && a) result.push({ name, status: "added", before: null, after: a });
+        else if (JSON.stringify(b) !== JSON.stringify(a)) result.push({ name, status: "modified", before: b, after: a });
+        else result.push({ name, status: "unchanged", before: b, after: a });
+    }
+    result.sort((x, y) => x.name.localeCompare(y.name));
+    return result;
+}
+
+// Doc text lines occasionally use "@note"/"@warning"/"@list"/"@table"/"@code" as
+// paired block markers (open ... lines ... close, both using the same marker) to
+// call out a note/warning, a bullet list, a semicolon-delimited table, or a code
+// sample. Recognize and render those specially instead of as plain paragraphs.
+const BLOCK_MARKERS = new Set(["@note", "@warning", "@list", "@table", "@code"]);
+
+// Groups consecutive diff lines that share the same status into one run, so a
+// multi-sentence paragraph that's all "added" renders as a single block instead
+// of one separately-boxed rectangle per sentence.
+function groupConsecutive(diffLines) {
+    const groups = [];
+    for (const { type, item } of diffLines) {
+        const last = groups[groups.length - 1];
+        if (last && last.type === type) last.items.push(item);
+        else groups.push({ type, items: [item] });
+    }
+    return groups;
+}
+
+function renderLineGroup(type, items) {
+    const box = document.createElement("div");
+    box.className = `prose-line ${type}`;
+    for (const text of items) {
+        const p = document.createElement("div");
+        p.innerHTML = renderMarkup(text);
+        box.appendChild(p);
+    }
+    return box;
+}
+
+function renderCalloutBlock(marker, innerLines) {
+    const box = document.createElement("div");
+    box.className = `callout ${marker === "@warning" ? "warning" : "note"}`;
+    for (const { type, items } of groupConsecutive(innerLines)) box.appendChild(renderLineGroup(type, items));
+    return box;
+}
+
+function renderListBlock(innerLines) {
+    const ul = document.createElement("ul");
+    ul.className = "doc-list";
+    for (const { type, item } of innerLines) {
+        const li = document.createElement("li");
+        li.className = type;
+        li.innerHTML = renderMarkup(item);
+        ul.appendChild(li);
+    }
+    return ul;
+}
+
+function renderTableBlock(innerLines) {
+    const table = document.createElement("div");
+    table.className = "row-table";
+    for (const { type, item } of innerLines) {
+        const cols = item.split(";").map((s) => s.trim());
+        const rowEl = renderRow(cols);
+        if (type !== "context") rowEl.classList.add(type);
+        table.appendChild(rowEl);
+    }
+    return table;
+}
+
+function renderCodeBlock(innerLines) {
+    const pre = document.createElement("pre");
+    pre.className = "doc-code";
+    for (const { type, item } of innerLines) {
+        const line = document.createElement("div");
+        line.className = `code-line ${type}`;
+        line.textContent = item;
+        pre.appendChild(line);
+    }
+    return pre;
+}
+
+function renderTextDiff(beforeLines, afterLines) {
+    beforeLines = beforeLines || [];
+    afterLines = afterLines || [];
+    if (beforeLines.length === 0 && afterLines.length === 0) return null;
+
+    const diff = lcsDiff(beforeLines, afterLines, (line) => line);
+    const container = document.createElement("div");
+
+    let i = 0;
+    let pending = null; // { type, items: [] } — a run of same-status plain lines awaiting flush
+
+    function flushPending() {
+        if (pending) container.appendChild(renderLineGroup(pending.type, pending.items));
+        pending = null;
+    }
+
+    while (i < diff.length) {
+        const trimmed = diff[i].item.trim();
+        if (BLOCK_MARKERS.has(trimmed)) {
+            flushPending();
+            let j = i + 1;
+            while (j < diff.length && diff[j].item.trim() !== trimmed) j++;
+            const inner = diff.slice(i + 1, j);
+            if (trimmed === "@list") container.appendChild(renderListBlock(inner));
+            else if (trimmed === "@table") container.appendChild(renderTableBlock(inner));
+            else if (trimmed === "@code") container.appendChild(renderCodeBlock(inner));
+            else container.appendChild(renderCalloutBlock(trimmed, inner));
+            i = j < diff.length ? j + 1 : diff.length;
+        } else {
+            const { type, item } = diff[i];
+            if (pending && pending.type === type) pending.items.push(item);
+            else { flushPending(); pending = { type, items: [item] }; }
+            i++;
+        }
+    }
+    flushPending();
+    return container;
+}
+
+// Renders a row (tuple of strings) generically: [type,name,desc] -> badge+code+text,
+// [type,desc] -> badge+text, [desc] -> plain text.
+function renderRow(row) {
+    const el = document.createElement("div");
+    if (row.length >= 3) {
+        el.innerHTML = `<span class="row-badge">${renderMarkup(row[0])}</span><span class="row-code">${escapeHtml(row[1])}</span><span class="row-desc">${renderMarkup(row.slice(2).join(" "))}</span>`;
+    } else if (row.length === 2) {
+        el.innerHTML = `<span class="row-badge">${renderMarkup(row[0])}</span><span class="row-desc">${renderMarkup(row[1])}</span>`;
+    } else {
+        el.innerHTML = `<span class="row-desc">${renderMarkup(row[0] ?? "")}</span>`;
+    }
+    el.className = "row-item";
+    return el;
+}
+
+function renderRowsDiff(beforeRows, afterRows) {
+    beforeRows = beforeRows || [];
+    afterRows = afterRows || [];
+    if (beforeRows.length === 0 && afterRows.length === 0) return null;
+
+    const diff = lcsDiff(beforeRows, afterRows, (row) => JSON.stringify(row));
+    const table = document.createElement("div");
+    table.className = "row-table";
+    for (const { type, item } of diff) {
+        const rowEl = renderRow(item);
+        if (type !== "context") rowEl.classList.add(type);
+        table.appendChild(rowEl);
+    }
+    return table;
+}
+
+function renderScalarDiff(label, beforeVal, afterVal) {
+    if (beforeVal === undefined && afterVal === undefined) return null;
+    const el = document.createElement("div");
+    el.className = "scalar-diff";
+    if (beforeVal === afterVal) {
+        el.innerHTML = `<strong>${escapeHtml(label)}:</strong> ${escapeHtml(String(afterVal))}`;
+    } else if (beforeVal === undefined) {
+        el.innerHTML = `<strong>${escapeHtml(label)}:</strong> <span class="scalar-new">${escapeHtml(String(afterVal))}</span>`;
+    } else if (afterVal === undefined) {
+        el.innerHTML = `<strong>${escapeHtml(label)}:</strong> <span class="scalar-old">${escapeHtml(String(beforeVal))}</span>`;
+    } else {
+        el.innerHTML = `<strong>${escapeHtml(label)}:</strong> <span class="scalar-old">${escapeHtml(String(beforeVal))}</span> &rarr; <span class="scalar-new">${escapeHtml(String(afterVal))}</span>`;
+    }
+    return el;
+}
+
+function appendSection(main, title, contentEl) {
+    if (!contentEl) return;
+    const section = document.createElement("div");
+    section.className = "section";
+    const heading = document.createElement("div");
+    heading.className = "section-title";
+    heading.textContent = title;
+    section.appendChild(heading);
+    section.appendChild(contentEl);
+    main.appendChild(section);
+}
+
+// Renders a diffed named list (constants, functions, callbacks, members, metamethods)
+// as a stack of collapsible entries, each showing its own field-level diff via itemRenderer.
+function renderNamedListSection(before, after, itemRenderer) {
+    let diffed = diffNamedList(before, after);
+    if (!filterState.showUnchanged) diffed = diffed.filter((d) => d.status !== "unchanged");
+    if (diffed.length === 0) return null;
+
+    const list = document.createElement("div");
+    list.className = "named-list";
+    for (const { name, status, before: b, after: a } of diffed) {
+        const details = document.createElement("details");
+        details.className = `named-item status-${status}`;
+        details.open = status === "added" || status === "removed" || (status === "modified" && diffed.length <= 3);
+
+        const summary = document.createElement("summary");
+        summary.innerHTML = status === "unchanged" ? escapeHtml(name) : `${statusTag(status, STATUS_LABELS[status])} ${escapeHtml(name)}`;
+        details.appendChild(summary);
+
+        const body = document.createElement("div");
+        body.className = "item-body";
+        itemRenderer(body, b || {}, a || {});
+        details.appendChild(body);
+
+        list.appendChild(details);
+    }
+    return list;
+}
+
+function renderConstantItem(body, b, a) {
+    const text = renderTextDiff(get(b, ["doc", "text"]), get(a, ["doc", "text"]));
+    if (text) body.appendChild(text);
+    const returns = renderRowsDiff(get(b, ["doc", "returns"]), get(a, ["doc", "returns"]));
+    if (returns) {
+        const h = document.createElement("div");
+        h.className = "sub-heading";
+        h.textContent = "Returns";
+        body.appendChild(h);
+        body.appendChild(returns);
+    }
+}
+
+function renderCallbackItem(body, b, a) {
+    const typeDiff = renderScalarDiff("Type", get(b, ["doc", "type"]) || undefined, get(a, ["doc", "type"]) || undefined);
+    if (typeDiff) body.appendChild(typeDiff);
+    const text = renderTextDiff(get(b, ["doc", "text"]), get(a, ["doc", "text"]));
+    if (text) body.appendChild(text);
+    const params = renderRowsDiff(get(b, ["doc", "params"]), get(a, ["doc", "params"]));
+    if (params) {
+        const h = document.createElement("div");
+        h.className = "sub-heading";
+        h.textContent = "Params";
+        body.appendChild(h);
+        body.appendChild(params);
+    }
+}
+
+function renderFunctionItem(body, b, a) {
+    const text = renderTextDiff(get(b, ["doc", "text"]), get(a, ["doc", "text"]));
+    if (text) body.appendChild(text);
+    const params = renderRowsDiff(get(b, ["doc", "params"]), get(a, ["doc", "params"]));
+    if (params) {
+        const h = document.createElement("div");
+        h.className = "sub-heading";
+        h.textContent = "Params";
+        body.appendChild(h);
+        body.appendChild(params);
+    }
+    const returns = renderRowsDiff(get(b, ["doc", "returns"]), get(a, ["doc", "returns"]));
+    if (returns) {
+        const h = document.createElement("div");
+        h.className = "sub-heading";
+        h.textContent = "Returns";
+        body.appendChild(h);
+        body.appendChild(returns);
+    }
+}
+
+function renderAccessor(body, label, b, a) {
+    if (!b && !a) return;
+    const h = document.createElement("div");
+    h.className = "sub-heading";
+    h.textContent = label;
+    body.appendChild(h);
+    const text = renderTextDiff(get(b, ["doc", "text"]), get(a, ["doc", "text"]));
+    if (text) body.appendChild(text);
+    const params = renderRowsDiff(get(b, ["doc", "params"]), get(a, ["doc", "params"]));
+    if (params) body.appendChild(params);
+    const returns = renderRowsDiff(get(b, ["doc", "returns"]), get(a, ["doc", "returns"]));
+    if (returns) body.appendChild(returns);
+}
+
+function renderMemberItem(body, b, a) {
+    renderAccessor(body, "Get", b.get, a.get);
+    renderAccessor(body, "Set", b.set, a.set);
+}
+
+function renderMetamethodItem(body, b, a) {
+    const meta = renderRowsDiff(get(b, ["doc", "meta"]), get(a, ["doc", "meta"]));
+    if (meta) body.appendChild(meta);
+}
+
+const CATEGORY_SCHEMAS = {
+    classes: {
+        text: [{ path: ["doc", "text"], label: "Description" }],
+        rows: [{ path: ["doc", "fields"], label: "Fields" }],
+        lists: [
+            { path: ["constants"], label: "Constants", render: renderConstantItem },
+            { path: ["common_callbacks"], label: "Common Callbacks", render: renderCallbackItem },
+            { path: ["callbacks"], label: "Callbacks", render: renderCallbackItem },
+        ],
+    },
+    userdatas: {
+        scalars: [
+            { path: ["usage"], label: "Usage" },
+            { path: ["serializable"], label: "Serializable" },
+        ],
+        text: [{ path: ["doc", "text"], label: "Description" }],
+        lists: [
+            { path: ["members"], label: "Members", render: renderMemberItem },
+            { path: ["functions"], label: "Functions", render: renderFunctionItem },
+            { path: ["metamethods"], label: "Metamethods", render: renderMetamethodItem },
+        ],
+    },
+    namespaces: {
+        text: [{ path: ["doc", "text"], label: "Description" }],
+        lists: [
+            { path: ["constants"], label: "Constants", render: renderConstantItem },
+            { path: ["functions"], label: "Functions", render: renderFunctionItem },
+        ],
+    },
+};
+
+function showDetail(env, cat, name, entry) {
+    currentEnv = env;
+    const main = document.getElementById("main");
+    main.innerHTML = "";
+
+    const header = document.createElement("div");
+    header.className = "detail-header";
+    header.innerHTML = `
+        ${statusTag(entry.status, STATUS_LABELS[entry.status])}
+        <h2>${escapeHtml(env)} / ${escapeHtml(CATEGORY_LABELS[cat])} / ${escapeHtml(name)}</h2>
+    `;
+    main.appendChild(header);
+
+    // Treat "added"/"removed" as a full diff against an empty object, so the
+    // same rendering path highlights every field as wholly added/removed.
+    const before = entry.before || {};
+    const after = entry.after || {};
+    const schema = CATEGORY_SCHEMAS[cat];
+
+    for (const { path, label } of schema.scalars || []) {
+        appendSection(main, label, renderScalarDiff(label, get(before, path), get(after, path)));
+    }
+    for (const { path, label } of schema.text || []) {
+        appendSection(main, label, renderTextDiff(get(before, path), get(after, path)));
+    }
+    for (const { path, label } of schema.rows || []) {
+        appendSection(main, label, renderRowsDiff(get(before, path), get(after, path)));
+    }
+    for (const { path, label, render } of schema.lists || []) {
+        appendSection(main, label, renderNamedListSection(get(before, path), get(after, path), render));
+    }
+
+    if (main.children.length === 1) {
+        const note = document.createElement("div");
+        note.className = "empty-note";
+        note.textContent = "No further detail available for this entry.";
+        main.appendChild(note);
+    }
+
+    const raw = document.createElement("details");
+    raw.className = "section";
+    raw.innerHTML = `<summary class="section-title" style="cursor:pointer;">Raw JSON</summary>`;
+    const pre = document.createElement("pre");
+    pre.style.fontSize = "0.75rem";
+    pre.style.overflowX = "auto";
+    pre.textContent = `before:\n${JSON.stringify(entry.before, null, 2)}\n\nafter:\n${JSON.stringify(entry.after, null, 2)}`;
+    raw.appendChild(pre);
+    main.appendChild(raw);
+}
+
+document.getElementById("main").addEventListener("click", (e) => {
+    const link = e.target.closest(".ref-link");
+    if (!link) return;
+    e.preventDefault();
+    const { env, cat, name } = link.dataset;
+    selectedKey = `${env}:${cat}:${name}`;
+    updateUrl(true);
+    render();
+    showSelectedFromKey();
+});
+
+document.getElementById("search").addEventListener("sl-input", (e) => {
+    filterState.query = e.target.value;
+    updateUrl(false);
+    render();
+});
+document.getElementById("filter-added").addEventListener("sl-change", (e) => {
+    filterState.added = e.target.checked;
+    updateUrl(false);
+    render();
+});
+document.getElementById("filter-removed").addEventListener("sl-change", (e) => {
+    filterState.removed = e.target.checked;
+    updateUrl(false);
+    render();
+});
+document.getElementById("filter-modified").addEventListener("sl-change", (e) => {
+    filterState.modified = e.target.checked;
+    updateUrl(false);
+    render();
+});
+document.getElementById("show-unchanged").addEventListener("sl-change", (e) => {
+    filterState.showUnchanged = e.target.checked;
+    updateUrl(false);
+    render();
+    showSelectedFromKey();
+});
+
+document.getElementById("expand-all").addEventListener("click", () => {
+    document.querySelectorAll("#main details").forEach((d) => (d.open = true));
+});
+document.getElementById("collapse-all").addEventListener("click", () => {
+    document.querySelectorAll("#main details").forEach((d) => (d.open = false));
+});
+
+load();
+</script>
+</body>
+</html>

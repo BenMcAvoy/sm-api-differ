@@ -1,0 +1,941 @@
+{
+	"class": "WorldClass",
+	"doc": {
+		"text": [
+			"A script class that is instanced for every [World] in the game.",
+			"When entering a warehouse floor, the player is entering a new world.",
+			"Can receive events sent with [sm.event.sendToWorld]."
+		],
+		"fields": [
+			[
+				"[World]",
+				"world",
+				"The [World] game object belonging to this class instance."
+			],
+			[
+				"[Network]",
+				"network",
+				"A [Network] object that can be used to send messages between client and server."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"(Server side only.) A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			],
+			[
+				"any",
+				"data",
+				"Parameters from [sm.world.createWorld]."
+			]
+		]
+	},
+	"constants": [
+		{
+			"name": "cellMaxX",
+			"doc": {
+				"text": [
+					"Terrain generation maximum cell position in X axis. (Defaults to 0)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "cellMaxY",
+			"doc": {
+				"text": [
+					"Terrain generation maximum cell position in Y axis. (Defaults to 0)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "cellMinX",
+			"doc": {
+				"text": [
+					"Terrain generation minimum cell position in X axis. (Defaults to 0)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "cellMinY",
+			"doc": {
+				"text": [
+					"Terrain generation minimum cell position in Y axis. (Defaults to 0)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableAssets",
+			"doc": {
+				"text": [
+					"Enables or disables terrain assets for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableClutter",
+			"doc": {
+				"text": [
+					"Enables or disables terrain clutter for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableCreations",
+			"doc": {
+				"text": [
+					"Enables or disables creations for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableHarvestables",
+			"doc": {
+				"text": [
+					"Enables or disables terrain harvestables for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableKinematics",
+			"doc": {
+				"text": [
+					"Enables or disables terrain kinematics for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableNodes",
+			"doc": {
+				"text": [
+					"Enables or disables nodes for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableSurface",
+			"doc": {
+				"text": [
+					"Enables or disables terrain surface for this world. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "groundMaterialSet",
+			"doc": {
+				"text": [
+					"Sets the ground material set used by the terrain. (Defaults to \"$GAME_DATA/Terrain/Materials/gnd_standard_materialset.json\")",
+					"Full $-path to the material set."
+				],
+				"return": [
+					[
+						"string",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "isIndoor",
+			"doc": {
+				"text": [
+					"Enables or disables indoor mode. (Defaults to false)",
+					"Indoor worlds have only one terrain cell in (0, 0)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "isStatic",
+			"doc": {
+				"text": [
+					"Enables or disables static mode. (Defaults to false)",
+					"Static worlds are created at load time and doesn't stream in and out."
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "renderMode",
+			"doc": {
+				"text": [
+					"Sets the render mode for this world. (Default \"outdoor\")",
+					"Possible values: \"outdoor\", \"challenge\", \"warehouse\""
+				],
+				"return": [
+					[
+						"string",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "terrainScript",
+			"doc": {
+				"text": [
+					"Sets the script used to generate terrain.",
+					"Full $-path to the terrain generation script."
+				],
+				"return": [
+					[
+						"string",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "worldBorder",
+			"doc": {
+				"text": [
+					"Adds borders to the world to prevent objects falling through the ground. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		}
+	],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [WorldClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [WorldClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "server_onCellCreated",
+			"doc": {
+				"text": [
+					"Called when a world cell is loaded and feature complete for the first time.",
+					"@note",
+					"[Interactable, Interactables] created by terrain scripts should be processed here using [sm.cell.getInteractablesByTag] and [sm.cell.getInteractablesByUuid].",
+					"They are only accessable for 1 tick after being created.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"x",
+						"Cell x position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell y position."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCellLoaded",
+			"doc": {
+				"text": [
+					"Called when a world cell is loaded and feature complete, but has been before."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"x",
+						"Cell x position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell y position."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCellUnloaded",
+			"doc": {
+				"text": [
+					"Called when a world cell is no longer feature complete."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"x",
+						"Cell x position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell y position."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCellLoaded",
+			"doc": {
+				"text": [
+					"Called when a world cell is considered feature complete for a client (has nodes)."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"x",
+						"Cell x position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell y position."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onCellUnloaded",
+			"doc": {
+				"text": [
+					"Called when a world cell is no longer considered feature complete for a client (no longer has nodes)."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"x",
+						"Cell x position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell y position."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onInteractableCreated",
+			"doc": {
+				"text": [
+					"Called when an [Interactable] [Shape] is built in the world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The [Interactable] of the built [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onInteractableDestroyed",
+			"doc": {
+				"text": [
+					"Called when an [Interactable] [Shape] is removed from the world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The [Interactable] of the removed [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onProjectile",
+			"doc": {
+				"text": [
+					"Called when a projectile hits something in this world.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Unit]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter. Can be a [Player], [Unit], [Shape], [Harvestable] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Character]/[Shape]/[Harvestable]/[Lift]/nil",
+						"target",
+						"The hit target. Can be a [Character], [Shape], [Harvestable], [Lift] or nil if terrain or unknown."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onExplosion",
+			"doc": {
+				"text": [
+					"Called when an explosion occurs in this world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"center",
+						"The center of the explosion."
+					],
+					[
+						"integer",
+						"destructionLevel",
+						"The level of destruction done by this explosion. Corresponds to the 'durability' rating of a [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onMelee",
+			"doc": {
+				"text": [
+					"Called when a melee attack hits something in this world.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the attack hit."
+					],
+					[
+						"[Player]/[Unit]/nil",
+						"attacker",
+						"The attacker. Can be a [Player], [Unit] or nil if unknown."
+					],
+					[
+						"[Character]/[Shape]/[Harvestable]/[Lift]/nil",
+						"target",
+						"The hit target. Can be a [Character], [Shape], [Harvestable], [Lift] or nil if terrain or unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onProjectileFire",
+			"doc": {
+				"text": [
+					"Called when a projectile is fired in this world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where projectile was fired from."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The fire velocity of the projectile."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Unit]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter. Can be a [Player], [Unit], [Shape], [Harvestable] or nil if unknown."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCollision",
+			"doc": {
+				"text": [
+					"Called when a collision occurs in this world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"objectA",
+						"The first colliding object. Nil if terrain."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"objectB",
+						"The other colliding object. Nil if terrain."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"pointVelocityA",
+						"The velocity that that the first object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"pointVelocityB",
+						"The velocity that that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal from objectA to objectB."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCollision",
+			"doc": {
+				"text": [
+					"Called when a collision occurs in this world."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"objectA",
+						"One of the colliding objects. Nil if terrain."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"objectB",
+						"The other colliding object. Nil if terrain."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"pointVelocityA",
+						"The velocity that that the first object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"pointVelocityB",
+						"The velocity that that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal from objectA to objectB."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	]
+}

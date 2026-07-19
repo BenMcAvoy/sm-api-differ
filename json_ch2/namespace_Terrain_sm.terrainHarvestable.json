@@ -1,0 +1,45 @@
+{
+	"namespace": "sm.terrainHarvestable",
+	"userdata_association": "Harvestable",
+	"doc": {},
+	"constants": [],
+	"functions": [
+		{
+			"name": "calculateInitialHash",
+			"doc": {
+				"text": [
+					"Calculates the initial hash of a kinematic. The initial hash identifies the kinematic by its initial world position, uuid and world id.",
+					"This hash will be unsalted. Usually kinematics created from script rather than from cell loading have their hashes salted with random numbers."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The kinematic uuid."
+					],
+					[
+						"[World]",
+						"world",
+						"The world the kinematic is in."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The initial position of the kinematic in world space."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The initial rotation of the kinematic."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The calculated unsalted initial hash."
+					]
+				]
+			}
+		}
+	]
+}

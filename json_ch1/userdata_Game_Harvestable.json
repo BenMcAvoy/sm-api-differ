@@ -1,0 +1,1026 @@
+{
+	"userdata": "Harvestable",
+	"namespace_association": "sm.harvestable",
+	"doc": {
+		"text": [
+			"Represents a harvestable object in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "clientPublicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns client public data from a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets client public data on a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						],
+						[
+							"table",
+							"data",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The harvestable id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "initialPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the initial world coordinates of a kinematic."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"kinematic",
+							"The kinematic."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "initialRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the initial quaternion rotation of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The rotation."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "mass",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the mass of a harvestable. The mass scales with the harvestable's scale."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The mass."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "material",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the material name of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The name of the material."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "materialId",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the material id of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The id of the material."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "name",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the name of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The harvestable name."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "type",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the type of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The harvestable's type."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "uuid",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Uuid] of the harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"[Uuid]",
+							"The uuid."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world coordinates of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the quaternion rotation of a harvestable."
+					],
+					"params": [
+						[
+							"[Harvestable]",
+							"harvestable",
+							"The harvestable."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The rotation."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAabb",
+			"doc": {
+				"text": [
+					"Returns the bounds of the harvestable shape."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Vec3],[Vec3]",
+						"The min and max bounds."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClientPublicData",
+			"doc": {
+				"text": [
+					"Returns client public data from a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getColor",
+			"doc": {
+				"text": [
+					"Returns the color of the harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getData",
+			"doc": {
+				"text": [
+					"Get the script data from a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"data\t\t\tThe script data."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The harvestable id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a harvestable. The mass scales with the harvestable's scale."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaterial",
+			"doc": {
+				"text": [
+					"Returns the material name of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The name of the material."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaterialId",
+			"doc": {
+				"text": [
+					"Returns the material id of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The id of the material."
+					]
+				]
+			}
+		},
+		{
+			"name": "getName",
+			"doc": {
+				"text": [
+					"Returns the name of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The harvestable name."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPoseWeight",
+			"doc": {
+				"text": [
+					"Returns the pose weight of the pose in the given index."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The pose weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the world coordinates of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRotation",
+			"doc": {
+				"text": [
+					"Returns the quaternion rotation of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getScale",
+			"doc": {
+				"text": [
+					"Returns the scale of the harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The scale."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSeatCharacter",
+			"doc": {
+				"text": [
+					"Returns the [Character] that is seated in the kinematic."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"kinematic",
+						"The kinematic."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getType",
+			"doc": {
+				"text": [
+					"Returns the type of a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The harvestable's type."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUuid",
+			"doc": {
+				"text": [
+					"Returns the [Uuid] of the harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The uuid."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUvFrameIndex",
+			"doc": {
+				"text": [
+					"Returns the index of the current UV animation frame"
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The uv frame."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getWorld",
+			"doc": {
+				"text": [
+					"Returns the world a harvestable exists in."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The world the harvestable exists in."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasSeat",
+			"doc": {
+				"text": [
+					"Returns true if kinematic has a seat component."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"kinematic",
+						"The kinematic."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"The result."
+					]
+				]
+			}
+		},
+		{
+			"name": "isKinematic",
+			"doc": {
+				"text": [
+					"Check if a harvestable is kinematic"
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the harvestable is kinematic."
+					]
+				]
+			}
+		},
+		{
+			"name": "setClientPublicData",
+			"doc": {
+				"text": [
+					"Sets client public data on a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"table",
+						"data",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setColor",
+			"doc": {
+				"text": [
+					"Sets the color of the harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setParams",
+			"doc": {
+				"text": [
+					"Sets param data for a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"any",
+						"data",
+						"The param data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setPoseWeight",
+			"doc": {
+				"text": [
+					"Set the pose weight of the pose in the given index."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					],
+					[
+						"number",
+						"value",
+						"The pose weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Set the world coordinates of a harvestable. Can only be used on kinematic harvestables."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					]
+				]
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a harvestable."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Set the quaternion rotation of a harvestable. Can only be used on kinematic harvestables."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "setSeatCharacter",
+			"doc": {
+				"text": [
+					"Requests to seat a [Character] in the kinematic."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"kinematic",
+						"The kinematic."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "setUvFrameIndex",
+			"doc": {
+				"text": [
+					"Sets the UV animation frame with the given index."
+				],
+				"params": [
+					[
+						"[Harvestable]",
+						"harvestable",
+						"The harvestable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Harvestable],[Harvestable]",
+						"Checks if two instances of [Harvestable] refer to the same Harvestable."
+					]
+				]
+			}
+		}
+	]
+}

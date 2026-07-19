@@ -1,0 +1,123 @@
+{
+	"userdata": "BlueprintVisualization",
+	"namespace_association": "sm.visualization",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>blueprint visualziation</strong>."
+		]
+	},
+	"usage": "client only",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroy a [BlueprintVisualization]."
+				],
+				"params": [
+					[
+						"[BlueprintVisualization]",
+						"blueprintVisualization",
+						"The blueprint visualization to be destroyed"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Set the world position of a [BlueprintVisualization]."
+				],
+				"params": [
+					[
+						"[BlueprintVisualization]",
+						"blueprintVisualization",
+						"A blueprint visualization"
+					],
+					[
+						"[Vec3]",
+						"position",
+						"World position"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Set the rotation of a [BlueprintVisualization]."
+				],
+				"params": [
+					[
+						"[BlueprintVisualization]",
+						"blueprintVisualization",
+						"A blueprint visualization"
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"Rotation"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setScale",
+			"doc": {
+				"text": [
+					"Set the scale of a [BlueprintVisualization]."
+				],
+				"params": [
+					[
+						"[BlueprintVisualization]",
+						"blueprintVisualization",
+						"A blueprint visualization"
+					],
+					[
+						"[Vec3]",
+						"scale",
+						"Scale"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "updateBuilderGuide",
+			"doc": {
+				"text": [
+					"Update the state of a builder guide [BlueprintVisualization]. Should be called whenever the root [Shape] of the builder guide has changed.",
+					"But should not be called every frame or tick for performance."
+				],
+				"params": [
+					[
+						"[BlueprintVisualization]",
+						"blueprintVisualization",
+						"A blueprint visualization created with [sm.visualization.createBuilderGuide]"
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[BlueprintVisualization],[BlueprintVisualization]",
+						"Checks if two instances of [BlueprintVisualization] refer to the same BlueprintVisualization."
+					]
+				]
+			}
+		}
+	]
+}

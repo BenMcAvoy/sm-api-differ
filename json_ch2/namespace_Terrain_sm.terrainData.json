@@ -1,0 +1,137 @@
+{
+	"namespace": "sm.terrainData",
+	"doc": {
+		"text": [
+			"The data manager helps storing script data, both locally and between server and client in multiplayer games."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "exists",
+			"doc": {
+				"text": [
+					"Check if terrain data exists for this world."
+				],
+				"return": [
+					[
+						"boolean",
+						"True if data exists. False otherwise."
+					]
+				]
+			}
+		},
+		{
+			"name": "legacy_getData",
+			"doc": {
+				"text": [
+					"Legacy function for reading creative terrain. <strong>Do not use.</strong>"
+				],
+				"deprecated": [
+					"Use [sm.terrainData.load]"
+				],
+				"return": [
+					[
+						"string",
+						"The serialized bitser data."
+					]
+				]
+			}
+		},
+		{
+			"name": "legacy_loadTerrainData",
+			"doc": {
+				"text": [
+					"Legacy function for reading creative custom terrain. <strong>Do not use.</strong>"
+				],
+				"deprecated": [
+					"Use [sm.terrainData.load]"
+				],
+				"params": [
+					[
+						"integer",
+						"id",
+						"The id."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The data. Any lua object."
+					]
+				]
+			}
+		},
+		{
+			"name": "legacy_saveTerrainData",
+			"doc": {
+				"text": [
+					"Legacy function for storing creative custom terrain. <strong>Do not use.</strong>"
+				],
+				"deprecated": [
+					"Use [sm.terrainData.save]"
+				],
+				"params": [
+					[
+						"integer",
+						"id",
+						"The id."
+					],
+					[
+						"any",
+						"data",
+						"The data. Any lua object."
+					]
+				]
+			}
+		},
+		{
+			"name": "legacy_setData",
+			"doc": {
+				"text": [
+					"Legacy function for storing creative terrain. <strong>Do not use.</strong>"
+				],
+				"deprecated": [
+					"Use [sm.terrainData.save]"
+				],
+				"params": [
+					[
+						"string",
+						"data",
+						"The serialized bitser data."
+					]
+				]
+			}
+		},
+		{
+			"name": "load",
+			"doc": {
+				"text": [
+					"Load terrain data for this world if available."
+				],
+				"return": [
+					[
+						"any",
+						"The data. Any lua object."
+					]
+				]
+			}
+		},
+		{
+			"name": "save",
+			"doc": {
+				"text": [
+					"Save and share terrain data over network from server to client.",
+					"The data is accessible from the same world."
+				],
+				"params": [
+					[
+						"any",
+						"data",
+						"The data. Any lua object."
+					]
+				]
+			}
+		}
+	]
+}

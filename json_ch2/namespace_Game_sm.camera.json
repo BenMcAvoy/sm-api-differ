@@ -1,0 +1,451 @@
+{
+	"namespace": "sm.camera",
+	"doc": {
+		"text": [
+			"The <strong>camera</strong> library contains methods related to the [sm.localPlayer, localPlayer]'s camera view.",
+			"In first-person view the camera is located inside the player's head, whereas in third-person view it floats behind them.",
+			"This library can only be used on the <a href=\"index.html#client\">client</a>."
+		]
+	},
+	"constants": [
+		{
+			"name": "state",
+			"doc": {
+				"text": [
+					"Camera states are used to specify how the camera will view the world. The default state is meant for normal gameplay and the scripted states are meant to be used in cutscenes or interactables.",
+					"The states are:",
+					"@list",
+					"<strong>default</strong> &ndash; The camera is controlled by the player.",
+					"<strong>cutsceneFP</strong> &ndash; Scripted first-person camera; position, rotation, and FOV are set by script.",
+					"<strong>cutsceneTP</strong> &ndash; Scripted third-person camera; position, rotation, and FOV are set by script.",
+					"<strong>forcedTP</strong> &ndash; Forces a third-person view regardless of the player's zoom step. Used during tumbling.",
+					"<strong>gyroSeatFP</strong> &ndash; First-person camera whose direction is driven by the gyro seat's rotation.",
+					"<strong>gyroSeatTP</strong> &ndash; Third-person camera for the gyro seat.",
+					"<strong>scriptedTP</strong> &ndash; Third-person camera with position, rotation, and FOV fully overridden by script. Used for interactable cutscenes.",
+					"<strong>seatLockedCamera</strong> &ndash; The camera direction and position are locked to the seat's local space. The view is first-person unless a pullback is set, which produces a third-person view.",
+					"@list",
+					"@table",
+					"default;\t\t\t\t1",
+					"cutsceneFP;\t\t\t2",
+					"cutsceneTP;\t\t\t3",
+					"forcedTP;\t\t\t\t4",
+					"gyroSeatFP;\t\t\t5",
+					"gyroSeatTP;\t\t\t6",
+					"scriptedTP;\t\t\t7",
+					"seatLockedCamera;\t\t8",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						""
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "cameraSphereCast",
+			"doc": {
+				"text": [
+					"Performs a distance convex sweep with the shape of a sphere, from a position with a given direction."
+				],
+				"params": [
+					[
+						"number",
+						"radius",
+						"The radius of the cast sphere"
+					],
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The cast direction and range."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The fraction of the distance reached until collision."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraPullback",
+			"doc": {
+				"text": [
+					"Returns the camera's zoom step."
+				],
+				"return": [
+					[
+						"number",
+						"step\t\tHow far away the camera is from the player while standing"
+					],
+					[
+						"number",
+						"seatedStep\tHow far away the camera is from the player while seated"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraState",
+			"doc": {
+				"text": [
+					"Gets the camera's control state."
+				],
+				"return": [
+					[
+						"integer",
+						"state\tHow the camera is moved. (See [sm.camera.state])"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultFov",
+			"doc": {
+				"text": [
+					"Returns the camera's default field of view angle."
+				],
+				"return": [
+					[
+						"number",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultPosition",
+			"doc": {
+				"text": [
+					"Returns the world position where the camera should be by default."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDefaultRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation where the camera should be by default."
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The camera's default world rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getDirection",
+			"doc": {
+				"text": [
+					"Returns the direction the camera is aiming."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The direction of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getFov",
+			"doc": {
+				"text": [
+					"Returns the camera's field of view angle."
+				],
+				"return": [
+					[
+						"number",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of the camera."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRight",
+			"doc": {
+				"text": [
+					"Returns the right-vector perpendicular to the camera's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The right-vector of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of the camera."
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The camera's world rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getUp",
+			"doc": {
+				"text": [
+					"Returns the up-vector perpendicular to the camera's aim."
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The up-vector of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCameraPullback",
+			"doc": {
+				"text": [
+					"Sets the camera's zoom step."
+				],
+				"params": [
+					[
+						"integer",
+						"step",
+						"How far away the camera is from the player while standing"
+					],
+					[
+						"integer",
+						"seatedStep",
+						"How far away the camera is from the player while seated"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCameraState",
+			"doc": {
+				"text": [
+					"Sets the camera's control state."
+				],
+				"params": [
+					[
+						"integer",
+						"state",
+						"How the camera is moved. (See [sm.camera.state])"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setDirection",
+			"doc": {
+				"text": [
+					"Sets the direction the camera is aiming."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"direction",
+						"The direction of the camera's aim."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setFov",
+			"doc": {
+				"text": [
+					"Sets the camera's field of view angle."
+				],
+				"params": [
+					[
+						"number",
+						"FOV",
+						"The field of view."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Sets the world position of the camera."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The camera's world position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Sets the rotation of the camera."
+				],
+				"params": [
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation of the camera."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSeatLockedCameraPullback",
+			"doc": {
+				"text": [
+					"Sets the camera pullback distance for the seatLockedCamera camera state.",
+					"When greater than zero the camera is pulled back from the seat origin along the camera direction."
+				],
+				"params": [
+					[
+						"number",
+						"pullback",
+						"The pullback distance."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSeatLockedCameraUpOffset",
+			"doc": {
+				"text": [
+					"Sets the camera up offset for the seatLockedCamera camera state."
+				],
+				"params": [
+					[
+						"number",
+						"upOffset",
+						"The up offset in local space."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSeatLockedLocalDirection",
+			"doc": {
+				"text": [
+					"Sets the local direction for the camera when using the seatLockedCamera camera state.",
+					"The direction is in the seat's local space and will be transformed by the interpolated seat rotation."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"localDirection",
+						"The local direction to face."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSeatLockedLocalUp",
+			"doc": {
+				"text": [
+					"Sets the local up vector for the camera when using the seatLockedCamera camera state.",
+					"The up vector is in the seat's local space."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"localUp",
+						"The local up direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setShake",
+			"doc": {
+				"text": [
+					"Sets the camera's level of camera shake."
+				],
+				"params": [
+					[
+						"number",
+						"strength",
+						"The camera shake strength."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setUnseatDirection",
+			"doc": {
+				"text": [
+					"Sets the world-space direction for the local player character to face when the player unseats. Cleared automatically when used or when entering a seat.",
+					"Passing nil clears any previously set unseat direction."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldDirection?",
+						"The world-space direction to face on unseat. (optional)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

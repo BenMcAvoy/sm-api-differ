@@ -1,0 +1,103 @@
+{
+	"namespace": "sm.render",
+	"doc": {
+		"text": [
+			"Render settings"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getDrawDistance",
+			"doc": {
+				"text": [
+					"Gets the draw distance."
+				],
+				"return": [
+					[
+						"number",
+						"The draw distance."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getOutdoorLighting",
+			"doc": {
+				"text": [
+					"Gets the lighting cycle fraction."
+				],
+				"return": [
+					[
+						"number",
+						"The fraction of the day cycle lighting."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getScreenCoordinatesFromWorldPosition",
+			"doc": {
+				"text": [
+					"Return the screen coordinates that align with the given world position."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"pos",
+						"World position to align"
+					],
+					[
+						"integer",
+						"width",
+						"Screen width"
+					],
+					[
+						"integer",
+						"height",
+						"Screen height"
+					]
+				],
+				"return": [
+					[
+						"number, number",
+						"The x and y screen coordinates."
+					]
+				]
+			}
+		},
+		{
+			"name": "isOutdoor",
+			"doc": {
+				"text": [
+					"Checks if client is outdoor"
+				],
+				"return": [
+					[
+						"boolean",
+						"True if local client is outdoor."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOutdoorLighting",
+			"doc": {
+				"text": [
+					"Sets the lighting cycle fraction."
+				],
+				"params": [
+					[
+						"number",
+						"value",
+						"The fraction of the day cycle lighting."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

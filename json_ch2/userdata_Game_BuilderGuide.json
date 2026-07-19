@@ -1,0 +1,186 @@
+{
+	"userdata": "BuilderGuide",
+	"namespace_association": "sm.builderGuide",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>builder guide</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a guide."
+					],
+					"params": [
+						[
+							"[BuilderGuide]",
+							"guide",
+							"The guide."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The guide's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide to be destroyed."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCurrentStageIndex",
+			"doc": {
+				"text": [
+					"Returns the stage index of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The stage index."
+					]
+				]
+			}
+		},
+		{
+			"name": "getErrorInfo",
+			"doc": {
+				"text": [
+					"Returns error information of the builder guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table of errors { blocks = number, joints = number, parts = number, connections = number, connectionsReversed = number },"
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The guide's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getStageInfo",
+			"doc": {
+				"text": [
+					"Returns information about the current stage."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table of stage info { blocksLeft = number, jointsLeft = number, partsLeft = number, connectionsLeft = number }, "
+					]
+				]
+			}
+		},
+		{
+			"name": "isComplete",
+			"doc": {
+				"text": [
+					"Returns the completion status of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the guide is completed."
+					]
+				]
+			}
+		},
+		{
+			"name": "update",
+			"doc": {
+				"text": [
+					"Update the state of a guide. Should be called whenever the root [Shape] of the builder guide has changed."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide"
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[BuilderGuide],[BuilderGuide],boolean",
+						"Checks if two instances of [BuilderGuide] refer to the same BuilderGuide."
+					]
+				]
+			}
+		}
+	]
+}

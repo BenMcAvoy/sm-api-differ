@@ -1,0 +1,371 @@
+{
+	"userdata": "RaycastResult",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>raycast result</strong>.",
+			"A <strong>raycast result</strong> is a collection of data received from a raycast. The result contains information about where the raycast travelled and what objects it eventually hit.",
+			"Raycast results are the result of functions such as [sm.physics.raycast], [sm.physics.distanceRaycast] and [sm.localPlayer.getRaycast]."
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [
+		{
+			"name": "directionWorld",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the direction vector of the raycast"
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The directional vector of the raycast, with length equal to the range the raycast was created with."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "fraction",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the fraction (0&ndash;1) of the distance reached until collision divided by the ray's length."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The fraction (0&ndash;1) of the distance reached until collision divided by the ray's length."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "normalLocal",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the normal vector of the surface that was hit, relative to the target's rotation."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The normal vector of the surface that was hit, relative to the target's rotation."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "normalWorld",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the normal vector of the hit surface"
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The normal vector of the surface that was hit."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "originWorld",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the starting world position of the raycast."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The starting world position of the raycast."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "pointLocal",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of the point that was hit, relative to the target's position."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The world position of the point that was hit, relative to the target's position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "pointWorld",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of the point that was hit."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The world position of the point that was hit."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "type",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the physics type of the target that was hit. (See [sm.physics.types])"
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The physics type of the target that was hit. (See [sm.physics.types])"
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "valid",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns whether the raycast successfully hit a target."
+					],
+					"params": [
+						[
+							"[RaycastResult]",
+							"raycastResult",
+							"The raycast result."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Whether the raycast successfully hit a target."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getAreaTrigger",
+			"doc": {
+				"text": [
+					"Returns the [AreaTrigger] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"areaTrigger\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The areaTrigger target."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBody",
+			"doc": {
+				"text": [
+					"Returns the [Body] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"body\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Body]",
+						"The body target."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCharacter",
+			"doc": {
+				"text": [
+					"Returns the [Character] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"character\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character target."
+					]
+				]
+			}
+		},
+		{
+			"name": "getHarvestable",
+			"doc": {
+				"text": [
+					"Returns the [Harvestable] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"harvestable\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]",
+						"The harvestable target."
+					]
+				]
+			}
+		},
+		{
+			"name": "getJoint",
+			"doc": {
+				"text": [
+					"Returns the [Joint] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"joint\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Joint]",
+						"The joint target."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLiftData",
+			"doc": {
+				"text": [
+					"Returns the [Lift] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"lift\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Lift], boolean\t\t\t\t\t\tThe lift; True if the lift is top",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "getShape",
+			"doc": {
+				"text": [
+					"Returns the [Shape] hit during the raycast. This is only possible if [RaycastResult.type] is equal to \"body\", otherwise this will return nil."
+				],
+				"params": [
+					[
+						"[RaycastResult]",
+						"raycastResult",
+						"The raycast result."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The shape target."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": []
+}

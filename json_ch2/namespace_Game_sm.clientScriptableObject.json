@@ -1,0 +1,44 @@
+{
+	"namespace": "sm.clientScriptableObject",
+	"userdata_association": "ClientScriptableObject",
+	"doc": {
+		"text": [
+			"ScriptableObject creation"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createScriptableObject",
+			"doc": {
+				"text": [
+					"Create a new client Scriptable Object."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"ScriptableObject uuid."
+					],
+					[
+						"any",
+						"params?",
+						"self.params on scriptable object."
+					],
+					[
+						"[World]",
+						"world?",
+						"The world this script belongs to, for world dependent api calls. Defaults to [sm.world.ids, sm.world.ids.noWorld]"
+					]
+				],
+				"return": [
+					[
+						"[ScriptableObject]",
+						"The scriptable object."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

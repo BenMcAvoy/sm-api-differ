@@ -1,0 +1,498 @@
+{
+	"class": "UnitClass",
+	"doc": {
+		"text": [
+			"A script class that is instanced for every [Unit] in the game.",
+			"A unit represents an AI controlling a [Character].",
+			"The unit script only runs on the server side.",
+			"Can receive events sent with [sm.event.sendToUnit]."
+		],
+		"fields": [
+			[
+				"[Unit]",
+				"unit",
+				"The [Unit] game object belonging to this class instance."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			],
+			[
+				"any",
+				"data",
+				"Data from the \"data\" json element."
+			],
+			[
+				"any",
+				"params",
+				"Parameter sent to [sm.unit.createUnit]."
+			]
+		]
+	},
+	"constants": [
+		{
+			"name": "isSaveObject",
+			"doc": {
+				"text": [
+					"Enables or disables saving of this unit. (Defaults to true)",
+					"If enabled, the [Unit] will be recreated when loading a game. Otherwise, the [Unit] is considered a temporary object.",
+					"@note",
+					"If disabled, self.storage can not be used.",
+					"@note"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		}
+	],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [UnitClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [UnitClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "server_onProjectile",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] is hit by a projectile.",
+					"@note",
+					"If the shooter is destroyed before the projectile hits, the shooter value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the projectile hit the [Unit]'s [Character]."
+					],
+					[
+						"number",
+						"airTime",
+						"The time, in seconds, that the projectile spent flying before the hit."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity of the projectile at impact."
+					],
+					[
+						"string",
+						"projectileName",
+						"The name of the projectile. (Legacy, use uuid instead)"
+					],
+					[
+						"[Player]/[Unit]/[Shape]/[Harvestable]/nil",
+						"shooter",
+						"The shooter. Can be a [Player], [Unit], [Shape], [Harvestable] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the projectile."
+					],
+					[
+						"any",
+						"customData",
+						"A Lua object that can be defined at shoot time using [sm.projectile.customProjectileAttack] or an other custom version. "
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the projectile."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onExplosion",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] is hit by an explosion."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"center",
+						"The center of the explosion."
+					],
+					[
+						"integer",
+						"destructionLevel",
+						"The level of destruction done by this explosion. Corresponds to the 'durability' rating of a [Shape]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onMelee",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] is hit by a melee hit.",
+					"@note",
+					"If the attacker is destroyed before the hit lands, the attacker value will be nil.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the [Unit]'s [Character] was hit."
+					],
+					[
+						"[Player]/[Unit]/nil",
+						"attacker",
+						"The attacker. Can be a [Player], [Unit] or nil if unknown."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage value of the melee hit."
+					],
+					[
+						"number",
+						"power",
+						"The physical impact impact of the hit."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The direction that the melee attack was made."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The normal at the point of impact."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCollision",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] collides with another object."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Shape]/[Character]/[Harvestable]/[Lift]/nil",
+						"other",
+						"The other object. Nil if terrain."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position in world space where the collision occurred."
+					],
+					[
+						"[Vec3]",
+						"selfPointVelocity",
+						"The velocity that that the [Unit]'s [Character] had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"otherPointVelocity",
+						"The velocity that that the other object had at the point of collision."
+					],
+					[
+						"[Vec3]",
+						"normal",
+						"The collision normal between the [Unit]'s [Character] and the other other object."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCollisionCrush",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] is crushed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onUnitUpdate",
+			"doc": {
+				"text": [
+					"Called occasionally for units based on how many units are active.",
+					"It is recommended to do heavier AI decisions here instead of in [UnitClass.server_onFixedUpdate, server_onFixedUpdate]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"The time, in seconds, since [UnitClass.server_onUnitUpdate, server_onUnitUpdate] was last called for this [Unit]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onCharacterChangedColor",
+			"doc": {
+				"text": [
+					"Called when the [Unit]'s [Character] color is set. Either by painting or set using [Character.setColor] or [Character.color]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Color]",
+						"color",
+						"The new [Color] of the [Unit]'s [Character]."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		}
+	]
+}

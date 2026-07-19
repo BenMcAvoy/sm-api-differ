@@ -1,0 +1,1672 @@
+{
+	"userdata": "Body",
+	"namespace_association": "sm.body",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>body</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "angularVelocity",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the angular velocity of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The body's angular velocity."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "buildable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is buildable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is buildable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is buildable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is buildable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "centerOfMassPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the center of mass world position of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The body's center of mass world position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "connectable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is connectable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is connectable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is connectable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is connectable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "convertableToDynamic",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is convertible to dynamic form"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body can be converted to dynamic."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is convertible to dynamic form"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is convertible to dynamic form."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "destructable",
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is destructable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is destructable."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is destructable."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is destructable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "erasable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is erasable."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is erasable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is erasable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is erasable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The body's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "liftable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is liftable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is liftable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is liftable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is liftable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "mass",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the mass of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The body's mass."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "paintable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is paintable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is paintable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is non paintable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is paintable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "usable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a body is interactable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the body is interactable."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Controls whether a body is interactable"
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						],
+						[
+							"boolean",
+							"value",
+							"Whether the body is interactable."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "velocity",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the linear velocity of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The body's linear velocity."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The body's world position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world rotation of a body."
+					],
+					"params": [
+						[
+							"[Body]",
+							"body",
+							"The body."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The body's world rotation."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createBlock",
+			"doc": {
+				"text": [
+					"Create a block on body"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The parent body."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The shape's size."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's local position."
+					],
+					[
+						"boolean",
+						"forceAccept?",
+						"Set true to force the body to accept the shape. (Defaults to true)"
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The created block"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createPart",
+			"doc": {
+				"text": [
+					"Create a part on body"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The parent body."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's local position."
+					],
+					[
+						"[Vec3]",
+						"z-axis",
+						"The shape's local z direction."
+					],
+					[
+						"[Vec3]",
+						"x-axis",
+						"The shape's local x direction."
+					],
+					[
+						"boolean",
+						"forceAccept?",
+						"Set true to force the body to accept the shape. (Defaults to true)"
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The created part"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createWedge",
+			"doc": {
+				"text": [
+					"Creates a wedge attached to a body. The wedge is oriented with one ",
+					"cathetus along the Y-axis and the other along the Z-axis, forming a right angle. The wedge's ",
+					"rotation is controlled by z-axis and x-axis parameters, similar to standard part rotation."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The parent body."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The shape's size."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's local position."
+					],
+					[
+						"[Vec3]",
+						"z-axis",
+						"The shape's local z direction."
+					],
+					[
+						"[Vec3]",
+						"x-axis",
+						"The shape's local x direction."
+					],
+					[
+						"boolean",
+						"forceAccept?",
+						"Set true to force the body to accept the shape. (Defaults to true)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroyCreation",
+			"doc": {
+				"text": [
+					"Destroys the entire creation connected to this body"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllSeatedCharacter",
+			"doc": {
+				"text": [
+					"Returns a table with all characters seated in this body"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of all seated characters. {[Character], ...}"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAngularVelocity",
+			"doc": {
+				"text": [
+					"Returns the angular velocity of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The body's angular velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCenterOfMassPosition",
+			"doc": {
+				"text": [
+					"Returns the center of mass world position of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The body's center of mass world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreationBodies",
+			"doc": {
+				"text": [
+					"Returns a table of all bodies in a creation.",
+					"A creation includes all bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"An array table of all bodies in a creation. {[Body], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreationId",
+			"doc": {
+				"text": [
+					"Returns the local id of the creation",
+					"@note",
+					"Server and client ids will not match",
+					"@note"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The creation's local id"
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreationJoints",
+			"doc": {
+				"text": [
+					"Returns a table of all [Joint, joints] that are part of a creation.",
+					"A creation includes all bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of joints in a creation. {[Joint], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getCreationShapes",
+			"doc": {
+				"text": [
+					"Returns a table of all [Shape, shapes] that are part of a creation.",
+					"A creation includes all bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of shapes in a creation. {[Shape], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The body's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInteractables",
+			"doc": {
+				"text": [
+					"Returns a table of all [Interactable, interactables] that are part of a body.",
+					"This will <strong>not</strong> return interactables in neighbouring bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of interactables in a body. {[Interactable], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getJoints",
+			"doc": {
+				"text": [
+					"Returns a table of all [Joint, joints] that are part of a body.",
+					"This will <strong>not</strong> return joints in neighbouring bodies."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of joints in a body. {[Joint], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalAabb",
+			"doc": {
+				"text": [
+					"Get the local aabb of the body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns the aabb min and max."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The body's mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShape",
+			"doc": {
+				"text": [
+					"Returns a shape that is part of a body by index."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"integer",
+						"index",
+						"The index of the shape."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The shape at the specified index, or nil if the index is out of range."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeCount",
+			"doc": {
+				"text": [
+					"Returns the number of shapes in a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of shapes in the body."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapes",
+			"doc": {
+				"text": [
+					"Returns a table of all [Shape, shapes] that are part of a body.",
+					"This will <strong>not</strong> return shapes in neighbouring bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of shapes in a body. {[Shape], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapesByUuid",
+			"doc": {
+				"text": [
+					"Returns a table of all [Shape, shapes] that are part of a body and have a specified uuid.",
+					"This will <strong>not</strong> return shapes in neighbouring bodies connected by [Joint, joints], etc."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid to look for."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of shapes in a body. {[Shape], ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getVelocity",
+			"doc": {
+				"text": [
+					"Returns the linear velocity of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The body's linear velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorld",
+			"doc": {
+				"text": [
+					"Returns the world a body exists in."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The world the body exists in."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldAabb",
+			"doc": {
+				"text": [
+					"Get the world aabb of the body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3],[Vec3]",
+						"Returns the aabb min and max."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of a body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The body's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasChanged",
+			"doc": {
+				"text": [
+					"Returns true if the given tick is lower than the tick the body was last changed."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"integer",
+						"tick",
+						"The tick."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the body has been changed."
+					]
+				]
+			}
+		},
+		{
+			"name": "isBuildable",
+			"doc": {
+				"text": [
+					"Check if a body is buildable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is buildable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isConnectable",
+			"doc": {
+				"text": [
+					"Check if a body is connectable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is connectable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isConvertibleToDynamic",
+			"doc": {
+				"text": [
+					"Check if a body is convertible to dynamic form"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body can be converted to dynamic."
+					]
+				]
+			}
+		},
+		{
+			"name": "isDestructable",
+			"doc": {
+				"text": [
+					"Check if a body is destructable."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is destructable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isDynamic",
+			"doc": {
+				"text": [
+					"Check if a body is dynamic"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is dynamic."
+					]
+				]
+			}
+		},
+		{
+			"name": "isErasable",
+			"doc": {
+				"text": [
+					"Check if a body is erasable."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is erasable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isGhost",
+			"doc": {
+				"text": [
+					"Check if the body is a ghost body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the body is a ghost body."
+					]
+				]
+			}
+		},
+		{
+			"name": "isLiftable",
+			"doc": {
+				"text": [
+					"Check if a body is liftable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is liftable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isOnLift",
+			"doc": {
+				"text": [
+					"Check if a body is on a lift"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is on a lift"
+					]
+				]
+			}
+		},
+		{
+			"name": "isOnVirtualLift",
+			"doc": {
+				"text": [
+					"Check if a body is on a virtual lift"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is on a lift"
+					]
+				]
+			}
+		},
+		{
+			"name": "isPaintable",
+			"doc": {
+				"text": [
+					"Check if a body is paintable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is paintable."
+					]
+				]
+			}
+		},
+		{
+			"name": "isStatic",
+			"doc": {
+				"text": [
+					"Check if a body is static"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is static."
+					]
+				]
+			}
+		},
+		{
+			"name": "isUsable",
+			"doc": {
+				"text": [
+					"Check if a body is interactable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the body is interactable."
+					]
+				]
+			}
+		},
+		{
+			"name": "setBuildable",
+			"doc": {
+				"text": [
+					"Controls whether a body is buildable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is buildable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setConnectable",
+			"doc": {
+				"text": [
+					"Controls whether a body is connectable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is connectable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setConvertibleToDynamic",
+			"doc": {
+				"text": [
+					"Controls whether a body is convertible to dynamic form"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is convertible to dynamic form."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setDestructable",
+			"doc": {
+				"text": [
+					"Controls whether a body is destructable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is destructable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setErasable",
+			"doc": {
+				"text": [
+					"Controls whether a body is erasable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is erasable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setLiftable",
+			"doc": {
+				"text": [
+					"Controls whether a body is liftable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is liftable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setPaintable",
+			"doc": {
+				"text": [
+					"Controls whether a body is non paintable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is paintable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setUsable",
+			"doc": {
+				"text": [
+					"Controls whether a body is interactable"
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"boolean",
+						"value",
+						"Whether the body is interactable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "transformLocalPoint",
+			"doc": {
+				"text": [
+					"Transforms a point from local space to world space."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The point in local space."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The point in world space."
+					]
+				]
+			}
+		},
+		{
+			"name": "transformPoint",
+			"doc": {
+				"text": [
+					"Transforms a point from local space to world space."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The point in local space."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The point in world space."
+					]
+				]
+			}
+		},
+		{
+			"name": "transformWorldPoint",
+			"doc": {
+				"text": [
+					"Transforms a point from world space to local space."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The point in world space."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The point in local space."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Body],[Body],boolean",
+						"Checks if two instances of [Body] refer to the same Body."
+					]
+				]
+			}
+		}
+	]
+}

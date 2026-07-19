@@ -1,0 +1,392 @@
+{
+	"userdata": "Portal",
+	"namespace_association": "sm.portal",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>portal</strong> in the game."
+		]
+	},
+	"usage": "server only",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a portal."
+					],
+					"params": [
+						[
+							"[Portal]",
+							"portal",
+							"The portal."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The portal's id."
+						]
+					],
+					"server_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getContentsA",
+			"doc": {
+				"text": [
+					"Gets the contents of opening A"
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of contents of type [Character] and [Body]."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getContentsB",
+			"doc": {
+				"text": [
+					"Gets the contents of opening B"
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of contents of type [Character] and [Body]."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a portal."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The portal's id."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPositionA",
+			"doc": {
+				"text": [
+					"Returns the position of portal opening A."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The portal opening A position."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPositionB",
+			"doc": {
+				"text": [
+					"Returns the position of portal opening B."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The portal opening B position."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRotationA",
+			"doc": {
+				"text": [
+					"Returns the rotation of portal opening A."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The portal opening A rotation."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRotationB",
+			"doc": {
+				"text": [
+					"Returns the rotation of portal opening B."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The portal opening B rotation."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getWorldA",
+			"doc": {
+				"text": [
+					"Returns the world of a portal opening A."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The portal opening A world."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getWorldB",
+			"doc": {
+				"text": [
+					"Returns the world of a portal opening B."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The portal opening B world."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "hasOpeningA",
+			"doc": {
+				"text": [
+					"Checks if the portal has opening A."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if opening A exists, false if not."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "hasOpeningB",
+			"doc": {
+				"text": [
+					"Checks if the portal has opening B."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if opening B exists, false if not."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setOpeningA",
+			"doc": {
+				"text": [
+					"Sets the position of portal opening A.",
+					"The world will be the same as the object that calls this function."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The portal opening A position."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The portal opening A rotation."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setOpeningB",
+			"doc": {
+				"text": [
+					"Sets the position B of portal opening B.",
+					"The world will be the same as the object that calls this function."
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The portal opening B position."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The portal opening B rotation."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "transferAToB",
+			"doc": {
+				"text": [
+					"Transfers objects inside A opening to B opening"
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if successful, false on failure."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "transferBToA",
+			"doc": {
+				"text": [
+					"Transfers objects inside B opening to A opening"
+				],
+				"params": [
+					[
+						"[Portal]",
+						"portal",
+						"The portal."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"true if successful, false on failure."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Portal],[Portal]",
+						"Checks if two instances of [Portal] refer to the same Portal."
+					]
+				]
+			}
+		}
+	]
+}

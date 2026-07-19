@@ -1,0 +1,35 @@
+{
+	"namespace": "sm.menuCreation",
+	"doc": {
+		"text": [
+			"Used to save and load blueprints displayed in the menu."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "load",
+			"doc": {
+				"text": [
+					"Loads the users menu creation blueprint and returns it as a table."
+				],
+				"return": [
+					[
+						"table",
+						"Users menu creation blueprint table."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "save",
+			"doc": {
+				"text": [
+					"Saves the users menu creation blueprint."
+				],
+				"server_only": true
+			}
+		}
+	]
+}

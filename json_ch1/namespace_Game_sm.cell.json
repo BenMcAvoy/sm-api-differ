@@ -1,0 +1,277 @@
+{
+	"namespace": "sm.cell",
+	"doc": {
+		"text": [
+			"The <strong>cell</strong> api exposes and expands on parts of the world loading process.",
+			"These methods are commonly called from cell loading callbacks in World type scripts."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getHarvestables",
+			"doc": {
+				"text": [
+					"Returns a table of [sm.harvestable, harvestables] of a given size for a cell coordinate.",
+					"Sizes are:",
+					"0: Tiny - plants and crops.",
+					"1: Small - small trees and rocks.",
+					"2: Medium - medium trees, visible at a long distance.",
+					"3: Large - large trees, visible at a very long distance."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"The Y-coordinate."
+					],
+					[
+						"integer",
+						"size",
+						"Size of harvestable (defaults to any size)."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table {[sm.harvestable, harvestable], ...} of harvestables."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getInteractablesByAnyUuid",
+			"doc": {
+				"text": [
+					"Returns a table of [sm.interactable, interactables] which matches any of the given [sm.uuid, uuids] for a cell coordinate.",
+					"@note",
+					"Can only be used in a server_onCellLoaded callback.",
+					"@note"
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"The Y-coordinate."
+					],
+					[
+						"table",
+						"uuids",
+						"A table {[Uuid], ...} of uuids to match interactables against."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table {[sm.interactable, interactable]} of found interactables with matching uuid."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getInteractablesByTag",
+			"doc": {
+				"text": [
+					"Returns a table of [sm.interactable, interactables] which contain the given tag for a cell coordinate.",
+					"@note",
+					"Can only be used in a server_onCellLoaded callback.",
+					"@note"
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"The Y-coordinate."
+					],
+					[
+						"table",
+						"tags",
+						"A table {string, ...} of tags to match with."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table {[sm.interactable, interactable], ...} of found interactables with matching tag."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getInteractablesByTags",
+			"doc": {
+				"text": [
+					"Returns a table of [sm.interactable, interactables] which contain all of the given tags for a cell coordinate.",
+					"@note",
+					"Can only be used in a server_onCellLoaded callback",
+					"@note"
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The X-coordinate"
+					],
+					[
+						"integer",
+						"y",
+						"The Y-coordinate"
+					],
+					[
+						"table",
+						"tags",
+						"A table {string, ...} of tags to match with."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table {[sm.interactable, interactable], ...} of found interactables with matching tags"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getInteractablesByUuid",
+			"doc": {
+				"text": [
+					"Returns a table of [sm.interactable, interactables] of a given [sm.uuid, uuid] for a cell coordinate.",
+					"@note",
+					"Can only be used in a server_onCellLoaded callback.",
+					"@note"
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"The Y-coordinate."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the interactable(s)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table {[sm.interactable, interactable], ...} of found interactables with matching uuid."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getNodesByTag",
+			"doc": {
+				"text": [
+					"Returns a table of nodes which contains the given tag for a cell coordinate."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"Y-coordinate."
+					],
+					[
+						"string",
+						"tag",
+						"Tag to match with."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table containing { position = [Vec3], rotation = [Quat], scale = [Vec3], tags = {string, ...}, params = table } for each node."
+					]
+				]
+			}
+		},
+		{
+			"name": "getNodesByTags",
+			"doc": {
+				"text": [
+					"Returns a table of nodes which contain all of the given tags for a cell coordinate."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"X-coordinate."
+					],
+					[
+						"integer",
+						"y",
+						"Y-coordinate."
+					],
+					[
+						"table",
+						"tags",
+						"A table {string, ...} of tags to match with."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table containing { position = [Vec3], rotation = [Quat], scale = [Vec3], tags = {string, ...}, params = table } for each node."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTags",
+			"doc": {
+				"text": [
+					"Returns a table of tags for a cell coordinate."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"X-coordinate"
+					],
+					[
+						"integer",
+						"y",
+						"Y-coordinate"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table {string, ...} of tags."
+					]
+				]
+			}
+		}
+	]
+}

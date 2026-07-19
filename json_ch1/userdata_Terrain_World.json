@@ -1,0 +1,52 @@
+{
+	"userdata": "World",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>world</strong> in the game.",
+			"@note",
+			"The [World] in the terrain environment has very limited functionality.",
+			"@note"
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"int",
+							"The world's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[World],[World]",
+						"Checks if two instances of [World] refer to the same World."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,1032 @@
+{
+	"userdata": "World",
+	"namespace_association": "sm.world",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>world</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "clientPublicData",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets client public data on a World."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						],
+						[
+							"table",
+							"publicData",
+							"The public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Returns client public data from a world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The world's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "indoor",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns true if the world is an indoor world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"True if indoor."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets public data on a World."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						],
+						[
+							"table",
+							"publicData",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Returns public data from a world."
+					],
+					"params": [
+						[
+							"[World]",
+							"world",
+							"The world."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "clearLightColorOverride",
+			"doc": {
+				"text": [
+					"Clears the override light color on all light controllers in the world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys the given world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world that should be removed."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCellBounds",
+			"doc": {
+				"text": [
+					"Returns the minimum and maximum cell coordinates for the given world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"return": [
+					[
+						"integer, integer, integer, integer",
+						"The minimum and maximum cell coordinates (minX, maxX, minY, maxY)."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDominantMaterialInCapsule",
+			"doc": {
+				"text": [
+					"Finds the dominant voxel material inside a capsule volume."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The center position of the capsule."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the capsule."
+					],
+					[
+						"number",
+						"height",
+						"The height of the cylindrical part of the capsule (Z-axis aligned, excluding hemispherical caps)."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The dominant material index value. (returns nil if no voxel was found)"
+					],
+					[
+						"integer",
+						"The highest single-voxel density of the dominant material."
+					],
+					[
+						"[Vec3]",
+						"The weighted average world position of the dominant material (biased toward dense, nearby voxels)"
+					]
+				]
+			}
+		},
+		{
+			"name": "getDominantMaterialInSphere",
+			"doc": {
+				"text": [
+					"Finds the dominant voxel material inside a sphere volume."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The center position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The dominant material index value. (returns nil if no voxel was found)"
+					],
+					[
+						"integer",
+						"The highest single-voxel density of the dominant material."
+					],
+					[
+						"[Vec3]",
+						"The weighted average world position of the dominant material (biased toward dense, nearby voxels)."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The world's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getVoxelMaterialFromWorldPosition",
+			"doc": {
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The position of the voxel chunk in the world."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The material index value. (returns nil if no voxel was at point)"
+					],
+					[
+						"integer",
+						"The density value. (returns nil if no voxel was at point)"
+					]
+				]
+			}
+		},
+		{
+			"name": "getWeightedVoxelDensityInWorldPoint",
+			"doc": {
+				"text": [
+					"Get weighted voxel density in world point."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"[Vec3]",
+						"point",
+						"The world space point to check density in."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"Weighted density. (returns 0 if world doesn't have voxels)"
+					],
+					[
+						"[Vec3]",
+						"Weighted direction of voxel influence."
+					]
+				]
+			}
+		},
+		{
+			"name": "getZoneId",
+			"doc": {
+				"text": [
+					"Returns the zone id from a position."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The Zone id. (nil if position is invalid)"
+					]
+				]
+			}
+		},
+		{
+			"name": "isCellInBounds",
+			"doc": {
+				"text": [
+					"Checks if the given cell coordinates are within the bounds of the world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"The X coordinate of the cell."
+					],
+					[
+						"integer",
+						"y",
+						"The Y coordinate of the cell."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the cell is within the bounds of the world, false otherwise."
+					]
+				]
+			}
+		},
+		{
+			"name": "isCellLoadedClient",
+			"doc": {
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"integer",
+						"cellX",
+						"The cell X value."
+					],
+					[
+						"integer",
+						"cellY",
+						"The cell Y value."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"If the cell is loaded or not."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isCellLoadedServer",
+			"doc": {
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world to look in."
+					],
+					[
+						"integer",
+						"cellX",
+						"The cell X value."
+					],
+					[
+						"integer",
+						"cellY",
+						"The cell Y value."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"If the cell is loaded or not."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "isIndoor",
+			"doc": {
+				"text": [
+					"Returns true if the world is an indoor world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if indoor."
+					]
+				]
+			}
+		},
+		{
+			"name": "isVoxelTerrainPointClear",
+			"doc": {
+				"text": [
+					"Tests if a world position is free from voxel terrain coverage."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"referencePosition",
+						"The reference position (e.g. character position)."
+					],
+					[
+						"[Vec3]",
+						"testPosition",
+						"The position to test for voxel coverage (e.g. shape center)."
+					]
+				],
+				"return": [
+					[
+						"bool",
+						"True if the position is clear of voxel terrain, false if covered."
+					]
+				]
+			}
+		},
+		{
+			"name": "loadCell",
+			"doc": {
+				"text": [
+					"Load a cell for player. The cell will stay loaded until the player steps into the cell."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"[Player]",
+						"player",
+						"A player to load for, can be nil."
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is loaded. Callback parameters are ( world, x, y, player, params )"
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback."
+					],
+					[
+						"ref",
+						"ref?",
+						"Script ref to callback object."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "loadCellWithHandle",
+			"doc": {
+				"text": [
+					"Load a cell. The cell will stay loaded until the cell is released with [LoadCellHandle].release()",
+					"or when the [LoadCellHandle] is garbage collected"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is loaded. Callback parameters are ( world, x, y, params )"
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback."
+					],
+					[
+						"ref",
+						"ref?",
+						"Script ref to callback object."
+					]
+				],
+				"return": [
+					[
+						"[LoadCellHandle]",
+						"Handle to releasing cell."
+					]
+				]
+			}
+		},
+		{
+			"name": "loadNavMeshWithHandle",
+			"doc": {
+				"text": [
+					"Load a cell and nav mesh. The cell will stay loaded until the cell is released with [LoadCellHandle].release()",
+					"or when the [LoadCellHandle] is garbage collected"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell nav mesh is created. Callback parameters are ( world, x, y, params )"
+					],
+					[
+						"any",
+						"params?",
+						"Parameter object passed to the callback."
+					],
+					[
+						"ref",
+						"ref?",
+						"Script ref to callback object."
+					]
+				],
+				"return": [
+					[
+						"[LoadCellHandle]",
+						"Handle to releasing cell."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "reloadCell",
+			"doc": {
+				"text": [
+					"Reload a cell. Callback result values: 0 means cell isnt active and wont be reloaded, 1 means success"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"integer",
+						"x",
+						"Cell X position."
+					],
+					[
+						"integer",
+						"y",
+						"Cell Y Position."
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is reloaded. Callback parameters are ( world, x, y, result ) (Optional)"
+					],
+					[
+						"ref",
+						"ref?",
+						"Script ref to callback object. (Optional)"
+					],
+					[
+						"any",
+						"params?",
+						"Parameter passed to the callback. (Optional)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setLightColorOverride",
+			"doc": {
+				"text": [
+					"Sets the override light color on all light controllers in the world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Color]",
+						"color",
+						"The override color."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setMiningConfig",
+			"doc": {
+				"text": [
+					"Configures the mining loot population. Matched candidates are sent to the",
+					"world script via the server_onMining callback whenever voxels are removed."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"table",
+						"config",
+						"Spawn rules keyed by voxel material index (1-8). Each value is an array of rule tables: { sizeX, sizeY, sizeZ, seed, spawnId = integers, tunnelType = string (optional), maxDist = number (optional) }."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setTerrainScriptData",
+			"doc": {
+				"text": [
+					"Set data to pass on to the terrain generation script. If no data is set the terrain generation script receives the same data as the world script."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"any",
+						"data",
+						"Any data, available to the terrain generation script as parameter 6 in the create callback."
+					]
+				]
+			}
+		},
+		{
+			"name": "sphereVoxelDensityAddition",
+			"doc": {
+				"text": [
+					"Modify voxel terrain with a sphere shape"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"integer",
+						"material",
+						"The material to add [0-7]."
+					],
+					[
+						"[Player]",
+						"player?",
+						"The player who constructed. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sphereVoxelDensitySubtraction",
+			"doc": {
+				"text": [
+					"Modify destructable terrain with a sphere shape"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"integer",
+						"filter?",
+						"The materials the shape can modify. (See [sm.world.voxelFilter]). (Defaults to sm.world.voxelFilter.all)"
+					],
+					[
+						"number",
+						"strength?",
+						"The strength of the modification. (Defaults to radius)"
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is loaded. Callback parameters are a table of destruction data { remDensities = {integer, ..}, avgPositions = {[Vec3], ..} } and (optional) pass-through params passed to this function."
+					],
+					[
+						"any",
+						"params?",
+						"Parameter passed to the callback. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "voxelDensityAddition",
+			"doc": {
+				"text": [
+					"Modify destructable terrain"
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The voxel world position."
+					],
+					[
+						"[Vec3]",
+						"surfaceNormal",
+						"The surface normal."
+					],
+					[
+						"number",
+						"maxDistance",
+						"The maximum distance from position that can be modified."
+					],
+					[
+						"integer",
+						"targetDensity",
+						"The target density to add."
+					],
+					[
+						"integer",
+						"material",
+						"The material to add [0-7]."
+					],
+					[
+						"integer",
+						"filter?",
+						"The materials the shape can modify. (See [sm.world.voxelFilter]). (Defaults to sm.world.voxelFilter.all)"
+					],
+					[
+						"[Player]",
+						"player?",
+						"The player who constructed. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "voxelDensitySubtraction",
+			"doc": {
+				"text": [
+					"Modify destructible terrain around a point or line with a radius."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position a of the modification."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The world direction of the modification. Non normalized direction that defines the center line of modification."
+					],
+					[
+						"number",
+						"radius",
+						"The maximum distance from positions in the line defined by position and direction that can be modified."
+					],
+					[
+						"integer",
+						"targetDensity",
+						"The target density to remove."
+					],
+					[
+						"integer",
+						"filter?",
+						"The materials the shape can modify. (See [sm.world.voxelFilter]). (Defaults to sm.world.voxelFilter.all)"
+					],
+					[
+						"boolean",
+						"enableDestructionEffect?",
+						"Whether to enable destruction effect. (Defaults to true)"
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is loaded. Callback parameters are a table of destruction data { remDensities = {integer, ..}, avgPositions = {[Vec3], ..} } and (optional) pass-through params passed to this function."
+					],
+					[
+						"any",
+						"params?",
+						"Parameter passed to the callback. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "voxelDensitySubtraction",
+			"doc": {
+				"text": [
+					"Modify destructible terrain around a point or line with a radius."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position a of the modification."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The world direction of the modification. Non normalized direction that defines the center line of modification."
+					],
+					[
+						"number",
+						"radius",
+						"The maximum distance from positions in the line defined by position and direction that can be modified."
+					],
+					[
+						"table",
+						"targetDensities",
+						"A table of target densities to remove per material type {[1] = integer, .., [8] = integer}."
+					],
+					[
+						"integer",
+						"filter?",
+						"The materials the shape can modify. (See [sm.world.voxelFilter]). (Defaults to sm.world.voxelFilter.all)"
+					],
+					[
+						"boolean",
+						"enableDestructionEffect?",
+						"Whether to enable destruction effect. (Defaults to true)"
+					],
+					[
+						"string",
+						"callback?",
+						"Lua function to call when cell is loaded. Callback parameters are a table of destruction data { remDensities = {integer, ..}, avgPositions = {[Vec3], ..} } and (optional) pass-through params passed to this function."
+					],
+					[
+						"any",
+						"params?",
+						"Parameter passed to the callback. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[World],[World],boolean",
+						"Checks if two instances of [World] refer to the same World."
+					]
+				]
+			}
+		}
+	]
+}

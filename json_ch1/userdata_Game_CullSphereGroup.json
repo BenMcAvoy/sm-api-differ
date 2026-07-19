@@ -1,0 +1,183 @@
+{
+	"userdata": "CullSphereGroup",
+	"namespace_association": "sm.cullSphereGroup",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>cull sphere group</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a sphere group."
+					],
+					"params": [
+						[
+							"[CullSphereGroup]",
+							"sphereGroup",
+							"The sphere group."
+						]
+					],
+					"return": [
+						[
+							"int",
+							"The sphere group's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "addSphere",
+			"doc": {
+				"text": [
+					"Adds a sphere to the sphere group, duplicate ids are ignored."
+				],
+				"params": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup",
+						"The sphere group."
+					],
+					[
+						"int",
+						"id",
+						"Sphere id."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"Sphere position."
+					],
+					[
+						"number",
+						"radius",
+						"Sphere radius."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDelta",
+			"doc": {
+				"text": [
+					"Queries the change in overlapping spheres since the last call to getDelta."
+				],
+				"params": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup",
+						"The sphere group."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"Position to query shpere."
+					],
+					[
+						"number",
+						"innerRadius",
+						"Radius for inner shpere."
+					],
+					[
+						"number",
+						"outerRadius",
+						"Radius for outer sphere."
+					]
+				],
+				"return": [
+					[
+						"table, table",
+						"Arrays of removed, added ids {integer, ...}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getOverlaps",
+			"doc": {
+				"text": [
+					"Query for overlapping spheres."
+				],
+				"params": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup",
+						"The sphere group."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"Position to query sphere."
+					],
+					[
+						"number",
+						"radius",
+						"Radius for query sphere."
+					]
+				]
+			}
+		},
+		{
+			"name": "leave",
+			"doc": {
+				"text": [
+					"Query all currently active spheres and leave them."
+				],
+				"params": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup",
+						"The sphere group."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"An array of previously active ids {integer, ...}."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeSphere",
+			"doc": {
+				"text": [
+					"Removes a sphere from the sphere group."
+				],
+				"params": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup",
+						"The sphere group."
+					],
+					[
+						"int",
+						"id",
+						"Sphere id."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[CullSphereGroup],[CullSphereGroup]",
+						"Checks if two instances of [CullSphereGroup] refer to the same CullSphereGroup."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,323 @@
+{
+	"userdata": "JsonWidget",
+	"doc": {},
+	"usage": "client only",
+	"serializable": false,
+	"members": [
+		{
+			"name": "name",
+			"get": {
+				"doc": {
+					"text": [
+						"Get the name of the jsonWidget."
+					],
+					"params": [
+						[
+							"[JsonWidget]",
+							"jsonWidget",
+							"The JsonWidget."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"name\t\t\tThe name of the JsonWidget."
+						]
+					],
+					"client_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getEffect",
+			"doc": {
+				"text": [
+					"Gets an effect from a widget."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"name",
+						"The name of the effect on the json widget to get."
+					]
+				],
+				"return": [
+					[
+						"[Effect]",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getUserString",
+			"doc": {
+				"text": [
+					"Gets a string associated with the given key from a json widget."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"key",
+						"The key connected to the value."
+					]
+				],
+				"return": [
+					[
+						"string\t\tvalue\t\t\tThe value associated with the key.",
+						""
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isEffectDone",
+			"doc": {
+				"text": [
+					"Returns if a named effect is done or not."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the effect is done, false otherwise."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isEffectPlaying",
+			"doc": {
+				"text": [
+					"Returns if a named effect is playing or not."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"name",
+						"The name of the effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the effect is playing, false otherwise."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Sets the position of the widget. This will not change the json data position."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"integer",
+						"x",
+						"The x position."
+					],
+					[
+						"integer",
+						"y",
+						"The y position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPreview",
+			"doc": {
+				"text": [
+					"Sets the item preview uuid for a json widget. Passing nil clears the preview."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"uuid",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPreview",
+			"doc": {
+				"text": [
+					"Sets the blueprint preview path for a json widget. Passing nil clears the preview."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"string",
+						"The blueprint path."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPreview",
+			"doc": {
+				"client_only": true
+			}
+		},
+		{
+			"name": "setUserString",
+			"doc": {
+				"text": [
+					"Sets a custom string on a json widget that can be fetched using the key."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"key",
+						"The key connected to the value."
+					],
+					[
+						"string",
+						"value",
+						"The value being written onto the widget."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVisible",
+			"doc": {
+				"text": [
+					"Sets the visibility of a widget."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"boolean",
+						"stopImmediate",
+						"The widgets new visibility state."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "startEffect",
+			"doc": {
+				"text": [
+					"Starts the effect applied to the widget."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"name",
+						"The name of the effect on the json widget to start."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopEffect",
+			"doc": {
+				"text": [
+					"Stops the effect applied to the widget."
+				],
+				"params": [
+					[
+						"[JsonWidget]",
+						"jsonWidget",
+						"The JsonWidget."
+					],
+					[
+						"string",
+						"name",
+						"The name of the effect to stop."
+					],
+					[
+						"boolean",
+						"stopImmediate?",
+						"If the effect should stop immediately. (Optional) (Defaults to false)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[JsonWidget],[JsonWidget],boolean",
+						"Checks if two instances of [JsonWidget] refer to the same JsonWidget."
+					]
+				]
+			}
+		}
+	]
+}

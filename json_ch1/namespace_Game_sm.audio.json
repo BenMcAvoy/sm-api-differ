@@ -1,0 +1,56 @@
+{
+	"namespace": "sm.audio",
+	"doc": {
+		"text": [
+			"The <strong>audio</strong> manager is used to play sound effects in the game.",
+			"@note",
+			"This manager does only produce sound for the local <a href=\"index.html#client\">client</a>. This is useful for small sound effects such as for GUI.",
+			"For more information about sound and particle effects that affect all players, see [sm.effect].",
+			"@note"
+		]
+	},
+	"constants": [
+		{
+			"name": "soundList",
+			"doc": {
+				"text": [
+					"A table with all the names of available sounds in the game."
+				],
+				"deprecated": [
+					"Audio is deprecated, use Effect instead"
+				],
+				"return": [
+					[
+						"table",
+						"The table of sound names. {string, ...} "
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "play",
+			"doc": {
+				"text": [
+					"Plays a sound.",
+					"If position is specified, the sound will play at the given coordinates in the world. Otherwise, the sound will play normally.",
+					"For a list of available sounds to play, see [sm.audio.soundList]."
+				],
+				"params": [
+					[
+						"string",
+						"sound",
+						"The sound to play."
+					],
+					[
+						"[Vec3]",
+						"position=nil",
+						"The world position of the sound. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

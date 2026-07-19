@@ -1,0 +1,44 @@
+{
+	"userdata": "LoadCellHandle",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>load cell handle</strong>."
+		]
+	},
+	"usage": "server only",
+	"serializable": false,
+	"members": [],
+	"functions": [
+		{
+			"name": "release",
+			"doc": {
+				"params": [
+					[
+						"[LoadCellHandle]",
+						"handle",
+						"Handle to a load player dummy"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if succesful "
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[LoadCellHandle],[LoadCellHandle],boolean",
+						"Checks if two instances of [LoadCellHandle] refer to the same LoadCellHandle."
+					]
+				]
+			}
+		}
+	]
+}

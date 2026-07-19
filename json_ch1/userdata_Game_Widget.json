@@ -1,0 +1,242 @@
+{
+	"userdata": "Widget",
+	"namespace_association": "sm.gui.widget",
+	"doc": {
+		"text": [
+			"Removed! Don't use."
+		]
+	},
+	"usage": "client only",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			}
+		},
+		{
+			"name": "position",
+			"get": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			}
+		},
+		{
+			"name": "size",
+			"get": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			}
+		},
+		{
+			"name": "visible",
+			"get": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Removed!"
+					],
+					"deprecated": [
+						"Use [GuiInterface]"
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "bindOnClick",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "find",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getName",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getPosition",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getSize",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getText",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getTypeName",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "getVisible",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "setSize",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "setText",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		},
+		{
+			"name": "setVisible",
+			"doc": {
+				"text": [
+					"Removed!"
+				],
+				"deprecated": [
+					"Use [GuiInterface]"
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Widget],[Widget]",
+						"Checks if two instances of [Widget] refer to the same Widget."
+					]
+				]
+			}
+		}
+	]
+}

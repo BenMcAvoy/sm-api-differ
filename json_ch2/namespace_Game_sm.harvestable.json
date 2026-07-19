@@ -1,0 +1,135 @@
+{
+	"namespace": "sm.harvestable",
+	"userdata_association": "Harvestable",
+	"doc": {
+		"text": [
+			"Harvestable creation"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "create",
+			"doc": {
+				"text": [
+					"Create a new harvestable"
+				],
+				"deprecated": [
+					"Use createHarvestable instead"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the harvestable."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The harvestable's world position."
+					],
+					[
+						"[Quat]",
+						"rotation?",
+						"The harvestable's world rotation, optional uses identity rotation if nil."
+					],
+					[
+						"[Vec3]",
+						"slopeNormal?",
+						"The harvestable's slope normal. For \"skew\" and \"rotate\" slope settings, optional uses z axis if nil."
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]",
+						"The created harvestable."
+					]
+				]
+			}
+		},
+		{
+			"name": "createHarvestable",
+			"doc": {
+				"text": [
+					"Create a new harvestable"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the harvestable."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The harvestable's world position."
+					],
+					[
+						"[Quat]",
+						"rotation?",
+						"The harvestable's world rotation, optional uses identity rotation if nil."
+					],
+					[
+						"[Vec3]",
+						"slopeNormal?",
+						"The harvestable's slope normal. For \"skew\" and \"rotate\" slope settings, optional uses z axis if nil."
+					],
+					[
+						"[World]",
+						"world?",
+						"The world to create the harvestable in. Defaults to the world of the script."
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]",
+						"The created harvestable."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAllHarvestables",
+			"doc": {
+				"text": [
+					"Returns a table with all the harvestables in the world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world?",
+						"The world, will default to the script's world. (optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of all harvestables. {[Harvestable], ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getKinematicByInitialHash",
+			"doc": {
+				"text": [
+					"Gets a kinematic matching the provided initial hash if it exists."
+				],
+				"params": [
+					[
+						"number",
+						"initialHash",
+						"The initial hash to search for."
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]\t\t\t\t\tThe kinematic if it exists.",
+						""
+					]
+				]
+			}
+		}
+	]
+}

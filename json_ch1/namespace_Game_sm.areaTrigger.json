@@ -1,0 +1,319 @@
+{
+	"namespace": "sm.areaTrigger",
+	"userdata_association": "AreaTrigger",
+	"doc": {
+		"text": [
+			"An <strong>area trigger</strong> is an invisible collider in the world that can trigger events when objects move in or out of it. This allows the script to, for instance, detect when a character enters a door, or count the number of shapes there are in a room.",
+			"Example usage:",
+			"@code",
+			"\tfunction MyClass.server_onCreate( self )",
+			"\t\tlocal size = sm.vec3.new( 1, 1, 1 )",
+			"\t\tlocal position = self.shape:getWorldPosition()",
+			"",
+			"\t\tself.myArea = sm.areaTrigger.createBox( size, position )",
+			"\t\tself.myArea:bindOnEnter( \"onEnter\" )",
+			"\tend",
+			"",
+			"\tfunction MyClass.onEnter( self, trigger, results )",
+			"\t\tfor i, object in ipairs( results ) do",
+			"\t\t\tprint( object, \"just entered\" )",
+			"\t\tend",
+			"\tend",
+			"@code",
+			"Example with a filter:",
+			"@code",
+			"\tfunction MyClass.server_onCreate( self )",
+			"\t\tlocal size = sm.vec3.new( 10, 10, 5 )",
+			"\t\tlocal position = sm.vec3.new( 50, 40, 30 )",
+			"",
+			"\t\t-- Only detect characters",
+			"\t\tlocal filter = sm.areaTrigger.filter.character",
+			"",
+			"\t\tself.myArea = sm.areaTrigger.createBox( size, position, filter )",
+			"\t\tself.myArea:bindOnStay( \"onStay\" )",
+			"\tend",
+			"",
+			"\t-- Callback receives a list of characters",
+			"\tfunction MyClass.onStay( self, trigger, results )",
+			"\t\tif #results > 0 then",
+			"\t\t\tprint( \"Intruder alert!\" )",
+			"\t\tend",
+			"\tend",
+			"@code"
+		]
+	},
+	"constants": [
+		{
+			"name": "filter",
+			"doc": {
+				"text": [
+					"Filters are used to specify what object types an area trigger is able to detect. If an area trigger is created with a filter, it will <strong>only</strong> react to objects of that type. Filters can be combined by adding them.",
+					"The filters are:",
+					"@list",
+					"<strong>dynamicBody</strong> &ndash; Detects [Body, bodies] that are free to move around in the world.",
+					"<strong>staticBody</strong> &ndash; Detects [Body, bodies] that are built on the ground or on the lift.",
+					"<strong>character</strong> &ndash; Detects [Character, characters] such as players.",
+					"<strong>areatrigger</strong> &ndash; Detects [AreaTrigger, areatriggers] such as water areas.",
+					"<strong>harvestable</strong> &ndash; Detects [Harvestable, harvestables] such as planted objects.",
+					"<strong>lift</strong> &ndash; Detects [Lift, lifts].",
+					"<strong>voxelTerrain</strong> &ndash; Detects destructible terrain.",
+					"<strong>all</strong> &ndash; Detects all of the object types above. (Default)",
+					"@list",
+					"@table",
+					"dynamicBody; 1",
+					"staticBody;\t 2",
+					"character; 4",
+					"areatrigger; 8",
+					"harvestable; 512",
+					"lift; 1024",
+					"voxelTerrain; 32768",
+					"all; 34319",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The filter type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createAttachedBox",
+			"doc": {
+				"text": [
+					"Creates an area trigger box with a given size that stays attached to an [sm.interactable, interactable]",
+					"If a filter is specified, the trigger area will only be able to detects objects of that certain type. See [sm.areaTrigger.filter] for more information about filters."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The host interactable"
+					],
+					[
+						"[Vec3]",
+						"dimension",
+						"The size of the box"
+					],
+					[
+						"[Vec3]",
+						"position=nil",
+						"The position offset (Defaults to [sm.vec3.zero])"
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The rotation offset (Defaults to [sm.quat.identity])"
+					],
+					[
+						"integer",
+						"filter=nil",
+						"The object types the area trigger may detect. (See [sm.areaTrigger.filter]). (Defaults to sm.areaTrigger.filter.all)"
+					],
+					[
+						"table",
+						"userdata=nil",
+						"An optional table of user data"
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The created area trigger."
+					]
+				]
+			}
+		},
+		{
+			"name": "createAttachedSphere",
+			"doc": {
+				"text": [
+					"Creates an area trigger sphere with a given size that stays attached to an [sm.interactable, interactable]",
+					"If a filter is specified, the trigger area will only be able to detects objects of that certain type. See [sm.areaTrigger.filter] for more information about filters."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The host interactable"
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"[Vec3]",
+						"position=nil",
+						"The position offset (Defaults to [sm.vec3.zero])"
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The rotation offset (Defaults to [sm.quat.identity])"
+					],
+					[
+						"integer",
+						"filter=nil",
+						"The object types the area trigger may detect. (See [sm.areaTrigger.filter]). (Defaults to sm.areaTrigger.filter.all)"
+					],
+					[
+						"table",
+						"userdata=nil",
+						"An optional table of user data"
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The created area trigger."
+					]
+				]
+			}
+		},
+		{
+			"name": "createBox",
+			"doc": {
+				"text": [
+					"Creates a new box area trigger at a given position with a given size.",
+					"If a filter is specified, the trigger area will only be able to detects objects of that certain type. See [sm.areaTrigger.filter] for more information about filters."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"dimension",
+						"The dimensions of the box."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The world rotation. (Defaults to [sm.quat.identity])"
+					],
+					[
+						"integer",
+						"filter=nil",
+						"The object types the area trigger may detect. (See [sm.areaTrigger.filter]). (Defaults to sm.areaTrigger.filter.all)"
+					],
+					[
+						"table",
+						"userdata=nil",
+						"An optional table of user data"
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The created area trigger."
+					]
+				]
+			}
+		},
+		{
+			"name": "createBoxWater",
+			"doc": {
+				"text": [
+					"Creates a new box area trigger that represent water ie. certain objects cant be placed in it.",
+					"If a filter is specified, the trigger area will only be able to detects objects of that certain type. See [sm.areaTrigger.filter] for more information about filters."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"dimension",
+						"The dimensions of the box."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The world rotation. (Defaults to [sm.quat.identity])"
+					],
+					[
+						"integer",
+						"filter=nil",
+						"The object types the area trigger may detect. (See [sm.areaTrigger.filter]). (Defaults to sm.areaTrigger.filter.all)"
+					],
+					[
+						"table",
+						"userdata=nil",
+						"An optional table of user data"
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The created area trigger."
+					]
+				]
+			}
+		},
+		{
+			"name": "createSphere",
+			"doc": {
+				"text": [
+					"Creates a new sphere area trigger at a given position with a given size.",
+					"If a filter is specified, the trigger area will only be able to detects objects of that certain type. See [sm.areaTrigger.filter] for more information about filters."
+				],
+				"params": [
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The world rotation. (Defaults to [sm.quat.identity])"
+					],
+					[
+						"integer",
+						"filter=nil",
+						"The object types the area trigger may detect. (See [sm.areaTrigger.filter]). (Defaults to sm.areaTrigger.filter.all)"
+					],
+					[
+						"table",
+						"userdata=nil",
+						"An optional table of user data"
+					]
+				],
+				"return": [
+					[
+						"[AreaTrigger]",
+						"The created area trigger."
+					]
+				]
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys an area trigger."
+				],
+				"params": [
+					[
+						"[AreaTrigger]",
+						"areaTrigger",
+						"The area trigger to be destroyed."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,383 @@
+{
+	"class": "ToolClass",
+	"doc": {
+		"text": [
+			"A script class that is instanced for every active [Tool] in the game.",
+			"A tool something that a [Player] can equip by selecting it in the hotbar. For instance the Sledgehammer."
+		],
+		"fields": [
+			[
+				"any",
+				"data",
+				"Data from the \"data\" json element."
+			],
+			[
+				"[Tool]",
+				"tool",
+				"The [Tool] game object belonging to this class instance."
+			],
+			[
+				"[Network]",
+				"network",
+				"A [Network] object that can be used to send messages between client and server."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"(Server side only.) A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			]
+		]
+	},
+	"constants": [],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [ToolClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [ToolClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "client_onEquip",
+			"doc": {
+				"text": [
+					"Called when a [Player] equips the [Tool]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"boolean",
+						"animate",
+						"A boolean indicating whether the event should be animated or not."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUnequip",
+			"doc": {
+				"text": [
+					"Called when a [Player] unequips the [Tool]."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"boolean",
+						"animate",
+						"A boolean indicating whether the event should be animated or not."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onEquippedUpdate",
+			"doc": {
+				"text": [
+					"Called every frame for the currently equipped [Tool].",
+					"@note",
+					"Swinging the sledgehammer is a typical example where you want to block other primary input.",
+					"Force building is an example where the primary input action is not blocked.",
+					"Not blocking secondary input allows shape removal while the tool is equipped.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"integer",
+						"primaryState",
+						"The interact state of the primary (left) mouse button. (See [sm.tool.interactState])"
+					],
+					[
+						"integer",
+						"secondaryState",
+						"The interact state of the secondary (right) mouse button. (See [sm.tool.interactState])"
+					]
+				],
+				"return": [
+					[
+						"boolean, boolean",
+						"The first boolean indicates if other primary input actions should be blocked. The second if secondary input actions should be blocked. (Defaults to false, false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onToggle",
+			"doc": {
+				"text": [
+					"Called when the [Player] presses a toggle key with the [Tool] equipped (default 'Q' and 'Shift' + 'Q)."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean that indicates if other toggle actions should be blocked (rotating shapes). (Defaults to false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onReload",
+			"doc": {
+				"text": [
+					"Called when the [Player] presses the 'Reload' key with the [Tool] equipped (default 'R')."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean that indicates if other reload actions should be blocked ([PlayerClass.client_onReload]). (Defaults to false)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_canEquip",
+			"doc": {
+				"text": [
+					"This event is called to check whether the [Tool] can be equipped."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"A boolean that indicates if the [Tool] can be equipped. (Defaults to true)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	]
+}

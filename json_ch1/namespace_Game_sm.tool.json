@@ -1,0 +1,125 @@
+{
+	"namespace": "sm.tool",
+	"userdata_association": "Tool",
+	"doc": {
+		"text": [
+			"A <strong>tool</strong> is a scripted tool a player holds in their hand. The tool object is focused on handling animations for first and third person view.",
+			"For more information about creating your own scripted tools, see [ToolClass, ToolClass]."
+		]
+	},
+	"constants": [
+		{
+			"name": "interactState",
+			"doc": {
+				"text": [
+					"The interact state describe what kind of interaction is made. This is used to check whether a mouse button or key was just made pressed, held, etc.",
+					"The states are:",
+					"@list",
+					"<strong>null</strong> &ndash; No keypress was made.",
+					"<strong>start</strong> &ndash; The key was just pressed.",
+					"<strong>hold</strong> &ndash; The key is held down.",
+					"<strong>stop</strong> &ndash; The key was just released.",
+					"@list",
+					"@table",
+					"null;\t\t0",
+					"start;\t1",
+					"hold;\t\t2",
+					"stop;\t\t3",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The interact state list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "checkLiftCollision",
+			"doc": {
+				"text": [
+					"Used to check collisions between the lift and the world."
+				],
+				"params": [
+					[
+						"table",
+						"creation",
+						"A table of all the bodies belonging to the creation placed on the lift."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The lift position."
+					],
+					[
+						"integer",
+						"rotation",
+						"The rotation of the creation on the lift."
+					]
+				],
+				"return": [
+					[
+						"boolean, integer\t\t\t\t\tTrue if the lift collides with the world; The lift level.",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "forceTool",
+			"doc": {
+				"text": [
+					"Force equip a tool for the local player. Pass nil to unforce an already forced tool."
+				],
+				"params": [
+					[
+						"[Tool]",
+						"tool",
+						"The tool."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "preloadRenderables",
+			"doc": {
+				"text": [
+					"Pre-loads renderable data to be used by the tool. This eliminates excessive loading during run time."
+				],
+				"params": [
+					[
+						"table",
+						"renderables",
+						"The table of renderables names. {string, ..}"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "uuidExists",
+			"doc": {
+				"text": [
+					"Return whether the tool uuid exists"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"The",
+						"shape uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"exists."
+					]
+				]
+			}
+		}
+	]
+}

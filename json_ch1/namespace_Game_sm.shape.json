@@ -1,0 +1,252 @@
+{
+	"namespace": "sm.shape",
+	"userdata_association": "Shape",
+	"doc": {
+		"text": [
+			"A <strong>shape</strong> is any block, part or basic material that can be built by a player. Shapes are always connected to a [sm.body, body], which is a collection of shapes.",
+			"For more information about creating your own scripted shapes, see [ShapeClass, ShapeClass]."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createBlock",
+			"doc": {
+				"text": [
+					"Create a new block"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The size of the block."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The shape's world rotation. Defaults to no rotation (Optional)"
+					],
+					[
+						"boolean",
+						"dynamic=true",
+						"Set true if the shape is dynamic or false if the shape is static. Defaults to true (Optional)"
+					],
+					[
+						"boolean",
+						"forceSpawn=true",
+						"Set true to force spawn the shape even if it will cause collision. Defaults to true (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Shape]\t\t\t\t\t\t\tThe created block",
+						""
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createPart",
+			"doc": {
+				"text": [
+					"Create a new part"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's world position."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The shape's world rotation. Defaults to no rotation (Optional)"
+					],
+					[
+						"boolean",
+						"dynamic=true",
+						"Set true if the shape is dynamic or false if the shape is static. Defaults to true (Optional)"
+					],
+					[
+						"boolean",
+						"forceSpawn=true",
+						"Set true to force spawn the shape even if it will cause collision. Defaults to true (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Shape]\t\t\t\t\t\t\tThe created part",
+						""
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "createWedge",
+			"doc": {
+				"text": [
+					"Creates a wedge. The wedge is oriented with one ",
+					"cathetus along the Y-axis and the other along the Z-axis, forming a right angle. "
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					],
+					[
+						"[Vec3]",
+						"size",
+						"The size of the wedge."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The shape's world position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The shape's world rotation. Defaults to no rotation (Optional)"
+					],
+					[
+						"boolean",
+						"dynamic=true",
+						"Set true if the shape is dynamic or false if the shape is static. Defaults to true (Optional)"
+					],
+					[
+						"boolean",
+						"forceSpawn=true",
+						"Set true to force spawn the shape even if it will cause collision. Defaults to true (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Shape]\t\t\t\t\t\t\tThe created wedge",
+						""
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getShapeDescription",
+			"doc": {
+				"text": [
+					"Returns the block/part description for the given uuid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The shape description."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeIcon",
+			"doc": {
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape's uuid."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The shape's icon."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeTitle",
+			"doc": {
+				"text": [
+					"Returns the block/part name for the given uuid."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The shape title."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeTypeColor",
+			"doc": {
+				"text": [
+					"Returns the color of the uuid's shape type"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The color of the shape type."
+					]
+				]
+			}
+		},
+		{
+			"name": "uuidExists",
+			"doc": {
+				"text": [
+					"Return whether the shape uuid exists"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"The",
+						"shape uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"exists."
+					]
+				]
+			}
+		}
+	]
+}

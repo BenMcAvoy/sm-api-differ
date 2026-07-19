@@ -1,0 +1,330 @@
+{
+	"namespace": "sm.ai",
+	"doc": {
+		"text": [
+			"AI utility functions."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "directPathAvailable",
+			"doc": {
+				"text": [
+					"Check if the unit can reach the target position by moving straight."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The target position."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the position is available directly."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAimPosition",
+			"doc": {
+				"text": [
+					"Returns true if the character can fire at the target harvestable within a given fire lane.",
+					"Also returns the aim position that allows the character to succeed."
+				],
+				"params": [
+					[
+						"[Character]",
+						"self",
+						"The firing character."
+					],
+					[
+						"[Harvestable]",
+						"target",
+						"The target harvestable."
+					],
+					[
+						"number",
+						"range",
+						"The maximum firing distance."
+					],
+					[
+						"number",
+						"width",
+						"The width of the fire lane."
+					]
+				],
+				"return": [
+					[
+						"boolean,[Vec3]",
+						"The result."
+					]
+				]
+			}
+		},
+		{
+			"name": "getAimPosition",
+			"doc": {
+				"text": [
+					"Returns true if the character can fire at the target character within a given fire lane.",
+					"Also returns the aim position that allows the character to succeed."
+				],
+				"params": [
+					[
+						"[Character]",
+						"self",
+						"The firing character."
+					],
+					[
+						"[Character]",
+						"target",
+						"The target character."
+					],
+					[
+						"number",
+						"range",
+						"The maximum firing distance."
+					],
+					[
+						"number",
+						"width",
+						"The width of the fire lane."
+					]
+				],
+				"return": [
+					[
+						"boolean,[Vec3]",
+						"The result."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBreachablePosition",
+			"doc": {
+				"text": [
+					"Check if there's an attackable object between the unit and a position."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The target position."
+					],
+					[
+						"number",
+						"range",
+						"The distance."
+					],
+					[
+						"integer",
+						"attack",
+						"The possible attack level from the breacher."
+					]
+				],
+				"return": [
+					[
+						"boolean,[Vec3],[Shape]",
+						"Returns true if a breachable object is found, an attackable position, and an attackable shape."
+					],
+					[
+						"boolean,[Vec3],[Harvestable]",
+						"Returns true if a breachable object is found, an attackable position, and an attackable harvestable."
+					],
+					[
+						"boolean,[Vec3],[Lift]",
+						"Returns true if a breachable object is found, an attackable position, and an attackable lift."
+					],
+					[
+						"boolean,[Vec3]",
+						"Returns false if the object is unbreachable and an attackable position."
+					],
+					[
+						"boolean",
+						"Returns true when nothing is found."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestTree",
+			"doc": {
+				"text": [
+					"Find the closest harvestable of 'tree' type in a world."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The world position to search around."
+					],
+					[
+						"[World]",
+						"world=nil",
+						"The world to search in. (Defaults to the world of the script that is calling the function)"
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]",
+						"The closest tree harvestable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestVisibleCharacterType",
+			"doc": {
+				"text": [
+					"Returns the character of a given uuid type that is closest to the unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The character uuid."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestVisibleCrop",
+			"doc": {
+				"text": [
+					"Returns the farming harvestable that is closest to the unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"[Harvestable]",
+						"The harvestable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestVisiblePlayerCharacter",
+			"doc": {
+				"text": [
+					"Returns the character closest to the unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestVisibleTeamOpponent",
+			"doc": {
+				"text": [
+					"Returns the character, with an opposing color, closest to the unit."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getRandomCreationPosition",
+			"doc": {
+				"text": [
+					"eturns a random position on a given body."
+				],
+				"params": [
+					[
+						"[Body]",
+						"body",
+						"The body."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The position."
+					]
+				]
+			}
+		},
+		{
+			"name": "isReachable",
+			"doc": {
+				"text": [
+					"Check if the unit can reach the target position by moving along a path."
+				],
+				"params": [
+					[
+						"[Unit]",
+						"unit",
+						"The unit."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The target position."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the position is reachable."
+					]
+				]
+			}
+		}
+	]
+}

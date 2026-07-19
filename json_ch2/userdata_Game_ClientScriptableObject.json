@@ -1,0 +1,245 @@
+{
+	"userdata": "ClientScriptableObject",
+	"namespace_association": "sm.clientScriptableObject",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>scriptable object</strong>."
+		]
+	},
+	"usage": "client only",
+	"serializable": true,
+	"members": [
+		{
+			"name": "clientPublicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns public data from a client scriptable object."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets public data on a client scriptable object."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						],
+						[
+							"table",
+							"data",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a client scriptable object."
+					],
+					"params": [
+						[
+							"[ClientScriptableObject]",
+							"clientScriptableObject",
+							"The scriptable object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"id\t\t\t\t\t\tThe clientScriptableObject id."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "world",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the worldId of a client scriptable object."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptable object."
+						]
+					],
+					"return": [
+						[
+							"[World]",
+							"world\t\t\t\tThe world."
+						]
+					],
+					"client_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a client scriptable Object."
+				],
+				"params": [
+					[
+						"[ClientScriptableObject]",
+						"clientScriptableObject",
+						"The scriptable object."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getClientPublicData",
+			"doc": {
+				"text": [
+					"Returns public data from a client scriptable object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getData",
+			"doc": {
+				"text": [
+					"Returns json data from a client scriptableObject."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The json data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a client scriptable object."
+				],
+				"params": [
+					[
+						"[ClientScriptableObject]",
+						"clientScriptableObject",
+						"The scriptable object."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"id\t\t\t\t\t\tThe clientScriptableObject id."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getWorld",
+			"doc": {
+				"text": [
+					"Returns the worldId of a client scriptable object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptable object."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"world\t\t\t\tThe world."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setClientPublicData",
+			"doc": {
+				"text": [
+					"Sets public data on a client scriptable object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					],
+					[
+						"table",
+						"data",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[ClientScriptableObject],[ClientScriptableObject],boolean",
+						"Checks if two instances of [ClientScriptableObject] refer to the same ClientScriptableObject."
+					]
+				]
+			}
+		}
+	]
+}

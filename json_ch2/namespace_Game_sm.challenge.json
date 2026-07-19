@@ -1,0 +1,193 @@
+{
+	"namespace": "sm.challenge",
+	"doc": {
+		"text": [
+			"The <strong>Challenge</strong> api contains functions related to the Challenge game mode."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getCompletionTime",
+			"doc": {
+				"text": [
+					"Retrieve challenge completion time."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"level",
+						"The level's uuid."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The completion time."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getSaveData",
+			"doc": {
+				"text": [
+					"Retrieve challenge level save data."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"level",
+						"The level's uuid."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The save data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "hasStarted",
+			"doc": {
+				"text": [
+					"Check if a challenge has started"
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the challenge has started."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "isMasterMechanicTrial",
+			"doc": {
+				"text": [
+					"Returns true if the current content is the master mechanic trial pack."
+				],
+				"return": [
+					[
+						"boolean",
+						"The content pack status."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "levelCompleted",
+			"doc": {
+				"text": [
+					"Completes a challenge level and saves progression."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"level",
+						"The level's uuid."
+					],
+					[
+						"number",
+						"time",
+						"The completion time."
+					],
+					[
+						"table",
+						"save",
+						"A table containing save data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "resolveContentPath",
+			"doc": {
+				"text": [
+					"Resolves a path containing $CONTENT_DATA to path that can be accessed in the main scripting environment."
+				],
+				"params": [
+					[
+						"string",
+						"path",
+						"The path containing $CONTENT_DATA."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The resolved path."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "start",
+			"doc": {
+				"text": [
+					"Starts challenge."
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "stop",
+			"doc": {
+				"text": [
+					"Stops challenge."
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "takePicture",
+			"doc": {
+				"text": [
+					"Takes a picture of the challenge level with a custom resolution."
+				],
+				"params": [
+					[
+						"integer",
+						"width",
+						"Preview width."
+					],
+					[
+						"integer",
+						"height",
+						"Preview height."
+					],
+					[
+						"integer",
+						"rotation",
+						"Rotation step."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "takePicturesForMenu",
+			"doc": {
+				"text": [
+					"Takes pictures of the challenge level to use as icon and preview."
+				],
+				"params": [
+					[
+						"integer",
+						"rotation",
+						"Rotation step."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

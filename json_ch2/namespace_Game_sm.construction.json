@@ -1,0 +1,240 @@
+{
+	"namespace": "sm.construction",
+	"doc": {
+		"text": [
+			"The <strong>Construction</strong> api is used for interacting with the shape construction system. "
+		]
+	},
+	"constants": [
+		{
+			"name": "constants",
+			"doc": {
+				"text": [
+					"Constants used by the construction system.",
+					"@list",
+					"<strong>subdivideRatio</strong> &ndash; The physical size of one block.",
+					"<strong>subdivideRatio_2</strong> &ndash; The physical size of one block divided by two.",
+					"<strong>subdivisions</strong> &ndash; One dividided by subdivideRatio.",
+					"<strong>shapeSpacing</strong> &ndash; Bias value.",
+					"@list",
+					"@table",
+					"subdivideRatio;\t\t0.25",
+					"subdivideRatio_2;\t0.125",
+					"subdivisions; 4",
+					"shapeSpacing; 0.004\t",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						""
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "buildBlock",
+			"doc": {
+				"text": [
+					"Builds a block on a shape."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the block to build."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position to build the block on."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape to build on."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "buildBlock",
+			"doc": {
+				"text": [
+					"Builds a block on a joint."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the block to build."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position to build the block on."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint to build on."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "buildBlock",
+			"doc": {
+				"text": [
+					"Builds a block a lift."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the block to build."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position to build the block on."
+					],
+					[
+						"[Lift]",
+						"lift",
+						"The lift to build on."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "buildBlock",
+			"doc": {
+				"text": [
+					"Builds a block on terrain."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the block to build."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position to build the block on."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "validateLocalPosition",
+			"doc": {
+				"text": [
+					"Validates if a shape can be built on another shape."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape to validate."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position local to the body."
+					],
+					[
+						"[Vec3]",
+						"localNormal",
+						"The normal of the surface to validate placement."
+					],
+					[
+						"[Shape]",
+						"shape",
+						"The shape to build on."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if position is valid."
+					]
+				]
+			}
+		},
+		{
+			"name": "validateLocalPosition",
+			"doc": {
+				"text": [
+					"Validates if a shape can be built on another joint."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape to validate."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position local to the body."
+					],
+					[
+						"[Vec3]",
+						"localNormal",
+						"The normal of the surface to validate placement."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint to build on."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if position is valid."
+					]
+				]
+			}
+		},
+		{
+			"name": "validateLocalPosition",
+			"doc": {
+				"text": [
+					"Validates if a shape can be built on terrain."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the shape to validate."
+					],
+					[
+						"[Vec3]",
+						"localPosition",
+						"The position local to the body."
+					],
+					[
+						"[Vec3]",
+						"localNormal",
+						"The normal of the surface to validate placement."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if position is valid."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,548 @@
+{
+	"userdata": "Player",
+	"namespace_association": "sm.player",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>player</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "character",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the character the player is controlling."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						]
+					],
+					"return": [
+						[
+							"[Character]",
+							"The player's character."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "clientPublicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns client public data from a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets client public data on a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						],
+						[
+							"table",
+							"data",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The player's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "name",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the name of a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The player's name."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a player."
+					],
+					"params": [
+						[
+							"[Player]",
+							"player",
+							"The player."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getCarry",
+			"doc": {
+				"text": [
+					"Returns the carry container of the player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's carry."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCarryColor",
+			"doc": {
+				"text": [
+					"Returns the color of the shape the player is carrying."
+				],
+				"return": [
+					[
+						"[Color]",
+						"The color of the shape the player is carrying."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCharacter",
+			"doc": {
+				"text": [
+					"Returns the character the player is controlling."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The player's character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClientPublicData",
+			"doc": {
+				"text": [
+					"Returns client public data from a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getHotbar",
+			"doc": {
+				"text": [
+					"Returns the hotbar container of the player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's hotbar."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The player's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInventory",
+			"doc": {
+				"text": [
+					"Returns the inventory container of the player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"[Container]",
+						"The player's inventory."
+					]
+				]
+			}
+		},
+		{
+			"name": "getName",
+			"doc": {
+				"text": [
+					"Returns the name of a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The player's name."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "isFemale",
+			"doc": {
+				"text": [
+					"Check if the player is female"
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if female"
+					]
+				]
+			}
+		},
+		{
+			"name": "isMale",
+			"doc": {
+				"text": [
+					"Check if the player is male"
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player"
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if male"
+					]
+				]
+			}
+		},
+		{
+			"name": "placeLift",
+			"doc": {
+				"text": [
+					"Place down a lift game object"
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player to own the lift."
+					],
+					[
+						"table",
+						"creation",
+						"The bodies to place on the lift. {[Body], ..}"
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The lift position."
+					],
+					[
+						"integer",
+						"level",
+						"The lift level."
+					],
+					[
+						"integer",
+						"rotation",
+						"The rotation of the creation on the lift."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "removeLift",
+			"doc": {
+				"text": [
+					"Remove the player's lift, if the lift exists."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player that owns the lift."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sendCharacterEvent",
+			"doc": {
+				"text": [
+					"Sends an event to a given player"
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player to send to"
+					],
+					[
+						"string",
+						"event",
+						"The event to send"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setCharacter",
+			"doc": {
+				"text": [
+					"Sets the character the player is controlling."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setClientPublicData",
+			"doc": {
+				"text": [
+					"Sets client public data on a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					],
+					[
+						"table",
+						"data",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a player."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Player],[Player]",
+						"Checks if two instances of [Player] refer to the same Player."
+					]
+				]
+			}
+		}
+	]
+}

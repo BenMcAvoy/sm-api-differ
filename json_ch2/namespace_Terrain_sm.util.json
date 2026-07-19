@@ -1,0 +1,499 @@
+{
+	"namespace": "sm.util",
+	"doc": {
+		"text": [
+			"Offers various math-related functions."
+		]
+	},
+	"constants": [
+		{
+			"name": "easingFunctionIds",
+			"doc": {
+				"text": [
+					"Easing function ids can be passed to the easing function instead of the easing function's name.",
+					"The easings are:",
+					"@list",
+					"<strong>linear</strong>",
+					"<strong>easeInQuad</strong>",
+					"<strong>easeOutQuad</strong>",
+					"<strong>easeInOutQuad</strong>",
+					"<strong>easeInCubic</strong>",
+					"<strong>easeOutCubic</strong>",
+					"<strong>easeInOutCubic</strong>",
+					"<strong>easeInQuart</strong>",
+					"<strong>easeOutQuart</strong>",
+					"<strong>easeInOutQuart</strong>",
+					"<strong>easeInQuint</strong>",
+					"<strong>easeOutQuint</strong>",
+					"<strong>easeInOutQuint</strong>",
+					"<strong>easeInSine</strong>",
+					"<strong>easeOutSine</strong>",
+					"<strong>easeInOutSine</strong>",
+					"<strong>easeInCirc</strong>",
+					"<strong>easeOutCirc</strong>",
+					"<strong>easeInOutCirc</strong>",
+					"<strong>easeInExpo</strong>",
+					"<strong>easeOutExpo</strong>",
+					"<strong>easeInOutExpo</strong>",
+					"<strong>easeInElastic</strong>",
+					"<strong>easeOutElastic</strong>",
+					"<strong>easeInOutElastic</strong>",
+					"<strong>easeInBack</strong>",
+					"<strong>easeOutBack</strong>",
+					"<strong>easeInOutBack</strong>",
+					"<strong>easeInBounce</strong>",
+					"<strong>easeOutBounce</strong>",
+					"<strong>easeInOutBounce</strong>",
+					"@list"
+				],
+				"return": [
+					[
+						"table",
+						"The area trigger type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "axesToQuat",
+			"doc": {
+				"text": [
+					"Constructs a quaternion from a X and Z axis"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"xAxis",
+						"The X axis."
+					],
+					[
+						"[Vec3]",
+						"yAxis",
+						"The Z axis."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"rotation\t\tThe quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "bezier2",
+			"doc": {
+				"text": [
+					"Quadratic Bezier interpolation. One dimensional bezier curve."
+				],
+				"params": [
+					[
+						"number",
+						"c0",
+						"The start value."
+					],
+					[
+						"number",
+						"c1",
+						"The control point."
+					],
+					[
+						"number",
+						"c2",
+						"The end value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "bezier3",
+			"doc": {
+				"text": [
+					"Cubic Bezier interpolation. One dimensional bezier curve."
+				],
+				"params": [
+					[
+						"number",
+						"c0",
+						"The start value."
+					],
+					[
+						"number",
+						"c1",
+						"The first control point."
+					],
+					[
+						"number",
+						"c2",
+						"The second control point."
+					],
+					[
+						"number",
+						"c3",
+						"The end value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "clamp",
+			"doc": {
+				"text": [
+					"Restricts a value to a given range."
+				],
+				"params": [
+					[
+						"number",
+						"value",
+						"The value."
+					],
+					[
+						"number",
+						"min",
+						"The lower limit."
+					],
+					[
+						"number",
+						"max",
+						"The upper limit."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The clamped value."
+					]
+				]
+			}
+		},
+		{
+			"name": "clampUtf8String",
+			"doc": {
+				"text": [
+					"Clamps a UTF-8 string to a maximum number of characters without splitting multi-byte sequences."
+				],
+				"params": [
+					[
+						"string",
+						"string",
+						"The input string."
+					],
+					[
+						"integer",
+						"maxLength",
+						"The maximum number of UTF-8 characters."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The clamped string."
+					]
+				]
+			}
+		},
+		{
+			"name": "easing",
+			"doc": {
+				"text": [
+					"Applies an easing function to a given input."
+				],
+				"params": [
+					[
+						"integer",
+						"easingFunctionId",
+						"The easing function to use. (See [sm.util.easingFunctionIds])"
+					],
+					[
+						"number",
+						"p",
+						"The easing function input."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The output."
+					]
+				]
+			}
+		},
+		{
+			"name": "easing",
+			"doc": {
+				"text": [
+					"Applies an easing function to a given input.",
+					"Easing function names:",
+					"@table",
+					"<em>linear</em>",
+					"<em>easeInQuad</em>",
+					"<em>easeOutQuad</em>",
+					"<em>easeInOutQuad</em>",
+					"<em>easeInCubic</em>",
+					"<em>easeOutCubic</em>",
+					"<em>easeInOutCubic</em>",
+					"<em>easeInQuart</em>",
+					"<em>easeOutQuart</em>",
+					"<em>easeInOutQuart</em>",
+					"<em>easeInQuint</em>",
+					"<em>easeOutQuint</em>",
+					"<em>easeInOutQuint</em>",
+					"<em>easeInSine</em>",
+					"<em>easeOutSine</em>",
+					"<em>easeInOutSine</em>",
+					"<em>easeInCirc</em>",
+					"<em>easeOutCirc</em>",
+					"<em>easeInOutCirc</em>",
+					"<em>easeInExpo</em>",
+					"<em>easeOutExpo</em>",
+					"<em>easeInOutExpo</em>",
+					"<em>easeInElastic</em>",
+					"<em>easeOutElastic</em>",
+					"<em>easeInOutElastic</em>",
+					"<em>easeInBack</em>",
+					"<em>easeOutBack</em>",
+					"<em>easeInOutBack</em>",
+					"<em>easeInBounce</em>",
+					"<em>easeOutBounce</em>",
+					"<em>easeInOutBounce</em>",
+					"@table"
+				],
+				"params": [
+					[
+						"string",
+						"easing",
+						"The easing function name."
+					],
+					[
+						"number",
+						"p",
+						"The easing function input."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The output."
+					]
+				]
+			}
+		},
+		{
+			"name": "geometricMedian",
+			"doc": {
+				"text": [
+					"Numerically approximates the geometric median from a table of points.",
+					"If no initial guess is made, the mean position of all the points will be used as a guess."
+				],
+				"params": [
+					[
+						"table",
+						"points",
+						"The table of points. { [Vec3], ... }."
+					],
+					[
+						"[Vec3]",
+						"initialGuess?",
+						"A guessed position to start searching from. (Optional)"
+					],
+					[
+						"integer",
+						"iterations?",
+						"The number of iterations. (Defaults to 1)"
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The estimated geometric median."
+					]
+				]
+			}
+		},
+		{
+			"name": "hash",
+			"doc": {
+				"text": [
+					"Create a hash from arguments."
+				],
+				"params": [
+					[
+						"any",
+						"...",
+						"The arguments to be hashed."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The hash."
+					]
+				]
+			}
+		},
+		{
+			"name": "lerp",
+			"doc": {
+				"text": [
+					"Linear interpolation between two values. This is known as a lerp."
+				],
+				"params": [
+					[
+						"number",
+						"a",
+						"The first value."
+					],
+					[
+						"number",
+						"b",
+						"The second value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "positiveModulo",
+			"doc": {
+				"text": [
+					"Returns the positive remainder after division of x by n."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The number."
+					],
+					[
+						"integer",
+						"n",
+						"The modulo value."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		},
+		{
+			"name": "smootherstep",
+			"doc": {
+				"text": [
+					"An improved version of the [sm.util.smoothstep, smoothstep] function which has zero 1st and 2nd order derivatives at `x = edge0` and `x = edge1`."
+				],
+				"params": [
+					[
+						"number",
+						"edge0",
+						"The value of the lower edge of the Hermite function."
+					],
+					[
+						"number",
+						"edge1",
+						"The value of the upper edge of the Hermite function."
+					],
+					[
+						"number",
+						"x",
+						"The source value for interpolation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		},
+		{
+			"name": "smoothstep",
+			"doc": {
+				"text": [
+					"Performs smooth Hermite interpolation between 0 and 1 when `edge0 < x < edge1`. This is useful in cases where a threshold function with a smooth transition is desired."
+				],
+				"params": [
+					[
+						"number",
+						"edge0",
+						"The value of the lower edge of the Hermite function."
+					],
+					[
+						"number",
+						"edge1",
+						"The value of the upper edge of the Hermite function."
+					],
+					[
+						"number",
+						"x",
+						"The source value for interpolation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		},
+		{
+			"name": "utf8StringLength",
+			"doc": {
+				"text": [
+					"Returns the number of UTF-8 characters in a string."
+				],
+				"params": [
+					[
+						"string",
+						"string",
+						"The input string."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of UTF-8 characters."
+					]
+				]
+			}
+		}
+	]
+}

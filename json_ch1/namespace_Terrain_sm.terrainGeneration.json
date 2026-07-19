@@ -1,0 +1,137 @@
+{
+	"namespace": "sm.terrainGeneration",
+	"doc": {
+		"text": [
+			"Allows reading and writing in game storage from terrain generation scripts."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getTempData",
+			"doc": {
+				"text": [
+					"Loads temporary data stored by terrain generation."
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The saved data."
+					]
+				]
+			}
+		},
+		{
+			"name": "loadGameStorage",
+			"doc": {
+				"text": [
+					"Loads data stored by terrain generation."
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					]
+				],
+				"return": [
+					[
+						"any",
+						"The saved data."
+					]
+				]
+			}
+		},
+		{
+			"name": "saveAndSyncGameStorage",
+			"doc": {
+				"text": [
+					"Saves data produced from terrain generation and synchronizes to clients. Saved data can be retrived in later game sessions and by the game lua environment.  ",
+					" "
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					],
+					[
+						"any",
+						"data",
+						"Data to save. "
+					]
+				]
+			}
+		},
+		{
+			"name": "saveGameStorage",
+			"doc": {
+				"text": [
+					"Saves data produced from terrain generation. Saved data can be retrived in later game sessions and by the game lua environment.  ",
+					" "
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					],
+					[
+						"any",
+						"data",
+						"Data to save. "
+					]
+				]
+			}
+		},
+		{
+			"name": "setGameStorageNoSave",
+			"doc": {
+				"text": [
+					"Sets data produced from terrain generation and synchronizes to clients. This data is only valid during the game session.",
+					" "
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					],
+					[
+						"any",
+						"data",
+						"Data to save. "
+					]
+				]
+			}
+		},
+		{
+			"name": "setTempData",
+			"doc": {
+				"text": [
+					"Sets temporary data produced from terrain generation and synchronizes to clients.",
+					" "
+				],
+				"params": [
+					[
+						"any",
+						"key",
+						"Key used to lookup the saved data."
+					],
+					[
+						"any",
+						"data",
+						"Data to save. "
+					]
+				]
+			}
+		}
+	]
+}

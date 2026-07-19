@@ -1,0 +1,26 @@
+{
+	"namespace": "sm.cullSphereGroup",
+	"userdata_association": "CullSphereGroup",
+	"doc": {
+		"text": [
+			"A <strong>cull sphere group</strong> is a collection of spheres that can be efficiently queried for. "
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "newCullSphereGroup",
+			"doc": {
+				"text": [
+					"Creates a sphere group."
+				],
+				"return": [
+					[
+						"[CullSphereGroup]",
+						"sphereGroup\t\tThe sphere group."
+					]
+				]
+			}
+		}
+	]
+}

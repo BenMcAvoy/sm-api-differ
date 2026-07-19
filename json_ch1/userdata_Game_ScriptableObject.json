@@ -1,0 +1,306 @@
+{
+	"userdata": "ScriptableObject",
+	"namespace_association": "sm.scriptableObject",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>scriptable object</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "clientPublicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns client public data from a scriptableObject."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets client public data on a scriptableObject."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						],
+						[
+							"table",
+							"data",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a scriptable object."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptable object."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"id\t\t\t\t\tThe scriptableObject id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a scriptableObject."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a scriptableObject."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptableObject."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "world",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the worldId of a scriptable object."
+					],
+					"params": [
+						[
+							"[ScriptableObject]",
+							"scriptableObject",
+							"The scriptable object."
+						]
+					],
+					"return": [
+						[
+							"[World]",
+							"world\t\t\t\tThe world."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a scriptable Object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptable object."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getClientPublicData",
+			"doc": {
+				"text": [
+					"Returns client public data from a scriptableObject."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a scriptable object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptable object."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"id\t\t\t\t\tThe scriptableObject id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a scriptableObject."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getWorld",
+			"doc": {
+				"text": [
+					"Returns the worldId of a scriptable object."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptable object."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"world\t\t\t\tThe world."
+					]
+				]
+			}
+		},
+		{
+			"name": "setClientPublicData",
+			"doc": {
+				"text": [
+					"Sets client public data on a scriptableObject."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					],
+					[
+						"table",
+						"data",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a scriptableObject."
+				],
+				"params": [
+					[
+						"[ScriptableObject]",
+						"scriptableObject",
+						"The scriptableObject."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[ScriptableObject],[ScriptableObject]",
+						"Checks if two instances of [ScriptableObject] refer to the same ScriptableObject."
+					]
+				]
+			}
+		}
+	]
+}

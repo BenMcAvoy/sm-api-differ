@@ -1,0 +1,1845 @@
+{
+	"userdata": "Shape",
+	"namespace_association": "sm.shape",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>shape</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "at",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the direction of a shape's front side.",
+						"The direction is affected by the shape's rotation in the world."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's at-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "body",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Body] a shape is part of."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Body]",
+							"The body which the shape is part of."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "buildable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is buildable"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is buildable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "buoyancy",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the buoyancy multiplier of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The buoyancy multiplier."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "color",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the color of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Color]",
+							"The shape's color."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the color of a shape. This is similar to coloring with the <em>Paint Tool</em>."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						],
+						[
+							"[Color]",
+							"color",
+							"The color."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "connectable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is connectable"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is connectable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "convertableToDynamic",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is convertible to dynamic form"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape can be converted to dynamic."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "destructable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is destructable."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is destructable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "erasable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is erasable."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is erasable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The shape's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "interactable",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Interactable] of a shape, if one exists. Otherwise the function will return nil."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Interactable]",
+							"The interactable belonging to the shape."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "isBlock",
+			"get": {
+				"doc": {
+					"text": [
+						"Return true if a shape is a basicmaterial"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Whether shape is basic material."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "isWedge",
+			"get": {
+				"doc": {
+					"text": [
+						"Return true if a shape is a wedge"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Whether shape is wedge."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "liftable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is liftable"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is liftable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "localPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local grid postition of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's local position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "localRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local rotation of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The shape's local rotation."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "mass",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the mass of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The shape's mass."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "material",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the material of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The shape's material."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "materialId",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the material id of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The shape's material id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "paintable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is paintable"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is paintable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "right",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the direction of a shape's right side.",
+						"The direction is affected by the shape's rotation in the world."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's right-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "stackedAmount",
+			"get": {
+				"doc": {
+					"text": [
+						"Return the amount that is stacked in the shape"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"The",
+							"shape."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"Stacked amount."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Set the amount that is stacked in the shape"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"The",
+							"shape."
+						],
+						[
+							"integer",
+							"Stacked",
+							"amount."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "stackedItem",
+			"get": {
+				"doc": {
+					"text": [
+						"Return the item [Uuid] that is stacked in the shape"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"The",
+							"shape."
+						]
+					],
+					"return": [
+						[
+							"[Uuid]",
+							"Stacked item."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Set the item [Uuid] that is stacked in the shape"
+					],
+					"params": [
+						[
+							"[Uuid]",
+							"The",
+							"shape uuid."
+						],
+						[
+							"[Uuid]",
+							"Stacked",
+							"item."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "up",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the direction of a shape's top side.",
+						"The direction is affected by the shape's rotation in the world."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's up-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "usable",
+			"get": {
+				"doc": {
+					"text": [
+						"Check if a shape is interactable"
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"Return true if the shape is interactable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "uuid",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the uuid string unique to a shape/block type."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Uuid]",
+							"The shape's uuid."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "velocity",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the linear velocity of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's linear velocity."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's world position."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldRotation",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world rotation of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Quat]",
+							"The shape's world rotation."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "xAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local x-axis vector of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's x-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "yAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local y-axis vector of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's y-axis."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "zAxis",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the local z-axis vector of a shape."
+					],
+					"params": [
+						[
+							"[Shape]",
+							"shape",
+							"The shape."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The shape's z-axis."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createJoint",
+			"doc": {
+				"text": [
+					"Create a new joint"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The host shape."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the joint."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The joint's grid position."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The joint's normal direction."
+					]
+				],
+				"return": [
+					[
+						"[Joint]\t\t\t\t\tThe created joint.",
+						""
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroyBlock",
+			"doc": {
+				"text": [
+					"Destroy a block."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The block shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The local position of the removal box corner."
+					],
+					[
+						"[Vec3]",
+						"size=nil",
+						"The size of the removal box. Defaults to 1x1x1 (Optional)"
+					],
+					[
+						"integer",
+						"attackLevel=0",
+						"Determines which quality level of block the attack can destroy. Setting it to 0 (default) will destroy any block."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroyPart",
+			"doc": {
+				"text": [
+					"Destroy a part"
+				],
+				"deprecated": [
+					"use [Shape.destroyShape]"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The part."
+					],
+					[
+						"integer",
+						"attackLevel",
+						"Determines which quality level of parts the attack can destroy. Setting it to 0 (default) will destroy any part."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "destroyShape",
+			"doc": {
+				"text": [
+					"Destroy a shape"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"integer",
+						"attackLevel",
+						"Determines which quality level of shape the attack can destroy. Setting it to 0 (default) will destroy any shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAt",
+			"doc": {
+				"text": [
+					"Returns the direction of a shape's front side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's at-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBody",
+			"doc": {
+				"text": [
+					"Returns the [Body] a shape is part of."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Body]",
+						"The body which the shape is part of."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBoundingBox",
+			"doc": {
+				"text": [
+					"Returns the bounding box of a shape &ndash; the dimensions that a shape occupies when building."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The size of the shape's bounding box."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBuoyancy",
+			"doc": {
+				"text": [
+					"Returns the buoyancy multiplier of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The buoyancy multiplier."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClosestBlockLocalPosition",
+			"doc": {
+				"text": [
+					"Transform a world position to the closest block's local position in a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The block shape."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The closest position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getColor",
+			"doc": {
+				"text": [
+					"Returns the color of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The shape's color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The shape's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInteractable",
+			"doc": {
+				"text": [
+					"Returns the [Interactable] of a shape, if one exists. Otherwise the function will return nil."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Interactable]",
+						"The interactable belonging to the shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInterpolatedAt",
+			"doc": {
+				"text": [
+					"Returns the interpolated direction of a shape's front side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's interpolated at-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInterpolatedRight",
+			"doc": {
+				"text": [
+					"Returns the interpolated direction of a shape's right side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's interpolated right-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInterpolatedUp",
+			"doc": {
+				"text": [
+					"Returns the interpolated direction of a shape's top side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's interpolated up-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInterpolatedWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the interpolated world position of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's interpolated world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getIsHarvest",
+			"doc": {
+				"text": [
+					"Return whether the shape uuid belongs to a harvest shape"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"The",
+						"shape uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the shape is harvestable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getIsStackable",
+			"doc": {
+				"text": [
+					"Return whether the shape uuid belongs to a stackable shape"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"The",
+						"shape uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the shape is stackable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getJoints",
+			"doc": {
+				"text": [
+					"Returns a table of all [Joint, joints] that are attached to the shape.",
+					"Will return all attached joints when onlyChildJoints is set to false.",
+					"Will only get the joints which are subshapes to the shape when onlySubshapes is set to true."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"boolean",
+						"onlyChildJoints=true",
+						"Filters what joints to return. Defaults to true (Optional)"
+					],
+					[
+						"boolean",
+						"onlySubshapes=false",
+						"Only get the joints which are subshapes to the shape. Defaults to false (Optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of joints attached to the shape. {[Joint], ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalPosition",
+			"doc": {
+				"text": [
+					"Returns the local grid postition of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's local position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalRotation",
+			"doc": {
+				"text": [
+					"Returns the local rotation of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The shape's local rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The shape's mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaterial",
+			"doc": {
+				"text": [
+					"Returns the material of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The shape's material."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaterialId",
+			"doc": {
+				"text": [
+					"Returns the material id of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The shape's material id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getNeighbours",
+			"doc": {
+				"text": [
+					"Returns a table of shapes which are neighbours to the shape"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"table of shapes. {[Shape], ..}"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getPipedNeighbours",
+			"doc": {
+				"text": [
+					"Returns a table of shapes which are neighbours connected with pipes to the shape"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"table of shapes. {[Shape], ..}"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRight",
+			"doc": {
+				"text": [
+					"Returns the direction of a shape's right side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's right-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeUuid",
+			"doc": {
+				"text": [
+					"Returns the uuid string unique to a shape/block type."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The shape's uuid."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSticky",
+			"doc": {
+				"text": [
+					"Returns the sticky directions of the shape for positive xyz and negative xyz.",
+					"A value of 1 means that the direction is sticky and a value of 0 means that the direction is not sticky."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"{[Vec3],[Vec3]}",
+						"The negative xyz sticky and the positive xyz sticky."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUp",
+			"doc": {
+				"text": [
+					"Returns the direction of a shape's top side.",
+					"The direction is affected by the shape's rotation in the world."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's up-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getVelocity",
+			"doc": {
+				"text": [
+					"Returns the linear velocity of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's linear velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The shape's world rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getXAxis",
+			"doc": {
+				"text": [
+					"Returns the local x-axis vector of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's x-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getYAxis",
+			"doc": {
+				"text": [
+					"Returns the local y-axis vector of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's y-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "getZAxis",
+			"doc": {
+				"text": [
+					"Returns the local z-axis vector of a shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The shape's z-axis."
+					]
+				]
+			}
+		},
+		{
+			"name": "replaceShape",
+			"doc": {
+				"text": [
+					"Creates a new [Shape] from [Uuid] to replace the given [Shape]."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid of the new shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setColor",
+			"doc": {
+				"text": [
+					"Sets the color of a shape. This is similar to coloring with the <em>Paint Tool</em>."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Color]",
+						"color",
+						"The color."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "shapeExists",
+			"doc": {
+				"text": [
+					"Return true if a shape exists."
+				],
+				"deprecated": [
+					"use [sm.exists]"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the shape exists."
+					]
+				]
+			}
+		},
+		{
+			"name": "shapesInSphere",
+			"doc": {
+				"text": [
+					"Returns a table of all shapes colliding with a given sphere."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"center",
+						"The center position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of found shapes. {[Shape], ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "transformDirection",
+			"doc": {
+				"text": [
+					"Transform a world direction to the local shape transform."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Vec3]",
+						"vector",
+						"The untransformed direction."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The transformed direction."
+					]
+				]
+			}
+		},
+		{
+			"name": "transformLocalPoint",
+			"doc": {
+				"text": [
+					"Transform a local point to world space.",
+					"@code",
+					"local worldPos = self.shape:transformLocalPoint( localPos )",
+					"@code"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Vec3]",
+						"vector",
+						"The local point."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The world point."
+					]
+				]
+			}
+		},
+		{
+			"name": "transformPoint",
+			"doc": {
+				"text": [
+					"Transform a world point to the local shape transform.",
+					"@code",
+					"local localPos = self.shape:transformPoint( worldPos )",
+					"@code"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Vec3]",
+						"vector",
+						"The world point."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The local point."
+					]
+				]
+			}
+		},
+		{
+			"name": "transformRotation",
+			"doc": {
+				"text": [
+					"Transform a world rotation to the local shape transform.",
+					"@code",
+					"local worldUp = sm.vec3.new( 0, 0, 1 )",
+					"local worldRot = sm.vec3.getRotation( worldUp, worldDir )",
+					"local localRot = self.shape:transformRotation( worldRot )",
+					"@code"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Quat]",
+						"quat",
+						"The untransformed quaternion."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The transformed quaternion."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Shape],[Shape]",
+						"Checks if two instances of [Shape] refer to the same Shape."
+					]
+				]
+			}
+		}
+	]
+}

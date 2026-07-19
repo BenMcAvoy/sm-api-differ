@@ -1,0 +1,146 @@
+{
+	"namespace": "sm.color",
+	"userdata_association": "Color",
+	"doc": {
+		"text": [
+			"A <strong>color</strong> is represented using a red, green, blue and alpha component. Colors are prominently used for blocks and parts that are colored by the <em>Paint Tool</em>.",
+			"To create one, use [sm.color.new]. It is possible to use hex `0xRRGGBBAA` or strings `\"RRGGBBAA\"`.",
+			"@note",
+			"R, G, B, A values range between 0.0&ndash;1.0.",
+			"@note"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "lerp",
+			"doc": {
+				"text": [
+					"Linearly interpolates between two colors"
+				],
+				"params": [
+					[
+						"[Color]",
+						"color1",
+						"The first color."
+					],
+					[
+						"[Color]",
+						"color2",
+						"The second color."
+					],
+					[
+						"number",
+						"t",
+						"Interpolation amount between the two inputs."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"Interpolated color."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new color object from another color object."
+				],
+				"params": [
+					[
+						"[Color]",
+						"color",
+						"The color to copy."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The created color."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new color object from R, G, B, A."
+				],
+				"params": [
+					[
+						"number",
+						"r",
+						"The red value."
+					],
+					[
+						"number",
+						"g",
+						"The green value."
+					],
+					[
+						"number",
+						"b",
+						"The blue value."
+					],
+					[
+						"number",
+						"a?",
+						"The alpha value. Defaults to 1.0. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The created color."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new color object from a hex string `\"RRGGBBAA\"`."
+				],
+				"params": [
+					[
+						"string",
+						"hexStr",
+						"The hex string."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The created color."
+					]
+				]
+			}
+		},
+		{
+			"name": "new",
+			"doc": {
+				"text": [
+					"Creates a new color object from a hex value `0xRRGGBBAA`."
+				],
+				"params": [
+					[
+						"integer",
+						"hexInt",
+						"The hex value."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The created color."
+					]
+				]
+			}
+		}
+	]
+}

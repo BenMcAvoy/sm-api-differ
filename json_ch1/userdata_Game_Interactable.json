@@ -1,0 +1,1845 @@
+{
+	"userdata": "Interactable",
+	"namespace_association": "sm.interactable",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>interactable shape</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "active",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the logic output signal of an interactable. Signal is a boolean, <strong>on</strong> or <strong>off</strong>."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"boolean",
+							"The logic output signal."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the logic output signal of an interactable. Signal is a boolean, <strong>on</strong> or <strong>off</strong>."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						],
+						[
+							"boolean",
+							"signal",
+							"The logic output signal."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "body",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Body] an interactable's [Shape] is part of."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"[Body]",
+							"The body an interactable's shape is part of."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of an interactable."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The interactable's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "power",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the power output signal of an interactable. Signal is a number between -1 to 1, where 1 is forward and -1 backward."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The power output signal."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the power output signal of an interactable. Signal is a number between -1 to 1, where 1 is forward and -1 backward."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						],
+						[
+							"number",
+							"signal",
+							"The power output signal."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a interactable."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a interactable."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "shape",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the [Shape] of an interactable."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"[Shape]",
+							"The shape which hosts the interactable."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "type",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the interactable type of an interactable."
+					],
+					"params": [
+						[
+							"[Interactable]",
+							"interactable",
+							"The interactable."
+						]
+					],
+					"return": [
+						[
+							"string",
+							"The interactable's type. ([sm.interactable.types])"
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "addContainer",
+			"doc": {
+				"text": [
+					"Creates and stores a container in the given index inside the controller"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index of the container [0-15]."
+					],
+					[
+						"integer",
+						"size",
+						"The number of slots in the container."
+					],
+					[
+						"integer",
+						"stackSize=MaxSize",
+						"The stack size. Defaults to maximum possible stack size(65535)."
+					]
+				],
+				"return": [
+					[
+						"[Container]",
+						"The created container."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "connect",
+			"doc": {
+				"text": [
+					"Connects two interactables. Similar to using the Connect Tool."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"parent",
+						"The sender of a connection."
+					],
+					[
+						"[Interactable]",
+						"child",
+						"The receiver of a connection."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the connection attempt was successful."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "connectToJoint",
+			"doc": {
+				"text": [
+					"Connects interactable with joint."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"parent",
+						"The sender of a connection."
+					],
+					[
+						"[Joint]",
+						"child",
+						"The receiver of a connection."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "disconnect",
+			"doc": {
+				"text": [
+					"Disconnects two interactables. Similar to using the Connect Tool."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"parent",
+						"The sender of a connection."
+					],
+					[
+						"[Interactable]",
+						"child",
+						"The receiver of a connection."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the disconnect attempt was successful."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getAnimDuration",
+			"doc": {
+				"text": [
+					"Returns animation duration in seconds."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The name of the animation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The animation duration."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getBearings",
+			"doc": {
+				"text": [
+					"Returns a table of [Joint, bearings] that an interactable is connected to."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of the connected [Joint, bearings] {[Joint], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getBody",
+			"doc": {
+				"text": [
+					"Returns the [Body] an interactable's [Shape] is part of."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Body]",
+						"The body an interactable's shape is part of."
+					]
+				]
+			}
+		},
+		{
+			"name": "getChildren",
+			"doc": {
+				"text": [
+					"Returns a table of child [Interactable, interactables] that an interactable is connected to. The children listen to the interactable's output."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"flags",
+						"Connection type flags filter. (defaults to all types except for sm.interactable.connectionType.bearing (for backwards compability))"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of the connected child [Interactable, interactables] {[Interactable], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getColorHighlight",
+			"doc": {
+				"text": [
+					"Returns the connection-point highlight color of an interactable. The point is shown when using the <em>Connect Tool</em>."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The connection-point highlight color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getColorNormal",
+			"doc": {
+				"text": [
+					"Returns the connection-point color of an interactable. The point is shown when using the <em>Connect Tool</em>."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The connection-point color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getConnectionInputType",
+			"doc": {
+				"text": [
+					"Returns the input connection type."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"connection type The input connection type."
+					]
+				]
+			}
+		},
+		{
+			"name": "getConnectionOutputType",
+			"doc": {
+				"text": [
+					"Returns the output connection type."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"connection type The output connection type."
+					]
+				]
+			}
+		},
+		{
+			"name": "getContainer",
+			"doc": {
+				"text": [
+					"Returns the container stored in the given index inside the controller"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index=0",
+						"The index of the container (default: 0)."
+					]
+				],
+				"return": [
+					[
+						"[Container]",
+						"The container."
+					]
+				]
+			}
+		},
+		{
+			"name": "getGlowMultiplier",
+			"doc": {
+				"text": [
+					"Gets the glow multiplier."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The glow multiplier (0.0 - 1.0)."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of an interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The interactable's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getJoints",
+			"doc": {
+				"text": [
+					"Returns a table of all [Joint, joints] that an interactable is connected to. Joints include <strong>bearings</strong> and <strong>pistons</strong>."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of the connected [Joint, joints] {[Joint], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLocalBonePosition",
+			"doc": {
+				"text": [
+					"Return the position of the bone"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The bone name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaxChildCount",
+			"doc": {
+				"text": [
+					"Returns the maximum number of allowed child connections of an interactable &ndash; the number of outgoing connections."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The max child connection count."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMaxParentCount",
+			"doc": {
+				"text": [
+					"Returns the maximum number of allowed parent connections of an interactable &ndash; the number of incoming connections."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The max parent connection count."
+					]
+				]
+			}
+		},
+		{
+			"name": "getParents",
+			"doc": {
+				"text": [
+					"Returns a table of parent [Interactable, interactables] that are connected to an interactable. The parents act as the interactable's input."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"flags",
+						"Connection type flags filter. (default to all types)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of the connected parent [Interactable, interactables] {[Interactable], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPistons",
+			"doc": {
+				"text": [
+					"Returns a table of [Joint, pistons] that an interactable is connected to."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"A table of the connected [Joint, pistons] {[Joint], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPoseWeight",
+			"doc": {
+				"text": [
+					"Returns the pose weight of the pose in the given index."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The pose weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getPower",
+			"doc": {
+				"text": [
+					"Returns the power output signal of an interactable. Signal is a number between -1 to 1, where 1 is forward and -1 backward."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The power output signal."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getSeatCharacter",
+			"doc": {
+				"text": [
+					"Returns the [Character] that is seated in the [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSeatInteractables",
+			"doc": {
+				"text": [
+					"Retrieves the list of [Interactable] connected to the seat."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The list of connected [Interactable, interactables] {[Interactable], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShape",
+			"doc": {
+				"text": [
+					"Returns the [Shape] of an interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"The shape which hosts the interactable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSingleParent",
+			"doc": {
+				"text": [
+					"Returns the parent [Interactable] that is connected to an interactable. The parent act as the interactable's input.",
+					"@warning",
+					"This method is <strong>not</strong> allowed for an interactable that allows more than one parent connection.",
+					"@warning"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Interactable]",
+						"The connected parent interactable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringAngle",
+			"doc": {
+				"text": [
+					"Returns the steering angle of an steering interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The steering angle"
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointLeftAngleLimit",
+			"doc": {
+				"text": [
+					"Returns the left angle limit of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The left angle limit."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointLeftAngleSpeed",
+			"doc": {
+				"text": [
+					"Returns the left angle speed of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The left angle speed."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointRightAngleLimit",
+			"doc": {
+				"text": [
+					"Returns the right angle limit of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The right angle limit."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointRightAngleSpeed",
+			"doc": {
+				"text": [
+					"Returns the right angle speed of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The right angle speed."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointSettings",
+			"doc": {
+				"text": [
+					"Returns the settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"number,number,number,number,boolean",
+						"The left angle speed; right angle speed; left angle limit; right angle limit; true if the joint is unlocked."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringJointUnlocked",
+			"doc": {
+				"text": [
+					"Returns the unlocked state of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the joint is unlocked"
+					]
+				]
+			}
+		},
+		{
+			"name": "getSteeringPower",
+			"doc": {
+				"text": [
+					"Returns the [Character] that is locking the controller."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getType",
+			"doc": {
+				"text": [
+					"Returns the interactable type of an interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The interactable's type. ([sm.interactable.types])"
+					]
+				]
+			}
+		},
+		{
+			"name": "getUvFrameIndex",
+			"doc": {
+				"text": [
+					"Returns the index of the current UV animation frame"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The uv frame."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getWorldBonePosition",
+			"doc": {
+				"text": [
+					"Return the position of the bone"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The bone name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The position."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasAnim",
+			"doc": {
+				"text": [
+					"Checks if an animation exists."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The name of the animation."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if exists, false otherwise."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "hasOutputType",
+			"doc": {
+				"text": [
+					"Returns true if the [Interactable] has the output type."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"flags",
+						"The output type."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Has the output type."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasSeat",
+			"doc": {
+				"text": [
+					"Returns true if [Interactable] has a seat component."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"The result."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasSteering",
+			"doc": {
+				"text": [
+					"Returns true if [Interactable] has a steering component."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"The result."
+					]
+				]
+			}
+		},
+		{
+			"name": "isActive",
+			"doc": {
+				"text": [
+					"Returns the logic output signal of an interactable. Signal is a boolean, <strong>on</strong> or <strong>off</strong>."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"The logic output signal."
+					]
+				]
+			}
+		},
+		{
+			"name": "pressSeatInteractable",
+			"doc": {
+				"text": [
+					"Triggers a press interaction on a [Interactable] connected to the seat."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index of the interactable to press."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if successful."
+					]
+				]
+			}
+		},
+		{
+			"name": "releaseSeatInteractable",
+			"doc": {
+				"text": [
+					"Triggers a release interaction on a [Interactable] connected to the seat."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index of the interactable to release."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if successful."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeContainer",
+			"doc": {
+				"text": [
+					"Removes the container stored in the given index inside the controller"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index of the container."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setActive",
+			"doc": {
+				"text": [
+					"Sets the logic output signal of an interactable. Signal is a boolean, <strong>on</strong> or <strong>off</strong>."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"boolean",
+						"signal",
+						"The logic output signal."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setAnimEnabled",
+			"doc": {
+				"text": [
+					"Sets whether the animation with the given name should be applied to the mesh. True enables the animation and false disables it."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The name of the animation."
+					],
+					[
+						"boolean",
+						"enabled",
+						"The boolean enable state."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setAnimProgress",
+			"doc": {
+				"text": [
+					"Sets the progress on the animation with the given name."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"The name of the animation."
+					],
+					[
+						"number",
+						"progress",
+						"The animation's progress between 0 and 1."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGlowMultiplier",
+			"doc": {
+				"text": [
+					"Sets a value to multiply the glow from asg texture with."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"number",
+						"value",
+						"The glow multiplier (0.0 - 1.0)."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setGyroDirection",
+			"doc": {
+				"text": [
+					"Set the direction of the gyro"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The gyro direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setParams",
+			"doc": {
+				"text": [
+					"Sets param data for a script interactable"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable, needs to be of script type."
+					],
+					[
+						"any",
+						"data",
+						"The param data."
+					]
+				]
+			}
+		},
+		{
+			"name": "setPoseWeight",
+			"doc": {
+				"text": [
+					"Set the pose weight of the pose in the given index."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					],
+					[
+						"number",
+						"value",
+						"The pose weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPower",
+			"doc": {
+				"text": [
+					"Sets the power output signal of an interactable. Signal is a number between -1 to 1, where 1 is forward and -1 backward."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"number",
+						"signal",
+						"The power output signal."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setSeatCharacter",
+			"doc": {
+				"text": [
+					"Requests to seat a [Character] in the [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "setSteeringFlag",
+			"doc": {
+				"text": [
+					"Set the steering flag for a steering interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"steering",
+						"flags\tThe steering flags."
+					]
+				]
+			}
+		},
+		{
+			"name": "setSteeringJointLeftAngleLimit",
+			"doc": {
+				"text": [
+					"Sets the left angle limit settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"number",
+						"value",
+						"The left angle limit."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSteeringJointLeftAngleSpeed",
+			"doc": {
+				"text": [
+					"Sets the left angle speed settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"number",
+						"value",
+						"The left angle speed."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSteeringJointRightAngleLimit",
+			"doc": {
+				"text": [
+					"Sets the right angle limit settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"number",
+						"value",
+						"The right angle limit."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSteeringJointRightAngleSpeed",
+			"doc": {
+				"text": [
+					"Sets the right angle speed settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"number",
+						"value",
+						"The right angle speed."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSteeringJointSettings",
+			"doc": {
+				"text": [
+					"Sets the settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"number",
+						"left",
+						"angle speed\tThe left angle speed."
+					],
+					[
+						"number",
+						"right",
+						"angle speed\tThe right angle speed."
+					],
+					[
+						"number",
+						"left",
+						"angle limit\tThe left angle limit."
+					],
+					[
+						"number",
+						"right",
+						"angle limit\tThe right angle limit."
+					],
+					[
+						"boolean",
+						"unlocked",
+						"Returns true if the joint is unlocked."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSteeringJointUnlocked",
+			"doc": {
+				"text": [
+					"Sets unlocked settings of a [Joint] connected to a steering [Interactable]."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"[Joint]",
+						"joint",
+						"The joint."
+					],
+					[
+						"boolean",
+						"value",
+						"true if joint is unlocked"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setSubMeshVisible",
+			"doc": {
+				"text": [
+					"Set the visibility of a submesh"
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"string",
+						"name",
+						"Name of the submesh."
+					],
+					[
+						"boolean",
+						"visible",
+						"True if the submesh should be visible."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setUvFrameIndex",
+			"doc": {
+				"text": [
+					"Sets the UV animation frame with the given index."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"index",
+						"The index."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "unsetSteeringFlag",
+			"doc": {
+				"text": [
+					"Unset the steering flag for a steering interactable."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					],
+					[
+						"integer",
+						"steering",
+						"flags\tThe steering flags."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Interactable],[Interactable]",
+						"Checks if two instances of [Interactable] refer to the same Interactable."
+					]
+				]
+			}
+		}
+	]
+}

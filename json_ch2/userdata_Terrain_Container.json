@@ -1,0 +1,14 @@
+{
+	"userdata": "Container",
+	"namespace_association": "sm.container",
+	"doc": {
+		"text": [
+			"Represents a container"
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [],
+	"functions": [],
+	"metamethods": []
+}

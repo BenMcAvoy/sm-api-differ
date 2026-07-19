@@ -1,0 +1,210 @@
+{
+	"userdata": "Quat",
+	"namespace_association": "sm.quat",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>quaternion</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "w",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the W value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The W value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the W value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						],
+						[
+							"number",
+							"w",
+							"The W value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "x",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the X value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The X value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the X value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						],
+						[
+							"number",
+							"x",
+							"The X value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "y",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the Y value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The Y value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the Y value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						],
+						[
+							"number",
+							"y",
+							"The Y value."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "z",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the Z value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The Z value."
+						]
+					]
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the Z value of a quaternion."
+					],
+					"params": [
+						[
+							"[Quat]",
+							"quaternion",
+							"The quaternion."
+						],
+						[
+							"number",
+							"z",
+							"The Z value."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Quat],[Quat]",
+						"Checks if two quaternions are equal."
+					]
+				]
+			}
+		},
+		{
+			"name": "__mul",
+			"doc": {
+				"meta": [
+					[
+						"[Quat],[Quat]",
+						"Returns the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Quaternion#Hamilton_product\">Hamilton product</a> of two quaternions."
+					],
+					[
+						"[Quat],[Vec3]",
+						"Returns the rotation by a quaternion on a vector."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,216 @@
+{
+	"userdata": "JsonGui",
+	"namespace_association": "sm.jsonGui",
+	"doc": {},
+	"usage": "client only",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a gui."
+					],
+					"params": [
+						[
+							"[JsonGui]",
+							"gui",
+							"Gui"
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"Id"
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "clearOnCloseCallback",
+			"doc": {
+				"text": [
+					"Clears the close callback so it will not be called when the gui is closed"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					]
+				]
+			}
+		},
+		{
+			"name": "close",
+			"doc": {
+				"text": [
+					"Close a JsonGui"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWidget",
+			"doc": {
+				"text": [
+					"Returns a JsonWidget. Nil if no widget was found with the name"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget."
+					]
+				],
+				"return": [
+					[
+						"[JsonWidget]",
+						"widget\t\t\tThe found widget in the JsonGui."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWidgetAbsolutePosition",
+			"doc": {
+				"text": [
+					"Get the absolute position of a named widget in 720 coords"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					],
+					[
+						"string",
+						"widgetName",
+						"The name of the widget."
+					]
+				],
+				"return": [
+					[
+						"number, number",
+						"Left, Top"
+					]
+				]
+			}
+		},
+		{
+			"name": "isActive",
+			"doc": {
+				"text": [
+					"Check if a JsonGui is active"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Is the gui active?"
+					]
+				]
+			}
+		},
+		{
+			"name": "isHidden",
+			"doc": {
+				"text": [
+					"Gets the visibility of the gui."
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"hidden\t\t\tTrue if the gui is hidden."
+					]
+				]
+			}
+		},
+		{
+			"name": "render",
+			"doc": {
+				"text": [
+					"Renders the DOM"
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					],
+					[
+						"table",
+						"DOM",
+						"A table representing the gui elements to show"
+					],
+					[
+						"boolean",
+						"forceProperties?",
+						"Force update widget properties (optional). (Defaults to false)"
+					]
+				]
+			}
+		},
+		{
+			"name": "setHidden",
+			"doc": {
+				"text": [
+					"Sets desired visibility of the gui."
+				],
+				"params": [
+					[
+						"[JsonGui]",
+						"gui",
+						"The gui."
+					],
+					[
+						"boolean",
+						"hidden",
+						"True if the gui should be hidden."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[JsonGui],[JsonGui],boolean",
+						"Checks if two instances of [JsonGui] refer to the same JsonGui."
+					]
+				]
+			}
+		}
+	]
+}

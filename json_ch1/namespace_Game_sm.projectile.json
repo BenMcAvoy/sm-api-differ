@@ -1,0 +1,1047 @@
+{
+	"namespace": "sm.projectile",
+	"doc": {
+		"text": [
+			"Information about projectiles are located in `/Data/Projectiles/projectiles.json`."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "customProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "customProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The Unit that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "customProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "customProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The Unit that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getProjectileMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a projectile."
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "getProjectileMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a projectile."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "harvestableCustomProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Harvestable]",
+						"source",
+						"The harvestable that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "harvestableCustomProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Harvestable]",
+						"source",
+						"The harvestable that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "harvestableProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Harvestable]",
+						"source",
+						"The [Harvestable] that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "harvestableProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in world space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Harvestable]",
+						"source",
+						"The [Harvestable] that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "playerFire",
+			"doc": {
+				"text": [
+					"Creates and fires a projectile from a player.",
+					"The projectile is normally fired from the player's position, but due to the weapon being held off-center it may require a fake position for where the projectile appears to be fired from."
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "playerFire",
+			"doc": {
+				"text": [
+					"Creates and fires a projectile from a player.",
+					"The projectile is normally fired from the player's position, but due to the weapon being held off-center it may require a fake position for where the projectile appears to be fired from."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "projectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "projectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The Unit that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "projectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Player]",
+						"source",
+						"The player that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "projectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Unit]",
+						"source",
+						"The Unit that is the source of the projectile."
+					],
+					[
+						"[Vec3]",
+						"fakePosThird=nil",
+						"The visual start position in third-person. (Defaults to position)"
+					],
+					[
+						"[Vec3]",
+						"fakePosFirst=nil",
+						"The visual start position in first-person. (Defaults to position)"
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "shapeCustomProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in the shape's local space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Shape]",
+						"source",
+						"The shape that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "shapeCustomProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a customized projectile attack"
+				],
+				"params": [
+					[
+						"table",
+						"userdata",
+						"The custom user data"
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in the shape's local space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Shape]",
+						"source",
+						"The shape that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "shapeFire",
+			"doc": {
+				"text": [
+					"Creates and fires a projectile from a [Shape]."
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "shapeFire",
+			"doc": {
+				"text": [
+					"Creates and fires a projectile from a [Shape]."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"shape",
+						"The shape."
+					],
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "shapeProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"deprecated": [
+					"Name is deprecated, use uuid instead"
+				],
+				"params": [
+					[
+						"string",
+						"name",
+						"The projectile's name."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in the shape's local space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Shape]",
+						"source",
+						"The shape that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "shapeProjectileAttack",
+			"doc": {
+				"text": [
+					"Perform a projectile attack"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The projectile's uuid."
+					],
+					[
+						"integer",
+						"damage",
+						"The damage the projectile will inflict."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The start position in the shape's local space."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The direction and velocity."
+					],
+					[
+						"[Shape]",
+						"source",
+						"The shape that is the source of the projectile."
+					],
+					[
+						"integer",
+						"delay=0",
+						"The number of ticks before firing. (Defaults to 0)"
+					]
+				]
+			}
+		},
+		{
+			"name": "solveBallisticArc",
+			"doc": {
+				"text": [
+					"Calculate the ballistic arc of a projectile. There are two potential solutions to the problem. ",
+					"One with a low fire angle and one with a high fire angle. Solutions can be nil if no solution is found."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"firePos",
+						"The position the projectile is fired from."
+					],
+					[
+						"[Vec3]",
+						"targetPos",
+						"The position the projectile should hit."
+					],
+					[
+						"number",
+						"velocity",
+						"The fire velocity of the projectile."
+					],
+					[
+						"number",
+						"gravity",
+						"The gravity ( positive down )."
+					]
+				],
+				"return": [
+					[
+						"[Vec3], [Vec3]",
+						"The low angle solution; The high angle solution."
+					]
+				]
+			}
+		}
+	]
+}

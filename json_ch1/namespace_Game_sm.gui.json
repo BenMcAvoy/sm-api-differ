@@ -1,0 +1,994 @@
+{
+	"namespace": "sm.gui",
+	"doc": {
+		"text": [
+			"The <strong>gui</strong> library contains various utility functions for handling user interfaces.",
+			"This library can only be used on the <a href=\"index.html#client\">client</a>."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "chatMessage",
+			"doc": {
+				"text": [
+					"Prints text in the chat gui.",
+					"@note",
+					"Will not be sent to other players.",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"message",
+						"The message."
+					]
+				]
+			}
+		},
+		{
+			"name": "createAmmunitionContainerGui",
+			"doc": {
+				"text": [
+					"Create a ammunition container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createBagIconGui",
+			"doc": {
+				"text": [
+					"Create a bag icon GUI."
+				],
+				"deprecated": [
+					"use createWorldIconGui"
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createBatteryContainerGui",
+			"doc": {
+				"text": [
+					"Create a battery container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createBeaconIconGui",
+			"doc": {
+				"text": [
+					"Create a beacon icon GUI."
+				],
+				"deprecated": [
+					"use createWorldIconGui"
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createChallengeHUDGui",
+			"doc": {
+				"text": [
+					"Create a challenge HUD GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createChallengeMessageGui",
+			"doc": {
+				"text": [
+					"Create a challenge message HUD GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createCharacterCustomizationGui",
+			"doc": {
+				"text": [
+					"Create a character customization GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createChemicalContainerGui",
+			"doc": {
+				"text": [
+					"Create a chemical container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createContainerGui",
+			"doc": {
+				"text": [
+					"Create a container GUI, for showing two containers."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createCraftBotGui",
+			"doc": {
+				"text": [
+					"Create a craft bot GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createDressBotGui",
+			"doc": {
+				"text": [
+					"Create a dress bot GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createEngineGui",
+			"doc": {
+				"text": [
+					"Create a engine GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createFertilizerContainerGui",
+			"doc": {
+				"text": [
+					"Create a fertilizer container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createGasContainerGui",
+			"doc": {
+				"text": [
+					"Create a gas container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createGuiFromLayout",
+			"doc": {
+				"text": [
+					"Create a GUI from a layout file."
+				],
+				"params": [
+					[
+						"string",
+						"layout",
+						"Path to the layout file"
+					],
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					],
+					[
+						"table",
+						"settings=nil",
+						"Table with bool settings for: isHud, isInteractive, needsCursor"
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createHideoutGui",
+			"doc": {
+				"text": [
+					"Create a hideout gui GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createLogbookGui",
+			"doc": {
+				"text": [
+					"Create a log book GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createMechanicStationGui",
+			"doc": {
+				"text": [
+					"Create a mechanical station GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createNameTagGui",
+			"doc": {
+				"text": [
+					"Create a name tag GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createQuestTrackerGui",
+			"doc": {
+				"text": [
+					"Create a quest tracker GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createSeatGui",
+			"doc": {
+				"text": [
+					"Create a seat GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createSeatUpgradeGui",
+			"doc": {
+				"text": [
+					"Create a seat upgrade GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createSeedContainerGui",
+			"doc": {
+				"text": [
+					"Create a seed container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createSteeringBearingGui",
+			"doc": {
+				"text": [
+					"Create a steering bearing upgrade GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createSurvivalHudGui",
+			"doc": {
+				"text": [
+					"Create a survival hud GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createWaterContainerGui",
+			"doc": {
+				"text": [
+					"Create a water container GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createWaypointIconGui",
+			"doc": {
+				"text": [
+					"Create a waypoint icon GUI."
+				],
+				"deprecated": [
+					"use createWorldIconGui"
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createWidget",
+			"doc": {
+				"text": [
+					"Removed! Does nothing."
+				],
+				"deprecated": [
+					"Use [sm.gui.createGuiFromLayout]"
+				]
+			}
+		},
+		{
+			"name": "createWorkbenchGui",
+			"doc": {
+				"text": [
+					"Create a workbench GUI."
+				],
+				"params": [
+					[
+						"boolean",
+						"destroyOnClose=false",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused."
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "createWorldIconGui",
+			"doc": {
+				"text": [
+					"Create a world icon GUI from a layout file."
+				],
+				"params": [
+					[
+						"integer",
+						"width",
+						"The width."
+					],
+					[
+						"integer",
+						"height",
+						"The height."
+					],
+					[
+						"string",
+						"layout=nil",
+						"Path to the layout file (Defaults to \"$GAME_DATA/Gui/Layouts/Hud/Hud_WorldIcon.layout\")"
+					],
+					[
+						"boolean",
+						"destroyOnClose=nil",
+						"If true the gui is destroyed when closed, otherwise the gui can be reused. (Defaults to false)"
+					]
+				],
+				"return": [
+					[
+						"[GuiInterface]",
+						"The gui interface to the created gui."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "displayAlertText",
+			"doc": {
+				"text": [
+					"Displays an alert message at the top of the screen for a set duration."
+				],
+				"params": [
+					[
+						"string",
+						"text",
+						"The message to be displayed"
+					],
+					[
+						"number",
+						"duration=4",
+						"The time in seconds during which the message is shown. Defaults to 4 seconds"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "endFadeToBlack",
+			"doc": {
+				"text": [
+					"Fades the screen back from a fade to black."
+				],
+				"params": [
+					[
+						"number",
+						"duration",
+						"Animation duration"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "exitToMenu",
+			"doc": {
+				"text": [
+					"Exits the current game and returns to the main menu",
+					"@note",
+					"Can only be used in the Challenge Mode",
+					"@note"
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCurrentLanguage",
+			"doc": {
+				"text": [
+					"Returns the current users language setting."
+				],
+				"return": [
+					[
+						"string",
+						"The language setting ex. \"English\"."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getKeyBinding",
+			"doc": {
+				"text": [
+					"Returns the set binding for an action as a string"
+				],
+				"params": [
+					[
+						"string",
+						"action",
+						"The action"
+					],
+					[
+						"boolean",
+						"hyper=false",
+						"If the string should contain hyper text"
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The key binding"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getScreenSize",
+			"doc": {
+				"text": [
+					"Returns the size of the screen."
+				],
+				"return": [
+					[
+						"integer,integer",
+						"The screen size as width and height."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "hideGui",
+			"doc": {
+				"text": [
+					"Set gui visibility."
+				],
+				"params": [
+					[
+						"boolean",
+						"visible",
+						"The gui visibility"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCenterIcon",
+			"doc": {
+				"text": [
+					"Set the icon displayed at the center."
+				],
+				"params": [
+					[
+						"string",
+						"iconName",
+						"The icon."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setCharacterDebugText",
+			"doc": {
+				"text": [
+					"Set a text for the character that will be displayed above its head."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"text",
+						"The debug text."
+					],
+					[
+						"boolean",
+						"clear=true",
+						"If true the previous text will be overwritten."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setInteractionText",
+			"doc": {
+				"text": [
+					"Set the binding text displayed at the center."
+				],
+				"params": [
+					[
+						"string",
+						"text1",
+						"The leftmost segment."
+					],
+					[
+						"string",
+						"binding1=nil",
+						"The left white segment."
+					],
+					[
+						"string",
+						"text2=nil",
+						"The mid or end segment."
+					],
+					[
+						"string",
+						"binding2=nil",
+						"The right white segment."
+					],
+					[
+						"string",
+						"text3=nil",
+						"The rightmost segment."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setProgressFraction",
+			"doc": {
+				"text": [
+					"Set the progress fraction filling the circle icon displayed at the center."
+				],
+				"params": [
+					[
+						"number",
+						"progress",
+						"The fraction that determines how much of the circle is filled. "
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "startFadeToBlack",
+			"doc": {
+				"text": [
+					"Fades the screen to black and back after timeout."
+				],
+				"params": [
+					[
+						"number",
+						"duration",
+						"Animation duration"
+					],
+					[
+						"number",
+						"timeout",
+						"Seconds until the fade fades back"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "ticksToTimeString",
+			"doc": {
+				"text": [
+					"Converts ticks to a HH:MM:SS string representation."
+				],
+				"params": [
+					[
+						"integer",
+						"ticks",
+						"Game ticks"
+					]
+				],
+				"return": [
+					[
+						"string",
+						"time\t\tHuman time formatted string"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "translateLocalizationTags",
+			"doc": {
+				"text": [
+					"Translates all localization tags in a text using the current language."
+				],
+				"params": [
+					[
+						"string",
+						"text",
+						"The text containing localization tags"
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The text with translated tags"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

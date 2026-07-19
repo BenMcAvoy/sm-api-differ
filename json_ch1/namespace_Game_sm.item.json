@@ -1,0 +1,319 @@
+{
+	"namespace": "sm.item",
+	"doc": {
+		"text": [
+			"Allows checking for static infortmation about items."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "getCharacterShape",
+			"doc": {
+				"text": [
+					"Return the data for the character [Shape]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The character shape data."
+					]
+				]
+			}
+		},
+		{
+			"name": "getEdible",
+			"doc": {
+				"text": [
+					"Return the data for the edible [Shape]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The edible data."
+					]
+				]
+			}
+		},
+		{
+			"name": "getFeatureData",
+			"doc": {
+				"text": [
+					"Returns the shapes feature data."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The feature data table"
+					]
+				]
+			}
+		},
+		{
+			"name": "getInteractablesUuidsOfType",
+			"doc": {
+				"text": [
+					"Returns a table of all [Interactable, interactable] [Uuid, uuids] of a interactable type"
+				],
+				"params": [
+					[
+						"string",
+						"interactableType",
+						"The interactable type name"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"table of interactable [Uuid, uuids] {[Uuid], ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getPlantable",
+			"doc": {
+				"text": [
+					"Return the data for the plantable [Shape]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The plantable data."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPlantableUuids",
+			"doc": {
+				"text": [
+					"Returns a table of all plantable [Uuid, uuids]."
+				],
+				"return": [
+					[
+						"table",
+						"table of all plantable [Uuid, uuids] {[Uuid], ..}."
+					]
+				]
+			}
+		},
+		{
+			"name": "getQualityLevel",
+			"doc": {
+				"text": [
+					"Return the quality level for the [Shape]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The quality level."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeDefaultColor",
+			"doc": {
+				"text": [
+					"Returns the default color of a shape"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"Color of the shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeOffset",
+			"doc": {
+				"text": [
+					"Return the [Shape] offset"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The offset vector."
+					]
+				]
+			}
+		},
+		{
+			"name": "getShapeSize",
+			"doc": {
+				"text": [
+					"Returns the block dimensions of an shape"
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"Size of the shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "isBlock",
+			"doc": {
+				"text": [
+					"Check if the item is a block."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the item is a block."
+					]
+				]
+			}
+		},
+		{
+			"name": "isHarvestablePart",
+			"doc": {
+				"text": [
+					"Return whether the [Shape] uuid belongs to a harvestable shape."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The shape uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if shape is a harvestable shape."
+					]
+				]
+			}
+		},
+		{
+			"name": "isJoint",
+			"doc": {
+				"text": [
+					"Check if the item is a [Joint]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the item is a joint."
+					]
+				]
+			}
+		},
+		{
+			"name": "isPart",
+			"doc": {
+				"text": [
+					"Check if the item is a part."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The item uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the item is a part."
+					]
+				]
+			}
+		},
+		{
+			"name": "isTool",
+			"doc": {
+				"text": [
+					"Check if the item uuid belongs to a [Tool]."
+				],
+				"params": [
+					[
+						"[Uuid]",
+						"uuid",
+						"The uuid."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the item uuid belongs to a tool."
+					]
+				]
+			}
+		}
+	]
+}

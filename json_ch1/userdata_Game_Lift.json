@@ -1,0 +1,196 @@
+{
+	"userdata": "Lift",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>lift</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a lift."
+					],
+					"params": [
+						[
+							"[Lift]",
+							"lift",
+							"The lift."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The lift's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "level",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the level of a lift."
+					],
+					"params": [
+						[
+							"[Lift]",
+							"lift",
+							"The lift."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The lift's level."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of a lift."
+					],
+					"params": [
+						[
+							"[Lift]",
+							"lift",
+							"The lift."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The lift's world position."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a lift."
+				],
+				"params": [
+					[
+						"[Lift]",
+						"lift",
+						"The lift."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a lift."
+				],
+				"params": [
+					[
+						"[Lift]",
+						"lift",
+						"The lift."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The lift's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLevel",
+			"doc": {
+				"text": [
+					"Returns the level of a lift."
+				],
+				"params": [
+					[
+						"[Lift]",
+						"lift",
+						"The lift."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The lift's level."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of a lift."
+				],
+				"params": [
+					[
+						"[Lift]",
+						"lift",
+						"The lift."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The lift's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasBodies",
+			"doc": {
+				"text": [
+					"Returns whether there's a body on the lift."
+				],
+				"params": [
+					[
+						"[Lift]",
+						"lift",
+						"The lift."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Returns true if the lift has a body."
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Lift],[Lift]",
+						"Checks if two instances of [Lift] refer to the same Lift."
+					]
+				]
+			}
+		}
+	]
+}

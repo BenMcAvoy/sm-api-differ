@@ -1,0 +1,357 @@
+{
+	"namespace": "sm.pipeGraph",
+	"doc": {
+		"text": [
+			"Pipe utility functions."
+		]
+	},
+	"constants": [
+		{
+			"name": "direction",
+			"doc": {
+				"text": [
+					"Pipe direction types",
+					"@table",
+					"any",
+					"incoming",
+					"outgoing",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The pipe directions type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getContainerPath",
+			"doc": {
+				"text": [
+					"Returns a table of shapes on the path between the requesting shape and target container shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					],
+					[
+						"[Shape]",
+						"target",
+						"The target container shape."
+					],
+					[
+						"integer",
+						"direction?",
+						"The direction to fetch in. Defaults to [sm.pipeGraph.direction, sm.pipeGraph.direction.any] (Optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"shapes\t\t\tThe shapes on the path between requesting shape to target. Requester not included in table."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getContainerShapeToCollectTo",
+			"doc": {
+				"text": [
+					"Returns a chest which allows for collection of specified items of the specified quantities."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The shape connected to the pipe graph who requests the information."
+					],
+					[
+						"table",
+						"items",
+						"The uuids of items to check."
+					],
+					[
+						"table",
+						"quantities",
+						"The number of items of each uuid. Needs to match the number of uuids.\t"
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"container\t\tThe shape of the container which was the first one that allows the collection."
+					]
+				]
+			}
+		},
+		{
+			"name": "getContainerShapeToSpendFrom",
+			"doc": {
+				"text": [
+					"Returns a chest which allows for spending of specific item with a given quantity."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The shape connected to the pipe graph who requests the information."
+					],
+					[
+						"[Uuid]",
+						"item",
+						"The uuid of the target item."
+					],
+					[
+						"number",
+						"quantities",
+						"The target spending amount."
+					]
+				],
+				"return": [
+					[
+						"[Shape]",
+						"container\t\tThe shape of the container which was the first one that allows spending."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInputContainers",
+			"doc": {
+				"text": [
+					"Returns a table of all connected input containers sorted by closest first. If the asking shape doesn't have input and output directions it returns all connected containers."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The shape connected to the pipe graph who's connected chests you want."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"containers\t\tA table of connected container shapes sorted by closest first."
+					]
+				]
+			}
+		},
+		{
+			"name": "getInteractableConditionTicks",
+			"doc": {
+				"text": [
+					"Returns the remaining of special condition, nil if no data is available.",
+					"return integer:\tremainingTicks\tThe remaining ticks of the special condition."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getMatchingPipedContainers",
+			"doc": {
+				"text": [
+					"Returns the containers of all chests connected to the given shape through the pipe connections. Will only return containers from shapes of the same type as the original."
+				],
+				"params": [
+					[
+						"[Interactable]",
+						"originInteractable",
+						"The interactable where the search will start from."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"containers\t\t\t\tThe container of the originInteractable as well as those of the same type connected through pipes."
+					]
+				]
+			}
+		},
+		{
+			"name": "getOutputContainers",
+			"doc": {
+				"text": [
+					"Returns a table of all connected output containers sorted by closest first. If the asking shape doesn't have input and output directions it returns all connected containers."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The shape connected to the pipe graph who's connected chests you want."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"containers\t\tA table of connected container shapes sorted by closest first."
+					]
+				]
+			}
+		},
+		{
+			"name": "releaseLightingOverride",
+			"doc": {
+				"text": [
+					"Releases any glow and UV overrides made by the shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "removeAutomatedTask",
+			"doc": {
+				"text": [
+					"Removes all stored automated tasks capable of producing the specified item from a producing shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					],
+					[
+						"[Uuid]",
+						"item",
+						"The production to stop."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "removeAutomatedTasks",
+			"doc": {
+				"text": [
+					"Removes any stored automated tasks for the requesting shape."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "requestLightingOverride",
+			"doc": {
+				"text": [
+					"Requests a glow and UV override for pipes between requesting shape and target container."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					],
+					[
+						"[Shape]",
+						"target",
+						"The target container shape."
+					],
+					[
+						"integer",
+						"uvIndex",
+						"The uv frame index for the affected pipes. Ranges 0 to 3."
+					],
+					[
+						"number",
+						"glow",
+						"The glow multiplier of the pipes."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setAutomatedTask",
+			"doc": {
+				"text": [
+					"Sets an automated task to be performed by the pipe graph when the body is unloaded."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The shape which requests the automated process."
+					],
+					[
+						"table",
+						"recipe",
+						"A table with information on the recipe. Uses the crafter recipe format. Can have \"craftTime\", \"quantity\", \"itemId\", \"externalContainers\"(containers targeted outside pipe graph for consumption, example: refinery), \"selfOutputContainer\"(if the shape has it's own collection container), \"ingredientList\", \"randomCraftList\" random weighted crafts (see prospector), \"specialCrafting\" used to target specific container slots with custom information (see ore crusher)."
+					],
+					[
+						"boolean",
+						"parallel?",
+						"Whether the craft tasks should be carried out in parallel or not, off by default. A parallel task will be carried out independently of other automated tasks on this shape. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setInteractableCondition",
+			"doc": {
+				"text": [
+					"Sets special conditions for allowing an interactable to craft."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					],
+					[
+						"table",
+						"condition",
+						"Values for special conditions to allow crafting. Uses \"uuid\", \"tickFrequency\", \"remainingTicks\"(optional), \"consumptionCount\", \"onlyExternal\". See Prospector.lua for example."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setParallelLimit",
+			"doc": {
+				"text": [
+					"Sets the maximum amount of parallel crafts, 65535 if not set."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"requester",
+						"The requesting shape."
+					],
+					[
+						"integer",
+						"amount",
+						"The number of parallel crafts allowed to be done at once."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

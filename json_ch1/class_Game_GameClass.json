@@ -1,0 +1,506 @@
+{
+	"class": "GameClass",
+	"doc": {
+		"text": [
+			"A script class that defines the game mode. Only one instance of this class is made.",
+			"This is the first script that will be run.",
+			"The game script is responsible for creating and managing [World, worlds].",
+			"Can receive events sent with [sm.event.sendToGame]."
+		],
+		"fields": [
+			[
+				"[Network]",
+				"network",
+				"A [Network] object that can be used to send messages between client and server."
+			],
+			[
+				"[Storage]",
+				"storage",
+				"(Server side only.) A [Storage] object that can be used to store data for the next time loading this object after being unloaded."
+			],
+			[
+				"any",
+				"data",
+				"Game start data."
+			]
+		]
+	},
+	"constants": [
+		{
+			"name": "defaultInventorySize",
+			"doc": {
+				"text": [
+					"Sets default player inventory size. (Defaults to 40)"
+				],
+				"return": [
+					[
+						"integer",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableAggro",
+			"doc": {
+				"text": [
+					"Enables or disables enemy aggression. (Defaults to true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableAmmoConsumption",
+			"doc": {
+				"text": [
+					"Enables or disables ammo consumption. (Defaults to false)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableFuelConsumption",
+			"doc": {
+				"text": [
+					"Enables or disables fuel consumption. (Defaults to false)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableLimitedInventory",
+			"doc": {
+				"text": [
+					"Enables or disables limited inventory. (Defaults to false)",
+					"When limited in inventory is on, items have a limited amount. When off, the player has access to all items. (Except for items with json value \"hidden\": true)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableRestrictions",
+			"doc": {
+				"text": [
+					"Enables or disables build restrictions. (Defaults to false)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "enableUpgrade",
+			"doc": {
+				"text": [
+					"Enables or disables interactable part upgrade. (Defaults to false)"
+				],
+				"return": [
+					[
+						"boolean",
+						""
+					]
+				]
+			}
+		}
+	],
+	"common_callbacks": [
+		{
+			"name": "server_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onCreate",
+			"doc": {
+				"text": [
+					"Called when the scripted object is created. This occurs when a new object is built, spawned, or loaded from the save file."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onDestroy",
+			"doc": {
+				"text": [
+					"Called when the scripted object is destroyed."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onRefresh",
+			"doc": {
+				"text": [
+					"Called if the Lua script attached to the object is modified while the game is running.",
+					"@note",
+					"This event requires Scrap Mechanic to be running with the '-dev' flag. This will allow scripts to automatically refresh upon changes.",
+					"@note"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "server_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onFixedUpdate",
+			"doc": {
+				"text": [
+					"Called every game tick &ndash; 40 ticks a second. If the frame rate is lower than 40 fps, this event may be called twice.",
+					"During a fixed update, physics and logic between interactables are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"timeStep",
+						"The time period of a tick. (Is always 0.025, a 1/40th of a second.)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onUpdate",
+			"doc": {
+				"text": [
+					"Called every frame.",
+					"During a frame update, graphics, animations and effects are updated.",
+					"@warning",
+					"Because of how frequent this event is called, the game's frame rate is greatly affected by the amount of code executed here.",
+					"For any non-graphics related code, consider using [GameClass.client_onFixedUpdate, client_onFixedUpdate] instead.",
+					"If the event is not in use, consider removing it from the script. (Event callbacks that are not implemented will not be called.)",
+					"@warning"
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"number",
+						"deltaTime",
+						"Delta time since the last frame."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onClientDataUpdate",
+			"doc": {
+				"text": [
+					"Called when the client receives new client data updates from the server set with [Network.setClientData].",
+					"Data set in this way is persistent and the latest data will automatically be sent to new clients.",
+					"The data will arrive after [GameClass.client_onCreate, client_onCreate] during the same tick.",
+					"Channel 1 will be received before channel 2 if both are updated."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"any",
+						"data",
+						"Any lua object set with [Network.setClientData]"
+					],
+					[
+						"integer",
+						"channel",
+						"Client data channel, 1 or 2. (default: 1)"
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	],
+	"callbacks": [
+		{
+			"name": "server_onPlayerJoined",
+			"doc": {
+				"text": [
+					"Called when a [Player] joins the game."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Player]",
+						"player",
+						"The joining player."
+					],
+					[
+						"boolean",
+						"newPlayer",
+						"True if the player has not been in this game before."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onPlayerLeft",
+			"doc": {
+				"text": [
+					"Called when a [Player] leaves the game."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"[Player]",
+						"player",
+						"The leaving player."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onReset",
+			"doc": {
+				"text": [
+					"Challenge Mode only!",
+					"Called when the user wants to reset the challenge level."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onRestart",
+			"doc": {
+				"text": [
+					"Challenge Mode only!",
+					"Called when the user wants to restart the challenge level."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onSaveLevel",
+			"doc": {
+				"text": [
+					"Challenge Builder only!",
+					"Called when the user wants to save the challenge level."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onTestLevel",
+			"doc": {
+				"text": [
+					"Challenge Builder only!",
+					"Called when the user wants to save and test the challenge level."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "server_onStopTest",
+			"doc": {
+				"text": [
+					"Challenge Builder only!",
+					"Called when the user wants to stop testing the challenge level."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "serverEventCallback"
+		},
+		{
+			"name": "client_onLoadingScreenLifted",
+			"doc": {
+				"text": [
+					"Called when the loading screen is lifted when entering a game."
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		},
+		{
+			"name": "client_onLanguageChange",
+			"doc": {
+				"text": [
+					"Called when the user changes language in the in-game menus.",
+					"Possible language values:",
+					"\"Brazilian\", \"Chinese\", \"English\", \"French\", \"German\", \"Italian\", \"Japanese\", \"Korean\", \"Polish\", \"Russian\", \"Spanish\""
+				],
+				"params": [
+					[
+						"table",
+						"self",
+						"The class instance."
+					],
+					[
+						"string",
+						"language",
+						"The new language."
+					]
+				]
+			},
+			"type": "clientEventCallback"
+		}
+	]
+}

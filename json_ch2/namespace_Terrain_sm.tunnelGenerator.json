@@ -1,0 +1,57 @@
+{
+	"namespace": "sm.tunnelGenerator",
+	"doc": {
+		"text": [
+			"Use to generate cell data for producing tunnels through voxels."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "generate",
+			"doc": {
+				"text": [
+					"Returns an array table of pathing results. Each element consisting of a table {positions={[Vec3],...}} of position arrays."
+				],
+				"params": [
+					[
+						"integer",
+						"seed",
+						"Simplex noise seed."
+					],
+					[
+						"[Vec3]",
+						"min",
+						"Grid min x (inclusive)."
+					],
+					[
+						"[Vec3]",
+						"max",
+						"Grid max x (non inclusive)."
+					],
+					[
+						"table",
+						"pathingSettings",
+						"An table of available pathing settings to be used by tunnel requests. {costNoiseFrequency=number,costNoiseIntensity=number,costZPenalty=number}"
+					],
+					[
+						"table",
+						"tunnelRequests",
+						"An array table of tunnel requests. {{posA=[Vec3], posB=[Vec3](, dirA=[Vec3])(, dirB=[Vec3]), pathingSettings=string},...}"
+					],
+					[
+						"number",
+						"gridSize",
+						"Size of each grid cell in world units. (Used for debug draw only.)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"An array table with one tunnel result per request. {{positions={[Vec3],...}}, ...}"
+					]
+				]
+			}
+		}
+	]
+}

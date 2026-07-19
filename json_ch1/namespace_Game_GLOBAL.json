@@ -1,0 +1,80 @@
+{
+	"namespace": "GLOBAL",
+	"doc": {
+		"text": [
+			"Globals"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "class",
+			"doc": {
+				"text": [
+					"Creates a new class object."
+				],
+				"params": [
+					[
+						"string",
+						"base=nil",
+						"An optional base class to inherit from. (Defaults to inheriting from no class)"
+					]
+				]
+			}
+		},
+		{
+			"name": "dofile",
+			"doc": {
+				"text": [
+					"Opens the named file and executes its contents as a Lua chunk. In case of errors, dofile propagates the error to its caller."
+				],
+				"params": [
+					[
+						"string",
+						"filename",
+						"The name of the file to be loaded."
+					]
+				]
+			}
+		},
+		{
+			"name": "print",
+			"doc": {
+				"text": [
+					"Prints data to the <a href=\"index.html#console\">console</a>. This is useful for debugging.",
+					"@note",
+					"If the game is running with the `-dev` flag, any output will be added to the game logs.",
+					"@note"
+				],
+				"params": [
+					[
+						"any",
+						"...",
+						"The arguments to be printed."
+					]
+				]
+			}
+		},
+		{
+			"name": "type",
+			"doc": {
+				"text": [
+					"Returns the type of an object as a string. This includes standard Lua types and userdata types specific to this API."
+				],
+				"params": [
+					[
+						"any",
+						"object",
+						"The object instance."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The object type."
+					]
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,94 @@
+{
+	"namespace": "sm.pathfinder",
+	"doc": {
+		"text": [
+			"Pathfinder"
+		]
+	},
+	"constants": [
+		{
+			"name": "conditionProperty",
+			"doc": {
+				"text": [
+					"Condition link types",
+					"@table",
+					"height",
+					"target",
+					"none",
+					"@table"
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "getPath",
+			"doc": {
+				"text": [
+					"Find a path"
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character to find path for"
+					],
+					[
+						"[Vec3]",
+						"destination",
+						"The path destination"
+					],
+					[
+						"boolean",
+						"groundPos=true",
+						"If the destination is ground level"
+					],
+					[
+						"table",
+						"linkConditions=nil",
+						"Table of link conditions"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The path as table of PathNodes"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getSortedNodes",
+			"doc": {
+				"text": [
+					"Find all nearby path nodes"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The position to look in"
+					],
+					[
+						"number",
+						"minDist",
+						"Minimum distance around pos"
+					],
+					[
+						"number",
+						"maxDist",
+						"Maximum distance around pos"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Table of PathNodes sorted closest to farthest"
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

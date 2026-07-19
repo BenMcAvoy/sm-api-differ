@@ -1,0 +1,144 @@
+{
+	"userdata": "BuilderGuide",
+	"namespace_association": "sm.builderGuide",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>builder guide</strong>."
+		]
+	},
+	"usage": "server and client",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a guide."
+					],
+					"params": [
+						[
+							"[BuilderGuide]",
+							"guide",
+							"The guide."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The guide's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Destroys a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide to be destroyed."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCurrentStageIndex",
+			"doc": {
+				"text": [
+					"Returns the stage index of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The stage index."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The guide's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "isComplete",
+			"doc": {
+				"text": [
+					"Returns the completion status of a guide."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the guide is completed."
+					]
+				]
+			}
+		},
+		{
+			"name": "update",
+			"doc": {
+				"text": [
+					"Update the state of a guide. Should be called whenever the root [Shape] of the builder guide has changed."
+				],
+				"params": [
+					[
+						"[BuilderGuide]",
+						"guide",
+						"The guide"
+					]
+				]
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[BuilderGuide],[BuilderGuide]",
+						"Checks if two instances of [BuilderGuide] refer to the same BuilderGuide."
+					]
+				]
+			}
+		}
+	]
+}

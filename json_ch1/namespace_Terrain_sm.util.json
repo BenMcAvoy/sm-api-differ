@@ -1,0 +1,324 @@
+{
+	"namespace": "sm.util",
+	"doc": {
+		"text": [
+			"Offers various math-related functions."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "axesToQuat",
+			"doc": {
+				"text": [
+					"Constructs a quaternion from a X and Z axis"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"xAxis",
+						"The X axis."
+					],
+					[
+						"[Vec3]",
+						"yAxis",
+						"The Z axis."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"rotation\t\tThe quaternion."
+					]
+				]
+			}
+		},
+		{
+			"name": "bezier2",
+			"doc": {
+				"text": [
+					"Quadratic Bezier interpolation. One dimensional bezier curve."
+				],
+				"params": [
+					[
+						"number",
+						"c0",
+						"The start value."
+					],
+					[
+						"number",
+						"c1",
+						"The control point."
+					],
+					[
+						"number",
+						"c2",
+						"The end value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "bezier3",
+			"doc": {
+				"text": [
+					"Cubic Bezier interpolation. One dimensional bezier curve."
+				],
+				"params": [
+					[
+						"number",
+						"c0",
+						"The start value."
+					],
+					[
+						"number",
+						"c1",
+						"The first control point."
+					],
+					[
+						"number",
+						"c2",
+						"The second control point."
+					],
+					[
+						"number",
+						"c3",
+						"The end value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "clamp",
+			"doc": {
+				"text": [
+					"Restricts a value to a given range."
+				],
+				"params": [
+					[
+						"number",
+						"value",
+						"The value."
+					],
+					[
+						"number",
+						"min",
+						"The lower limit."
+					],
+					[
+						"number",
+						"max",
+						"The upper limit."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The clamped value."
+					]
+				]
+			}
+		},
+		{
+			"name": "easing",
+			"doc": {
+				"text": [
+					"Applies an easing function to a given input.",
+					"Easing function names:",
+					"@table",
+					"<em>linear</em>",
+					"<em>easeInQuad</em>",
+					"<em>easeOutQuad</em>",
+					"<em>easeInOutQuad</em>",
+					"<em>easeInCubic</em>",
+					"<em>easeOutCubic</em>",
+					"<em>easeInOutCubic</em>",
+					"<em>easeInQuart</em>",
+					"<em>easeOutQuart</em>",
+					"<em>easeInOutQuart</em>",
+					"<em>easeInQuint</em>",
+					"<em>easeOutQuint</em>",
+					"<em>easeInOutQuint</em>",
+					"<em>easeInSine</em>",
+					"<em>easeOutSine</em>",
+					"<em>easeInOutSine</em>",
+					"<em>easeInCirc</em>",
+					"<em>easeOutCirc</em>",
+					"<em>easeInOutCirc</em>",
+					"<em>easeInExpo</em>",
+					"<em>easeOutExpo</em>",
+					"<em>easeInOutExpo</em>",
+					"<em>easeInElastic</em>",
+					"<em>easeOutElastic</em>",
+					"<em>easeInOutElastic</em>",
+					"<em>easeInBack</em>",
+					"<em>easeOutBack</em>",
+					"<em>easeInOutBack</em>",
+					"<em>easeInBounce</em>",
+					"<em>easeOutBounce</em>",
+					"<em>easeInOutBounce</em>",
+					"@table"
+				],
+				"params": [
+					[
+						"string",
+						"easing",
+						"The easing function name."
+					],
+					[
+						"number",
+						"p",
+						"The easing function input."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The output."
+					]
+				]
+			}
+		},
+		{
+			"name": "lerp",
+			"doc": {
+				"text": [
+					"Linear interpolation between two values. This is known as a lerp."
+				],
+				"params": [
+					[
+						"number",
+						"a",
+						"The first value."
+					],
+					[
+						"number",
+						"b",
+						"The second value."
+					],
+					[
+						"number",
+						"t",
+						"The interpolation step."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The interpolated value between two values."
+					]
+				]
+			}
+		},
+		{
+			"name": "positiveModulo",
+			"doc": {
+				"text": [
+					"Returns the positive remainder after division of x by n."
+				],
+				"params": [
+					[
+						"integer",
+						"x",
+						"The number."
+					],
+					[
+						"integer",
+						"n",
+						"The modulo value."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		},
+		{
+			"name": "smootherstep",
+			"doc": {
+				"text": [
+					"An improved version of the [sm.util.smoothstep, smoothstep] function which has zero 1st and 2nd order derivatives at `x = edge0` and `x = edge1`."
+				],
+				"params": [
+					[
+						"number",
+						"edge0",
+						"The value of the lower edge of the Hermite function."
+					],
+					[
+						"number",
+						"edge1",
+						"The value of the upper edge of the Hermite function."
+					],
+					[
+						"number",
+						"x",
+						"The source value for interpolation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		},
+		{
+			"name": "smoothstep",
+			"doc": {
+				"text": [
+					"Performs smooth Hermite interpolation between 0 and 1 when `edge0 < x < edge1`. This is useful in cases where a threshold function with a smooth transition is desired."
+				],
+				"params": [
+					[
+						"number",
+						"edge0",
+						"The value of the lower edge of the Hermite function."
+					],
+					[
+						"number",
+						"edge1",
+						"The value of the upper edge of the Hermite function."
+					],
+					[
+						"number",
+						"x",
+						"The source value for interpolation."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The value."
+					]
+				]
+			}
+		}
+	]
+}

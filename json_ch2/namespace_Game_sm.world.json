@@ -1,0 +1,179 @@
+{
+	"namespace": "sm.world",
+	"userdata_association": "World",
+	"doc": {
+		"text": [
+			"The <strong>world</strong> api handles the creation and destruction of worlds.",
+			"A world contains the terrain and simulates the physics environment in which other game objects can exist."
+		]
+	},
+	"constants": [
+		{
+			"name": "ids",
+			"doc": {
+				"text": [
+					"Predefined special world ids",
+					"@table",
+					"anyWorld",
+					"noWorld",
+					"@table"
+				]
+			}
+		},
+		{
+			"name": "voxelFilter",
+			"doc": {
+				"text": [
+					"Filters are used to specify what materials a terrain modification sphere can destroy.",
+					"The filters are:",
+					"@list",
+					"<strong>material0</strong> &ndash; Allows destruction of material 0 in the voxel material set.",
+					"<strong>material1</strong> &ndash; Allows destruction of material 1 in the voxel material set.",
+					"<strong>material2</strong> &ndash; Allows destruction of material 2 in the voxel material set.",
+					"<strong>material3</strong> &ndash; Allows destruction of material 3 in the voxel material set.",
+					"<strong>material4</strong> &ndash; Allows destruction of material 4 in the voxel material set.",
+					"<strong>material5</strong> &ndash; Allows destruction of material 5 in the voxel material set.",
+					"<strong>material6</strong> &ndash; Allows destruction of material 6 in the voxel material set.",
+					"<strong>material7</strong> &ndash; Allows destruction of material 7 in the voxel material set.",
+					"<strong>all</strong> &ndash; Allows destruction of all materials in the voxel material set.",
+					"@list",
+					"@table",
+					"none; 0",
+					"material0; 1",
+					"material1; 2",
+					"material2; 4",
+					"material3; 8",
+					"material4; 16",
+					"material5; 32",
+					"material6; 64",
+					"material7; 128",
+					"all; 255",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The filter type list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "createWorld",
+			"doc": {
+				"text": [
+					"Creates a new world object."
+				],
+				"params": [
+					[
+						"string",
+						"filename",
+						"The world script filename."
+					],
+					[
+						"string",
+						"classname",
+						"The world script class name."
+					],
+					[
+						"any",
+						"terrainParams?",
+						"The world's terrain parameters. (Optional)"
+					],
+					[
+						"integer",
+						"seed?",
+						"The world's seed. Defaults to 0 (Optional)"
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The created world object."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getCurrentWorld",
+			"doc": {
+				"text": [
+					"Get the world that the scripted object is in."
+				],
+				"return": [
+					[
+						"[World]",
+						"The world"
+					]
+				]
+			}
+		},
+		{
+			"name": "getDirtySpheres",
+			"doc": {
+				"text": [
+					"Returns an array of tables representing spheres where something has changed in the world.",
+					"The optional position and radius parameters will construct a sphere, and use it as a filter to only show results that intersect that sphere."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position?",
+						"The world position of the sphere. (Optional)"
+					],
+					[
+						"number",
+						"radius?",
+						"The radius of the sphere. (Optional)"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table of tables. { {center=[Vec3], radius=number}, ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getLegacyCreativeWorld",
+			"doc": {
+				"text": [
+					"Gets a previously saved creative world"
+				],
+				"return": [
+					[
+						"[World]",
+						"The world (id 0) if it exists in the database or nil"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "loadWorld",
+			"doc": {
+				"text": [
+					"Loads a previously created world."
+				],
+				"params": [
+					[
+						"[World]",
+						"world",
+						"The world that should be loaded."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Return true if the world was loaded."
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

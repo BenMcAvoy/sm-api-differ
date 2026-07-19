@@ -1,0 +1,507 @@
+{
+	"namespace": "sm.physics",
+	"doc": {
+		"text": [
+			"Contains functions regarding the physics engine."
+		]
+	},
+	"constants": [
+		{
+			"name": "filter",
+			"doc": {
+				"text": [
+					"Collision filter types",
+					"@table",
+					"dynamicBody",
+					"staticBody",
+					"character",
+					"areaTrigger",
+					"joints",
+					"terrainSurface",
+					"terrainAsset",
+					"harvestable",
+					"areaTrigger",
+					"static",
+					"default",
+					"all",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The physics types list."
+					]
+				]
+			}
+		},
+		{
+			"name": "types",
+			"doc": {
+				"text": [
+					"Physics types are used to define an object's characteristics is in the physics world. Upon a raycast or collision detection, these types are used to find out what object was intersected.",
+					"@table",
+					"\"invalid\";\t\t\tNo object.",
+					"\"terrainSurface\";\t\tThe ground.",
+					"\"terrainAsset\";\t\tTrees and boulders.",
+					"\"lift\";\t\t\t\tA [Lift].",
+					"\"body\";\t\t\t\tA [Body].",
+					"\"character\";\t\t\tA [Character].",
+					"\"joint\";\t\t\t\tA [Joint].",
+					"\"harvestable\";\t\tA [Harvestable].",
+					"\"vision\";\t\t\t\tA collision area used by sensors.",
+					"@table"
+				],
+				"return": [
+					[
+						"table",
+						"The physics types list."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "applyImpulse",
+			"doc": {
+				"text": [
+					"Applies an impulse to a [Shape], changing its velocity immediately. The impulse is applied to the shape's centerpoint with an optional offset."
+				],
+				"params": [
+					[
+						"[Shape]",
+						"target",
+						"The object on which the impulse is exerted on."
+					],
+					[
+						"[Vec3]",
+						"impulse",
+						"The direction and strength of the impulse."
+					],
+					[
+						"boolean",
+						"worldSpace=false",
+						"Whether the impulse is applied in world space coordinates. (Defaults to local rotation)"
+					],
+					[
+						"[Vec3]",
+						"offset=nil",
+						"The offset from the center point. (Defaults to no offset)"
+					]
+				]
+			}
+		},
+		{
+			"name": "applyImpulse",
+			"doc": {
+				"text": [
+					"Applies an impulse to a [Body], changing its velocity immediately. The impulse is applied to the body's center of mass with an optional offset."
+				],
+				"params": [
+					[
+						"[Body]",
+						"target",
+						"The object on which the impulse is exerted on."
+					],
+					[
+						"[Vec3]",
+						"impulse",
+						"The direction and strength of the impulse."
+					],
+					[
+						"boolean",
+						"worldSpace=false",
+						"Whether the impulse is applied in world space coordinates. (Defaults to local rotation)"
+					],
+					[
+						"[Vec3]",
+						"offset=nil",
+						"The offset from the center point. (Defaults to no offset)"
+					]
+				]
+			}
+		},
+		{
+			"name": "applyImpulse",
+			"doc": {
+				"text": [
+					"Applies an impulse to a [Character], changing its velocity immediately. The impulse is applied to the character's centerpoint."
+				],
+				"params": [
+					[
+						"[Character]",
+						"target",
+						"The character on which the impulse is exerted on."
+					],
+					[
+						"[Vec3]",
+						"impulse",
+						"The direction and strength of the impulse."
+					]
+				]
+			}
+		},
+		{
+			"name": "applyTorque",
+			"doc": {
+				"text": [
+					"Applies a torque impulse to a [Body], changing its angular velocity immediately. The torque is applied along the body's center of mass, making it rotate."
+				],
+				"params": [
+					[
+						"[Body]",
+						"target",
+						"The object on which the torque is exerted on."
+					],
+					[
+						"[Vec3]",
+						"torque",
+						"The direction and strength of the torque."
+					],
+					[
+						"boolean",
+						"worldSpace=false",
+						"Whether the torque is applied in world space coordinates. (Defaults to local rotation)"
+					]
+				]
+			}
+		},
+		{
+			"name": "distanceRaycast",
+			"doc": {
+				"text": [
+					"Performs a distance <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ray_casting\">ray cast</a> from a position with a given direction.",
+					"@note",
+					"[sm.physics.distanceRaycast] is generally cheaper to use than [sm.physics.raycast] as it performs collision checks in a simplified world. If the raycast is only used for checking collision, it is advised to use this method instead.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"direction",
+						"The ray's direction and length."
+					]
+				],
+				"return": [
+					[
+						"boolean, number",
+						"2 values: whether raycast was successful; the fraction (0&ndash;1) of the distance reached until collision divided by the ray's length."
+					]
+				]
+			}
+		},
+		{
+			"name": "explode",
+			"doc": {
+				"text": [
+					"Creates an explosion at given position. The explosion creates a shockwave that is capable of destroying blocks and pushing characters and creations away.",
+					"Shapes that are within the explosion's destruction radius may receive the event [ShapeClass.server_onExplosion, server_onExplosionHit].",
+					"@note",
+					"The <strong>destruction level</strong> is the damage effect on blocks and parts, determining how likely it is that they are destroyed. This is related to the `qualityLevel` found in parts json-files.",
+					"Any quality level equal to or less than the destruction level may be destroyed. The effect fades one level every half travelled of the remaining destruction radius.",
+					"A quality level of 0 means a block or part is indestructible.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"position",
+						"The center point of the explosion."
+					],
+					[
+						"integer",
+						"level",
+						"The destruction level affecting nearby objects."
+					],
+					[
+						"number",
+						"destructionRadius",
+						"The destruction radius. Objects inside this sphere may be destroyed."
+					],
+					[
+						"number",
+						"impulseRadius",
+						"The impulse radius. Objects inside this sphere are affected by an [sm.physics.applyImpulse, impulse]."
+					],
+					[
+						"number",
+						"magnitude",
+						"The impulse strength of the explosion. The strength diminishes with distance."
+					],
+					[
+						"string",
+						"effectName=nil",
+						"The name of the effect to be played upon explosion. (Optional)"
+					],
+					[
+						"[Shape]",
+						"ignoreShape=nil",
+						"The shape to be ignored. (Optional)"
+					],
+					[
+						"table",
+						"parameters=nil",
+						"The table containing the parameters for the effect. (Optional)"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getGravity",
+			"doc": {
+				"text": [
+					"Returns the gravitational acceleration affecting [Shape, shapes] and [Body, bodies]."
+				],
+				"return": [
+					[
+						"number",
+						"The gravitational value."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getGroundMaterial",
+			"doc": {
+				"text": [
+					"Returns the material at the given position in the terrain."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The world position to check the material at."
+					]
+				],
+				"return": [
+					[
+						"string",
+						"The material name."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSphereContacts",
+			"doc": {
+				"text": [
+					"Returns a table of the game objects that are found inside the given sphere"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"pos",
+						"The world position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The table with tables of objects found inside the sphere. { bodies={[Body], ..}, characters={[Character], ..}, harvestables={[Harvestable], ..}, lifts={[Lift], ..} }"
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "multicast",
+			"doc": {
+				"text": [
+					"Performs multiple sphere and/or raycasts given a table of parameters.",
+					"Type can be \"sphere\" or \"ray\". Radius is ignored for rays."
+				],
+				"params": [
+					[
+						"table",
+						"casts",
+						"Table of casts. { type=string, startPoint=[Vec3], endPoint=[Vec3], radius=number, mask=[sm.physics.filter] }"
+					]
+				],
+				"return": [
+					[
+						"table",
+						"Array of pairs of boolean and [RaycastResult]. {{boolean,  [RaycastResult]}, ..}"
+					]
+				]
+			}
+		},
+		{
+			"name": "raycast",
+			"doc": {
+				"text": [
+					"Performs a <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ray_casting\">ray cast</a> between two positions.",
+					"The returned [RaycastResult] contains information about any object intersected by the ray.",
+					"If the ray cast is called from within a shape (e.g. a Sensor), a [Body] may be provided which the ray will not intersect."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"end",
+						"The end position."
+					],
+					[
+						"[Body]",
+						"body=nil",
+						"The body to be ignored. (Optional)"
+					],
+					[
+						"integer",
+						"mask=nil",
+						"The collision mask. Defaults to [sm.physics.filter, sm.physics.filter.default] (Optional)"
+					]
+				],
+				"return": [
+					[
+						"boolean,\t[RaycastResult]",
+						"True if raycast was successful; The raycast result data."
+					]
+				]
+			}
+		},
+		{
+			"name": "raycastTarget",
+			"doc": {
+				"text": [
+					"Performs a <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ray_casting\">ray cast</a> between two positions to find a specific target.",
+					"a [Body] must be provided as a target.",
+					"The returned [RaycastResult] contains information about any object intersected by the ray."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"end",
+						"The end position."
+					],
+					[
+						"[Body]",
+						"body",
+						"The body to be exclusively checked."
+					]
+				],
+				"return": [
+					[
+						"boolean,\t[RaycastResult]",
+						"True if raycast was successful; The raycast result data."
+					]
+				]
+			}
+		},
+		{
+			"name": "setGravity",
+			"doc": {
+				"text": [
+					"Sets the gravitational acceleration affecting [Shape, shapes] and [Body, bodies]."
+				],
+				"params": [
+					[
+						"number",
+						"gravity",
+						"The gravitational value."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "sphereContactCount",
+			"doc": {
+				"text": [
+					"Returns the number of collision objects that are found inside the given sphere"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The world position of the sphere."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"boolean",
+						"includeTerrain=false",
+						"True if terrain should be included in the test"
+					],
+					[
+						"boolean",
+						"countWater=false",
+						"True if water should be included"
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The number of objects."
+					]
+				]
+			}
+		},
+		{
+			"name": "spherecast",
+			"doc": {
+				"text": [
+					"Performs a spherical <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ray_casting\">ray cast</a> between two positions.",
+					"The returned [RaycastResult] contains information about any object intersected by the ray.",
+					"If the ray cast is called from within a shape (e.g. a Sensor), a [Body] may be provided which the ray will not intersect."
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"start",
+						"The start position."
+					],
+					[
+						"[Vec3]",
+						"end",
+						"The end position."
+					],
+					[
+						"number",
+						"radius",
+						"The radius of the sphere."
+					],
+					[
+						"[Body]",
+						"body=nil",
+						"The body to be ignored. (Optional)"
+					],
+					[
+						"integer",
+						"mask=nil",
+						"The collision mask. Defaults to [sm.physics.filter, sm.physics.filter.default] (Optional)"
+					]
+				],
+				"return": [
+					[
+						"boolean,\t[RaycastResult]",
+						"True if raycast was successful; The raycast result data."
+					]
+				]
+			}
+		}
+	]
+}

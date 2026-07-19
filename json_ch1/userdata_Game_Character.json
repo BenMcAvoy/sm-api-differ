@@ -1,0 +1,1741 @@
+{
+	"userdata": "Character",
+	"namespace_association": "sm.character",
+	"doc": {
+		"text": [
+			"A userdata object representing a <strong>character</strong> in the game."
+		]
+	},
+	"usage": "server and client",
+	"serializable": true,
+	"members": [
+		{
+			"name": "clientPublicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns client public data from a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets client public data on a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						],
+						[
+							"table",
+							"data",
+							"The client public data."
+						]
+					],
+					"client_only": true
+				}
+			}
+		},
+		{
+			"name": "color",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets the character color."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						],
+						[
+							"[Color]",
+							"color",
+							"The character color."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the base color of a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"[Color]",
+							"The character color."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "direction",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the direction of where a character is viewing or aiming."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The character's view direction."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The character's id."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "mass",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the mass of a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The character's mass."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "movementSpeedFraction",
+			"set": {
+				"doc": {
+					"text": [
+						"Sets a fraction multiplier to the character's movement speed."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						],
+						[
+							"number",
+							"fraction",
+							"The movement speed fraction."
+						]
+					]
+				}
+			},
+			"get": {
+				"doc": {
+					"text": [
+						"Gets the current fraction multiplier applied on the character's movement speed."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"number",
+							"The movement speed fraction."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "publicData",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns (server) public data from a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"table",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			},
+			"set": {
+				"doc": {
+					"text": [
+						"Sets (server) public data on a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						],
+						[
+							"table",
+							"data",
+							"The public data."
+						]
+					],
+					"server_only": true
+				}
+			}
+		},
+		{
+			"name": "smoothDirection",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the smooth direction of where a character is viewing or aiming."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The character's smooth view direction."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "velocity",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the velocity of a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The character's velocity."
+						]
+					]
+				}
+			}
+		},
+		{
+			"name": "worldPosition",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the world position of a character."
+					],
+					"params": [
+						[
+							"[Character]",
+							"character",
+							"The character."
+						]
+					],
+					"return": [
+						[
+							"[Vec3]",
+							"The character's world position."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "addRenderable",
+			"doc": {
+				"text": [
+					"Adds a renderable (file containing model data) to be used for the character in third person view."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"renderable",
+						"The renderable path."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "applyTumblingImpulse",
+			"doc": {
+				"text": [
+					"Applies impulse to the characters tumbling shape."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"[Vec3]",
+						"impulse",
+						"The impulse."
+					]
+				]
+			}
+		},
+		{
+			"name": "bindAnimationCallback",
+			"doc": {
+				"text": [
+					"Binds a character's animation to a callback function."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"animationName",
+						"The name of the animation."
+					],
+					[
+						"number",
+						"triggerTime",
+						"The required time that will have elapsed in the animation when the callback is triggered."
+					],
+					[
+						"string",
+						"callback",
+						"The name of the Lua function to bind."
+					]
+				]
+			}
+		},
+		{
+			"name": "getActiveAnimations",
+			"doc": {
+				"text": [
+					"Returns the set of active animations."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character. "
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The set of active animatons { { name = string, weight = number }, ...}"
+					]
+				]
+			}
+		},
+		{
+			"name": "getAnimationInfo",
+			"doc": {
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The animation info { name = string, duration = number, looping = boolean }."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCanSwim",
+			"doc": {
+				"text": [
+					"Returns whether the character will float or sink in liquid."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the character will float, false if the character will sink."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCharacterType",
+			"doc": {
+				"text": [
+					"Returns the uuid of the character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Uuid]",
+						"The character type."
+					]
+				]
+			}
+		},
+		{
+			"name": "getClientPublicData",
+			"doc": {
+				"text": [
+					"Returns client public data from a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getColor",
+			"doc": {
+				"text": [
+					"Returns the base color of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Color]",
+						"The character color."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCurrentMovementNoiseRadius",
+			"doc": {
+				"text": [
+					"Returns the radius around the character where it can be heard."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The noise radius of the character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCurrentMovementSpeed",
+			"doc": {
+				"text": [
+					"Returns the current movement speed of the character depending on state and multiplier."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The current movement speed."
+					]
+				]
+			}
+		},
+		{
+			"name": "getDirection",
+			"doc": {
+				"text": [
+					"Returns the direction of where a character is viewing or aiming."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The character's view direction."
+					]
+				]
+			}
+		},
+		{
+			"name": "getGlowMultiplier",
+			"doc": {
+				"text": [
+					"Gets the glow multiplier."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The glow multiplier (0.0 - 1.0)."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getHeight",
+			"doc": {
+				"text": [
+					"Returns the height of a character"
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The character's height."
+					]
+				]
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The character's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "getLockingInteractable",
+			"doc": {
+				"text": [
+					"Get the [Interactable] that the [Character] is locked to."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Interactable]",
+						"The interactable."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMass",
+			"doc": {
+				"text": [
+					"Returns the mass of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The character's mass."
+					]
+				]
+			}
+		},
+		{
+			"name": "getMovementSpeedFraction",
+			"doc": {
+				"text": [
+					"Gets the current fraction multiplier applied on the character's movement speed."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The movement speed fraction."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPlayer",
+			"doc": {
+				"text": [
+					"Returns the player controlling the character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Player]",
+						"The player controlling the character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getPublicData",
+			"doc": {
+				"text": [
+					"Returns (server) public data from a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"table",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "getRadius",
+			"doc": {
+				"text": [
+					"Returns the radius of a character"
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The character's radius."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSmoothViewDirection",
+			"doc": {
+				"text": [
+					"Returns the smooth direction of where a character is viewing or aiming."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The character's smooth view direction."
+					]
+				]
+			}
+		},
+		{
+			"name": "getSurfaceNormal",
+			"doc": {
+				"text": [
+					"Returns the normal of the character's contact with a surface. Defaults to a zero vector when no contact is found."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The surface normal."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTpBonePos",
+			"doc": {
+				"text": [
+					"Returns the world position for a bone in the third person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The joint position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTpBoneRot",
+			"doc": {
+				"text": [
+					"Returns the world rotation for a bone in the third person view animation skeleton."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"jointName",
+						"The joint name."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The joint rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTumblingExtent",
+			"doc": {
+				"text": [
+					"Returns the extent of the characters tumbeling shape."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The tumbling shape's extent."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTumblingLinearVelocity",
+			"doc": {
+				"text": [
+					"Returns the linear velocity of the characters tumbling shape."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The tumbling shape's linear velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTumblingWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of the characters tumbeling shape."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The tumbling shape's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "getTumblingWorldRotation",
+			"doc": {
+				"text": [
+					"Returns the world rotation of the characters tumbeling shape."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The tumbling shape's world rotation."
+					]
+				]
+			}
+		},
+		{
+			"name": "getUnit",
+			"doc": {
+				"text": [
+					"Returns the unit controlling the character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Unit]",
+						"The unit controlling the character."
+					]
+				]
+			}
+		},
+		{
+			"name": "getVelocity",
+			"doc": {
+				"text": [
+					"Returns the velocity of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The character's velocity."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorld",
+			"doc": {
+				"text": [
+					"Returns the world a character exists in."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[World]",
+						"The world the character exists in."
+					]
+				]
+			}
+		},
+		{
+			"name": "getWorldPosition",
+			"doc": {
+				"text": [
+					"Returns the world position of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The character's world position."
+					]
+				]
+			}
+		},
+		{
+			"name": "isAiming",
+			"doc": {
+				"text": [
+					"Returns whether a character is currently aiming with a weapon."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the character is aiming."
+					]
+				]
+			}
+		},
+		{
+			"name": "isClimbing",
+			"doc": {
+				"text": [
+					"Get the character climbing state."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				]
+			}
+		},
+		{
+			"name": "isCrouching",
+			"doc": {
+				"text": [
+					"Returns whether a character is currently crouching."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the character is crouching."
+					]
+				]
+			}
+		},
+		{
+			"name": "isDefaultColor",
+			"doc": {
+				"text": [
+					"Returns true if the current character color is its default color."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the color is the base color."
+					]
+				]
+			}
+		},
+		{
+			"name": "isDiving",
+			"doc": {
+				"text": [
+					"Get the character diving state."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				]
+			}
+		},
+		{
+			"name": "isDowned",
+			"doc": {
+				"text": [
+					"Get the character downed state."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				]
+			}
+		},
+		{
+			"name": "isOnGround",
+			"doc": {
+				"text": [
+					"Returns whether the character is currently standing on the ground."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the character is on the ground."
+					]
+				]
+			}
+		},
+		{
+			"name": "isPlayer",
+			"doc": {
+				"text": [
+					"Returns whether a character is owned by a player."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the character is owned by a player."
+					]
+				]
+			}
+		},
+		{
+			"name": "isSprinting",
+			"doc": {
+				"text": [
+					"Returns whether a character is currently sprinting."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the character is sprinting."
+					]
+				]
+			}
+		},
+		{
+			"name": "isSwimming",
+			"doc": {
+				"text": [
+					"Get the character swimming state."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				]
+			}
+		},
+		{
+			"name": "isTumbling",
+			"doc": {
+				"text": [
+					"Get the character tumbling state."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeAnimationCallbacks",
+			"doc": {
+				"text": [
+					"Removes all of a character's animation callbacks."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					]
+				]
+			}
+		},
+		{
+			"name": "removeRenderable",
+			"doc": {
+				"text": [
+					"Removes a renderable (file containing model data) that was used for the character in third person view."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"renderable",
+						"The renderable path."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setAllowTumbleAnimations",
+			"doc": {
+				"text": [
+					"Enables or disables event animations.",
+					"When set to false no animations can play while tumble is active, and when set to true the animations will play while tumbling."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"allow",
+						"The state."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setClientPublicData",
+			"doc": {
+				"text": [
+					"Sets client public data on a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"table",
+						"data",
+						"The client public data."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setClimbing",
+			"doc": {
+				"text": [
+					"Sets whether the character is climbing."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setColor",
+			"doc": {
+				"text": [
+					"Sets the character color."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"[Color]",
+						"color",
+						"The character color."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setDiving",
+			"doc": {
+				"text": [
+					"Sets whether the character is diving."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setDowned",
+			"doc": {
+				"text": [
+					"Sets whether the character is downed."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setGlowMultiplier",
+			"doc": {
+				"text": [
+					"Sets a value to multiply the glow from asg texture with."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"number",
+						"value",
+						"The glow multiplier (0.0 - 1.0)."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setLockingInteractable",
+			"doc": {
+				"text": [
+					"Set the [Interactable] that the [Character] is locked to. Set [Interactable] to nil to unlock."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"[Interactable]",
+						"interactable",
+						"The interactable."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"True if the character was successfully locked or unlocked."
+					]
+				]
+			}
+		},
+		{
+			"name": "setMovementEffects",
+			"doc": {
+				"text": [
+					"Sets the movement effect set filepath."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"Effect",
+						"set filepath\t\tThe effect set filepath."
+					]
+				]
+			}
+		},
+		{
+			"name": "setMovementSpeedFraction",
+			"doc": {
+				"text": [
+					"Sets a fraction multiplier to the character's movement speed."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"number",
+						"fraction",
+						"The movement speed fraction."
+					]
+				]
+			}
+		},
+		{
+			"name": "setMovementWeights",
+			"doc": {
+				"text": [
+					"Sets the weights for movement animations on a character's upper and lower body.",
+					"For a value of 0 no movement animations will play, and for a value of 1 the movement animations will fully play unless otherwise overridden."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"number",
+						"lower",
+						"The lower weight."
+					],
+					[
+						"number",
+						"upper",
+						"The upper weight."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setNameTag",
+			"doc": {
+				"text": [
+					"Sets the name tag display value for the character"
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"name",
+						"The new name tag text value."
+					],
+					[
+						"color",
+						"color=nil",
+						"The color of the name. (defaults to white)"
+					],
+					[
+						"bool",
+						"requiresLoS=false",
+						"Whether broken line of sight will hide the name tag."
+					],
+					[
+						"float",
+						"renderDistance=10000",
+						"Max distance the name tag will render in."
+					],
+					[
+						"float",
+						"fadeDistance=9500",
+						"Distance where fade out will start."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPublicData",
+			"doc": {
+				"text": [
+					"Sets (server) public data on a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"table",
+						"data",
+						"The public data."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setSwimming",
+			"doc": {
+				"text": [
+					"Sets whether the character is swimming."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setTumbling",
+			"doc": {
+				"text": [
+					"Sets whether the character is tumbling."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"boolean",
+						"state",
+						"The state."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "setUpDirection",
+			"doc": {
+				"text": [
+					"Sets the upward direction of the character's graphics."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"[Vec3]",
+						"up",
+						"The direction."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setWorldPosition",
+			"doc": {
+				"text": [
+					"Sets the world position of a character."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"[Vec3]",
+						"The",
+						"character's new world position."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "updateAnimation",
+			"doc": {
+				"text": [
+					"Updates a character animation."
+				],
+				"params": [
+					[
+						"[Character]",
+						"character",
+						"The character."
+					],
+					[
+						"string",
+						"name",
+						"The animation name."
+					],
+					[
+						"number",
+						"time",
+						"The time."
+					],
+					[
+						"number",
+						"weight=nil",
+						"The weight. Defaults to -1.0. (Optional)"
+					],
+					[
+						"boolean",
+						"additive=nil",
+						"Whether the animation will be added to the default animation. Defaults to false. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Character],[Character]",
+						"Checks if two instances of [Character] refer to the same Character."
+					]
+				]
+			}
+		}
+	]
+}

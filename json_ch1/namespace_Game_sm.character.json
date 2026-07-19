@@ -1,0 +1,70 @@
+{
+	"namespace": "sm.character",
+	"userdata_association": "Character",
+	"doc": {
+		"text": [
+			"A <strong>character</strong> is the physical body of a living entity in the world. Both <strong>players</strong> and <strong>units</strong> may control a character."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createCharacter",
+			"doc": {
+				"text": [
+					"Creates a new character in a world."
+				],
+				"params": [
+					[
+						"[Player]",
+						"player",
+						"The player controlling the character."
+					],
+					[
+						"[World]",
+						"world",
+						"The world the character is created in."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The world position of the character."
+					],
+					[
+						"number",
+						"yaw=nil",
+						"The initial yaw of the character (Optional)."
+					],
+					[
+						"number",
+						"pitch=nil",
+						"The initial pitch of the character (Optional)."
+					]
+				],
+				"return": [
+					[
+						"[Character]",
+						"The created character."
+					]
+				],
+				"server_only": true
+			}
+		},
+		{
+			"name": "preloadRenderables",
+			"doc": {
+				"text": [
+					"Pre-loads renderable data to be used by the character. This eliminates excessive loading during run time."
+				],
+				"params": [
+					[
+						"table",
+						"renderables",
+						"The table of renderables { name = string, ... }."
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

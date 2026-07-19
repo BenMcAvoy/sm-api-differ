@@ -1,0 +1,13 @@
+# Xmake cache
+.xmake/
+build/
+.cache/
+compile_commands.json
+
+# Redundant archives (extracted into json_ch1/ and json_ch2/)
+json_ch1.zip
+json_ch2.zip
+
+# MacOS Cache
+.DS_Store
+

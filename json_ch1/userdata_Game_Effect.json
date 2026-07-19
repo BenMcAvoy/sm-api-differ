@@ -1,0 +1,607 @@
+{
+	"userdata": "Effect",
+	"namespace_association": "sm.effect",
+	"doc": {
+		"text": [
+			"A userdata object representing an <strong>effect</strong>."
+		]
+	},
+	"usage": "client only",
+	"serializable": false,
+	"members": [
+		{
+			"name": "id",
+			"get": {
+				"doc": {
+					"text": [
+						"Returns the id of an effect."
+					],
+					"params": [
+						[
+							"[Effect]",
+							"effect",
+							"The effect."
+						]
+					],
+					"return": [
+						[
+							"integer",
+							"The effect's id."
+						]
+					]
+				}
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "bindEventCallback",
+			"doc": {
+				"text": [
+					"Bind an lua callback to be triggerd by the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"string",
+						"methodName",
+						"The name of the callback method being bound. Example: MyClass.methodName( self, event, params )"
+					],
+					[
+						"any",
+						"params=nil",
+						"Parameter object passed to the callback. (Optional)"
+					],
+					[
+						"table",
+						"reference=nil",
+						"Table to recieve the callback. (Optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "clearEventCallbacks",
+			"doc": {
+				"text": [
+					"Clear all lua effect callbacks."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "destroy",
+			"doc": {
+				"text": [
+					"Stops and destroys the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				]
+			}
+		},
+		{
+			"name": "getCameraFov",
+			"doc": {
+				"text": [
+					"Get the desired camera FOV.",
+					"Will return nil if the effect is not playing."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"number",
+						"The FOV."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraPosition",
+			"doc": {
+				"text": [
+					"Get the desired camera position.",
+					"Will return nil if the effect is not playing."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"[Vec3]",
+						"The position vector."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getCameraRotation",
+			"doc": {
+				"text": [
+					"Get the desired camera rotation.",
+					"Will return nil if the effect is not playing."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"[Quat]",
+						"The rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "getId",
+			"doc": {
+				"text": [
+					"Returns the id of an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"integer",
+						"The effect's id."
+					]
+				]
+			}
+		},
+		{
+			"name": "hasActiveCamera",
+			"doc": {
+				"text": [
+					"Check if the effect has an active camera effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Is active."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isDone",
+			"doc": {
+				"text": [
+					"Returns whether the effect is done, meaning that all effect instances have finished."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether effect is done."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "isPlaying",
+			"doc": {
+				"text": [
+					"Returns whether the effect is currently playing."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether effect is playing."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setAutoPlay",
+			"doc": {
+				"text": [
+					"Sets an effect to start playing and repeating automatically."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"boolean",
+						"autoplay",
+						"Autoplay enabled."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOffsetPosition",
+			"doc": {
+				"text": [
+					"Offsets the position of the effect relatively to the host interactable.",
+					"@note",
+					"Does not work if the effect was created without a host interactable.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"offsetPosition",
+						"The relative offset position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setOffsetRotation",
+			"doc": {
+				"text": [
+					"Offsets the orientation of the effect relatively to the host interactable.",
+					"@note",
+					"Does not work if the effect was created without a host interactable.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Quat]",
+						"offsetRotation",
+						"The relative offset rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setParameter",
+			"doc": {
+				"text": [
+					"Sets a named parameter value on the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"string",
+						"name",
+						"The name."
+					],
+					[
+						"any",
+						"value",
+						"The effect parameter value."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setPosition",
+			"doc": {
+				"text": [
+					"Sets the position of an effect.",
+					"@note",
+					"Does not work if the effect was created with a host interactable.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setRotation",
+			"doc": {
+				"text": [
+					"Sets the orientation of an effect using a quaternion.",
+					"@note",
+					"Does not work if the effect was created with a host interactable.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Quat]",
+						"rotation",
+						"The rotation."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setScale",
+			"doc": {
+				"text": [
+					"Sets the scale of an effect.",
+					"@note",
+					"Only applies to effect renderables.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"scale",
+						"The scale."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setStartStopDistance",
+			"doc": {
+				"text": [
+					"Sets an effect to stop and restart depending on distance to the player."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"number",
+						"startDistance",
+						"The distance when effect will start"
+					],
+					[
+						"number",
+						"stopDistance",
+						"The distance when effect will stop"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setTimeOfDay",
+			"doc": {
+				"text": [
+					"Sets an effect to be active during specific period of the day / night cycle."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"boolean",
+						"enabled",
+						"Time of day enabled."
+					],
+					[
+						"number",
+						"start",
+						"Start normalized time of day."
+					],
+					[
+						"number",
+						"end",
+						"End normalized time of day."
+					],
+					[
+						"boolean",
+						"inversed",
+						"If true, period between start-end becomes inactive time."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setVelocity",
+			"doc": {
+				"text": [
+					"Sets the velocity of an effect. The effect will move along at the set velocity until it receives a new position.",
+					"@note",
+					"Does not work if the effect was created with a host interactable.",
+					"@note"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[Vec3]",
+						"velocity",
+						"The velocity."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "setWorld",
+			"doc": {
+				"text": [
+					"Sets the world for an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					],
+					[
+						"[World]",
+						"world",
+						"The world. Defaults to world from script constext. (optional)"
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "start",
+			"doc": {
+				"text": [
+					"Starts playing an effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stop",
+			"doc": {
+				"text": [
+					"Stops playing an effect"
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopBreakSustain",
+			"doc": {
+				"text": [
+					"Stops playing an effect, letting sound finish before destroying the effect."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		},
+		{
+			"name": "stopImmediate",
+			"doc": {
+				"text": [
+					"Immediately stop playing an effect, sound effects ended immediately."
+				],
+				"params": [
+					[
+						"[Effect]",
+						"effect",
+						"The effect."
+					]
+				],
+				"client_only": true
+			}
+		}
+	],
+	"metamethods": [
+		{
+			"name": "__eq",
+			"doc": {
+				"meta": [
+					[
+						"[Effect],[Effect]",
+						"Checks if two instances of [Effect] refer to the same Effect."
+					]
+				]
+			}
+		}
+	]
+}

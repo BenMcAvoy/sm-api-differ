@@ -1,0 +1,46 @@
+{
+	"namespace": "sm.particle",
+	"doc": {
+		"text": [
+			"The <strong>particle</strong> api allows you to create particle effects at a position.",
+			"If you require more control or complexity, please see the [sm.effect, effect] api."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createParticle",
+			"doc": {
+				"text": [
+					"Create a particle effect at a given position and rotation.",
+					"@note",
+					"If you start a looping particle effect through this method then the only way to get rid of it is by reloading the save.",
+					"@note"
+				],
+				"params": [
+					[
+						"string",
+						"particle",
+						"The particle name."
+					],
+					[
+						"[Vec3]",
+						"position",
+						"The position."
+					],
+					[
+						"[Quat]",
+						"rotation=nil",
+						"The rotation. (Defaults to no rotation)"
+					],
+					[
+						"[Color]",
+						"color=nil",
+						"The blend color. (Defaults to white)"
+					]
+				],
+				"client_only": true
+			}
+		}
+	]
+}

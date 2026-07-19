@@ -1,0 +1,44 @@
+{
+	"namespace": "sm.pathNode",
+	"userdata_association": "PathNode",
+	"doc": {
+		"text": [
+			"Path node creation"
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createPathNode",
+			"doc": {
+				"text": [
+					"Create a PathNode"
+				],
+				"params": [
+					[
+						"[Vec3]",
+						"worldPosition",
+						"The node's world position"
+					],
+					[
+						"number",
+						"radius",
+						"The node's radius"
+					],
+					[
+						"boolean",
+						"temporary?",
+						"Temporary nodes are not saved and relies on lua garbage collection for removal (defaults to false)."
+					]
+				],
+				"return": [
+					[
+						"[PathNode]",
+						"The path node"
+					]
+				],
+				"server_only": true
+			}
+		}
+	]
+}

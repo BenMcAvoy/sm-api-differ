@@ -1,0 +1,75 @@
+{
+	"namespace": "sm",
+	"doc": {
+		"text": [
+			"The <strong>sm</strong> namespace contain all API features related to Scrap Mechanic."
+		]
+	},
+	"constants": [
+		{
+			"name": "isHost",
+			"doc": {
+				"text": [
+					"Returns whether the game is currently running on the <a href=\"index.html#server\">hosting</a> player's computer."
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the game is running on the host."
+					]
+				]
+			}
+		},
+		{
+			"name": "version",
+			"doc": {
+				"text": [
+					"Returns the current version of the game as a string."
+				],
+				"return": [
+					[
+						"string",
+						"The current version of the game."
+					]
+				]
+			}
+		}
+	],
+	"functions": [
+		{
+			"name": "exists",
+			"doc": {
+				"text": [
+					"Returns whether an object exists in the game. This is useful for checking whether a reference to an object is valid."
+				],
+				"params": [
+					[
+						"any",
+						"object",
+						"The object instance."
+					]
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the object exists."
+					]
+				]
+			}
+		},
+		{
+			"name": "isServerMode",
+			"doc": {
+				"text": [
+					"Returns whether the script is currently running in <a href=\"index.html#server\">server mode</a>. Otherwise, it is running in <a href=\"index.html#client\">client mode</a>. Server mode only occurs when [sm.isHost] is true."
+				],
+				"return": [
+					[
+						"boolean",
+						"Whether the script is running in server mode."
+					]
+				]
+			}
+		}
+	]
+}

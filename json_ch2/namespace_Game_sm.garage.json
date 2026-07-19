@@ -1,0 +1,71 @@
+{
+	"namespace": "sm.garage",
+	"userdata_association": "Garage",
+	"doc": {
+		"text": [
+			"The <strong>Garage</strong> library contains various utility functions for handling the garage."
+		]
+	},
+	"constants": [],
+	"functions": [
+		{
+			"name": "createGarage",
+			"doc": {
+				"text": [
+					"Creates a new garage.",
+					"The garage is a spawn area for creations defined by a bounding box. The garage can track blueprints and import them into the world.",
+					"The garage is identified by an user specified id."
+				],
+				"params": [
+					[
+						"int",
+						"garageId",
+						"The id of the garage to create"
+					],
+					[
+						"uint",
+						"worldId",
+						"The world the garage is in"
+					],
+					[
+						"[Vec3]",
+						"halfextents",
+						"Half extents of the spawnbox inside the garage"
+					],
+					[
+						"[Vec3]",
+						"position",
+						"Position of the spawn box inside the garage"
+					]
+				],
+				"return": [
+					[
+						"[Garage]\t\tGarage\t\t\t\t\tThe Garage object",
+						""
+					]
+				]
+			}
+		},
+		{
+			"name": "getGarage",
+			"doc": {
+				"text": [
+					"Gets a already existing garage returns nil if it does not exist."
+				],
+				"params": [
+					[
+						"uint",
+						"garageId",
+						"The id of the garage to get"
+					]
+				],
+				"return": [
+					[
+						"[Garage]\t\tGarage\t\t\t\t\tThe Garage object",
+						""
+					]
+				]
+			}
+		}
+	]
+}
